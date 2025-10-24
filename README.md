@@ -63,23 +63,53 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 
 ### 1. Install
 
-```bash
-# Clone into your project
-cd your-project/
-git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
+**Note**: Replace `your-project/` with your actual project directory path, or run from your project root.
 
-# Or download and extract
-curl -L https://github.com/AIalchemistART/scms-starter-kit/archive/main.zip -o scms.zip
+#### Unix/Mac/Linux
+
+```bash
+# Navigate to your project (replace with your actual path)
+cd /path/to/your-project/
+
+# Clone SCMS into docs/scms
+git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
+```
+
+#### Windows (PowerShell)
+
+```powershell
+# Navigate to your project (replace with your actual path)
+cd C:\path\to\your-project\
+
+# Clone SCMS into docs/scms
+git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
+```
+
+#### Alternative: Download ZIP (No Git Required)
+
+**Windows**:
+```powershell
+# Download and extract
+Invoke-WebRequest -Uri "https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip" -OutFile "scms.zip"
+Expand-Archive -Path "scms.zip" -DestinationPath "docs/"
+Rename-Item -Path "docs/scms-starter-kit-master" -NewName "scms"
+Remove-Item "scms.zip"
+```
+
+**Unix/Mac**:
+```bash
+curl -L https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip -o scms.zip
 unzip scms.zip -d docs/
+mv docs/scms-starter-kit-master docs/scms
+rm scms.zip
 ```
 
 ### 2. Run Setup
 
 ```bash
 cd docs/scms
-./scripts/setup.sh  # Unix/Mac
-# OR
-.\scripts\setup.ps1  # Windows
+./scripts/setup.sh       # Unix/Mac
+.\scripts\setup.ps1      # Windows
 ```
 
 ### 3. Configure Your IDE

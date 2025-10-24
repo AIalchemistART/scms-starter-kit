@@ -21,38 +21,77 @@ Before starting, ensure you have:
 
 ### Method 1: Clone into Existing Project (Recommended)
 
+**Note**: Replace paths with your actual project location.
+
+#### Unix/Mac/Linux
+
 ```bash
 # Navigate to your project
-cd your-project/
+cd /path/to/your-project/
 
 # Clone SCMS into docs folder
 git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
 
 # Run setup
 cd docs/scms
-./scripts/setup.sh  # Unix/Mac
-# OR
-.\scripts\setup.ps1  # Windows
+./scripts/setup.sh
 ```
 
-### Method 2: Download and Extract
+#### Windows (PowerShell)
+
+```powershell
+# Navigate to your project
+cd C:\path\to\your-project\
+
+# Clone SCMS into docs folder
+git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
+
+# Run setup
+cd docs/scms
+.\scripts\setup.ps1
+```
+
+---
+
+### Method 2: Download and Extract (No Git Required)
+
+#### Windows (PowerShell)
+
+```powershell
+# Download
+Invoke-WebRequest -Uri "https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip" -OutFile "scms.zip"
+
+# Extract and rename
+Expand-Archive -Path "scms.zip" -DestinationPath "docs/"
+Rename-Item -Path "docs/scms-starter-kit-master" -NewName "scms"
+Remove-Item "scms.zip"
+
+# Run setup
+cd docs/scms
+.\scripts\setup.ps1
+```
+
+#### Unix/Mac/Linux
 
 ```bash
 # Download
-curl -L https://github.com/AIalchemistART/scms-starter-kit/archive/main.zip -o scms.zip
+curl -L https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip -o scms.zip
 
-# Extract
+# Extract and rename
 unzip scms.zip -d docs/
-
-# Rename
-mv docs/scms-starter-kit-main docs/scms
+mv docs/scms-starter-kit-master docs/scms
+rm scms.zip
 
 # Run setup
 cd docs/scms
 ./scripts/setup.sh
 ```
 
+---
+
 ### Method 3: Start New Project with SCMS
+
+#### Unix/Mac/Linux
 
 ```bash
 # Clone as base
@@ -61,6 +100,20 @@ git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project
 # Run setup
 cd my-project
 ./scripts/setup.sh
+
+# Initialize your code
+# (SCMS lives in docs/, your code goes in src/ or root)
+```
+
+#### Windows (PowerShell)
+
+```powershell
+# Clone as base
+git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project
+
+# Run setup
+cd my-project
+.\scripts\setup.ps1
 
 # Initialize your code
 # (SCMS lives in docs/, your code goes in src/ or root)
