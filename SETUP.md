@@ -21,14 +21,11 @@ Before starting, ensure you have:
 
 ### Method 1: Clone into Existing Project (Recommended)
 
-**Note**: Replace paths with your actual project location.
+> ⚠️ **First**: Open terminal and navigate to your project root directory before running these commands.
 
 #### Unix/Mac/Linux
 
 ```bash
-# Navigate to your project
-cd /path/to/your-project/
-
 # Clone SCMS into docs folder
 git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
 
@@ -40,9 +37,6 @@ cd docs/scms
 #### Windows (PowerShell)
 
 ```powershell
-# Navigate to your project
-cd C:\path\to\your-project\
-
 # Clone SCMS into docs folder
 git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
 

@@ -63,14 +63,13 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 
 ### 1. Install
 
-**Note**: Replace `your-project/` with your actual project directory path, or run from your project root.
+> ⚠️ **First**: Navigate to your project directory in the terminal before running these commands.
+> 
+> Don't copy the `cd` commands literally - use your actual project path!
 
 #### Unix/Mac/Linux
 
 ```bash
-# Navigate to your project (replace with your actual path)
-cd /path/to/your-project/
-
 # Clone SCMS into docs/scms
 git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
 ```
@@ -78,9 +77,6 @@ git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
 #### Windows (PowerShell)
 
 ```powershell
-# Navigate to your project (replace with your actual path)
-cd C:\path\to\your-project\
-
 # Clone SCMS into docs/scms
 git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
 ```
