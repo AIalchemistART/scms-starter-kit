@@ -10,7 +10,7 @@ Thank you for your interest in contributing to the SCMS Starter Kit! This projec
 
 **Found a bug or have a suggestion?**
 
-- Check [existing issues](https://github.com/yourusername/scms-starter-kit/issues) first
+- Check [existing issues](https://github.com/AIalchemistART/scms-starter-kit/issues) first
 - Create a new issue with clear description
 - Include:
   - Steps to reproduce (for bugs)
@@ -83,7 +83,7 @@ git clone https://github.com/YOUR_USERNAME/scms-starter-kit.git
 cd scms-starter-kit
 
 # Add upstream
-git remote add upstream https://github.com/yourusername/scms-starter-kit.git
+git remote add upstream https://github.com/AIalchemistART/scms-starter-kit.git
 ```
 
 ---
@@ -352,8 +352,8 @@ function cm(n) {
 
 **Need help?**
 - Check [documentation](docs/)
-- Search [existing issues](https://github.com/yourusername/scms-starter-kit/issues)
-- Join [discussions](https://github.com/yourusername/scms-starter-kit/discussions)
+- Search [existing issues](https://github.com/AIalchemistART/scms-starter-kit/issues)
+- Join [discussions](https://github.com/AIalchemistART/scms-starter-kit/discussions)
 - Open a new issue with `question` label
 
 ---

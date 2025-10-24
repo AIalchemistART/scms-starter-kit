@@ -26,7 +26,7 @@ Before starting, ensure you have:
 cd your-project/
 
 # Clone SCMS into docs folder
-git clone https://github.com/yourusername/scms-starter-kit.git docs/scms
+git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
 
 # Run setup
 cd docs/scms
@@ -39,7 +39,7 @@ cd docs/scms
 
 ```bash
 # Download
-curl -L https://github.com/yourusername/scms-starter-kit/archive/main.zip -o scms.zip
+curl -L https://github.com/AIalchemistART/scms-starter-kit/archive/main.zip -o scms.zip
 
 # Extract
 unzip scms.zip -d docs/
@@ -56,7 +56,7 @@ cd docs/scms
 
 ```bash
 # Clone as base
-git clone https://github.com/yourusername/scms-starter-kit.git my-project
+git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project
 
 # Run setup
 cd my-project
@@ -497,9 +497,9 @@ Create in `docs/templates/memory-template.md`:
 
 **Examples**: Review [docs/examples/](docs/examples/)
 
-**Issues**: [GitHub Issues](https://github.com/yourusername/scms-starter-kit/issues)
+**Issues**: [GitHub Issues](https://github.com/AIalchemistART/scms-starter-kit/issues)
 
-**Questions**: [GitHub Discussions](https://github.com/yourusername/scms-starter-kit/discussions)
+**Questions**: [GitHub Discussions](https://github.com/AIalchemistART/scms-starter-kit/discussions)
 
 ---
 

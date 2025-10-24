@@ -66,10 +66,10 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 ```bash
 # Clone into your project
 cd your-project/
-git clone https://github.com/yourusername/scms-starter-kit.git docs/scms
+git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
 
 # Or download and extract
-curl -L https://github.com/yourusername/scms-starter-kit/archive/main.zip -o scms.zip
+curl -L https://github.com/AIalchemistART/scms-starter-kit/archive/main.zip -o scms.zip
 unzip scms.zip -d docs/
 ```
 
@@ -220,8 +220,8 @@ SCMS is based on published research from the **Labyrinth Protocol** project:
 ## Support & Community
 
 - **Documentation**: Full docs in [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/scms-starter-kit/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/scms-starter-kit/discussions)
+- **Issues**: [GitHub Issues](https://github.com/AIalchemistART/scms-starter-kit/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/AIalchemistART/scms-starter-kit/discussions)
 - **Examples**: See [docs/examples/](docs/examples/)
 
 ---
