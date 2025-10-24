@@ -1,0 +1,6 @@
+# SCMS Starter Kit - .gitignore
+
+# IDE-specific files
+.vscode/
+.idea/
+*.sw

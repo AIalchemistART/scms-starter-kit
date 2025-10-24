@@ -1,0 +1,148 @@
+# SCMS Documentation System
+
+This project uses Sparse Contextual Memory Scaffolding (SCMS) for continual learning and knowledge management.
+
+## Documentation Layers
+
+**L0: Active Memories** (`docs/memories/`)
+- Dynamic validation candidates
+- File-based memory storage
+- Status: CANDIDATE → VALIDATED → PROMOTED
+
+**L1: Quick Reference** (`docs/WORKSPACE_RULES.md`)
+- Validated patterns (use_count ≥ 2)
+- Code snippets and common pitfalls
+- Single file for fast lookup
+
+**L2: Detailed SOPs** (`docs/sops/`)
+- Standard Operating Procedures (use_count ≥ 5)
+- Step-by-step implementation guides
+- Complete with testing checklists
+
+**L3: Case Studies** (`docs/case-studies/`)
+- Complete feature implementations
+- Multiple patterns demonstrated
+- Metrics and lessons learned
+
+**L4: Historical** (`docs/sessions/`)
+- Session summaries
+- Sprint retrospectives
+
+## Workflow: Conservative (Default)
+
+After every implementation:
+
+1. **Create/Update L0 Memory**:
+   - File: `docs/memories/[pattern-name].md`
+   - Status: ⏳ CANDIDATE (awaiting validation)
+   - Use count: Increment on each use
+
+2. **User Validates**: Tests in real environment
+
+3. **If Validated**: Mark as ✅ VALIDATED in memory file
+
+4. **At 2nd Use**: Promote to L1 (add to WORKSPACE_RULES.md)
+
+5. **At 5th Use**: Suggest creating L2 SOP
+
+## Memory File Format
+
+```markdown
+# Memory: [Pattern Name]
+
+**Status**: ⏳ CANDIDATE | ✅ VALIDATED | 🚀 PROMOTED
+**Use Count**: X
+**First Used**: YYYY-MM-DD
+**Last Used**: YYYY-MM-DD
+
+## Pattern
+[Description]
+
+## Code Example
+```language
+// code
+```
+
+## Validation
+- [ ] Tested and working
+```
+
+## Promotion Criteria
+
+- **L0 → L1**: Use count ≥ 2, validated through testing
+- **L1 → L2**: Use count ≥ 5, needs detailed procedure
+- **L2 → L3**: Feature complete, demonstrates multiple patterns
+
+## Status Markers
+
+- ⏳ **CANDIDATE**: Implemented, awaiting validation
+- ✅ **VALIDATED**: Proven through testing
+- 🚀 **PROMOTED**: Moved to L1 WORKSPACE_RULES
+- 📚 **SOP READY**: Used 5+ times, suggest creating SOP
+- 🗄️ **ARCHIVED**: Unused for 30+ days
+
+## Universal Coding Rules
+
+1. **DRY**: Reuse existing functionality wherever possible
+2. **Test Before Change**: Run tests before modifications
+3. **Avoid Unnecessary Refactors**: Don't change working patterns without cause
+4. **Mock Data Only for Testing**: Never in dev/production
+5. **Keep Codebase Clean**: Remove dead code, organize imports
+6. **Consider Code Impact**: Think about how changes affect other areas
+7. **Stay Task-Focused**: Only modify code relevant to current task
+
+See `rules/GLOBAL_CODING_RULES.md` for details.
+
+## Project-Specific Rules
+
+See `docs/WORKSPACE_RULES.md` for:
+- Architecture patterns
+- Coding conventions
+- Testing standards
+- Performance guidelines
+- Security considerations
+
+## When Implementing
+
+1. **Consult docs first**: Check L0-L3 for existing patterns
+2. **Reference explicitly**: Use `@docs/memories/[file].md` to reference patterns
+3. **Document after**: Create/update L0 memory for novel patterns
+4. **Report what was documented**: Tell user what memory was created/updated
+
+## Optional: Recursive Documentation
+
+To enable automatic documentation (after 2-3 months):
+
+Uncomment this section:
+
+<!--
+# RECURSIVE DOCUMENTATION ENABLED
+
+After every implementation, automatically:
+
+1. Create/update `docs/memories/[pattern-name].md`
+2. Set status: CANDIDATE, increment use_count
+3. If use_count >= 2: Add to WORKSPACE_RULES.md
+4. If use_count >= 5: Suggest creating SOP in docs/sops/
+
+Report format:
+✅ Implementation Complete
+📝 L0: Created/Updated "[pattern]" (CANDIDATE, use_count: X)
+[If 2nd use] ⚡ L1: Added to WORKSPACE_RULES.md
+[If 5th use] 📚 L2: Suggest creating SOP?
+-->
+
+## Templates
+
+All templates available in `docs/templates/`:
+- MEMORY_TEMPLATE.md (L0)
+- WORKSPACE_RULES_TEMPLATE.md (L1)
+- SOP_TEMPLATE.md (L2)
+- CASE_STUDY_TEMPLATE.md (L3)
+- SESSION_SUMMARY_TEMPLATE.md (L4)
+
+## For More Information
+
+- Full system: `docs/00_DOCUMENTATION_HIERARCHY.md`
+- Workflows: `workflows/RECURSIVE_DOCUMENTATION.md`, `workflows/MEMORY_PROMOTION_WORKFLOW.md`
+- Examples: `docs/examples/`
