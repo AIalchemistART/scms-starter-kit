@@ -1,40 +1,66 @@
 # SCMS Documentation Hierarchy
 
-**Purpose**: Understand how the 5-layer SCMS system works and when to use each layer.
+**Purpose**: Understand how the dual validation pipeline + reference layers work and when to use each.
+
+**Version**: v1.3 (Updated October 2025)
 
 ---
 
 ## Overview
 
-SCMS creates an **automated validation pipeline** where patterns must prove utility through repeated use before graduating to permanent documentation.
+SCMS implements **dual validation infrastructure** where patterns are automatically tested (L0) and enforced (L1) through repeated use:
 
-**The Core Insight**: Treat AI memory not as terminal storage, but as a **test suite for knowledge**.
+- **L0 (Destructive Validation)**: Tests patterns via probabilistic retrieval + temporal decay
+- **L1 (Stable Validation)**: Enforces validated patterns via deterministic loading (AI MUST check)
+- **L2-L4 (Reference Documentation)**: Traditional passive docs for deeper detail
 
----
-
-## The 5 Layers
-
-```
-L0: Active Memories (Dynamic) ← Validation candidates
-    ↓ (validated through use)
-L1: Quick Reference (Semi-stable) ← Proven patterns  
-    ↓ (used frequently)
-L2: Detailed SOPs (Stable) ← Standard procedures
-    ↓ (complex implementations)
-L3: Case Studies (Examples) ← Complete demonstrations
-    ↓ (end of sprint/milestone)
-L4: Historical Records (Archive) ← Session summaries
-```
+**The Core Insight**: Transform memory from passive storage into **active quality control infrastructure** with complementary validation systems.
 
 ---
 
-## Layer 0: Active Memories
+## The Dual Validation Pipeline + Reference Layers
 
-**Purpose**: Validation pipeline for newly discovered patterns
+```
+┌─────────────────────────────────────────┐
+│ VALIDATION PIPELINE (Active)            │
+├─────────────────────────────────────────┤
+│ L0: Destructive Validation              │
+│  → Tests via probabilistic retrieval    │
+│  → Temporal decay removes unvalidated   │
+│  → Natural selection for patterns       │
+│  → Status: Dynamic (18-30 memories)      │
+├─────────────────────────────────────────┤
+│ L1: Stable Validation                   │
+│  → Enforces via deterministic loading   │
+│  → AI MUST check before acting          │
+│  → Quality gates for proven patterns    │
+│  → Status: Stable (grows slowly)         │
+└─────────────────────────────────────────┘
+         ↓ (references)
+┌─────────────────────────────────────────┐
+│ REFERENCE DOCUMENTATION (Passive)       │
+├─────────────────────────────────────────┤
+│ L2: Standard Operating Procedures       │
+│ L3: Case Studies & Architecture         │
+│ L4: Global Rules (universal)            │
+└─────────────────────────────────────────┘
+```
 
-**Status**: Dynamic (created/updated frequently)
+---
 
-**Contains**: Pattern candidates awaiting validation through use
+## Layer 0: Destructive Validation
+
+**Purpose**: Test patterns through natural selection (probabilistic retrieval + temporal decay)
+
+**Status**: Dynamic (18-30 memories, self-cleaning)
+
+**Function**: **Active validation system** - patterns prove value through repeated use or fade naturally
+
+**Key Characteristics**:
+- Probabilistic retrieval (may or may not activate)
+- Temporal decay (unused patterns removed after 30 days)
+- Natural selection (only patterns that help survive)
+- Automatic quality control
 
 **Implementation**: **Platform-specific** - see below
 
@@ -166,11 +192,21 @@ Promoted (use_count ≥ 2) → PROMOTED to L1
 
 ---
 
-## Layer 1: Quick Reference (WORKSPACE_RULES.md)
+## Layer 1: Stable Validation (WORKSPACE_RULES.md)
 
-**Purpose**: Validated patterns for rapid lookup during development
+**Purpose**: **Enforce validated patterns** as quality gates that AI MUST check before acting
 
-**Status**: Semi-stable (updated when patterns reach ≥2 uses)
+**Status**: Stable (updated only when patterns validated in L0, grows slowly)
+
+**Function**: **Active enforcement system** - deterministic loading guarantees AI checks these patterns
+
+**Key Characteristics**:
+- Deterministic loading (AI MUST check this file every session)
+- Quality gates (validated patterns become mandatory checks)
+- Dual role: Pattern repository + index to L2-L4
+- Promotion threshold: use_count ≥ 2 in L0
+
+**Why This Matters**: L1 is NOT just "better docs"—it's an **enforcement layer** that transforms suggestions into requirements.
 
 **Contains**: Code snippets, common pitfalls, quick patterns
 

@@ -1,24 +1,29 @@
-# Validation Pipeline: How SCMS Tests Knowledge
+# Dual Validation Pipeline: How SCMS Tests and Enforces Knowledge
 
-**Core Concept**: Patterns prove utility through repeated use, not through guessing or premature documentation.
+**Core Concept**: Patterns prove utility through repeated use (L0 destructive validation), then become mandatory checks (L1 stable validation).
+
+**Version**: v1.3 - Updated October 2025
 
 ---
 
-## The Validation Analogy
+## The Dual Validation Analogy
 
-SCMS Layer 0 functions like an automated test suite for knowledge:
+SCMS implements **two complementary validation systems**:
 
-| Software Testing | SCMS L0 Validation |
-|------------------|-------------------|
-| **Test case** | Memory/pattern |
-| **First execution** | Initial use (use_count = 1) |
-| **Second execution** | Validation (use_count = 2) |
-| **Test passes** | Pattern promotes to L1 |
-| **Test fails (unused)** | Pattern decays (archived) |
-| **Test suite** | Entire L0 memory corpus |
-| **CI/CD pipeline** | Automatic promotion mechanism |
+| Software Testing | SCMS L0 (Destructive) | SCMS L1 (Stable) |
+|------------------|----------------------|------------------|
+| **Test case** | Memory/pattern | Quality gate |
+| **First execution** | Initial use (use_count = 1) | N/A (not yet promoted) |
+| **Second execution** | Validation (use_count = 2) | PROMOTION TRIGGER |
+| **Test passes** | Pattern proves useful | → Enforced in L1 |
+| **Test fails (unused)** | Temporal decay archives | N/A (never promoted) |
+| **Test suite** | L0 memory corpus (18-30 patterns) | L1 WORKSPACE_RULES.md |
+| **CI/CD pipeline** | Probabilistic retrieval | Deterministic loading |
+| **Purpose** | **Test patterns experimentally** | **Enforce patterns universally** |
 
-**Key Insight**: **Reuse IS the test** that validates the pattern.
+**Key Insights**: 
+- **L0**: Reuse IS the test that validates the pattern (destructive validation via natural selection)
+- **L1**: Validated patterns become mandatory checks that AI MUST follow (stable validation via enforcement)
 
 ---
 

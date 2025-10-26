@@ -9,7 +9,12 @@
 **Copy this entire prompt and send to Cascade AI:**
 
 ```
-IMPORTANT: This project uses SCMS (Sparse Contextual Memory Scaffolding) with AUTO-MEMORY L0 strategy.
+IMPORTANT: This project uses SCMS v1.3 (Sparse Contextual Memory Scaffolding) with AUTO-MEMORY L0 strategy.
+
+**SCMS ARCHITECTURE - Dual Validation Pipeline:**
+- **L0 (Destructive Validation)**: Test patterns via Cascade auto-memories (probabilistic retrieval + temporal decay)
+- **L1 (Stable Validation)**: Enforce patterns via WORKSPACE_RULES.md (deterministic loading - you MUST check)
+- **L2-L4**: Reference documentation (passive, on-demand)
 
 CRITICAL WORKFLOW RULES:
 
@@ -61,7 +66,12 @@ This is TRUE SCMS - automatic, temporal, use-validated. Let's build!
 **Copy this prompt for manual markdown workflow:**
 
 ```
-IMPORTANT: This project uses SCMS (Sparse Contextual Memory Scaffolding) with MANUAL MARKDOWN L0 strategy.
+IMPORTANT: This project uses SCMS v1.3 (Sparse Contextual Memory Scaffolding) with MANUAL MARKDOWN L0 strategy.
+
+**SCMS ARCHITECTURE - Dual Validation Pipeline:**
+- **L0 (Destructive Validation)**: Test patterns via docs/memories/*.md files (manual tracking, no temporal decay)
+- **L1 (Stable Validation)**: Enforce patterns via WORKSPACE_RULES.md (you MUST check before generating code)
+- **L2-L4**: Reference documentation (passive, on-demand)
 
 WORKFLOW RULES:
 

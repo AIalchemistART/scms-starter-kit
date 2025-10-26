@@ -1,11 +1,17 @@
 # Workspace Rules: Example Project
+## L1 Stable Validation Layer - Enforced Quality Gates
 
 **Project**: Example Interactive Application  
 **Type**: Web Application (React + Electron)  
 **Tech Stack**: React 18, Electron, JavaScript  
+**SCMS Role**: **L1 Stable Validation** (deterministic enforcement layer)  
 **Last Updated**: 2025-10-24
 
-*This is an example WORKSPACE_RULES.md showing validated patterns from a real project (sanitized)*
+**Purpose**: This file contains **VALIDATED patterns** that AI assistants MUST check before generating code. These aren't suggestions—they're enforced quality gates that passed L0 destructive validation (≥2 natural uses).
+
+**How patterns arrive here**: L0 (Auto-memories/manual) → Natural reuse (≥2x) → Promotes to L1 (this file) → Becomes mandatory check
+
+*This is an example showing validated patterns from a real project (sanitized)*
 
 ---
 
