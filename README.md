@@ -19,11 +19,12 @@
 
 ## What is SCMS?
 
-A **5-layer documentation system** that enables AI assistants to learn continuously from your development workflow, dramatically reducing pattern re-discovery time and documentation debt.
+**Sparse Contextual Memory Scaffolding** transforms AI memory from passive storage into **active validation infrastructure**. Unlike traditional documentation that AI may or may not follow, SCMS implements a **dual validation pipeline** where patterns are automatically tested (L0) and enforced (L1) through repeated use.
 
 **Validated Results** (4-month game development project):
 - ✅ **91% reduction** in pattern re-discovery time
-- ✅ **94% knowledge retention** rate
+- ✅ **94% knowledge retention** rate  
+- ✅ **96% time reduction** in stale-context scenarios
 - ✅ **<2 hour** documentation lag (was 2 days)
 - ✅ **Zero documentation debt** after stabilization
 
@@ -31,17 +32,33 @@ A **5-layer documentation system** that enables AI assistants to learn continuou
 
 ## How It Works
 
-SCMS creates an **automated validation pipeline** for knowledge:
+SCMS implements **dual validation infrastructure** where L0 tests and L1 enforces patterns:
 
 ```
-Pattern Discovery → L0 Memory (CANDIDATE) → Validation through use → L1 Quick Reference (VALIDATED)
-                                                                            ↓
-                                                                  L2 Detailed SOP (≥5 uses)
-                                                                            ↓
-                                                                  L3 Case Studies (complete examples)
+┌─────────────────────────────────────────┐
+│ VALIDATION PIPELINE (Active)            │
+├─────────────────────────────────────────┤
+│ L0: Destructive Validation              │
+│  → Tests via probabilistic retrieval    │
+│  → Temporal decay removes unvalidated   │
+│  → Natural selection for patterns       │
+├─────────────────────────────────────────┤
+│ L1: Stable Validation                   │
+│  → Enforces via deterministic loading   │
+│  → AI MUST check before acting          │
+│  → Quality gates for proven patterns    │
+└─────────────────────────────────────────┘
+         ↓ (references)
+┌─────────────────────────────────────────┐
+│ REFERENCE DOCUMENTATION (Passive)       │
+├─────────────────────────────────────────┤
+│ L2: Standard Operating Procedures       │
+│ L3: Case Studies & Architecture         │
+│ L4: Global Rules                        │
+└─────────────────────────────────────────┘
 ```
 
-**Key Innovation**: Patterns must **prove utility through repeated use** before promoting to permanent documentation. This prevents documentation clutter while ensuring valuable patterns are captured.
+**Key Innovation**: L0 and L1 are **complementary validation systems**—L0 tests patterns experimentally, L1 enforces them universally. This transforms memory from "things AI might remember" to "automated quality control infrastructure."
 
 ---
 
@@ -241,24 +258,27 @@ SCMS is based on published research from the **Labyrinth Protocol** project:
 
 ### Core Research Papers
 
-**📄 [SCMS (Empirical)](WHITEPAPER.md)**  
+**📄 [SCMS (Empirical)](WHITEPAPER.md)** - v1.3  
 *Sparse Contextual Memory Scaffolding: A User-Facing Architecture for Continual Learning in AI-Assisted Development Workflows*
+
+Introduces the **dual validation pipeline architecture** where Layer 0 (destructive validation) tests patterns through natural selection and Layer 1 (stable validation) enforces proven patterns through deterministic loading. This transforms AI memory from passive storage into active quality control infrastructure.
 
 **Key Results**:
 - 91% reduction in pattern re-discovery time
-- 94% knowledge retention vs 37% baseline
+- 94% knowledge retention vs 37% baseline  
+- 96% time reduction in stale-context scenarios
 - Documentation lag: 11.5 days → 4 hours
 - Validated over 4 months, 127 implementation cycles
 
-**📄 [Paradigm Shift (Design)](WHITEPAPER_PARADIGM_SHIFT.md)**  
+**📄 [Paradigm Shift (Design)](WHITEPAPER_PARADIGM_SHIFT.md)** - v1.1  
 *Paradigm Shift in AI Memory: From Preference Storage to Continual Learning*
 
-Documents the emergent paradigm shift from AI memories as "digital filing cabinets" to "automated validation pipelines". Includes comparative analysis of standard vs SCMS usage patterns, five design principles, and multi-domain validation (research, content creation, data analysis, education).
+Documents the emergent paradigm shift from AI memories as "digital filing cabinets" to **dual validation infrastructure** (L0 test + L1 enforce). Fewer than 1% of users have discovered this pattern. Includes comparative analysis across six dimensions, five design principles for validation-oriented systems, and multi-domain validation (research, content creation, data analysis, education).
 
-**📄 [Mixture of Memories (Theory)](WHITEPAPER_MIXTURE_OF_MEMORIES.md)**  
+**📄 [Mixture of Memories (Theory)](WHITEPAPER_MIXTURE_OF_MEMORIES.md)** - v1.1  
 *Mixture of Memories: A Unified Framework for Sparse Activation Across Abstraction Levels*
 
-Establishes formal mathematical framework proving structural isomorphism between SCMS routing and Mixture of Experts architectures. Demonstrates sparse selective activation as a universal pattern from biological neurons to organizational systems.
+Establishes formal mathematical framework proving structural isomorphism between SCMS dual validation pipeline (L0+L1) and Mixture of Experts architectures. Demonstrates sparse selective activation as a universal pattern from biological neurons to organizational systems, with validation pipelines mapping directly to gating mechanisms.
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
