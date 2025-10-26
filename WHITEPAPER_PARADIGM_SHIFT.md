@@ -270,8 +270,7 @@ SCMS demonstrates this is achievable today through validation-oriented memory ma
 
 **Primary Author**: Matthew S. Walker (AI Alchemist)  
 **Email**: manny@aialchemist.net  
-**GitHub**: https://github.com/AIalchemistART  
-**Project**: https://github.com/AIalchemistART/labyrinth-protocol
+**GitHub**: https://github.com/AIalchemistART
 
 **Collaborator**: Claude (Anthropic)  
 Via Windsurf Cascade (AI-assisted development environment)

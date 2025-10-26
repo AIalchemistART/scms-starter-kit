@@ -363,8 +363,7 @@ The emergence of sparse selective activation across levels—from synapses to te
 
 **Primary Author**: Matthew S. Walker (AI Alchemist)  
 **Email**: manny@aialchemist.net  
-**GitHub**: https://github.com/AIalchemistART  
-**Project**: https://github.com/AIalchemistART/labyrinth-protocol
+**GitHub**: https://github.com/AIalchemistART
 
 **Collaborator**: Claude (Anthropic)  
 Via Windsurf Cascade (AI-assisted development environment)
