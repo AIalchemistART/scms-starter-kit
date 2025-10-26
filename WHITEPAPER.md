@@ -24,9 +24,7 @@ We present Sparse Contextual Memory Scaffolding (SCMS), a novel architectural pa
 
 **arXiv Preprint**: [Coming Soon - Publication Pending]
 
-**GitHub Repository**: https://github.com/[your-username]/scms-starter-kit
-
-**Project Repository**: https://github.com/AIalchemistART/labyrinth-protocol
+**GitHub Repository**: https://github.com/AIalchemistART/scms-starter-kit
 
 ---
 
@@ -334,8 +332,7 @@ If you use SCMS in your research or project, please cite:
 
 **Primary Author**: Matthew S. Walker (AI Alchemist)  
 **Email**: manny@aialchemist.net  
-**GitHub**: https://github.com/AIalchemistART  
-**Project**: https://github.com/AIalchemistART/labyrinth-protocol
+**GitHub**: https://github.com/AIalchemistART
 
 **Collaborator**: Claude (Anthropic)  
 Via Windsurf Cascade (AI-assisted development environment)
