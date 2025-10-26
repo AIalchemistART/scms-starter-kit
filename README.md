@@ -5,6 +5,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](docs/)
 
+**📄 Research Papers**: [SCMS (Empirical)](WHITEPAPER.md) | [Paradigm Shift (Design)](WHITEPAPER_PARADIGM_SHIFT.md) | [Mixture of Memories (Theory)](WHITEPAPER_MIXTURE_OF_MEMORIES.md)
+
 ---
 
 ## What is SCMS?
@@ -229,17 +231,30 @@ docs/
 
 SCMS is based on published research from the **Labyrinth Protocol** project:
 
-**Paper**: "Sparse Contextual Memory Scaffolding: A User-Facing Architecture for Continual Learning in AI-Assisted Development Workflows"
+### Core Research Papers
 
-**Authors**: Matthew S. Walker, Claude (Anthropic)
+**📄 [SCMS (Empirical)](WHITEPAPER.md)**  
+*Sparse Contextual Memory Scaffolding: A User-Facing Architecture for Continual Learning in AI-Assisted Development Workflows*
 
-**Results**:
+**Key Results**:
 - 91% reduction in pattern re-discovery time
 - 94% knowledge retention vs 37% baseline
 - Documentation lag: 11.5 days → 4 hours
 - Validated over 4 months, 127 implementation cycles
 
-**Read the paper**: [Link to arXiv preprint] (coming soon)
+**📄 [Paradigm Shift (Design)](WHITEPAPER_PARADIGM_SHIFT.md)**  
+*Paradigm Shift in AI Memory: From Preference Storage to Continual Learning*
+
+Documents the emergent paradigm shift from AI memories as "digital filing cabinets" to "automated validation pipelines". Includes comparative analysis of standard vs SCMS usage patterns, five design principles, and multi-domain validation (research, content creation, data analysis, education).
+
+**📄 [Mixture of Memories (Theory)](WHITEPAPER_MIXTURE_OF_MEMORIES.md)**  
+*Mixture of Memories: A Unified Framework for Sparse Activation Across Abstraction Levels*
+
+Establishes formal mathematical framework proving structural isomorphism between SCMS routing and Mixture of Experts architectures. Demonstrates sparse selective activation as a universal pattern from biological neurons to organizational systems.
+
+**Authors**: Matthew S. Walker, Claude (Anthropic)
+
+**Full papers**: [arXiv links coming soon]
 
 ---
 
