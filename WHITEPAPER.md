@@ -10,13 +10,15 @@
 
 ## Abstract
 
-We present Sparse Contextual Memory Scaffolding (SCMS), a novel architectural pattern for continual learning at the prompt-augmentation layer. Unlike traditional approaches that view AI memory systems as preference storage or static context extension, SCMS reframes AI memory as an automated test suite for knowledge, where patterns must prove utility through repeated use before graduating to permanent documentation.
+We present **Sparse Contextual Memory Scaffolding (SCMS)**, a novel architectural pattern that transforms AI memory systems from passive storage into **active validation pipelines** for continual learning. Unlike traditional documentation approaches where knowledge is manually curated, SCMS implements a **dual-stage validation architecture**: **Layer 0** (destructive validation) tests patterns through probabilistic retrieval and temporal decay, while **Layer 1** (stable validation) enforces proven patterns through deterministic loading. Together, these layers function as an automated quality gate that validates, promotes, and enforces patterns without human intervention.
+
+This paradigm shift—treating memory as validation infrastructure rather than reference storage—enables continual learning at the user-facing prompt-augmentation layer without requiring model retraining or weight updates. Patterns enter Layer 0 as candidates, undergo natural selection through repeated use, and either promote to Layer 1 documentation or decay naturally. Layers 2-4 provide traditional reference documentation, but **the core innovation lies in L0+L1 as complementary validation systems**.
 
 **Key Results** (validated over 4-month game development project, 127 implementation cycles):
-- **91% reduction** in pattern re-discovery time
+- **91% reduction** in pattern re-discovery time  
 - **94% knowledge retention** (vs. 37% baseline)
 - **Documentation lag**: 11.5 days → 4 hours
-- **Zero documentation debt** after stabilization
+- **96% time reduction** in stale-context scenarios (QTE case study)
 
 ---
 
@@ -30,31 +32,47 @@ We present Sparse Contextual Memory Scaffolding (SCMS), a novel architectural pa
 
 ## Key Contributions
 
-### 1. Validation-Oriented Memory Architecture
+### 1. Dual Validation Pipeline Architecture
 
-Traditional AI memory systems store preferences and facts indefinitely. SCMS treats memories as **validation candidates** that must prove utility through repeated successful use.
+**The Core Innovation**: SCMS transforms Layers 0 and 1 into **complementary validation systems**:
 
-**Innovation**: Memory as automated test suite, not terminal storage.
+- **Layer 0 (Destructive Validation)**: Patterns enter as candidates, undergo probabilistic retrieval testing, and face temporal decay as selection pressure—only patterns that prove useful through repeated natural use survive
+  
+- **Layer 1 (Stable Validation)**: Validated patterns promote to deterministic loading as quality gates—the AI MUST check these patterns before acting, enforcing proven solutions automatically
+
+**Innovation**: First AI memory system implementing complementary destructive (L0) and stable (L1) validation layers, transforming memory from storage into active quality gates.
 
 ---
 
-### 2. Hierarchical Knowledge Promotion
+### 2. Validation Through Natural Selection
 
-Five-layer architecture where patterns automatically promote based on empirical validation:
+**Five-layer architecture** with critical distinction between validation (L0-L1) and reference (L2-L4):
 
 ```
-L0: Active Memories (validation candidates)
-    ↓ (≥2 successful uses)
-L1: Quick Reference (validated patterns)
-    ↓ (≥5 uses, complex)
-L2: Standard Operating Procedures
-    ↓ (milestone achievements)
-L3: Case Studies (complete examples)
-    ↓ (periodic summaries)
-L4: Historical Records
+┌─────────────────────────────────────────┐
+│ VALIDATION PIPELINE (Active)            │
+├─────────────────────────────────────────┤
+│ L0: Destructive Validation              │
+│  → Test via probabilistic retrieval     │
+│  → Temporal decay removes unvalidated   │
+│  → Natural selection for patterns       │
+├─────────────────────────────────────────┤
+│ L1: Stable Validation                   │
+│  → Enforce via deterministic loading    │
+│  → Quality gates (AI must check)        │
+│  → Dual role: patterns + L2-L4 index    │
+└─────────────────────────────────────────┘
+         ↓ (references)
+┌─────────────────────────────────────────┐
+│ REFERENCE DOCUMENTATION (Passive)       │
+├─────────────────────────────────────────┤
+│ L2: Standard Operating Procedures       │
+│ L3: Case Studies & Architecture         │
+│ L4: Global Rules (universal)            │
+└─────────────────────────────────────────┘
 ```
 
-**Innovation**: Automatic promotion based on use_count, not manual curation.
+**Innovation**: Reframing temporal decay from limitation to feature—patterns that aren't naturally retrieved don't deserve to persist, creating automatic knowledge quality control.
 
 ---
 
@@ -182,25 +200,27 @@ Only ~14% of SCMS memories were novel pattern discoveries. Rest were:
 
 ## Paradigm Shift
 
-### From Preference Storage to Continual Learning
+### From Passive Storage to Active Validation Infrastructure
 
 Traditional AI memory usage:
 ```
 User: "Remember I prefer TypeScript"
 AI Memory: Stores preference indefinitely
-Use: Static fact retrieval
+Use: Passive reference (may or may not consult)
+Result: 65% of memories never activate after creation
 ```
 
-SCMS memory usage:
+SCMS dual validation pipeline:
 ```
 Developer: Discovers pattern solving problem X
-SCMS: Creates validation candidate (L0)
-Problem X recurs → Pattern retrieved and applied
-Success → Pattern validated and promoted (L1)
-Frequent use → Standard procedure created (L2)
+L0 (Destructive Validation): Creates candidate, tests via retrieval
+Problem X recurs → Pattern retrieved naturally (use_count++)
+L0 → L1 (Stable Validation): Promoted at use_count ≥ 2
+AI: MUST check L1 quality gates before acting
+Enforced: Pattern guaranteed to be followed
 ```
 
-**Shift**: From static storage to dynamic validation pipeline.
+**Shift**: From passive storage to **dual validation infrastructure** where L0 tests and L1 enforces patterns automatically.
 
 ---
 
@@ -246,12 +266,13 @@ Frequent use → Standard procedure created (L2)
 
 ### For AI Memory Systems
 
-**Design implications**:
-- Memories should have validation status (CANDIDATE/VALIDATED)
-- Track use_count for promotion decisions
-- Implement temporal decay for unused patterns
-- Support hierarchical promotion (L0→L1→L2)
-- Enable recursive documentation modes
+**Design implications for dual validation pipelines**:
+- **L0 (Destructive Validation)**: Implement probabilistic retrieval + temporal decay as natural selection mechanism
+- **L1 (Stable Validation)**: Implement deterministic loading via workspace rules/session startup
+- **Track validation metrics**: use_count, last_used, promotion_date
+- **Enable automatic promotion**: L0 → L1 at use_count ≥ 2
+- **Distinguish layers**: Active validation (L0-L1) vs passive reference (L2-L4)
+- **Support recursive documentation**: Document-first mode for mature systems
 
 ---
 

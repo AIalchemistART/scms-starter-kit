@@ -8,15 +8,16 @@
 
 ## Abstract
 
-We present **Mixture of Memories (MoM)**, a formal theoretical framework demonstrating that sparse selective activation is a universal architectural pattern across abstraction levels—from neural synapses to model-internal parameters to user-facing interfaces. Building on the empirical validation of Sparse Contextual Memory Scaffolding (SCMS), we establish mathematical equivalence between Layer 0 memory routing and Mixture of Experts (MoE) architectures, revealing fundamental invariants that persist across implementation levels.
+We present **Mixture of Memories (MoM)**, a formal theoretical framework demonstrating that sparse selective activation is a universal architectural pattern across abstraction levels—from neural synapses to model-internal parameters to user-facing validation pipelines. Building on the empirical validation of Sparse Contextual Memory Scaffolding (SCMS), which implements a **dual validation architecture** (Layer 0 destructive testing + Layer 1 stable enforcement), we establish mathematical equivalence between interface-level validation pipelines and Mixture of Experts (MoE) architectures, revealing fundamental invariants that persist across implementation levels.
 
 Our key contributions include:
-1. **Formal proof** of structural isomorphism between SCMS Layer 0 routing and MoE gating mechanisms
-2. **Stateful routing extensions** incorporating temporal and reinforcement components with theoretical justification
-3. **Cross-level invariant analysis** demonstrating pattern repetition from biological to organizational systems
-4. **Novel routing strategies** adapted from MoE research to interface-level memory systems
+1. **Formal proof** of structural isomorphism between SCMS Layer 0 routing (destructive validation through natural selection) and MoE gating mechanisms
+2. **Extension to Layer 1** demonstrating how stable validation (deterministic enforcement) also maps to gating architectures
+3. **Stateful routing extensions** incorporating temporal decay and usage-based reinforcement with theoretical justification
+4. **Cross-level invariant analysis** demonstrating pattern repetition from biological to organizational systems
+5. **Novel routing strategies** adapted from MoE research to interface-level validation systems
 
-Through mathematical analysis and empirical validation from SCMS deployment, we show that the same principles governing Mixture of Experts in neural networks apply universally to any system requiring continual learning without catastrophic forgetting. This work establishes "Mixture of Memories" as a fundamental pattern in continual learning architectures.
+Through mathematical analysis and empirical validation from SCMS deployment, we show that the same principles governing Mixture of Experts in neural networks apply universally to dual validation architectures requiring continual learning without catastrophic forgetting. This work establishes "Mixture of Memories" as a fundamental pattern in continual learning systems and provides theoretical foundation for interface-level validation pipelines that test and enforce patterns automatically.
 
 **Keywords**: mixture of experts, sparse activation, memory routing, continual learning, cross-level analysis, universal patterns, structural isomorphism
 
