@@ -9,6 +9,14 @@
 
 ---
 
+## 🎥 Watch the Explainer Video
+
+[![SCMS Explainer Video](https://img.youtube.com/vi/Rd1BVCm46z4/maxresdefault.jpg)](https://youtu.be/Rd1BVCm46z4)
+
+**[▶️ Watch on YouTube](https://youtu.be/Rd1BVCm46z4)** - Learn how SCMS transforms AI-assisted development in 5 minutes
+
+---
+
 ## What is SCMS?
 
 A **5-layer documentation system** that enables AI assistants to learn continuously from your development workflow, dramatically reducing pattern re-discovery time and documentation debt.
