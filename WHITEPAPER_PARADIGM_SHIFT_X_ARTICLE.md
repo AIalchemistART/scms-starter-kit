@@ -29,18 +29,18 @@ You encounter something worth remembering. You save it. It sits there forever.
 
 ## The Emergent Pattern (What <1% Discovered)
 
-### Mental Model: Automated Test Suite
+### Mental Model: Dual Validation Infrastructure
 
-You encounter a non-obvious pattern. You create a **validation candidate**. If it proves useful through repeated use (≥2 activations), it promotes to documentation. If not, it decays.
+You encounter a non-obvious pattern. You create a **validation candidate** in L0. Through repeated use, it's tested (L0 destructive validation). If proven (≥2 activations), it promotes to L1 for enforcement (L1 stable validation). If not, temporal decay removes it.
 
 **Usage Statistics** (SCMS measured):
 - 📝 Creation rate: 14% of queries (novelty-only)
 - 👀 Utilization: 89% of memories actively used
-- 🗄️ Lifecycle: Dynamic (test → validate → promote)
+- 🗄️ Lifecycle: **Dual validation** (L0 test → L1 enforce)
 - 📊 Growth: Bounded L0, scales through docs
-- 🎯 Purpose: **Validate domain patterns through use**
+- 🎯 Purpose: **Validate AND enforce domain patterns**
 
-**The Result**: Knowledge base that learns through validation, not just stores through declaration.
+**The Result**: **Dual validation infrastructure** where L0 tests and L1 enforces—not passive storage.
 
 ---
 
@@ -49,11 +49,11 @@ You encounter a non-obvious pattern. You create a **validation candidate**. If i
 | Dimension | Standard | SCMS (Emergent) | Shift |
 |-----------|----------|-----------------|-------|
 | **Purpose** | Store preferences | **Validate patterns** | Personalization → Learning |
-| **Mental Model** | Filing cabinet | **Test suite** | Storage → Validation |
+| **Mental Model** | Filing cabinet | **Dual validation infrastructure** | Storage → Validation |
 | **Creation** | 42% (liberal) | **14% (sparse)** | 66% reduction |
-| **Validation** | None | **≥2 uses required** | Trust → Proof |
-| **Lifecycle** | Static | **Dynamic pipeline** | Terminal → Active |
-| **Architecture** | Flat | **5-layer promotion** | Unstructured → Hierarchical |
+| **Validation** | None | **L0 test + L1 enforce** | Trust → Proof |
+| **Lifecycle** | Static | **Dynamic (test→enforce)** | Terminal → Active |
+| **Architecture** | Flat | **Dual validation (L0+L1)** | Unstructured → Hierarchical |
 
 **This isn't incremental improvement. It's a different paradigm.**
 
@@ -144,22 +144,21 @@ score = semantic_match * exp(-λ * days_since_last_use)
 
 ---
 
-### 4. Promotion Pipeline
-**Principle**: Transition validated knowledge from dynamic buffer to stable documentation
+### 4. Dual Validation Pipeline
+**Principle**: Implement complementary validation systems where L0 tests and L1 enforces
 
-**Why It Works**: Separates exploration (L0) from exploitation (L1-4). Bounded working set, unbounded documentation.
+**Why It Works**: Separates experimentation (L0 destructive) from enforcement (L1 stable). Patterns must prove value before becoming authoritative.
 
 **Implementation**:
 ```
-L0: Active Memories (20-30 slots, validation buffer)
+L0: Destructive Validation (probabilistic retrieval, temporal decay)
   ↓ (use_count ≥ 2)
-L1: SOPs (validated routines)
-L2: Case Studies (complex implementations)
-L3: Architecture (system patterns)
-L4: Global Rules (universal principles)
+L1: Stable Validation (deterministic loading, AI MUST check)
+  ↓ (references)
+L2-L4: Reference Documentation (passive, on-demand)
 ```
 
-**Effect**: 98% documentation lag reduction, zero manual curation needed
+**Effect**: 98% documentation lag reduction, 89% memory utilization, automatic quality control
 
 ---
 

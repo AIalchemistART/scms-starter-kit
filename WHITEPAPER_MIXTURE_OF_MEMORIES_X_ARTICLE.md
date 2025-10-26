@@ -8,11 +8,14 @@ Sparse selective activation.
 
 Only **1-4% of neurons** fire for a given stimulus.  
 Only **2-4 of 64 experts** activate per token in MoE models.  
-Only **15% of memories** activate per query in SCMS.
+Only **15% of memories** activate per query in SCMS (L0 layer).  
+Only **~10% of documents** activate in organizational knowledge bases.
 
 **Coincidence? Or fundamental principle?**
 
 After months analyzing this pattern across abstraction levels—from biological synapses to organizational systems—I discovered something profound: **Sparse routing with learned selection is a universal invariant in continual learning architectures.**
+
+And SCMS implements this at **two complementary levels**: L0 (destructive validation) and L1 (stable validation).
 
 This is the math behind why it works.
 
@@ -83,17 +86,21 @@ Where φ(q) is query embedding, W_i is learned expert weight
 
 ---
 
-### SCMS Routing (Semantic-Only)
+### SCMS Dual Validation Routing
 
-**Units**: Discrete memories {m₁, m₂, ..., mₙ}
+**L0 Units (Destructive Validation)**: Discrete memories {m₁, m₂, ..., mₙ}
 
-**Routing**: Semantic similarity
+**L0 Routing**: Probabilistic retrieval with stateful components
 ```
-R_sem(q, m_i) = φ(q) · φ(m_i)
+R_L0(q, m_i) = α·φ(q)·φ(m_i) + β·exp(-λΔt) + γ·log(1+use_count)
 ```
-Where φ(·) is embedding function
+Where φ(·) is embedding function, Δt is time since last use
 
-**Selection**: top-k memories by similarity
+**L1 Units (Stable Validation)**: Workspace rules (deterministically loaded)
+
+**L1 Routing**: Guaranteed activation (AI MUST check L1)
+
+**Selection**: top-k from L0 (probabilistic) + all of L1 (deterministic)
 
 ---
 
@@ -107,7 +114,11 @@ Where φ(·) is embedding function
 3. Then: g_θ(q)_i = φ(m_i)^T · φ(q) = R_sem(q, m_i)
 4. Therefore: top-k{g_θ(q)_i} = top-k{R_sem(q, m_i)}
 
-**Significance**: Interface-level memory selection (SCMS) and model-internal expert selection (MoE) are **the same mathematical operation** at different abstraction levels.
+**Significance**: Interface-level **dual validation** (SCMS L0+L1) maps to gating mechanisms in MoE:
+- **L0 (Destructive)**: Probabilistic gating with temporal/usage signals
+- **L1 (Stable)**: Deterministic gating (always-on experts)
+
+This demonstrates that validation pipelines are **mathematically equivalent** to MoE gating at different abstraction levels.
 
 ---
 
