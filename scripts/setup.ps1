@@ -312,7 +312,7 @@ switch ($IDE) {
             
             # Create guide file
             $guidePath = Join-Path $PSScriptRoot "..\..\L0_AUTO_MEMORY_GUIDE.md"
-            $guideContent = @'
+            $guideContent = @"
 # L0 Auto-Memory Strategy (Windsurf)
 
 **Status**: ACTIVE
@@ -320,26 +320,27 @@ switch ($IDE) {
 
 ## How It Works
 
-1. **AI Creates Memories Automatically**
+1. AI Creates Memories Automatically
    - During development, Cascade AI will create memories when it discovers patterns
    - No manual documentation needed
-   - Memories appear in Windsurf's memory panel
+   - Memories appear in Windsurf memory panel
 
-2. **Track Retrievals**
+2. Track Retrievals
    - When AI retrieves a memory to solve a problem, that counts as validation
    - Update MEMORY_STATUS_DASHBOARD.md to track retrieval counts
 
-3. **Promote at Threshold**
-   - When a memory is retrieved 2+ times, promote to WORKSPACE_RULES.md
+3. Promote at Threshold
+   - When a memory reaches your threshold, promote to WORKSPACE_RULES.md
    - This makes it permanent (L1 validated pattern)
+   - Check MEMORY_STATUS_DASHBOARD.md for your configured threshold
 
-4. **Temporal Decay**
-   - Unused memories (30+ days, <2 retrievals) will naturally decay
+4. Temporal Decay
+   - Unused memories (30 days or more without reaching threshold) will naturally decay
    - This keeps your knowledge base clean
 
-## DO NOT:
+## DO NOT
 
-- Create files in docs/memories/ folder (doesn't exist for auto-memory strategy)
+- Create files in docs/memories/ folder (does not exist for auto-memory strategy)
 - Manually document patterns
 - Override AI memory creation
 
@@ -349,12 +350,12 @@ switch ($IDE) {
 2. When AI suggests a memory, approve it
 3. Note when AI retrieves memories
 4. Update dashboard with retrieval counts
-5. Promote validated memories to WORKSPACE_RULES.md
+5. Promote validated memories to WORKSPACE_RULES.md when threshold reached
 
-**This is TRUE SCMS as researched - automatic, temporal, use-validated.**
+This is TRUE SCMS as researched - automatic, temporal, use-validated.
 
 See: config/windsurf/SETUP.md
-'@
+"@
             Set-Content -Path $guidePath -Value $guideContent -Encoding UTF8
             Write-Host "Created: L0_AUTO_MEMORY_GUIDE.md" -ForegroundColor Green
             Write-Host ""
