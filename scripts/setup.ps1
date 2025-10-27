@@ -225,10 +225,13 @@ Write-Host "Initializing memory dashboard..." -ForegroundColor Yellow
 
 $dashboardPath = Join-Path $PSScriptRoot "..\..\MEMORY_STATUS_DASHBOARD.md"
 if (-not (Test-Path $dashboardPath)) {
-    $dashboardContent = @'
+    $dateStr = Get-Date -Format "yyyy-MM-dd"
+    $strategyStr = if ($L0_STRATEGY -eq "auto") { "**Strategy**: Auto-Memory (Windsurf Cascade)" } else { "**Strategy**: Manual Markdown Files" }
+    
+    $dashboardContent = @"
 # Memory Status Dashboard
 
-**Last Updated**: {0}
+**Last Updated**: $dateStr
 **SCMS Status**: Initialized
 **SCMS Version**: v1.4
 
@@ -236,18 +239,18 @@ if (-not (Test-Path $dashboardPath)) {
 
 ## Project Configuration
 
-**Project Phase**: {3}
-**Team Size**: {4} (n_unique≥{5})
-**Domain**: {6}
-**Promotion Threshold**: n≥{7}
+**Project Phase**: $($THRESHOLD_CONFIG.Phase)
+**Team Size**: $($THRESHOLD_CONFIG.Team) (n_unique >= $($THRESHOLD_CONFIG.NUnique))
+**Domain**: $($THRESHOLD_CONFIG.Domain)
+**Promotion Threshold**: n >= $($THRESHOLD_CONFIG.FinalThreshold)
 
-*Patterns need {7} uses before promoting to L1 (WORKSPACE_RULES.md)*
+*Patterns need $($THRESHOLD_CONFIG.FinalThreshold) uses before promoting to L1 (WORKSPACE_RULES.md)*
 
 ---
 
 ## Active Memories (L0)
 
-{2}
+$strategyStr
 
 No memories yet - will populate as you develop!
 
@@ -262,11 +265,11 @@ Check WORKSPACE_RULES.md for promoted patterns.
 ## Next Steps
 
 1. Customize WORKSPACE_RULES.md for your project
-2. Configure your IDE (see config/{1}/SETUP.md)
+2. Configure your IDE (see config/$IDE/SETUP.md)
 3. Copy SCMS_STARTUP_PROMPT.md content to AI at each session
 4. Start developing - SCMS builds automatically!
 
-'@ -f (Get-Date -Format "yyyy-MM-dd"), $IDE, $(if ($L0_STRATEGY -eq "auto") { "**Strategy**: Auto-Memory (Windsurf Cascade)" } else { "**Strategy**: Manual Markdown Files" }), $THRESHOLD_CONFIG.Phase, $THRESHOLD_CONFIG.Team, $THRESHOLD_CONFIG.NUnique, $THRESHOLD_CONFIG.Domain, $THRESHOLD_CONFIG.FinalThreshold
+"@
     
     Set-Content -Path $dashboardPath -Value $dashboardContent -Encoding UTF8
     Write-Host "Dashboard initialized" -ForegroundColor Green
