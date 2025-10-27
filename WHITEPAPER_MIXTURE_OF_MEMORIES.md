@@ -2,7 +2,7 @@
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 1.3 (Updated October 26, 2025 - Added impossibility proofs, principled derivation, and scope boundaries)
+**Version**: 1.4 (Updated October 27, 2025 - Added adaptive promotion thresholds + scope boundaries)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -320,6 +320,52 @@ When designing AI systems requiring continual learning, start with the MoM frame
 
 ---
 
+## Adaptive Promotion Thresholds
+
+**v1.4 Addition**: The current static promotion threshold (n ≥2 uses) proved effective for solo developer deployment (Labyrinth Protocol, 4 months) but exhibits brittleness in multi-user and multi-phase contexts.
+
+**The Challenge**: Fixed thresholds ignore:
+- **Project maturity phase** (greenfield vs established patterns)
+- **Team collaboration** (solo vs multi-developer consensus)
+- **Domain characteristics** (high-churn web dev vs stable embedded systems)
+
+**Proposed Extension**: Replace static n≥2 with adaptive function:
+
+**n_promote = f(n_total, n_unique, t_project, σ_domain)**
+
+Where:
+- n_total: Total use count across all users
+- n_unique: Number of unique contributors who validated pattern
+- t_project: Project age (days since start)
+- σ_domain: Domain stability coefficient
+
+**Example Adaptive Rules**:
+
+**Dimension 1: Project Phase**
+- Greenfield (<30 days): n=5 (patterns still emerging, higher bar)
+- Establishing (30-90 days): n=3 (stabilizing)
+- Mature (90+ days): n=2 (patterns well-defined)
+
+**Dimension 2: Team Collaboration**
+- Solo developer: n_unique≥1, n_total≥2
+- Small team (2-5): n_unique≥2, n_total≥3
+- Large team (5+): n_unique≥3, n_total≥5
+
+**Dimension 3: Domain Stability**
+- High-churn (web dev): σ=0.5 (fast promotion)
+- Moderate (general software): σ=1.0 (standard)
+- Stable (embedded systems): σ=1.5 (conservative)
+
+**Combined Example**: 3-person team, 45 days into project, web development:
+- n_promote = max(2, ⌊3 × 1.0 × 0.5⌋) = max(2, 1) = 2
+- Requires: n_unique≥2 AND n_total≥2
+
+**Future Work**: Empirical validation across diverse team sizes, project phases, and domains to establish optimal threshold functions. Current static n≥2 validated only for solo developer, 4-month project.
+
+**Rationale**: Higher thresholds early in projects prevent premature L1 promotion of transient solutions. Team consensus requirements prevent individual bias. Domain-specific adjustments account for pattern stability characteristics.
+
+---
+
 ## Impossibility of Dense Alternatives
 
 **v1.3 Addition**: We now include formal proofs demonstrating sparse activation is not merely optimal but **structurally necessary** under realistic constraints:
@@ -405,4 +451,4 @@ Via Windsurf Cascade (AI-assisted development environment)
 
 **License**: CC-BY 4.0 (free to share and adapt with attribution)
 
-*Last Updated: October 26, 2025*
+*Last Updated: October 27, 2025*

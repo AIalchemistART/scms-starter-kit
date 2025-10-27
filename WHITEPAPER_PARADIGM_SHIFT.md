@@ -2,7 +2,7 @@
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 1.3 (Updated October 26, 2025 - Added mandatory UX patterns and scope boundaries)
+**Version**: 1.4 (Updated October 27, 2025 - Reframed discovery vs adoption + enforcement spectrum)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -20,7 +20,7 @@ We document an **emergent paradigm shift** in AI memory system usage, revealing 
 
 This dual architecture produces: 91% reduction in pattern re-discovery time, 94% knowledge retention (vs 37% baseline), 98% reduction in documentation lag, and 154% increase in active memory utilization. Creation is sparse (14% of queries), validation is usage-based (≥2 retrievals), and memories function as automated test suite + enforcement layer.
 
-**Critically, we address the adoption crisis**: the <1% usage rate reveals that optional features fail to overcome ingrained "filing cabinet" mental models. We therefore propose **mandatory UX patterns** that build the dual validation paradigm into unavoidable workflows—forcing categorization at memory creation, visualizing temporal decay with urgency cues, and blocking task workflows until L1 quality gates are acknowledged.
+**Critically, we address the discovery problem**: the <1% usage rate reveals that current AI memory systems (ChatGPT Memory, Windsurf Cascade) are designed and marketed for **user preference storage**, not validation infrastructure. This creates a fundamental discovery gap—users haven't independently found this novel use case because it contradicts the stated design purpose. This is a **discovery problem requiring education**, not an adoption problem requiring coercion. For users who do discover validation-oriented usage, we propose **enforcement mechanisms** (soft and hard) that prevent reverting to ingrained "filing cabinet" habits—from visual cues and checklists (user-implementable now) to blocking dialogs and automated workflows (requires IDE extensions or builder support).
 
 Through 4-month longitudinal deployment and multi-domain validation (scientific research, content creation, data analysis, education), we show this paradigm shift produces:
 - **91% reduction** in pattern re-discovery time
@@ -229,15 +229,44 @@ Architectural changes can dramatically improve utility without requiring new ML 
 
 ---
 
-## Addressing the <1% Adoption Crisis
+## The Discovery Problem: Novel Use Case vs Intended Design
 
-**v1.3 Addition**: The low natural adoption rate (<1%) doesn't invalidate the paradigm—it reveals that **optional features fail to overcome ingrained mental models**. Users default to "filing cabinet" behavior unless forced otherwise.
+**v1.4 Critical Reframe**: The <1% statistic reflects a **discovery gap, not an adoption crisis**. Current AI memory systems (ChatGPT Memory, Windsurf Cascade, GitHub Copilot) are explicitly designed and marketed for **user preference storage**—remembering names, project context, user-specific configurations. Both platform UX and LLM training reinforce "filing cabinet" mental models.
 
-### Mandatory UX Patterns for Forcing Adoption
+**The Core Challenge**: Validation-oriented memory usage—where patterns prove utility through repeated use before promotion to enforced quality gates—represents a **novel application never intended by system designers**.
 
-**Problem**: Suggesting validation-oriented usage doesn't work. Users need **unavoidable workflows** that make the paradigm natural.
+**Why Discovery is Rare**:
+1. **Platform Marketing**: All major systems position memory as preference storage ("Remember details about you")
+2. **LLM Training**: AI assistants trained to store user requests, not discover reusable patterns
+3. **Mental Model Mismatch**: Users carry expectations from traditional file systems (liberal creation, permanent storage, optional consultation)
 
-**Solution**: Three mandatory patterns built into AI assistant UX:
+**This is NOT an adoption problem** (users resisting a known workflow) but a **discovery problem** (users unaware this use case exists).
+
+**Two-Phase Challenge**:
+- **Phase 1: Discovery** (Education) → Make users aware validation-oriented usage exists
+- **Phase 2: Correct Usage** (Enforcement) → Help discovered users maintain intended behavior
+
+### Enforcement Spectrum: Soft to Hard
+
+**v1.4 Addition**: For users who have discovered validation-oriented usage (Phase 2), enforcement mechanisms prevent reverting to "filing cabinet" habits. We distinguish between:
+
+**Soft Enforcement** (User-Implementable, Testing Now):
+- Visual urgency cues (progress bars, decay warnings)
+- Session start checklists (social accountability)
+- Dashboard gamification (sprint goals)
+- **Benefit**: Zero infrastructure, works with any AI assistant
+- **Limitation**: Relies on user discipline
+
+**Hard Enforcement** (Requires IDE Extensions or Builder Support):
+- Blocking dialogs (cannot proceed without acknowledgment)
+- Automated dashboard updates (eliminates manual burden)
+- Git pre-commit hooks (catches pattern violations)
+- **Benefit**: Technical blocking, not just social pressure
+- **Limitation**: Requires VS Code extension or native platform support
+
+**Open Question**: Does soft enforcement achieve sufficient compliance (90%+ L1 adherence, <2hr promotion lag) to make hard enforcement unnecessary? Testing underway via Labyrinth Protocol (Nov 2025).
+
+**Three Key Patterns** (shown as hard enforcement examples, adaptable to soft):
 
 **1. Mandatory Novelty Filter (at Memory Creation)**
 ```
@@ -375,4 +404,4 @@ Via Windsurf Cascade (AI-assisted development environment)
 
 **License**: CC-BY 4.0 (free to share and adapt with attribution)
 
-*Last Updated: October 26, 2025*
+*Last Updated: October 27, 2025*
