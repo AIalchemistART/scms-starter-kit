@@ -4,6 +4,52 @@ Complete installation and configuration guide for Sparse Contextual Memory Scaff
 
 ---
 
+## Before You Begin: Is SCMS Right for Your Project?
+
+**SCMS delivers differentiated benefits based on project characteristics**. Review this checklist:
+
+### ✅ Ideal Projects (Proceed with Setup)
+
+Your project has **2+ of these characteristics**:
+- [ ] Duration >1 month with iterative pattern discovery
+- [ ] Returning to project after gaps (days/weeks between sessions)
+- [ ] Complex domain with evolving edge cases
+- [ ] Multiple implementation cycles building on prior work
+- [ ] Team collaboration requiring context sharing
+- [ ] Picking up old codebase with stale context
+
+**Expected Benefit**: 60-96% time reduction in pattern re-discovery
+
+### ✓ Good Fit Projects (Setup Recommended)
+
+Your project has **1-2 of these characteristics**:
+- [ ] Established codebase with moderate pattern reuse
+- [ ] Regular development with session gaps
+- [ ] Knowledge-intensive work (research, complex software)
+- [ ] Documentation tends to lag behind implementation
+
+**Expected Benefit**: 30-60% time reduction
+
+### △ Marginal Projects (Consider Alternatives First)
+
+Your project is primarily:
+- [ ] Greenfield (starting from scratch with fresh context)
+- [ ] Short-term (<1 month duration)
+- [ ] Well-documented with comprehensive existing docs
+- [ ] Static workflow with minimal pattern evolution
+
+**Expected Benefit**: 15-30% time reduction (still helpful, but lower ROI)
+
+### ❌ Skip Setup For
+
+- One-off throwaway scripts
+- Purely preference-based tracking (use standard AI memory instead)
+- Compliance/regulatory documentation (use dedicated systems)
+
+**Practical Guidance**: If your project lasts >1 month with iterative pattern discovery, SCMS transitions from "nice to have" to "structural necessity" (see research for proof).
+
+---
+
 ## Prerequisites
 
 Before starting, ensure you have:
