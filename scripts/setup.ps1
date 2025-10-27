@@ -424,7 +424,7 @@ Write-Host "Examples: docs/examples/" -ForegroundColor Gray
 Write-Host ""
 
 # Remind about startup prompt if auto-memory was selected
-if ($IDE -eq "windsurf" -and $L0_STRATEGY -eq "auto") {
+if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
     Write-Host '========================================' -ForegroundColor Cyan
     Write-Host 'REMINDER: Copy Startup Prompt Above!' -ForegroundColor Yellow
     Write-Host '========================================' -ForegroundColor Cyan
