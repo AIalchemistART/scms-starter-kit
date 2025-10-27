@@ -425,11 +425,9 @@ Write-Host ''
 
 # Remind about startup prompt if auto-memory was selected
 if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
-    Write-Host '========================================' -ForegroundColor Cyan
-    Write-Host 'REMINDER: Copy Startup Prompt Above' -ForegroundColor Yellow
-    Write-Host '========================================' -ForegroundColor Cyan
     Write-Host ''
-    Write-Host 'Scroll up to find the startup prompt or open SCMS_STARTUP_PROMPT.md' -ForegroundColor White
-    Write-Host 'Paste it to Cascade AI at the start of each session' -ForegroundColor Yellow
+    Write-Host '========================================' -ForegroundColor Cyan
+    Write-Host 'IMPORTANT: See SCMS_STARTUP_PROMPT.md' -ForegroundColor Yellow
+    Write-Host '========================================' -ForegroundColor Cyan
     Write-Host ''
 }
