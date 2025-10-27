@@ -406,7 +406,7 @@ See: config/windsurf/SETUP.md
         }
     }
     default {
-        Write-Host "See config/generic/SETUP.md for manual setup" -ForegroundColor Gray
+        Write-Host 'See config/generic/SETUP.md for manual setup' -ForegroundColor Gray
     }
 }
 
