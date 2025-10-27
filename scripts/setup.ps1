@@ -432,6 +432,6 @@ if ($IDE -eq "windsurf" -and $L0_STRATEGY -eq "auto") {
     Write-Host "Scroll up to find the startup prompt, or open:" -ForegroundColor White
     Write-Host "  SCMS_STARTUP_PROMPT.md" -ForegroundColor Green
     Write-Host ""
-    Write-Host "Paste it to Cascade AI at the start of EVERY session!" -ForegroundColor Yellow
+    Write-Host 'Paste it to Cascade AI at the start of EVERY session!' -ForegroundColor Yellow
     Write-Host ""
 }
