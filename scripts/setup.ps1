@@ -253,11 +253,23 @@ if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
 
 You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **AUTO-MEMORY** strategy.
 
-### How SCMS Works:
+### How SCMS Works (5-Layer Architecture):
 
-**L0 (Auto-Memory)**: You create Cascade memories automatically as patterns emerge
-**L1 (Workspace Rules)**: Patterns promoted to WORKSPACE_RULES.md after $($THRESHOLD_CONFIG.FinalThreshold) uses
-**L2-L4**: Reference documentation (on-demand)
+**L0 (Auto-Memory)**: Cascade memories - temporal validation (30 day decay)
+**L1 (Workspace Rules)**: WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
+**L2 (SOPs)**: docs/sops/ - detailed procedures (created when pattern becomes standard)
+**L3 (Case Studies)**: docs/case-studies/ - complete examples (created at feature milestones)
+**L4 (Global Rules)**: Universal constraints that apply across all projects
+
+**Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
+
+### Dashboard Tracking:
+
+**MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
+- Shows all active L0 memories with retrieval counts
+- Shows promoted L1 patterns in WORKSPACE_RULES.md
+- Lists available L2-L4 reference docs
+- YOU update this as patterns progress through layers
 
 ### Your Workflow:
 
@@ -276,11 +288,23 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
    - Increment internal retrieval counter
    - Tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
 
-4. **AT $($THRESHOLD_CONFIG.FinalThreshold) RETRIEVALS - AUTOMATIC PROMOTION**
+4. **AT $($THRESHOLD_CONFIG.FinalThreshold) RETRIEVALS - AUTOMATIC PROMOTION TO L1**
    - YOU automatically promote pattern to WORKSPACE_RULES.md
    - Add to the appropriate section with promotion metadata
    - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update MEMORY_STATUS_DASHBOARD.md to reflect the promotion
+
+5. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
+   - YOU automatically create detailed SOP in docs/sops/
+   - Include step-by-step implementation guide
+   - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
+   - Update dashboard with L2 reference
+
+6. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
+   - When a feature is complete, YOU automatically create case study in docs/case-studies/
+   - Show pattern usage in complete working context
+   - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
+   - Update dashboard with L3 reference
 
 ### Remember:
 - Memories are TEMPORAL (decay after 30 days without use)
@@ -314,11 +338,23 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 
 You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **MANUAL MARKDOWN** strategy.
 
-### How SCMS Works:
+### How SCMS Works (5-Layer Architecture):
 
-**L0 (Manual Markdown)**: Patterns documented in docs/memories/ folder
-**L1 (Workspace Rules)**: Patterns promoted to WORKSPACE_RULES.md after $($THRESHOLD_CONFIG.FinalThreshold) uses
-**L2-L4**: Reference documentation (on-demand)
+**L0 (Manual Markdown)**: docs/memories/ - pattern documentation
+**L1 (Workspace Rules)**: WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
+**L2 (SOPs)**: docs/sops/ - detailed procedures (created when pattern becomes standard)
+**L3 (Case Studies)**: docs/case-studies/ - complete examples (created at feature milestones)
+**L4 (Global Rules)**: Universal constraints that apply across all projects
+
+**Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
+
+### Dashboard Tracking:
+
+**MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
+- Shows all active L0 patterns with usage counts
+- Shows promoted L1 patterns in WORKSPACE_RULES.md
+- Lists available L2-L4 reference docs
+- YOU update this as patterns progress through layers
 
 ### Your Workflow:
 
@@ -331,11 +367,23 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
    - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard with new retrieval count
 
-3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION**
+3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION TO L1**
    - YOU automatically promote pattern to WORKSPACE_RULES.md
    - Add to the appropriate section with promotion metadata
    - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard to reflect the promotion
+
+4. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
+   - YOU automatically create detailed SOP in docs/sops/
+   - Include step-by-step implementation guide
+   - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
+   - Update dashboard with L2 reference
+
+5. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
+   - When a feature is complete, YOU automatically create case study in docs/case-studies/
+   - Show pattern usage in complete working context
+   - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
+   - Update dashboard with L3 reference
 
 ### Remember:
 - Manual tracking required
@@ -369,11 +417,23 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 
 You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **MANUAL MARKDOWN** strategy.
 
-### How SCMS Works:
+### How SCMS Works (5-Layer Architecture):
 
-**L0 (Manual Markdown)**: Patterns documented in docs/memories/ folder
-**L1 (Workspace Rules)**: Patterns promoted to WORKSPACE_RULES.md after $($THRESHOLD_CONFIG.FinalThreshold) uses
-**L2-L4**: Reference documentation (on-demand)
+**L0 (Manual Markdown)**: docs/memories/ - pattern documentation
+**L1 (Workspace Rules)**: WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
+**L2 (SOPs)**: docs/sops/ - detailed procedures (created when pattern becomes standard)
+**L3 (Case Studies)**: docs/case-studies/ - complete examples (created at feature milestones)
+**L4 (Global Rules)**: Universal constraints that apply across all projects
+
+**Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
+
+### Dashboard Tracking:
+
+**MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
+- Shows all active L0 patterns with usage counts
+- Shows promoted L1 patterns in WORKSPACE_RULES.md
+- Lists available L2-L4 reference docs
+- YOU update this as patterns progress through layers
 
 ### Your Workflow:
 
@@ -386,11 +446,23 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
    - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard with new retrieval count
 
-3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION**
+3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION TO L1**
    - YOU automatically promote pattern to WORKSPACE_RULES.md
    - Add to the appropriate section with promotion metadata
    - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard to reflect the promotion
+
+4. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
+   - YOU automatically create detailed SOP in docs/sops/
+   - Include step-by-step implementation guide
+   - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
+   - Update dashboard with L2 reference
+
+5. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
+   - When a feature is complete, YOU automatically create case study in docs/case-studies/
+   - Show pattern usage in complete working context
+   - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
+   - Update dashboard with L3 reference
 
 ### Remember:
 - Manual tracking required
@@ -423,11 +495,23 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 
 You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **MANUAL MARKDOWN** strategy.
 
-### How SCMS Works:
+### How SCMS Works (5-Layer Architecture):
 
-**L0 (Manual Markdown)**: Patterns documented in docs/memories/ folder
-**L1 (Workspace Rules)**: Patterns promoted to WORKSPACE_RULES.md after $($THRESHOLD_CONFIG.FinalThreshold) uses
-**L2-L4**: Reference documentation (on-demand)
+**L0 (Manual Markdown)**: docs/memories/ - pattern documentation
+**L1 (Workspace Rules)**: WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
+**L2 (SOPs)**: docs/sops/ - detailed procedures (created when pattern becomes standard)
+**L3 (Case Studies)**: docs/case-studies/ - complete examples (created at feature milestones)
+**L4 (Global Rules)**: Universal constraints that apply across all projects
+
+**Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
+
+### Dashboard Tracking:
+
+**MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
+- Shows all active L0 patterns with usage counts
+- Shows promoted L1 patterns in WORKSPACE_RULES.md
+- Lists available L2-L4 reference docs
+- YOU update this as patterns progress through layers
 
 ### Your Workflow:
 
@@ -440,11 +524,23 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
    - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard with new retrieval count
 
-3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION**
+3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION TO L1**
    - YOU automatically promote pattern to WORKSPACE_RULES.md
    - Add to the appropriate section with promotion metadata
    - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard to reflect the promotion
+
+4. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
+   - YOU automatically create detailed SOP in docs/sops/
+   - Include step-by-step implementation guide
+   - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
+   - Update dashboard with L2 reference
+
+5. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
+   - When a feature is complete, YOU automatically create case study in docs/case-studies/
+   - Show pattern usage in complete working context
+   - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
+   - Update dashboard with L3 reference
 
 ### Remember:
 - Manual tracking required
