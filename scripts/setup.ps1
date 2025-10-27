@@ -100,7 +100,7 @@ Write-Host ""
 Write-Host "Selected: $domainType (adjustment: $domainAdjust)" -ForegroundColor Green
 Write-Host ""
 Write-Host '========================================' -ForegroundColor Cyan
-Write-Host "YOUR SCMS CONFIGURATION:" -ForegroundColor Yellow
+Write-Host 'YOUR SCMS CONFIGURATION:' -ForegroundColor Yellow
 Write-Host '========================================' -ForegroundColor Cyan
 Write-Host "Project Phase: $phaseName" -ForegroundColor White
 Write-Host "Team Size: $teamSize (n_unique≥$nUnique)" -ForegroundColor White
@@ -131,28 +131,28 @@ Start-Sleep -Seconds 2
 
 # Step 2: Detect IDE
 Write-Host ""
-Write-Host "Detecting IDE..." -ForegroundColor Yellow
+Write-Host 'Detecting IDE...' -ForegroundColor Yellow
 
 $IDE = "generic"
 $L0_STRATEGY = "auto"  # default: auto-memory for Windsurf, manual for others
 
 if (Get-Command windsurf -ErrorAction SilentlyContinue) {
     $IDE = "windsurf"
-    Write-Host "Windsurf detected" -ForegroundColor Green
+    Write-Host 'Windsurf detected' -ForegroundColor Green
     
     # Ask Windsurf users which L0 strategy to use
     Write-Host ""
     Write-Host "=== L0 Layer Configuration ==="-ForegroundColor Cyan
     Write-Host ""
-    Write-Host "Windsurf supports TWO L0 strategies:" -ForegroundColor Yellow
+    Write-Host 'Windsurf supports TWO L0 strategies:' -ForegroundColor Yellow
     Write-Host ""
-    Write-Host "[1] AUTO-MEMORY (Recommended - True SCMS)" -ForegroundColor Green
+    Write-Host '[1] AUTO-MEMORY (Recommended - True SCMS)' -ForegroundColor Green
     Write-Host "    - AI creates memories automatically during development"
     Write-Host "    - Temporal decay (unused patterns fade)"
     Write-Host "    - Zero manual overhead"
     Write-Host "    - Best for: Solo developers, rapid iteration"
     Write-Host ""
-    Write-Host "[2] MANUAL MARKDOWN (Cross-platform compatible)" -ForegroundColor Yellow
+    Write-Host '[2] MANUAL MARKDOWN (Cross-platform compatible)' -ForegroundColor Yellow
     Write-Host "    - Create markdown files in docs/memories/"
     Write-Host "    - Manual tracking and promotion"
     Write-Host "    - Stable, no decay"
@@ -163,25 +163,25 @@ if (Get-Command windsurf -ErrorAction SilentlyContinue) {
     
     if ($choice -eq "2") {
         $L0_STRATEGY = "manual"
-        Write-Host "Manual markdown L0 selected" -ForegroundColor Yellow
+        Write-Host 'Manual markdown L0 selected' -ForegroundColor Yellow
     } else {
         $L0_STRATEGY = "auto"
-        Write-Host "Auto-memory L0 selected (recommended)" -ForegroundColor Green
+        Write-Host 'Auto-memory L0 selected (recommended)' -ForegroundColor Green
     }
     
 } elseif (Get-Command cursor -ErrorAction SilentlyContinue) {
     $IDE = "cursor"
     $L0_STRATEGY = "manual"  # Cursor requires manual
-    Write-Host "Cursor detected" -ForegroundColor Green
+    Write-Host 'Cursor detected' -ForegroundColor Green
 } else {
     $IDE = "generic"
     $L0_STRATEGY = "manual"  # Generic requires manual
-    Write-Host "Generic AI assistant" -ForegroundColor Gray
+    Write-Host 'Generic AI assistant' -ForegroundColor Gray
 }
 
 # Step 2: Create project directories
 Write-Host ""
-Write-Host "Creating directory structure..." -ForegroundColor Yellow
+Write-Host 'Creating directory structure...' -ForegroundColor Yellow
 
 # Base directories (always created)
 $dirs = @(
@@ -207,21 +207,21 @@ foreach ($dir in $dirs) {
 
 # Step 3: Copy templates
 Write-Host ""
-Write-Host "Copying documentation templates..." -ForegroundColor Yellow
+Write-Host 'Copying documentation templates...' -ForegroundColor Yellow
 
 $templateSource = Join-Path $PSScriptRoot "..\docs\templates\WORKSPACE_RULES_TEMPLATE.md"
 $templateDest = Join-Path $PSScriptRoot "..\..\WORKSPACE_RULES.md"
 
 if (-not (Test-Path $templateDest)) {
     Copy-Item -Path $templateSource -Destination $templateDest
-    Write-Host "WORKSPACE_RULES.md created" -ForegroundColor Green
+    Write-Host 'WORKSPACE_RULES.md created' -ForegroundColor Green
 } else {
-    Write-Host "  WORKSPACE_RULES.md already exists (not overwriting)" -ForegroundColor Gray
+    Write-Host '  WORKSPACE_RULES.md already exists (not overwriting)' -ForegroundColor Gray
 }
 
 # Step 4: Initialize memory dashboard
 Write-Host ""
-Write-Host "Initializing memory dashboard..." -ForegroundColor Yellow
+Write-Host 'Initializing memory dashboard...' -ForegroundColor Yellow
 
 $dashboardPath = Join-Path $PSScriptRoot "..\..\MEMORY_STATUS_DASHBOARD.md"
 if (-not (Test-Path $dashboardPath)) {
@@ -272,9 +272,9 @@ Check WORKSPACE_RULES.md for promoted patterns.
 "@
     
     Set-Content -Path $dashboardPath -Value $dashboardContent -Encoding UTF8
-    Write-Host "Dashboard initialized" -ForegroundColor Green
+    Write-Host 'Dashboard initialized' -ForegroundColor Green
 } else {
-    Write-Host "  Dashboard already exists" -ForegroundColor Gray
+    Write-Host '  Dashboard already exists' -ForegroundColor Gray
 }
 
 # Step 5: IDE-specific setup
@@ -289,26 +289,26 @@ switch ($IDE) {
         
         if (-not (Test-Path $dest)) {
             Copy-Item -Path $cursorrules -Destination $dest
-            Write-Host ".cursorrules configured" -ForegroundColor Green
+            Write-Host '.cursorrules configured' -ForegroundColor Green
         } else {
-            Write-Host "  .cursorrules already exists" -ForegroundColor Gray
+            Write-Host '  .cursorrules already exists' -ForegroundColor Gray
         }
     }
     "windsurf" {
         if ($L0_STRATEGY -eq "auto") {
-            Write-Host "Auto-memory L0 strategy selected" -ForegroundColor Green
+            Write-Host 'Auto-memory L0 strategy selected' -ForegroundColor Green
             Write-Host ""
-            Write-Host "IMPORTANT: Enable Cascade memories in Windsurf:" -ForegroundColor Yellow
+            Write-Host 'IMPORTANT: Enable Cascade memories in Windsurf:' -ForegroundColor Yellow
             Write-Host "  1. Open Windsurf Settings"
             Write-Host "  2. Enable 'Cascade: Memories'"
             Write-Host "  3. Set memory scope to 'workspace'"
             Write-Host ""
-            Write-Host "During development:" -ForegroundColor Cyan
+            Write-Host 'During development:' -ForegroundColor Cyan
             Write-Host "  - AI will create memories automatically (L0)"
             Write-Host "  - Track retrievals in MEMORY_STATUS_DASHBOARD.md"
             Write-Host "  - Promote to WORKSPACE_RULES.md when retrieved 2+ times"
             Write-Host ""
-            Write-Host "See config/windsurf/SETUP.md for detailed instructions" -ForegroundColor Gray
+            Write-Host 'See config/windsurf/SETUP.md for detailed instructions' -ForegroundColor Gray
             
             # Create guide file
             $guidePath = Join-Path $PSScriptRoot "..\..\L0_AUTO_MEMORY_GUIDE.md"
@@ -357,13 +357,13 @@ This is TRUE SCMS as researched - automatic, temporal, use-validated.
 See: config/windsurf/SETUP.md
 "@
             Set-Content -Path $guidePath -Value $guideContent -Encoding UTF8
-            Write-Host "Created: L0_AUTO_MEMORY_GUIDE.md" -ForegroundColor Green
+            Write-Host 'Created: L0_AUTO_MEMORY_GUIDE.md' -ForegroundColor Green
             Write-Host ""
             Write-Host '========================================' -ForegroundColor Cyan
-            Write-Host "CRITICAL: Startup Prompt for Each Session" -ForegroundColor Yellow
+            Write-Host 'CRITICAL: Startup Prompt for Each Session' -ForegroundColor Yellow
             Write-Host '========================================' -ForegroundColor Cyan
             Write-Host ""
-            Write-Host "Copy-paste this to Cascade AI at the start of EVERY development session:" -ForegroundColor White
+            Write-Host 'Copy-paste this to Cascade AI at the start of EVERY development session:' -ForegroundColor White
             Write-Host ""
             Write-Host "-------- START COPY HERE --------" -ForegroundColor Gray
             Write-Host ""
