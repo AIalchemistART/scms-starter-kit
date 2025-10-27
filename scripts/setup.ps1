@@ -21,9 +21,9 @@ Write-Host "[2] Establishing (Months 2-3)" -ForegroundColor Yellow
 Write-Host "    - Patterns stabilizing, core architecture forming"
 Write-Host "    - Threshold: n≥3 (moderate validation)"
 Write-Host ""
-Write-Host "[3] Mature (4+ months)" -ForegroundColor Cyan
-Write-Host "    - Patterns proven, architecture stable"
-Write-Host "    - Threshold: n≥2 (standard validation)"
+Write-Host '[3] Mature (4+ months)' -ForegroundColor Cyan
+Write-Host '    - Patterns proven, architecture stable'
+Write-Host '    - Threshold: n>=2 (standard validation)'
 Write-Host ""
 
 $phaseChoice = Read-Host "Select project phase [1/2/3]"
@@ -45,11 +45,11 @@ Write-Host ""
 Write-Host "[1] Solo Developer" -ForegroundColor Green
 Write-Host "    - n_unique≥1 (your validation only)"
 Write-Host ""
-Write-Host "[2] Small Team (2-5 people)" -ForegroundColor Yellow
-Write-Host "    - n_unique≥2 (two people must validate)"
-Write-Host ""
-Write-Host "[3] Large Team (5+ people)" -ForegroundColor Cyan
-Write-Host "    - n_unique≥3 (three people must validate)"
+Write-Host '[2] Small Team (2-5 people)' -ForegroundColor Yellow
+Write-Host '    - n_unique>=2 (two people must validate)'
+Write-Host ''
+Write-Host '[3] Large Team (5+ people)' -ForegroundColor Cyan
+Write-Host '    - n_unique>=3 (three people must validate)'
 Write-Host ""
 
 $teamChoice = Read-Host "Select team size [1/2/3] (default: 1)"
@@ -68,14 +68,14 @@ Write-Host ""
 # Domain Characteristics
 Write-Host "🔧 Domain Characteristics:" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "[1] High-churn (web, mobile)" -ForegroundColor Green
-Write-Host "    - Fast evolution, adjust threshold -1"
-Write-Host ""
-Write-Host "[2] Moderate (general software)" -ForegroundColor Yellow
-Write-Host "    - Standard evolution, no adjustment"
-Write-Host ""
-Write-Host "[3] Stable (embedded, scientific)" -ForegroundColor Cyan
-Write-Host "    - Slow evolution, adjust threshold +1"
+Write-Host '[1] High-churn (web, mobile)' -ForegroundColor Green
+Write-Host '    - Fast evolution, adjust threshold -1'
+Write-Host ''
+Write-Host '[2] Moderate (general software)' -ForegroundColor Yellow
+Write-Host '    - Standard evolution, no adjustment'
+Write-Host ''
+Write-Host '[3] Stable (embedded, scientific)' -ForegroundColor Cyan
+Write-Host '    - Slow evolution, adjust threshold +1'
 Write-Host ""
 
 $domainChoice = Read-Host "Select domain [1/2/3] (default: 2)"
@@ -103,7 +103,7 @@ Write-Host ""
 Write-Host "PROMOTION THRESHOLD: n≥$finalThreshold" -ForegroundColor Green
 Write-Host ""
 Write-Host "This means patterns need $finalThreshold uses before promoting to L1" -ForegroundColor Gray
-if ($teamSize -ne "Solo") {
+if ($teamSize -ne 'Solo') {
     Write-Host "AND at least $nUnique unique team members must validate" -ForegroundColor Gray
 }
 Write-Host ""
