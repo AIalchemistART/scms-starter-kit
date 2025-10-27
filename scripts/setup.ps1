@@ -410,12 +410,7 @@ See: config/windsurf/SETUP.md
     }
 }
 
-# Step 6: Final instructions
+# Step 6: Final message
 Write-Host ''
-Write-Host 'SCMS Setup Complete' -ForegroundColor Green
-Write-Host ''
-Write-Host 'Next steps:' -ForegroundColor Cyan
-Write-Host '1. Edit WORKSPACE_RULES.md' -ForegroundColor White
-Write-Host ('2. See config/' + $IDE + '/SETUP.md') -ForegroundColor White
-Write-Host '3. Start developing' -ForegroundColor White
+Write-Host 'Setup complete - see WORKSPACE_RULES.md to begin' -ForegroundColor Green
 Write-Host ''
