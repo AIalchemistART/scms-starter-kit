@@ -273,21 +273,16 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 
 ### BEFORE You Start Coding:
 
-1. **Check L4 Global Rules** (if they exist)
-   - Location: rules/GLOBAL_CODING_RULES.md
-   - Universal constraints that apply to ALL code
-   - If does not exist yet, skip (created as universal patterns discovered)
-
-2. **Check L1 Validated Patterns**
+1. **Check L1 Validated Patterns**
    - Location: WORKSPACE_RULES.md
    - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
 
-3. **Check Dashboard**
+2. **Check Dashboard**
    - Location: MEMORY_STATUS_DASHBOARD.md
    - Current tracking status
 
-4. **Tell me what you reviewed**
-   - Example: "Reviewed L4 global rules, L1 patterns for API handling"
+3. **Tell me what you reviewed**
+   - Example: "Reviewed L1 patterns for API handling, dashboard shows 3 active patterns"
 
 ### Your Workflow:
 
@@ -323,6 +318,13 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
    - Show pattern usage in complete working context
    - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
    - Update dashboard with L3 reference
+
+7. **BEFORE MARKING TASK COMPLETE - FINAL QUALITY CHECK (L4)**
+   - Check rules/GLOBAL_CODING_RULES.md (if it exists)
+   - Validate code against universal constraints
+   - If violations found: Tell me "WARNING L4 VIOLATION: [rule] - [issue]" and fix automatically
+   - If compliant: Tell me "VERIFIED L4 COMPLIANCE: All global rules followed"
+   - L4 is the FINAL gate, not an upfront constraint
 
 ### Remember:
 - Memories are TEMPORAL (decay after 30 days without use)
@@ -376,21 +378,16 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 
 ### BEFORE You Start Coding:
 
-1. **Check L4 Global Rules** (if they exist)
-   - Location: rules/GLOBAL_CODING_RULES.md
-   - Universal constraints that apply to ALL code
-   - If does not exist yet, skip (created as universal patterns discovered)
-
-2. **Check L1 Validated Patterns**
+1. **Check L1 Validated Patterns**
    - Location: WORKSPACE_RULES.md
    - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
 
-3. **Check Dashboard**
+2. **Check Dashboard**
    - Location: MEMORY_STATUS_DASHBOARD.md
    - Current tracking status
 
-4. **Tell me what you reviewed**
-   - Example: "Reviewed L4 global rules, L1 patterns for API handling"
+3. **Tell me what you reviewed**
+   - Example: "Reviewed L1 patterns for API handling, dashboard shows 3 active patterns"
 
 ### Your Workflow:
 
@@ -473,21 +470,16 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 
 ### BEFORE You Start Coding:
 
-1. **Check L4 Global Rules** (if they exist)
-   - Location: rules/GLOBAL_CODING_RULES.md
-   - Universal constraints that apply to ALL code
-   - If does not exist yet, skip (created as universal patterns discovered)
-
-2. **Check L1 Validated Patterns**
+1. **Check L1 Validated Patterns**
    - Location: WORKSPACE_RULES.md
    - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
 
-3. **Check Dashboard**
+2. **Check Dashboard**
    - Location: MEMORY_STATUS_DASHBOARD.md
    - Current tracking status
 
-4. **Tell me what you reviewed**
-   - Example: "Reviewed L4 global rules, L1 patterns for API handling"
+3. **Tell me what you reviewed**
+   - Example: "Reviewed L1 patterns for API handling, dashboard shows 3 active patterns"
 
 ### Your Workflow:
 
@@ -569,21 +561,16 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 
 ### BEFORE You Start Coding:
 
-1. **Check L4 Global Rules** (if they exist)
-   - Location: rules/GLOBAL_CODING_RULES.md
-   - Universal constraints that apply to ALL code
-   - If does not exist yet, skip (created as universal patterns discovered)
-
-2. **Check L1 Validated Patterns**
+1. **Check L1 Validated Patterns**
    - Location: WORKSPACE_RULES.md
    - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
 
-3. **Check Dashboard**
+2. **Check Dashboard**
    - Location: MEMORY_STATUS_DASHBOARD.md
    - Current tracking status
 
-4. **Tell me what you reviewed**
-   - Example: "Reviewed L4 global rules, L1 patterns for API handling"
+3. **Tell me what you reviewed**
+   - Example: "Reviewed L1 patterns for API handling, dashboard shows 3 active patterns"
 
 ### Your Workflow:
 
