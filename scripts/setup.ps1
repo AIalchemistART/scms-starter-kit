@@ -224,6 +224,234 @@ Check WORKSPACE_RULES.md for promoted patterns.
     Write-Host '  Dashboard already exists' -ForegroundColor Gray
 }
 
+# Generate customized startup prompt
+Write-Host ''
+Write-Host 'Generating startup prompt...' -ForegroundColor Yellow
+
+$startupPromptPath = Join-Path $PSScriptRoot '..\..\SCMS_STARTUP_PROMPT.md'
+
+if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
+    # Windsurf Auto-Memory Startup Prompt
+    $startupPrompt = @"
+# SCMS Startup Prompt - Windsurf Auto-Memory
+
+**Copy this entire content and paste it to Cascade AI at the START of each development session**
+
+---
+
+## SCMS Configuration
+
+- **IDE**: Windsurf
+- **L0 Strategy**: Auto-Memory (Cascade Memories)
+- **Project Phase**: $($THRESHOLD_CONFIG.Phase)
+- **Promotion Threshold**: n>=$($THRESHOLD_CONFIG.FinalThreshold)
+- **Team**: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+
+---
+
+## Instructions for Cascade AI
+
+You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **AUTO-MEMORY** strategy.
+
+### How SCMS Works:
+
+**L0 (Auto-Memory)**: You create Cascade memories automatically as patterns emerge
+**L1 (Workspace Rules)**: Patterns promoted to WORKSPACE_RULES.md after $($THRESHOLD_CONFIG.FinalThreshold) uses
+**L2-L4**: Reference documentation (on-demand)
+
+### Your Workflow:
+
+1. **CREATE MEMORIES DURING DEVELOPMENT**
+   - When you discover a reusable pattern, IMMEDIATELY create a Cascade memory
+   - Do NOT wait until code is complete
+   - Memory title should be descriptive (e.g., "API Error Handling Pattern")
+
+2. **DO NOT CREATE MARKDOWN FILES**
+   - NO docs/memories/*.md files
+   - NO SCMS_REPORT.md or similar
+   - ONLY update MEMORY_STATUS_DASHBOARD.md for retrieval tracking
+
+3. **WHEN PATTERN RECURS**
+   - Retrieve the memory automatically
+   - Tell me "Retrieved [pattern] memory"
+   - I will update the dashboard
+
+4. **AT $($THRESHOLD_CONFIG.FinalThreshold) RETRIEVALS**
+   - Promote pattern to WORKSPACE_RULES.md
+   - This makes it permanent (L1 validated)
+
+### Remember:
+- Memories are TEMPORAL (decay after 30 days without use)
+- Promotion threshold: $($THRESHOLD_CONFIG.FinalThreshold) uses
+- This is TRUE SCMS - zero markdown files, memories in Cascade only
+
+---
+
+**Session started**: $(Get-Date -Format 'yyyy-MM-dd HH:mm')
+"@
+} elseif ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'manual') {
+    # Windsurf Manual Markdown Startup Prompt
+    $startupPrompt = @"
+# SCMS Startup Prompt - Windsurf Manual Markdown
+
+**Copy this entire content and paste it to Cascade AI at the START of each development session**
+
+---
+
+## SCMS Configuration
+
+- **IDE**: Windsurf
+- **L0 Strategy**: Manual Markdown Files
+- **Project Phase**: $($THRESHOLD_CONFIG.Phase)
+- **Promotion Threshold**: n>=$($THRESHOLD_CONFIG.FinalThreshold)
+- **Team**: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+
+---
+
+## Instructions for Cascade AI
+
+You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **MANUAL MARKDOWN** strategy.
+
+### How SCMS Works:
+
+**L0 (Manual Markdown)**: Patterns documented in docs/memories/ folder
+**L1 (Workspace Rules)**: Patterns promoted to WORKSPACE_RULES.md after $($THRESHOLD_CONFIG.FinalThreshold) uses
+**L2-L4**: Reference documentation (on-demand)
+
+### Your Workflow:
+
+1. **DOCUMENT PATTERNS IN MARKDOWN**
+   - Create files in docs/memories/ as patterns emerge
+   - Use descriptive names (e.g., api-error-handling.md)
+   - Track usage count in MEMORY_STATUS_DASHBOARD.md
+
+2. **TRACK PATTERN USAGE**
+   - Update dashboard when patterns are reused
+   - Count each reuse toward promotion threshold
+
+3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES**
+   - Promote pattern to WORKSPACE_RULES.md
+   - This makes it permanent (L1 validated)
+
+### Remember:
+- Manual tracking required
+- Promotion threshold: $($THRESHOLD_CONFIG.FinalThreshold) uses
+- Keep MEMORY_STATUS_DASHBOARD.md up to date
+
+---
+
+**Session started**: $(Get-Date -Format 'yyyy-MM-dd HH:mm')
+"@
+} elseif ($IDE -eq 'cursor') {
+    # Cursor Manual Markdown Startup Prompt
+    $startupPrompt = @"
+# SCMS Startup Prompt - Cursor
+
+**Copy this entire content and paste it to Cursor AI at the START of each development session**
+
+---
+
+## SCMS Configuration
+
+- **IDE**: Cursor
+- **L0 Strategy**: Manual Markdown Files
+- **Project Phase**: $($THRESHOLD_CONFIG.Phase)
+- **Promotion Threshold**: n>=$($THRESHOLD_CONFIG.FinalThreshold)
+- **Team**: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+
+---
+
+## Instructions for Cursor AI
+
+You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **MANUAL MARKDOWN** strategy.
+
+### How SCMS Works:
+
+**L0 (Manual Markdown)**: Patterns documented in docs/memories/ folder
+**L1 (Workspace Rules)**: Patterns promoted to WORKSPACE_RULES.md after $($THRESHOLD_CONFIG.FinalThreshold) uses
+**L2-L4**: Reference documentation (on-demand)
+
+### Your Workflow:
+
+1. **DOCUMENT PATTERNS IN MARKDOWN**
+   - Create files in docs/memories/ as patterns emerge
+   - Use descriptive names (e.g., api-error-handling.md)
+   - Track usage count in MEMORY_STATUS_DASHBOARD.md
+
+2. **TRACK PATTERN USAGE**
+   - Update dashboard when patterns are reused
+   - Count each reuse toward promotion threshold
+
+3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES**
+   - Promote pattern to WORKSPACE_RULES.md
+   - This makes it permanent (L1 validated)
+
+### Remember:
+- Manual tracking required
+- Promotion threshold: $($THRESHOLD_CONFIG.FinalThreshold) uses
+- Keep MEMORY_STATUS_DASHBOARD.md up to date
+
+---
+
+**Session started**: $(Get-Date -Format 'yyyy-MM-dd HH:mm')
+"@
+} else {
+    # Generic AI Assistant Startup Prompt
+    $startupPrompt = @"
+# SCMS Startup Prompt - Generic AI Assistant
+
+**Copy this entire content and paste it to your AI assistant at the START of each development session**
+
+---
+
+## SCMS Configuration
+
+- **L0 Strategy**: Manual Markdown Files
+- **Project Phase**: $($THRESHOLD_CONFIG.Phase)
+- **Promotion Threshold**: n>=$($THRESHOLD_CONFIG.FinalThreshold)
+- **Team**: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+
+---
+
+## Instructions for AI Assistant
+
+You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **MANUAL MARKDOWN** strategy.
+
+### How SCMS Works:
+
+**L0 (Manual Markdown)**: Patterns documented in docs/memories/ folder
+**L1 (Workspace Rules)**: Patterns promoted to WORKSPACE_RULES.md after $($THRESHOLD_CONFIG.FinalThreshold) uses
+**L2-L4**: Reference documentation (on-demand)
+
+### Your Workflow:
+
+1. **DOCUMENT PATTERNS IN MARKDOWN**
+   - Create files in docs/memories/ as patterns emerge
+   - Use descriptive names (e.g., api-error-handling.md)
+   - Track usage count in MEMORY_STATUS_DASHBOARD.md
+
+2. **TRACK PATTERN USAGE**
+   - Update dashboard when patterns are reused
+   - Count each reuse toward promotion threshold
+
+3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES**
+   - Promote pattern to WORKSPACE_RULES.md
+   - This makes it permanent (L1 validated)
+
+### Remember:
+- Manual tracking required
+- Promotion threshold: $($THRESHOLD_CONFIG.FinalThreshold) uses
+- Keep MEMORY_STATUS_DASHBOARD.md up to date
+
+---
+
+**Session started**: $(Get-Date -Format 'yyyy-MM-dd HH:mm')
+"@
+}
+
+Set-Content -Path $startupPromptPath -Value $startupPrompt -Encoding UTF8
+Write-Host 'Startup prompt generated' -ForegroundColor Green
+
 # IDE setup
 Write-Host ''
 Write-Host "Running $IDE setup..." -ForegroundColor Yellow
