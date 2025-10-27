@@ -3,6 +3,19 @@
 Write-Host 'SCMS Starter Kit Setup' -ForegroundColor Cyan
 Write-Host ''
 
+# Determine project root - where files should be created
+# User should run this script from their project root, or we'll use parent of scms dir
+$projectRoot = if (Test-Path (Join-Path $PSScriptRoot '..\..\..')) {
+    # Running from docs/scms/scripts - go up to project root
+    Resolve-Path (Join-Path $PSScriptRoot '..\..\..')
+} else {
+    # Running from elsewhere - use current directory
+    Get-Location
+}
+
+Write-Host "Project root: $projectRoot" -ForegroundColor Gray
+Write-Host ''
+
 # Project Context
 Write-Host '=== SCMS Project Configuration ===' -ForegroundColor Cyan
 Write-Host ''
@@ -133,17 +146,17 @@ Write-Host ''
 Write-Host 'Creating directory structure...' -ForegroundColor Yellow
 
 $dirs = @(
-    '..\sops',
-    '..\case-studies',
-    '..\sessions'
+    'docs\sops',
+    'docs\case-studies',
+    'docs\sessions'
 )
 
 if ($L0_STRATEGY -eq 'manual') {
-    $dirs += '..\memories'
+    $dirs += 'docs\memories'
 }
 
 foreach ($dir in $dirs) {
-    $fullPath = Join-Path $PSScriptRoot $dir
+    $fullPath = Join-Path $projectRoot $dir
     if (-not (Test-Path $fullPath)) {
         New-Item -ItemType Directory -Path $fullPath -Force | Out-Null
         Write-Host "Created: $dir" -ForegroundColor Green
@@ -157,7 +170,7 @@ Write-Host ''
 Write-Host 'Copying documentation templates...' -ForegroundColor Yellow
 
 $templateSource = Join-Path $PSScriptRoot '..\docs\templates\WORKSPACE_RULES_TEMPLATE.md'
-$templateDest = Join-Path $PSScriptRoot '..\..\WORKSPACE_RULES.md'
+$templateDest = Join-Path $projectRoot 'WORKSPACE_RULES.md'
 
 if (-not (Test-Path $templateDest)) {
     Copy-Item -Path $templateSource -Destination $templateDest
@@ -170,7 +183,7 @@ if (-not (Test-Path $templateDest)) {
 Write-Host ''
 Write-Host 'Initializing memory dashboard...' -ForegroundColor Yellow
 
-$dashboardPath = Join-Path $PSScriptRoot '..\..\MEMORY_STATUS_DASHBOARD.md'
+$dashboardPath = Join-Path $projectRoot 'MEMORY_STATUS_DASHBOARD.md'
 if (-not (Test-Path $dashboardPath)) {
     $dateStr = Get-Date -Format 'yyyy-MM-dd'
     $strategyStr = if ($L0_STRATEGY -eq 'auto') { '**Strategy**: Auto-Memory (Windsurf Cascade)' } else { '**Strategy**: Manual Markdown Files' }
@@ -228,7 +241,7 @@ Check WORKSPACE_RULES.md for promoted patterns.
 Write-Host ''
 Write-Host 'Generating startup prompt...' -ForegroundColor Yellow
 
-$startupPromptPath = Join-Path $PSScriptRoot '..\..\SCMS_STARTUP_PROMPT.md'
+$startupPromptPath = Join-Path $projectRoot 'SCMS_STARTUP_PROMPT.md'
 
 if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
     # Windsurf Auto-Memory Startup Prompt
@@ -622,7 +635,6 @@ Write-Host "Running $IDE setup..." -ForegroundColor Yellow
 switch ($IDE) {
     'cursor' {
         $cursorrules = Join-Path $PSScriptRoot '..\config\cursor\.cursorrules'
-        $projectRoot = Join-Path $PSScriptRoot '..\..\..\'
         $dest = Join-Path $projectRoot '.cursorrules'
         
         if (-not (Test-Path $dest)) {
