@@ -422,10 +422,3 @@ Write-Host ''
 Write-Host 'Documentation: docs/00_DOCUMENTATION_HIERARCHY.md' -ForegroundColor Gray
 Write-Host 'Examples: docs/examples/' -ForegroundColor Gray
 Write-Host ''
-
-# Remind about startup prompt if auto-memory was selected
-if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
-    Write-Host ''
-    Write-Host 'IMPORTANT: See SCMS_STARTUP_PROMPT.md' -ForegroundColor Yellow
-    Write-Host ''
-}
