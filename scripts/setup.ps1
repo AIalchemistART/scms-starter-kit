@@ -400,9 +400,9 @@ See: config/windsurf/SETUP.md
             }
             
         } else {
-            Write-Host "Manual markdown L0 strategy selected" -ForegroundColor Yellow
-            Write-Host "  See config/windsurf/SETUP.md for instructions" -ForegroundColor Gray
-            Write-Host "  Note: You chose manual despite Windsurf auto-memory support" -ForegroundColor Gray
+            Write-Host 'Manual markdown L0 strategy selected' -ForegroundColor Yellow
+            Write-Host '  See config/windsurf/SETUP.md for instructions' -ForegroundColor Gray
+            Write-Host '  Note: You chose manual despite Windsurf auto-memory support' -ForegroundColor Gray
         }
     }
     default {
