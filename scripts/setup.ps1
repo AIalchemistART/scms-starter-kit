@@ -419,8 +419,8 @@ Write-Host "1. Edit WORKSPACE_RULES.md with project-specific rules" -ForegroundC
 Write-Host "2. Configure memories in your IDE (see config/$IDE/SETUP.md)" -ForegroundColor White
 Write-Host "3. Start developing - SCMS builds automatically!" -ForegroundColor White
 Write-Host ""
-Write-Host "Documentation: docs/00_DOCUMENTATION_HIERARCHY.md" -ForegroundColor Gray
-Write-Host "Examples: docs/examples/" -ForegroundColor Gray
+Write-Host 'Documentation: docs/00_DOCUMENTATION_HIERARCHY.md' -ForegroundColor Gray
+Write-Host 'Examples: docs/examples/' -ForegroundColor Gray
 Write-Host ""
 
 # Remind about startup prompt if auto-memory was selected
