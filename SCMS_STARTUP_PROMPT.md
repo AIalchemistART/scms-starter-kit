@@ -22,47 +22,30 @@ IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) wi
 
 ## 📐 PROJECT CONTEXT & PROMOTION THRESHOLD
 
-**CRITICAL: Your promotion threshold adapts based on project phase!**
+**CRITICAL: Your promotion threshold was configured during setup!**
 
-### Determine Your Threshold:
+**Check MEMORY_STATUS_DASHBOARD.md for your configured threshold:**
+- Project Phase (Greenfield/Establishing/Mature)
+- Team Size and n_unique requirements
+- Domain characteristics
+- **Your promotion threshold: n≥[X]**
 
-**Greenfield Projects** (Weeks 1-4, patterns still emerging)
-- **Threshold:** n≥5 uses before promoting to L1
-- **Why:** Prevents premature promotion of experimental patterns
-- **Higher bar:** Patterns must prove utility through repeated use
-- **You're here if:** Project <30 days old, architecture evolving rapidly
+**Threshold Guide (for reference):**
+- **Greenfield** (Weeks 1-4): n≥5 (patterns emerging)
+- **Establishing** (Months 2-3): n≥3 (patterns stabilizing)  
+- **Mature** (4+ months): n≥2 (patterns proven)
 
-**Establishing Projects** (Months 2-3, patterns stabilizing)
-- **Threshold:** n≥3 uses before promoting to L1
-- **Why:** Patterns starting to stabilize but still evolving
-- **Moderate bar:** Balance between validation and agility
-- **You're here if:** Project 30-90 days old, core patterns emerging
+**Team consensus:**
+- Solo: n_unique≥1
+- Small team (2-5): n_unique≥2
+- Large team (5+): n_unique≥3
 
-**Mature Projects** (4+ months, stable patterns)
-- **Threshold:** n≥2 uses before promoting to L1
-- **Why:** Patterns well-established, faster promotion acceptable
-- **Standard bar:** Proven utility through natural reuse
-- **You're here if:** Project 90+ days old, architecture stabilized
+**Domain adjustment:**
+- High-churn (web/mobile): -1 to threshold
+- Moderate (general): No adjustment
+- Stable (embedded/scientific): +1 to threshold
 
-### Additional Context:
-
-**Team Size:**
-- Solo (N=1): n_unique≥1 (patterns validated by you)
-- Small team (N=2-5): n_unique≥2 (two people must validate)
-- Large team (N=5+): n_unique≥3 (three people must validate)
-
-**Domain Characteristics:**
-- High-churn domains (web, mobile): Use lower threshold (faster evolution)
-- Moderate domains (general software): Use standard threshold
-- Stable domains (embedded, scientific): Use higher threshold (slower evolution)
-
-**For this project:**
-- [ ] Project Phase: _________________ (Greenfield / Establishing / Mature)
-- [ ] Threshold: n≥_____ (5 / 3 / 2)
-- [ ] Team: _________________ (Solo / Small / Large)
-- [ ] Domain: _________________ (High-churn / Moderate / Stable)
-
-**Note:** These thresholds come from Paper 2 Section 4.6.6 "Adaptive Promotion Thresholds" - empirically derived for optimal validation vs agility balance.
+**Note:** These thresholds come from Paper 2 Section 4.6.6 "Adaptive Promotion Thresholds". Your specific threshold was determined by the setup script based on your project context.
 
 ---
 
@@ -296,18 +279,16 @@ IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) wi
 
 ## 📐 PROJECT CONTEXT & PROMOTION THRESHOLD
 
-**CRITICAL: Your promotion threshold adapts based on project phase!**
+**CRITICAL: Your promotion threshold was configured during setup!**
 
-**For this project:**
-- [ ] Project Phase: _________________ (Greenfield / Establishing / Mature)
-- [ ] Threshold: n≥_____ (5 / 3 / 2)
+**Check MEMORY_STATUS_DASHBOARD.md for your configured threshold.**
 
-**Threshold Guide:**
-- **Greenfield** (Weeks 1-4): n≥5 (patterns emerging, higher bar)
-- **Establishing** (Months 2-3): n≥3 (patterns stabilizing)
-- **Mature** (4+ months): n≥2 (patterns proven)
+**Quick Reference:**
+- **Greenfield** (Weeks 1-4): n≥5
+- **Establishing** (Months 2-3): n≥3
+- **Mature** (4+ months): n≥2
 
-**Note:** See auto-memory section above for full threshold guidance including team size and domain adjustments.
+**Note:** Your specific threshold accounts for team size and domain characteristics as configured during setup.
 
 ---
 

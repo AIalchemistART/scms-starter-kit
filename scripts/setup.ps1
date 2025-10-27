@@ -4,7 +4,127 @@
 Write-Host "SCMS Starter Kit Setup" -ForegroundColor Cyan
 Write-Host ""
 
-# Step 1: Detect IDE
+# Step 1: Project Context & Threshold Configuration
+Write-Host "=== SCMS Project Configuration ===" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "Let's configure your promotion threshold based on your project context." -ForegroundColor Yellow
+Write-Host ""
+
+# Project Phase
+Write-Host "📐 Project Phase:" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "[1] Greenfield (Weeks 1-4)" -ForegroundColor Green
+Write-Host "    - Patterns still emerging, architecture evolving"
+Write-Host "    - Threshold: n≥5 (higher validation bar)"
+Write-Host ""
+Write-Host "[2] Establishing (Months 2-3)" -ForegroundColor Yellow
+Write-Host "    - Patterns stabilizing, core architecture forming"
+Write-Host "    - Threshold: n≥3 (moderate validation)"
+Write-Host ""
+Write-Host "[3] Mature (4+ months)" -ForegroundColor Cyan
+Write-Host "    - Patterns proven, architecture stable"
+Write-Host "    - Threshold: n≥2 (standard validation)"
+Write-Host ""
+
+$phaseChoice = Read-Host "Select project phase [1/2/3]"
+$projectPhase = switch ($phaseChoice) {
+    "1" { "Greenfield"; 5 }
+    "2" { "Establishing"; 3 }
+    default { "Mature"; 2 }
+}
+$baseThreshold = $projectPhase[1]
+$phaseName = $projectPhase[0]
+
+Write-Host ""
+Write-Host "Selected: $phaseName (threshold: n≥$baseThreshold)" -ForegroundColor Green
+Write-Host ""
+
+# Team Size
+Write-Host "👥 Team Size:" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "[1] Solo Developer" -ForegroundColor Green
+Write-Host "    - n_unique≥1 (your validation only)"
+Write-Host ""
+Write-Host "[2] Small Team (2-5 people)" -ForegroundColor Yellow
+Write-Host "    - n_unique≥2 (two people must validate)"
+Write-Host ""
+Write-Host "[3] Large Team (5+ people)" -ForegroundColor Cyan
+Write-Host "    - n_unique≥3 (three people must validate)"
+Write-Host ""
+
+$teamChoice = Read-Host "Select team size [1/2/3] (default: 1)"
+$teamConfig = switch ($teamChoice) {
+    "2" { "Small Team"; 2 }
+    "3" { "Large Team"; 3 }
+    default { "Solo"; 1 }
+}
+$teamSize = $teamConfig[0]
+$nUnique = $teamConfig[1]
+
+Write-Host ""
+Write-Host "Selected: $teamSize (n_unique≥$nUnique)" -ForegroundColor Green
+Write-Host ""
+
+# Domain Characteristics
+Write-Host "🔧 Domain Characteristics:" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "[1] High-churn (web, mobile)" -ForegroundColor Green
+Write-Host "    - Fast evolution, adjust threshold -1"
+Write-Host ""
+Write-Host "[2] Moderate (general software)" -ForegroundColor Yellow
+Write-Host "    - Standard evolution, no adjustment"
+Write-Host ""
+Write-Host "[3] Stable (embedded, scientific)" -ForegroundColor Cyan
+Write-Host "    - Slow evolution, adjust threshold +1"
+Write-Host ""
+
+$domainChoice = Read-Host "Select domain [1/2/3] (default: 2)"
+$domainConfig = switch ($domainChoice) {
+    "1" { "High-churn"; -1 }
+    "3" { "Stable"; 1 }
+    default { "Moderate"; 0 }
+}
+$domainType = $domainConfig[0]
+$domainAdjust = $domainConfig[1]
+
+# Calculate final threshold
+$finalThreshold = [Math]::Max(2, $baseThreshold + $domainAdjust)
+
+Write-Host ""
+Write-Host "Selected: $domainType (adjustment: $domainAdjust)" -ForegroundColor Green
+Write-Host ""
+Write-Host "========================================" -ForegroundColor Cyan
+Write-Host "YOUR SCMS CONFIGURATION:" -ForegroundColor Yellow
+Write-Host "========================================" -ForegroundColor Cyan
+Write-Host "Project Phase: $phaseName" -ForegroundColor White
+Write-Host "Team Size: $teamSize (n_unique≥$nUnique)" -ForegroundColor White
+Write-Host "Domain: $domainType" -ForegroundColor White
+Write-Host ""
+Write-Host "PROMOTION THRESHOLD: n≥$finalThreshold" -ForegroundColor Green
+Write-Host ""
+Write-Host "This means patterns need $finalThreshold uses before promoting to L1" -ForegroundColor Gray
+if ($teamSize -ne "Solo") {
+    Write-Host "AND at least $nUnique unique team members must validate" -ForegroundColor Gray
+}
+Write-Host ""
+Write-Host "========================================" -ForegroundColor Cyan
+Write-Host ""
+
+# Store configuration for later use
+$THRESHOLD_CONFIG = @{
+    Phase = $phaseName
+    BaseThreshold = $baseThreshold
+    Team = $teamSize
+    NUnique = $nUnique
+    Domain = $domainType
+    Adjustment = $domainAdjust
+    FinalThreshold = $finalThreshold
+}
+
+Start-Sleep -Seconds 2
+
+# Step 2: Detect IDE
+Write-Host ""
 Write-Host "Detecting IDE..." -ForegroundColor Yellow
 
 $IDE = "generic"
@@ -104,6 +224,18 @@ if (-not (Test-Path $dashboardPath)) {
 
 **Last Updated**: {0}
 **SCMS Status**: Initialized
+**SCMS Version**: v1.4
+
+---
+
+## Project Configuration
+
+**Project Phase**: {3}
+**Team Size**: {4} (n_unique≥{5})
+**Domain**: {6}
+**Promotion Threshold**: n≥{7}
+
+*Patterns need {7} uses before promoting to L1 (WORKSPACE_RULES.md)*
 
 ---
 
@@ -125,9 +257,10 @@ Check WORKSPACE_RULES.md for promoted patterns.
 
 1. Customize WORKSPACE_RULES.md for your project
 2. Configure your IDE (see config/{1}/SETUP.md)
-3. Start developing - SCMS builds automatically!
+3. Copy SCMS_STARTUP_PROMPT.md content to AI at each session
+4. Start developing - SCMS builds automatically!
 
-'@ -f (Get-Date -Format "yyyy-MM-dd"), $IDE, $(if ($L0_STRATEGY -eq "auto") { "**Strategy**: Auto-Memory (Windsurf Cascade)" } else { "**Strategy**: Manual Markdown Files" })
+'@ -f (Get-Date -Format "yyyy-MM-dd"), $IDE, $(if ($L0_STRATEGY -eq "auto") { "**Strategy**: Auto-Memory (Windsurf Cascade)" } else { "**Strategy**: Manual Markdown Files" }), $THRESHOLD_CONFIG.Phase, $THRESHOLD_CONFIG.Team, $THRESHOLD_CONFIG.NUnique, $THRESHOLD_CONFIG.Domain, $THRESHOLD_CONFIG.FinalThreshold
     
     Set-Content -Path $dashboardPath -Value $dashboardContent -Encoding UTF8
     Write-Host "Dashboard initialized" -ForegroundColor Green
