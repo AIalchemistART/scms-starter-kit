@@ -1,9 +1,17 @@
 # Workspace Rules: [Your Project Name]
+## L1 Stable Validation Layer - Mandatory Quality Gates
 
 **Project**: [Project Name]  
 **Type**: [Project Type - Web App, API, Game, Mobile App, etc.]  
 **Tech Stack**: [Primary Language/Framework]  
+**SCMS Role**: **L1 Stable Validation** (deterministic enforcement layer)  
 **Last Updated**: [Date]
+
+**Purpose**: This file contains **VALIDATED patterns** that AI assistants MUST check before generating code. These aren't suggestions—they're enforced quality gates that passed L0 destructive validation (≥2 natural uses).
+
+**How patterns arrive here**: L0 (Auto-memories/manual) → Natural reuse (≥2x) → Promotes to L1 (this file) → Becomes mandatory check
+
+**For AI Assistants**: You MUST read this file at the start of each session and explicitly acknowledge relevant patterns when implementing code in those areas.
 
 ---
 
