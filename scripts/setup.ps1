@@ -1,30 +1,30 @@
 # SCMS Starter Kit - Windows Setup Script
 # Run this after cloning/downloading the starter kit
 
-Write-Host "SCMS Starter Kit Setup" -ForegroundColor Cyan
+Write-Host 'SCMS Starter Kit Setup' -ForegroundColor Cyan
 Write-Host ""
 
 # Step 1: Project Context & Threshold Configuration
-Write-Host "=== SCMS Project Configuration ===" -ForegroundColor Cyan
+Write-Host '=== SCMS Project Configuration ===' -ForegroundColor Cyan
 Write-Host ""
-Write-Host "Let's configure your promotion threshold based on your project context." -ForegroundColor Yellow
+Write-Host 'Let us configure your promotion threshold based on your project context.' -ForegroundColor Yellow
 Write-Host ""
 
 # Project Phase
-Write-Host "📐 Project Phase:" -ForegroundColor Cyan
+Write-Host '📐 Project Phase:' -ForegroundColor Cyan
 Write-Host ""
-Write-Host "[1] Greenfield (Weeks 1-4)" -ForegroundColor Green
+Write-Host '[1] Greenfield (Weeks 1-4)' -ForegroundColor Green
 Write-Host "    - Patterns still emerging, architecture evolving"
 Write-Host "    - Threshold: n≥5 (higher validation bar)"
 Write-Host ""
-Write-Host "[2] Establishing (Months 2-3)" -ForegroundColor Yellow
+Write-Host '[2] Establishing (Months 2-3)' -ForegroundColor Yellow
 Write-Host "    - Patterns stabilizing, core architecture forming"
 Write-Host "    - Threshold: n≥3 (moderate validation)"
 Write-Host ""
-Write-Host "[3] Mature" -ForegroundColor Cyan
-Write-Host "    - 4 or more months old"
-Write-Host "    - Patterns proven, architecture stable"
-Write-Host "    - Threshold: n >= 2 (standard validation)"
+Write-Host '[3] Mature' -ForegroundColor Cyan
+Write-Host '    - 4 or more months old'
+Write-Host '    - Patterns proven, architecture stable'
+Write-Host '    - Threshold: n >= 2 (standard validation)'
 Write-Host ""
 
 $phaseChoice = Read-Host "Select project phase [1/2/3]"
@@ -41,16 +41,16 @@ Write-Host "Selected: $phaseName (threshold: n≥$baseThreshold)" -ForegroundCol
 Write-Host ""
 
 # Team Size
-Write-Host "👥 Team Size:" -ForegroundColor Cyan
+Write-Host '👥 Team Size:' -ForegroundColor Cyan
 Write-Host ""
-Write-Host "[1] Solo Developer" -ForegroundColor Green
+Write-Host '[1] Solo Developer' -ForegroundColor Green
 Write-Host "    - n_unique≥1 (your validation only)"
 Write-Host ""
-Write-Host "[2] Small Team" -ForegroundColor Yellow
+Write-Host '[2] Small Team' -ForegroundColor Yellow
 Write-Host "    - 2 to 5 people"
 Write-Host "    - n_unique >= 2 (two people must validate)"
 Write-Host ""
-Write-Host "[3] Large Team" -ForegroundColor Cyan
+Write-Host '[3] Large Team' -ForegroundColor Cyan
 Write-Host "    - 5 or more people"
 Write-Host "    - n_unique >= 3 (three people must validate)"
 Write-Host ""
@@ -69,17 +69,17 @@ Write-Host "Selected: $teamSize (n_unique≥$nUnique)" -ForegroundColor Green
 Write-Host ""
 
 # Domain Characteristics
-Write-Host "🔧 Domain Characteristics:" -ForegroundColor Cyan
+Write-Host '🛠️ Domain Characteristics:' -ForegroundColor Cyan
 Write-Host ""
-Write-Host "[1] High-churn" -ForegroundColor Green
+Write-Host '[1] High-churn' -ForegroundColor Green
 Write-Host "    - Web, mobile applications"
 Write-Host "    - Fast evolution, threshold minus 1"
 Write-Host ""
-Write-Host "[2] Moderate" -ForegroundColor Yellow
+Write-Host '[2] Moderate' -ForegroundColor Yellow
 Write-Host "    - General software"
 Write-Host "    - Standard evolution, no adjustment"
 Write-Host ""
-Write-Host "[3] Stable" -ForegroundColor Cyan
+Write-Host '[3] Stable' -ForegroundColor Cyan
 Write-Host "    - Embedded, scientific computing"
 Write-Host "    - Slow evolution, threshold plus 1"
 Write-Host ""
@@ -99,9 +99,9 @@ $finalThreshold = [Math]::Max(2, $baseThreshold + $domainAdjust)
 Write-Host ""
 Write-Host "Selected: $domainType (adjustment: $domainAdjust)" -ForegroundColor Green
 Write-Host ""
-Write-Host "========================================" -ForegroundColor Cyan
+Write-Host '========================================' -ForegroundColor Cyan
 Write-Host "YOUR SCMS CONFIGURATION:" -ForegroundColor Yellow
-Write-Host "========================================" -ForegroundColor Cyan
+Write-Host '========================================' -ForegroundColor Cyan
 Write-Host "Project Phase: $phaseName" -ForegroundColor White
 Write-Host "Team Size: $teamSize (n_unique≥$nUnique)" -ForegroundColor White
 Write-Host "Domain: $domainType" -ForegroundColor White
@@ -113,7 +113,7 @@ if ($teamSize -ne 'Solo') {
     Write-Host "AND at least $nUnique unique team members must validate" -ForegroundColor Gray
 }
 Write-Host ""
-Write-Host "========================================" -ForegroundColor Cyan
+Write-Host '========================================' -ForegroundColor Cyan
 Write-Host ""
 
 # Store configuration for later use
@@ -359,9 +359,9 @@ See: config/windsurf/SETUP.md
             Set-Content -Path $guidePath -Value $guideContent -Encoding UTF8
             Write-Host "Created: L0_AUTO_MEMORY_GUIDE.md" -ForegroundColor Green
             Write-Host ""
-            Write-Host "========================================" -ForegroundColor Cyan
+            Write-Host '========================================' -ForegroundColor Cyan
             Write-Host "CRITICAL: Startup Prompt for Each Session" -ForegroundColor Yellow
-            Write-Host "========================================" -ForegroundColor Cyan
+            Write-Host '========================================' -ForegroundColor Cyan
             Write-Host ""
             Write-Host "Copy-paste this to Cascade AI at the start of EVERY development session:" -ForegroundColor White
             Write-Host ""
