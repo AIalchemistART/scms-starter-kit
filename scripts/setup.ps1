@@ -148,7 +148,8 @@ Write-Host 'Creating directory structure...' -ForegroundColor Yellow
 $dirs = @(
     'docs\sops',
     'docs\case-studies',
-    'docs\sessions'
+    'docs\sessions',
+    'rules'
 )
 
 if ($L0_STRATEGY -eq 'manual') {
@@ -165,18 +166,36 @@ foreach ($dir in $dirs) {
     }
 }
 
-# Copy templates
+# Copy and customize templates
 Write-Host ''
 Write-Host 'Copying documentation templates...' -ForegroundColor Yellow
 
+# WORKSPACE_RULES.md with customized threshold
 $templateSource = Join-Path $PSScriptRoot '..\docs\templates\WORKSPACE_RULES_TEMPLATE.md'
 $templateDest = Join-Path $projectRoot 'WORKSPACE_RULES.md'
 
 if (-not (Test-Path $templateDest)) {
-    Copy-Item -Path $templateSource -Destination $templateDest
-    Write-Host 'WORKSPACE_RULES.md created' -ForegroundColor Green
+    # Read template and replace placeholder threshold with actual calculated value
+    $templateContent = Get-Content -Path $templateSource -Raw
+    $customizedTemplate = $templateContent -replace '≥2', ">=$($THRESHOLD_CONFIG.FinalThreshold)"
+    Set-Content -Path $templateDest -Value $customizedTemplate -Encoding UTF8
+    Write-Host "WORKSPACE_RULES.md created (threshold: n>=$($THRESHOLD_CONFIG.FinalThreshold))" -ForegroundColor Green
 } else {
     Write-Host '  WORKSPACE_RULES.md already exists' -ForegroundColor Gray
+}
+
+# GLOBAL_CODING_RULES.md (L4) with date substitution
+$globalRulesSource = Join-Path $PSScriptRoot '..\docs\templates\GLOBAL_CODING_RULES_TEMPLATE.md'
+$globalRulesDest = Join-Path $projectRoot 'rules\GLOBAL_CODING_RULES.md'
+
+if (-not (Test-Path $globalRulesDest)) {
+    $globalRulesContent = Get-Content -Path $globalRulesSource -Raw
+    $dateStr = Get-Date -Format 'yyyy-MM-dd'
+    $customizedGlobalRules = $globalRulesContent -replace '\[Date\]', $dateStr
+    Set-Content -Path $globalRulesDest -Value $customizedGlobalRules -Encoding UTF8
+    Write-Host 'rules/GLOBAL_CODING_RULES.md created (L4 universal constraints)' -ForegroundColor Green
+} else {
+    Write-Host '  rules/GLOBAL_CODING_RULES.md already exists' -ForegroundColor Gray
 }
 
 # Initialize dashboard
