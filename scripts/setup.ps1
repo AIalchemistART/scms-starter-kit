@@ -390,7 +390,7 @@ See: config/windsurf/SETUP.md
             Write-Host ""
             Write-Host "-------- END COPY --------" -ForegroundColor Gray
             Write-Host ""
-            Write-Host "Full prompt saved to: SCMS_STARTUP_PROMPT.md" -ForegroundColor Gray
+            Write-Host 'Full prompt saved to: SCMS_STARTUP_PROMPT.md' -ForegroundColor Gray
             
             # Copy startup prompt to project root
             $startupPromptSource = Join-Path $PSScriptRoot '..\SCMS_STARTUP_PROMPT.md'
