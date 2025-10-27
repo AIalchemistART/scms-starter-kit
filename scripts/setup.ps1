@@ -426,8 +426,6 @@ Write-Host ''
 # Remind about startup prompt if auto-memory was selected
 if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
     Write-Host ''
-    Write-Host '========================================' -ForegroundColor Cyan
     Write-Host 'IMPORTANT: See SCMS_STARTUP_PROMPT.md' -ForegroundColor Yellow
-    Write-Host '========================================' -ForegroundColor Cyan
     Write-Host ''
 }
