@@ -369,7 +369,7 @@ See: config/windsurf/SETUP.md
             Write-Host ''
             Write-Host 'SCMS AUTO-MEMORY MODE ACTIVE:' -ForegroundColor Green
             Write-Host ''
-            Write-Host '1. CREATE MEMORIES DURING DEVELOPMENT (not after!)' -ForegroundColor White
+            Write-Host '1. CREATE MEMORIES DURING DEVELOPMENT (not after)' -ForegroundColor White
             Write-Host '   - When you discover reusable pattern -> IMMEDIATELY create Cascade memory'
             Write-Host '   - Do NOT wait until code complete'
             Write-Host ''
@@ -386,7 +386,7 @@ See: config/windsurf/SETUP.md
             Write-Host '4. AT 2+ RETRIEVALS:' -ForegroundColor White
             Write-Host '   - Promote to WORKSPACE_RULES.md'
             Write-Host ''
-            Write-Host 'This is TRUE SCMS - zero markdown files, memories in Cascade only!' -ForegroundColor Green
+            Write-Host 'This is TRUE SCMS - zero markdown files, memories in Cascade only' -ForegroundColor Green
             Write-Host ''
             Write-Host '-------- END COPY --------' -ForegroundColor Gray
             Write-Host ''
@@ -412,10 +412,10 @@ See: config/windsurf/SETUP.md
 
 # Step 6: Final instructions
 Write-Host ''
-Write-Host 'SCMS Setup Complete!' -ForegroundColor Green
+Write-Host 'SCMS Setup Complete' -ForegroundColor Green
 Write-Host ''
 Write-Host 'Next steps:' -ForegroundColor Cyan
 Write-Host '1. Edit WORKSPACE_RULES.md with project-specific rules' -ForegroundColor White
 Write-Host ('2. Configure memories in your IDE (see config/' + $IDE + '/SETUP.md)') -ForegroundColor White
-Write-Host '3. Start developing - SCMS builds automatically!' -ForegroundColor White
+Write-Host '3. Start developing - SCMS builds automatically' -ForegroundColor White
 Write-Host ''
