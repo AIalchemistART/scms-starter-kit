@@ -417,5 +417,5 @@ Write-Host ''
 Write-Host 'Next steps:' -ForegroundColor Cyan
 Write-Host '1. Edit WORKSPACE_RULES.md with project-specific rules' -ForegroundColor White
 Write-Host ('2. Configure memories in your IDE (see config/' + $IDE + '/SETUP.md)') -ForegroundColor White
-Write-Host '3. Start developing - SCMS builds automatically' -ForegroundColor White
+Write-Host '3. Start developing' -ForegroundColor White
 Write-Host ''
