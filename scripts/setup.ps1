@@ -14,12 +14,12 @@ Write-Host ''
 Write-Host '📐 Project Phase:' -ForegroundColor Cyan
 Write-Host ''
 Write-Host '[1] Greenfield (Weeks 1-4)' -ForegroundColor Green
-Write-Host "    - Patterns still emerging, architecture evolving"
-Write-Host "    - Threshold: n≥5 (higher validation bar)"
+Write-Host '    - Patterns still emerging, architecture evolving'
+Write-Host '    - Threshold: n>=5 (higher validation bar)'
 Write-Host ''
 Write-Host '[2] Establishing (Months 2-3)' -ForegroundColor Yellow
-Write-Host "    - Patterns stabilizing, core architecture forming"
-Write-Host "    - Threshold: n≥3 (moderate validation)"
+Write-Host '    - Patterns stabilizing, core architecture forming'
+Write-Host '    - Threshold: n>=3 (moderate validation)'
 Write-Host ''
 Write-Host '[3] Mature' -ForegroundColor Cyan
 Write-Host '    - 4 or more months old'
@@ -44,15 +44,15 @@ Write-Host ''
 Write-Host '👥 Team Size:' -ForegroundColor Cyan
 Write-Host ''
 Write-Host '[1] Solo Developer' -ForegroundColor Green
-Write-Host "    - n_unique≥1 (your validation only)"
+Write-Host '    - n_unique>=1 (your validation only)'
 Write-Host ''
 Write-Host '[2] Small Team' -ForegroundColor Yellow
-Write-Host "    - 2 to 5 people"
-Write-Host "    - n_unique >= 2 (two people must validate)"
+Write-Host '    - 2 to 5 people'
+Write-Host '    - n_unique >= 2 (two people must validate)'
 Write-Host ''
 Write-Host '[3] Large Team' -ForegroundColor Cyan
-Write-Host "    - 5 or more people"
-Write-Host "    - n_unique >= 3 (three people must validate)"
+Write-Host '    - 5 or more people'
+Write-Host '    - n_unique >= 3 (three people must validate)'
 Write-Host ''
 
 $teamChoice = Read-Host "Select team size [1/2/3] (default: 1)"
@@ -72,16 +72,16 @@ Write-Host ''
 Write-Host '🛠️ Domain Characteristics:' -ForegroundColor Cyan
 Write-Host ''
 Write-Host '[1] High-churn' -ForegroundColor Green
-Write-Host "    - Web, mobile applications"
-Write-Host "    - Fast evolution, threshold minus 1"
+Write-Host '    - Web, mobile applications'
+Write-Host '    - Fast evolution, threshold minus 1'
 Write-Host ''
 Write-Host '[2] Moderate' -ForegroundColor Yellow
-Write-Host "    - General software"
-Write-Host "    - Standard evolution, no adjustment"
+Write-Host '    - General software'
+Write-Host '    - Standard evolution, no adjustment'
 Write-Host ''
 Write-Host '[3] Stable' -ForegroundColor Cyan
-Write-Host "    - Embedded, scientific computing"
-Write-Host "    - Slow evolution, threshold plus 1"
+Write-Host '    - Embedded, scientific computing'
+Write-Host '    - Slow evolution, threshold plus 1'
 Write-Host ''
 
 $domainChoice = Read-Host "Select domain [1/2/3] (default: 2)"
@@ -147,16 +147,16 @@ if (Get-Command windsurf -ErrorAction SilentlyContinue) {
     Write-Host 'Windsurf supports TWO L0 strategies:' -ForegroundColor Yellow
     Write-Host ''
     Write-Host '[1] AUTO-MEMORY (Recommended - True SCMS)' -ForegroundColor Green
-    Write-Host "    - AI creates memories automatically during development"
-    Write-Host "    - Temporal decay (unused patterns fade)"
-    Write-Host "    - Zero manual overhead"
-    Write-Host "    - Best for: Solo developers, rapid iteration"
+    Write-Host '    - AI creates memories automatically during development'
+    Write-Host '    - Temporal decay (unused patterns fade)'
+    Write-Host '    - Zero manual overhead'
+    Write-Host '    - Best for: Solo developers, rapid iteration'
     Write-Host ''
     Write-Host '[2] MANUAL MARKDOWN (Cross-platform compatible)' -ForegroundColor Yellow
-    Write-Host "    - Create markdown files in docs/memories/"
-    Write-Host "    - Manual tracking and promotion"
-    Write-Host "    - Stable, no decay"
-    Write-Host "    - Best for: Teams, shared documentation, compliance needs"
+    Write-Host '    - Create markdown files in docs/memories/'
+    Write-Host '    - Manual tracking and promotion'
+    Write-Host '    - Stable, no decay'
+    Write-Host '    - Best for: Teams, shared documentation, compliance needs'
     Write-Host ''
     
     $choice = Read-Host "Choose strategy [1/2] (default: 1)"
@@ -299,14 +299,14 @@ switch ($IDE) {
             Write-Host 'Auto-memory L0 strategy selected' -ForegroundColor Green
             Write-Host ''
             Write-Host 'IMPORTANT: Enable Cascade memories in Windsurf:' -ForegroundColor Yellow
-            Write-Host "  1. Open Windsurf Settings"
-            Write-Host "  2. Enable 'Cascade: Memories'"
-            Write-Host "  3. Set memory scope to 'workspace'"
+            Write-Host '  1. Open Windsurf Settings'
+            Write-Host '  2. Enable Cascade: Memories'
+            Write-Host '  3. Set memory scope to workspace'
             Write-Host ''
             Write-Host 'During development:' -ForegroundColor Cyan
-            Write-Host "  - AI will create memories automatically (L0)"
-            Write-Host "  - Track retrievals in MEMORY_STATUS_DASHBOARD.md"
-            Write-Host "  - Promote to WORKSPACE_RULES.md when retrieved 2+ times"
+            Write-Host '  - AI will create memories automatically (L0)'
+            Write-Host '  - Track retrievals in MEMORY_STATUS_DASHBOARD.md'
+            Write-Host '  - Promote to WORKSPACE_RULES.md when retrieved 2+ times'
             Write-Host ''
             Write-Host 'See config/windsurf/SETUP.md for detailed instructions' -ForegroundColor Gray
             
@@ -370,23 +370,23 @@ See: config/windsurf/SETUP.md
             Write-Host 'SCMS AUTO-MEMORY MODE ACTIVE:' -ForegroundColor Green
             Write-Host ''
             Write-Host '1. CREATE MEMORIES DURING DEVELOPMENT (not after!)' -ForegroundColor White
-            Write-Host "   - When you discover reusable pattern -> IMMEDIATELY create Cascade memory"
-            Write-Host "   - Do NOT wait until code complete"
+            Write-Host '   - When you discover reusable pattern -> IMMEDIATELY create Cascade memory'
+            Write-Host '   - Do NOT wait until code complete'
             Write-Host ''
             Write-Host '2. DO NOT CREATE MARKDOWN FILES:' -ForegroundColor White
-            Write-Host "   - NO docs/memories/*.md"
-            Write-Host "   - NO SCMS_REPORT.md or similar"
-            Write-Host "   - ONLY update MEMORY_STATUS_DASHBOARD.md for retrieval counts"
+            Write-Host '   - NO docs/memories/*.md'
+            Write-Host '   - NO SCMS_REPORT.md or similar'
+            Write-Host '   - ONLY update MEMORY_STATUS_DASHBOARD.md for retrieval counts'
             Write-Host ''
-            Write-Host "3. WHEN PATTERN RECURS:" -ForegroundColor White
-            Write-Host "   - Retrieve memory automatically"
-            Write-Host "   - Tell me 'Retrieved [pattern] memory'"
-            Write-Host "   - I'll update dashboard"
+            Write-Host '3. WHEN PATTERN RECURS:' -ForegroundColor White
+            Write-Host '   - Retrieve memory automatically'
+            Write-Host '   - Tell me Retrieved [pattern] memory'
+            Write-Host '   - I will update dashboard'
             Write-Host ''
-            Write-Host "4. AT 2+ RETRIEVALS:" -ForegroundColor White
-            Write-Host "   - Promote to WORKSPACE_RULES.md"
+            Write-Host '4. AT 2+ RETRIEVALS:' -ForegroundColor White
+            Write-Host '   - Promote to WORKSPACE_RULES.md'
             Write-Host ''
-            Write-Host "This is TRUE SCMS - zero markdown files, memories in Cascade only!" -ForegroundColor Green
+            Write-Host 'This is TRUE SCMS - zero markdown files, memories in Cascade only!' -ForegroundColor Green
             Write-Host ''
             Write-Host '-------- END COPY --------' -ForegroundColor Gray
             Write-Host ''
