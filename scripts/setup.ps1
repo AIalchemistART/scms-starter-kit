@@ -269,16 +269,18 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 2. **DO NOT CREATE MARKDOWN FILES**
    - NO docs/memories/*.md files
    - NO SCMS_REPORT.md or similar
-   - ONLY update MEMORY_STATUS_DASHBOARD.md for retrieval tracking
+   - You will track retrievals internally
 
 3. **WHEN PATTERN RECURS**
    - Retrieve the memory automatically
-   - Tell me "Retrieved [pattern] memory"
-   - I will update the dashboard
+   - Increment internal retrieval counter
+   - Tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
 
-4. **AT $($THRESHOLD_CONFIG.FinalThreshold) RETRIEVALS**
-   - Promote pattern to WORKSPACE_RULES.md
-   - This makes it permanent (L1 validated)
+4. **AT $($THRESHOLD_CONFIG.FinalThreshold) RETRIEVALS - AUTOMATIC PROMOTION**
+   - YOU automatically promote pattern to WORKSPACE_RULES.md
+   - Add to the appropriate section with promotion metadata
+   - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
+   - Update MEMORY_STATUS_DASHBOARD.md to reflect the promotion
 
 ### Remember:
 - Memories are TEMPORAL (decay after 30 days without use)
@@ -326,12 +328,14 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
    - Track usage count in MEMORY_STATUS_DASHBOARD.md
 
 2. **TRACK PATTERN USAGE**
-   - Update dashboard when patterns are reused
-   - Count each reuse toward promotion threshold
+   - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
+   - Update dashboard with new retrieval count
 
-3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES**
-   - Promote pattern to WORKSPACE_RULES.md
-   - This makes it permanent (L1 validated)
+3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION**
+   - YOU automatically promote pattern to WORKSPACE_RULES.md
+   - Add to the appropriate section with promotion metadata
+   - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
+   - Update dashboard to reflect the promotion
 
 ### Remember:
 - Manual tracking required
@@ -379,12 +383,14 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
    - Track usage count in MEMORY_STATUS_DASHBOARD.md
 
 2. **TRACK PATTERN USAGE**
-   - Update dashboard when patterns are reused
-   - Count each reuse toward promotion threshold
+   - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
+   - Update dashboard with new retrieval count
 
-3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES**
-   - Promote pattern to WORKSPACE_RULES.md
-   - This makes it permanent (L1 validated)
+3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION**
+   - YOU automatically promote pattern to WORKSPACE_RULES.md
+   - Add to the appropriate section with promotion metadata
+   - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
+   - Update dashboard to reflect the promotion
 
 ### Remember:
 - Manual tracking required
@@ -431,12 +437,14 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
    - Track usage count in MEMORY_STATUS_DASHBOARD.md
 
 2. **TRACK PATTERN USAGE**
-   - Update dashboard when patterns are reused
-   - Count each reuse toward promotion threshold
+   - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
+   - Update dashboard with new retrieval count
 
-3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES**
-   - Promote pattern to WORKSPACE_RULES.md
-   - This makes it permanent (L1 validated)
+3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION**
+   - YOU automatically promote pattern to WORKSPACE_RULES.md
+   - Add to the appropriate section with promotion metadata
+   - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
+   - Update dashboard to reflect the promotion
 
 ### Remember:
 - Manual tracking required
