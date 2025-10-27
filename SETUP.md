@@ -181,27 +181,27 @@ The setup script will:
 .\scripts\setup.ps1
 ```
 
-**Expected Output**:
-```
-🚀 SCMS Starter Kit Setup
-Detecting IDE...
-✓ Windsurf detected
-Copying documentation templates...
-✓ WORKSPACE_RULES.md created
-Creating directory structure...
-✓ Directories created
-Running windsurf setup...
-✓ Memory system configured
-Initializing memory dashboard...
-✓ Dashboard initialized
+**Expected Process**:
 
-✅ SCMS Setup Complete!
+The setup script will:
 
-Next steps:
-1. Edit docs/WORKSPACE_RULES.md with project-specific rules
-2. Configure memories in your IDE (see config/windsurf/SETUP.md)
-3. Start developing - SCMS builds automatically!
-```
+1. **🎯 Guide you through interactive threshold configuration**
+   - Project Phase (Greenfield/Establishing/Mature)
+   - Team Size (Solo/Small/Large)
+   - Domain Characteristics (High-churn/Moderate/Stable)
+   - Automatically calculates your promotion threshold (n≥2, 3, or 5)
+
+2. **🔍 Detect your IDE** (Windsurf, Cursor, or Generic)
+
+3. **📁 Create directory structure** (sops/, case-studies/, sessions/)
+
+4. **📄 Copy templates** (WORKSPACE_RULES.md, memory templates)
+
+5. **📊 Initialize dashboard** (with your configured threshold)
+
+6. **✅ Complete!**
+
+**Your threshold configuration will be saved to MEMORY_STATUS_DASHBOARD.md** for reference during development.
 
 ---
 

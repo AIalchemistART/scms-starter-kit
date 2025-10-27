@@ -23,9 +23,11 @@ AI discovers pattern → Creates memory automatically
   ↓
 Similar problem appears → AI retrieves memory (validation!)
   ↓
-Retrieved 2+ times → Promote to WORKSPACE_RULES.md (L1)
+Reaches threshold → Promote to WORKSPACE_RULES.md (L1)
   ↓
 Unused 30+ days → Temporal decay (removed automatically)
+
+*Note: Threshold = n≥2, 3, or 5 based on your project phase (configured during setup)*
 ```
 
 ---
@@ -45,11 +47,15 @@ Unused 30+ days → Temporal decay (removed automatically)
 4. Update MEMORY_STATUS_DASHBOARD.md to track
 
 **Promotion**:
-- 2nd retrieval → Promote to WORKSPACE_RULES.md
+- Threshold reached → Promote to WORKSPACE_RULES.md
 - Pattern now permanent (L1 validated)
+- **Your threshold**: Check MEMORY_STATUS_DASHBOARD.md (configured during setup)
+  - Greenfield projects: n≥5
+  - Establishing projects: n≥3
+  - Mature projects: n≥2
 
 **Temporal Decay**:
-- Unused for 30+ days with <2 retrievals → Fades away
+- Unused for 30+ days without reaching threshold → Fades away
 - Keeps knowledge base clean
 - Only useful patterns survive
 
@@ -112,13 +118,15 @@ Unused 30+ days → Temporal decay (removed automatically)
 ```
 Development Session
   ↓
-Discover pattern → Create docs/memories/[pattern].md
+You recognize pattern → Create docs/memories/pattern.md
   ↓
 Use pattern again → Update use_count manually
   ↓
-use_count ≥ 2 → Copy to WORKSPACE_RULES.md (L1)
+use_count ≥ threshold → Copy to WORKSPACE_RULES.md (L1)
   ↓
 No decay → Stays forever until deleted
+
+*Note: Your threshold was configured during setup*
 ```
 
 ---
@@ -138,9 +146,10 @@ No decay → Stays forever until deleted
 4. Track in MEMORY_STATUS_DASHBOARD.md
 
 **Promotion**:
-- use_count ≥ 2 → Copy to WORKSPACE_RULES.md
+- use_count ≥ threshold → Copy to WORKSPACE_RULES.md
 - Mark as PROMOTED in memory file
 - Keep memory file as reference (or archive)
+- **Your threshold**: See MEMORY_STATUS_DASHBOARD.md (configured during setup)
 
 **No Decay**:
 - Files stay until manually deleted
@@ -324,11 +333,12 @@ docs/sops/ (L2) → Detailed procedures
 ### For Windsurf Users (You!)
 
 **Start with Auto-Memory L0:**
-1. Run setup script, choose option [1]
-2. Enable Cascade memories
-3. Let AI create memories naturally
-4. Track retrievals in dashboard
-5. Promote to L1 at 2+ retrievals
+1. Run setup script (it will guide threshold configuration)
+2. Choose option [1] for auto-memory
+3. Enable Cascade memories
+4. Let AI create memories naturally
+5. Track retrievals in dashboard
+6. Promote to L1 when threshold reached (configured during setup)
 
 **Why**: This validates TRUE SCMS as researched
 
@@ -339,10 +349,10 @@ docs/sops/ (L2) → Detailed procedures
 ### For Cursor/Generic Users
 
 **Use Manual Markdown L0:**
-1. Run setup script (auto-detects)
+1. Run setup script (auto-detects + configures threshold)
 2. Create `docs/memories/` files
 3. Track use_count manually
-4. Promote to L1 at ≥2 uses
+4. Promote to L1 when threshold reached (see dashboard)
 
 **Why**: Only option without native memory support
 

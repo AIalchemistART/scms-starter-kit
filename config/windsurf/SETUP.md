@@ -14,7 +14,7 @@ Windsurf supports **TWO L0 strategies**. The setup script asked you to choose. H
 
 ```
 Windsurf Auto-Generated Memories (L0)
-  ↓ retrieved 2+ times
+  ↓ retrieved [threshold] times
 WORKSPACE_RULES.md (L1)
   ↓ used 5+ times
 SOPs (L2)
@@ -26,6 +26,7 @@ SOPs (L2)
 - Temporal decay (unused patterns fade after 30 days)
 - Validation through retrieval (AI uses memory = validation)
 - **Zero overhead** - happens naturally
+- **Your threshold**: Configured during setup (n≥2, 3, or 5 based on project phase)
 
 **Best for**:
 - Solo developers
@@ -37,7 +38,8 @@ SOPs (L2)
 - Enable Cascade memories (this guide)
 - Let AI create memories naturally
 - Track retrievals in MEMORY_STATUS_DASHBOARD.md
-- Promote to WORKSPACE_RULES.md when retrieved 2+ times
+- Promote to WORKSPACE_RULES.md when threshold reached
+- **Check your configured threshold in MEMORY_STATUS_DASHBOARD.md**
 
 **DO NOT** create markdown files in `docs/memories/` (folder doesn't exist)
 
