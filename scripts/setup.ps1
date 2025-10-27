@@ -24,7 +24,7 @@ Write-Host ''
 Write-Host '[3] Mature' -ForegroundColor Cyan
 Write-Host '    - 4 or more months old'
 Write-Host '    - Patterns proven, architecture stable'
-Write-Host '    - Threshold: n >= 2 (standard validation)'
+Write-Host '    - Threshold: n>=2 (standard validation)'
 Write-Host ''
 
 $phaseChoice = Read-Host "Select project phase [1/2/3]"
@@ -48,11 +48,11 @@ Write-Host '    - n_unique>=1 (your validation only)'
 Write-Host ''
 Write-Host '[2] Small Team' -ForegroundColor Yellow
 Write-Host '    - 2 to 5 people'
-Write-Host '    - n_unique >= 2 (two people must validate)'
+Write-Host '    - n_unique>=2 (two people must validate)'
 Write-Host ''
 Write-Host '[3] Large Team' -ForegroundColor Cyan
 Write-Host '    - 5 or more people'
-Write-Host '    - n_unique >= 3 (three people must validate)'
+Write-Host '    - n_unique>=3 (three people must validate)'
 Write-Host ''
 
 $teamChoice = Read-Host "Select team size [1/2/3] (default: 1)"
@@ -240,9 +240,9 @@ if (-not (Test-Path $dashboardPath)) {
 ## Project Configuration
 
 **Project Phase**: $($THRESHOLD_CONFIG.Phase)
-**Team Size**: $($THRESHOLD_CONFIG.Team) (n_unique >= $($THRESHOLD_CONFIG.NUnique))
+**Team Size**: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
 **Domain**: $($THRESHOLD_CONFIG.Domain)
-**Promotion Threshold**: n >= $($THRESHOLD_CONFIG.FinalThreshold)
+**Promotion Threshold**: n>=$($THRESHOLD_CONFIG.FinalThreshold)
 
 *Patterns need $($THRESHOLD_CONFIG.FinalThreshold) uses before promoting to L1 (WORKSPACE_RULES.md)*
 
@@ -432,6 +432,6 @@ if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
     Write-Host 'Scroll up to find the startup prompt, or open:' -ForegroundColor White
     Write-Host '  SCMS_STARTUP_PROMPT.md' -ForegroundColor Green
     Write-Host ''
-    Write-Host 'Paste it to Cascade AI at the start of EVERY session!' -ForegroundColor Yellow
+    Write-Host 'Paste it to Cascade AI at the start of every session' -ForegroundColor Yellow
     Write-Host ''
 }
