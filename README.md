@@ -13,7 +13,7 @@
 
 [![SCMS Explainer Video](https://img.youtube.com/vi/ORdhiSe0lJ8/hqdefault.jpg)](https://youtu.be/ORdhiSe0lJ8)
 
-**[▶️ Watch on YouTube](https://youtu.be/ORdhiSe0lJ8)** - Learn how SCMS transforms AI-assisted development in 5 minutes
+**[▶️ Watch on YouTube](https://youtu.be/ORdhiSe0lJ8)** - Learn how SCMS transforms AI-assisted development in 8 minutes
 
 ---
 
