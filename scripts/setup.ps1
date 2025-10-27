@@ -260,18 +260,26 @@ Write-Host ''
 Write-Host 'Setup complete - see WORKSPACE_RULES.md to begin' -ForegroundColor Green
 Write-Host ''
 
-# Startup prompt reminder for auto-memory users
+# Startup prompt reminder - ALL users need this
+Write-Host ''
+Write-Host '========================================' -ForegroundColor Cyan
+Write-Host 'IMPORTANT: STARTUP PROMPT REQUIRED' -ForegroundColor Yellow
+Write-Host '========================================' -ForegroundColor Cyan
+Write-Host ''
+Write-Host 'To complete SCMS setup:' -ForegroundColor White
+Write-Host '1. Open SCMS_STARTUP_PROMPT.md in this directory' -ForegroundColor White
+Write-Host '2. Copy the entire content' -ForegroundColor White
+Write-Host '3. Paste it to your AI assistant at the START of each dev session' -ForegroundColor White
+Write-Host ''
+
+# Add specific notes based on setup
 if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
-    Write-Host ''
-    Write-Host '========================================' -ForegroundColor Cyan
-    Write-Host 'IMPORTANT: STARTUP PROMPT REQUIRED' -ForegroundColor Yellow
-    Write-Host '========================================' -ForegroundColor Cyan
-    Write-Host ''
-    Write-Host 'To complete SCMS setup:' -ForegroundColor White
-    Write-Host '1. Open SCMS_STARTUP_PROMPT.md in this directory' -ForegroundColor White
-    Write-Host '2. Copy the entire content' -ForegroundColor White
-    Write-Host '3. Paste it to Cascade AI at the START of each dev session' -ForegroundColor White
-    Write-Host ''
     Write-Host 'This tells Cascade how to use SCMS auto-memory correctly' -ForegroundColor Gray
-    Write-Host ''
+} elseif ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'manual') {
+    Write-Host 'This tells Cascade how to use SCMS with manual markdown files' -ForegroundColor Gray
+} elseif ($IDE -eq 'cursor') {
+    Write-Host 'This tells Cursor how to use SCMS with manual markdown files' -ForegroundColor Gray
+} else {
+    Write-Host 'This tells your AI how to use SCMS correctly' -ForegroundColor Gray
 }
+Write-Host ''
