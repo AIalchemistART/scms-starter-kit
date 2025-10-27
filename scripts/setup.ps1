@@ -271,6 +271,24 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 - Lists available L2-L4 reference docs
 - YOU update this as patterns progress through layers
 
+### BEFORE You Start Coding:
+
+1. **Check L4 Global Rules** (if they exist)
+   - Location: rules/GLOBAL_CODING_RULES.md
+   - Universal constraints that apply to ALL code
+   - If does not exist yet, skip (created as universal patterns discovered)
+
+2. **Check L1 Validated Patterns**
+   - Location: WORKSPACE_RULES.md
+   - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
+
+3. **Check Dashboard**
+   - Location: MEMORY_STATUS_DASHBOARD.md
+   - Current tracking status
+
+4. **Tell me what you reviewed**
+   - Example: "Reviewed L4 global rules, L1 patterns for API handling"
+
 ### Your Workflow:
 
 1. **CREATE MEMORIES DURING DEVELOPMENT**
@@ -356,6 +374,24 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 - Lists available L2-L4 reference docs
 - YOU update this as patterns progress through layers
 
+### BEFORE You Start Coding:
+
+1. **Check L4 Global Rules** (if they exist)
+   - Location: rules/GLOBAL_CODING_RULES.md
+   - Universal constraints that apply to ALL code
+   - If does not exist yet, skip (created as universal patterns discovered)
+
+2. **Check L1 Validated Patterns**
+   - Location: WORKSPACE_RULES.md
+   - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
+
+3. **Check Dashboard**
+   - Location: MEMORY_STATUS_DASHBOARD.md
+   - Current tracking status
+
+4. **Tell me what you reviewed**
+   - Example: "Reviewed L4 global rules, L1 patterns for API handling"
+
 ### Your Workflow:
 
 1. **DOCUMENT PATTERNS IN MARKDOWN**
@@ -435,6 +471,24 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 - Lists available L2-L4 reference docs
 - YOU update this as patterns progress through layers
 
+### BEFORE You Start Coding:
+
+1. **Check L4 Global Rules** (if they exist)
+   - Location: rules/GLOBAL_CODING_RULES.md
+   - Universal constraints that apply to ALL code
+   - If does not exist yet, skip (created as universal patterns discovered)
+
+2. **Check L1 Validated Patterns**
+   - Location: WORKSPACE_RULES.md
+   - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
+
+3. **Check Dashboard**
+   - Location: MEMORY_STATUS_DASHBOARD.md
+   - Current tracking status
+
+4. **Tell me what you reviewed**
+   - Example: "Reviewed L4 global rules, L1 patterns for API handling"
+
 ### Your Workflow:
 
 1. **DOCUMENT PATTERNS IN MARKDOWN**
@@ -512,6 +566,24 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 - Shows promoted L1 patterns in WORKSPACE_RULES.md
 - Lists available L2-L4 reference docs
 - YOU update this as patterns progress through layers
+
+### BEFORE You Start Coding:
+
+1. **Check L4 Global Rules** (if they exist)
+   - Location: rules/GLOBAL_CODING_RULES.md
+   - Universal constraints that apply to ALL code
+   - If does not exist yet, skip (created as universal patterns discovered)
+
+2. **Check L1 Validated Patterns**
+   - Location: WORKSPACE_RULES.md
+   - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
+
+3. **Check Dashboard**
+   - Location: MEMORY_STATUS_DASHBOARD.md
+   - Current tracking status
+
+4. **Tell me what you reviewed**
+   - Example: "Reviewed L4 global rules, L1 patterns for API handling"
 
 ### Your Workflow:
 
