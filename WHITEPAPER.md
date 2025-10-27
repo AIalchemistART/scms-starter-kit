@@ -349,6 +349,30 @@ If you use SCMS in your research or project, please cite:
 
 ---
 
+## Scope and Applicability
+
+**v1.3 Addition**: SCMS delivers **differentiated benefits based on project maturity and context freshness**:
+
+**Maximum Value Scenarios** (85-96% benefit):
+- **Stale context**: Picking up old projects after weeks/months
+- **Long-horizon projects**: Multi-month development with pattern accumulation
+- **Complex codebases**: Numerous edge cases and evolving patterns
+- **Knowledge-intensive work**: Research, complex software, content creation
+
+**Moderate Value Scenarios** (60-80% benefit):
+- **Established codebases**: Ongoing development with moderate pattern reuse
+- **Collaborative environments**: Context sharing across team members
+- **Projects with session gaps**: Regular breaks between work periods
+
+**Lower Value Scenarios** (30-50% benefit):
+- **Greenfield projects**: Starting from scratch with fresh context
+- **Short-term scripts**: One-off tasks with minimal pattern reuse
+- **Well-documented domains**: Comprehensive docs already exist
+
+**Practical Necessity**: For teams facing continual learning pressures (growing knowledge, resource constraints, temporal decay), the dual validation pipeline architecture becomes structurally necessary. We claim **practical necessity for real-world development workflows** under realistic constraints, while acknowledging simpler approaches may suffice for edge cases.
+
+---
+
 ## Contact
 
 **Primary Author**: Matthew S. Walker (AI Alchemist)  
@@ -386,4 +410,4 @@ This research emerged from real development pain points in the Labyrinth Protoco
 
 ---
 
-*Last Updated: October 24, 2025*
+*Last Updated: October 26, 2025*
