@@ -1,8 +1,8 @@
-# SCMS Startup Prompt v2.0
+# SCMS Startup Prompt v2.1
 
 **Purpose**: Copy-paste this prompt at the start of each development session to ensure COMPLETE SCMS workflow with enforcement.
 
-**Version**: 2.0 (Includes soft enforcement mechanisms from Paper 3 Section 7.4)
+**Version**: 2.1 (October 27, 2025 - Adds adaptive threshold guidance from v1.4 research)
 
 ---
 
@@ -11,12 +11,58 @@
 **Copy this entire prompt and send to Cascade AI:**
 
 ```
-IMPORTANT: This project uses SCMS v1.3 (Sparse Contextual Memory Scaffolding) with AUTO-MEMORY L0 strategy + Soft Enforcement.
+IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) with AUTO-MEMORY L0 strategy + Soft Enforcement.
 
 **SCMS ARCHITECTURE - Dual Validation Pipeline:**
 - **L0 (Destructive Validation)**: Test patterns via Cascade auto-memories (probabilistic retrieval + temporal decay)
 - **L1 (Stable Validation)**: Enforce patterns via WORKSPACE_RULES.md (deterministic loading - MANDATORY quality gates)
 - **L2-L4**: Reference documentation (passive, on-demand)
+
+---
+
+## 📐 PROJECT CONTEXT & PROMOTION THRESHOLD
+
+**CRITICAL: Your promotion threshold adapts based on project phase!**
+
+### Determine Your Threshold:
+
+**Greenfield Projects** (Weeks 1-4, patterns still emerging)
+- **Threshold:** n≥5 uses before promoting to L1
+- **Why:** Prevents premature promotion of experimental patterns
+- **Higher bar:** Patterns must prove utility through repeated use
+- **You're here if:** Project <30 days old, architecture evolving rapidly
+
+**Establishing Projects** (Months 2-3, patterns stabilizing)
+- **Threshold:** n≥3 uses before promoting to L1
+- **Why:** Patterns starting to stabilize but still evolving
+- **Moderate bar:** Balance between validation and agility
+- **You're here if:** Project 30-90 days old, core patterns emerging
+
+**Mature Projects** (4+ months, stable patterns)
+- **Threshold:** n≥2 uses before promoting to L1
+- **Why:** Patterns well-established, faster promotion acceptable
+- **Standard bar:** Proven utility through natural reuse
+- **You're here if:** Project 90+ days old, architecture stabilized
+
+### Additional Context:
+
+**Team Size:**
+- Solo (N=1): n_unique≥1 (patterns validated by you)
+- Small team (N=2-5): n_unique≥2 (two people must validate)
+- Large team (N=5+): n_unique≥3 (three people must validate)
+
+**Domain Characteristics:**
+- High-churn domains (web, mobile): Use lower threshold (faster evolution)
+- Moderate domains (general software): Use standard threshold
+- Stable domains (embedded, scientific): Use higher threshold (slower evolution)
+
+**For this project:**
+- [ ] Project Phase: _________________ (Greenfield / Establishing / Mature)
+- [ ] Threshold: n≥_____ (5 / 3 / 2)
+- [ ] Team: _________________ (Solo / Small / Large)
+- [ ] Domain: _________________ (High-churn / Moderate / Stable)
+
+**Note:** These thresholds come from Paper 2 Section 4.6.6 "Adaptive Promotion Thresholds" - empirically derived for optimal validation vs agility balance.
 
 ---
 
@@ -31,7 +77,7 @@ IMPORTANT: This project uses SCMS v1.3 (Sparse Contextual Memory Scaffolding) wi
 ### 2. ✅ Review MEMORY_STATUS_DASHBOARD.md
 **Check for:**
 - **⚠️ HIGH urgency patterns** - Validated but fading (use NOW or promote)
-- **✅ Validated patterns ready for promotion** - ≥2 uses (copy to L1)
+- **✅ Validated patterns ready for promotion** - ≥[threshold] uses (copy to L1)
 - **🎯 Sprint goals** - Current progress and targets
 
 ### 3. ✅ Acknowledge L1 Patterns Explicitly
@@ -89,15 +135,18 @@ Status: CANDIDATE (use_count: 1)
 
 ### 4. WHEN PATTERN RECURS
 - Retrieve the memory automatically (you should do this via semantic search)
-- Tell me: "Retrieved [pattern name] memory (2nd use)"
+- Tell me: "Retrieved [pattern name] memory ([X] uses)"
 - I will update MEMORY_STATUS_DASHBOARD.md with:
   - Incremented use_count
   - Updated last_used date
   - New temporal strength bar
   - Urgency level if applicable
 
-### 5. PROMOTION RULE
-**Trigger:** Pattern reaches 2+ uses (validated through natural reuse)
+### 5. PROMOTION RULE (CONTEXT-DEPENDENT)
+**Trigger:** Pattern reaches your project's threshold (see Project Context section above)
+- **Greenfield:** ≥5 uses
+- **Establishing:** ≥3 uses
+- **Mature:** ≥2 uses
 
 **Action:**
 1. Copy full pattern to WORKSPACE_RULES.md (L1 documentation)
@@ -108,7 +157,7 @@ Status: CANDIDATE (use_count: 1)
    - Related patterns (if any)
 3. Update dashboard: Mark as "PROMOTED" with promotion date
 
-**Purpose:** ≥2 uses proves pattern is genuinely useful, not theoretical. Promoted patterns become mandatory checks for all future work in that area.
+**Purpose:** Pattern threshold ensures validation through natural reuse appropriate to project maturity. Higher thresholds for greenfield prevent premature promotion of experimental patterns.
 
 ---
 
@@ -123,7 +172,7 @@ Status: CANDIDATE (use_count: 1)
 **At session start, I check:**
 - **⚠️ HIGH urgency**: Validated patterns fading (temporal decay < 70%)
   - Action: Use NOW or promote immediately
-- **✅ Ready for promotion**: ≥2 uses but not yet in L1
+- **✅ Ready for promotion**: ≥[threshold] uses but not yet in L1
   - Action: Copy to WORKSPACE_RULES.md
 - **🎯 Sprint goals**: Current progress (e.g., "Promote 2 patterns this week")
 
@@ -136,14 +185,14 @@ Status: CANDIDATE (use_count: 1)
 Based on temporal decay calculations in dashboard:
 
 ### ⚠️ HIGH Urgency
-- **Definition**: Pattern validated (≥2 uses) but temporal strength < 70%
+- **Definition**: Pattern validated (≥threshold uses) but temporal strength < 70%
 - **Action**: Use it NOW in current task OR promote to L1 immediately
 - **Risk**: May forget pattern if unused; wastes previous validation effort
 
 ### ⏰ MODERATE Urgency
-- **Definition**: Pattern used once, temporal strength 50-80%
+- **Definition**: Pattern used but not validated, temporal strength 50-80%
 - **Action**: Look for opportunities to reuse and validate
-- **Risk**: May decay before reaching 2nd use (validation fails)
+- **Risk**: May decay before reaching threshold (validation fails)
 
 ### ✅ LOW Urgency
 - **Definition**: Pattern fresh (recently used) or stable in L1
@@ -186,7 +235,7 @@ Based on temporal decay calculations in dashboard:
 - ✅ Memories created in Cascade panel DURING development
 - ✅ Zero markdown files in docs/memories/ (auto-memory mode)
 - ✅ Dashboard shows retrieval counts, urgency warnings, promotion candidates
-- ✅ Patterns promoted to WORKSPACE_RULES.md at 2+ uses within 2 hours
+- ✅ Patterns promoted to WORKSPACE_RULES.md at threshold within 2 hours
 - ✅ Temporal decay visible and actionable (urgency warnings respected)
 
 ---
@@ -215,9 +264,9 @@ If I start coding without checking files, ask:
 If I use L1 pattern without acknowledging:
 > "Which L1 pattern are you applying here?"
 
-### When Pattern Reaches 2+ Uses:
+### When Pattern Reaches Threshold:
 Remind me to promote:
-> "That pattern has 2+ uses now—ready to promote to L1?"
+> "That pattern has reached your threshold—ready to promote to L1?"
 
 ### If HIGH Urgency Patterns Exist:
 > "Dashboard shows HIGH urgency patterns fading. Should we use or promote them?"
@@ -226,7 +275,7 @@ Remind me to promote:
 
 ---
 
-This is TRUE SCMS v1.3 - automatic, temporal, use-validated, with soft enforcement. Let's build!
+This is TRUE SCMS v1.4 - automatic, temporal, use-validated, with adaptive thresholds and soft enforcement. Let's build!
 ```
 
 ---
@@ -236,12 +285,29 @@ This is TRUE SCMS v1.3 - automatic, temporal, use-validated, with soft enforceme
 **Copy this prompt for manual markdown workflow:**
 
 ```
-IMPORTANT: This project uses SCMS v1.3 (Sparse Contextual Memory Scaffolding) with MANUAL MARKDOWN L0 strategy + Soft Enforcement.
+IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) with MANUAL MARKDOWN L0 strategy + Soft Enforcement.
 
 **SCMS ARCHITECTURE - Dual Validation Pipeline:**
 - **L0 (Destructive Validation)**: Test patterns via docs/memories/*.md files (manual tracking)
 - **L1 (Stable Validation)**: Enforce patterns via WORKSPACE_RULES.md (MANDATORY quality gates)
 - **L2-L4**: Reference documentation (passive, on-demand)
+
+---
+
+## 📐 PROJECT CONTEXT & PROMOTION THRESHOLD
+
+**CRITICAL: Your promotion threshold adapts based on project phase!**
+
+**For this project:**
+- [ ] Project Phase: _________________ (Greenfield / Establishing / Mature)
+- [ ] Threshold: n≥_____ (5 / 3 / 2)
+
+**Threshold Guide:**
+- **Greenfield** (Weeks 1-4): n≥5 (patterns emerging, higher bar)
+- **Establishing** (Months 2-3): n≥3 (patterns stabilizing)
+- **Mature** (4+ months): n≥2 (patterns proven)
+
+**Note:** See auto-memory section above for full threshold guidance including team size and domain adjustments.
 
 ---
 
@@ -255,7 +321,7 @@ IMPORTANT: This project uses SCMS v1.3 (Sparse Contextual Memory Scaffolding) wi
 
 ### 2. ✅ Review MEMORY_STATUS_DASHBOARD.md
 **Check for:**
-- **✅ Validated patterns ready for promotion** - ≥2 uses (copy to L1)
+- **✅ Validated patterns ready for promotion** - ≥[threshold] uses (copy to L1)
 - **🎯 Sprint goals** - Current progress and targets
 
 ### 3. ✅ Acknowledge L1 Patterns Explicitly
@@ -285,8 +351,11 @@ If I skip this checklist, YOU should remind me:
 - Update last_used date
 - Tell me: "Retrieved [pattern name] memory (2nd use)"
 
-### 3. PROMOTION RULE
-**Trigger:** Pattern reaches 2+ uses
+### 3. PROMOTION RULE (CONTEXT-DEPENDENT)
+**Trigger:** Pattern reaches your project's threshold (see Project Context above)
+- **Greenfield:** ≥5 uses
+- **Establishing:** ≥3 uses
+- **Mature:** ≥2 uses
 
 **Action:**
 1. Copy full pattern to WORKSPACE_RULES.md
@@ -324,7 +393,7 @@ If I skip this checklist, YOU should remind me:
 - ✅ I explicitly acknowledge L1 patterns when using them
 - ✅ Memory files created in docs/memories/ DURING development
 - ✅ Dashboard shows promotion candidates
-- ✅ Patterns promoted to WORKSPACE_RULES.md at 2+ uses within 2 hours
+- ✅ Patterns promoted to WORKSPACE_RULES.md at threshold within 2 hours
 
 ---
 
@@ -334,8 +403,8 @@ If I skip this checklist, YOU should remind me:
 If I start coding without checking files:
 > "Did you review WORKSPACE_RULES and the Dashboard first?"
 
-### When Pattern Reaches 2+ Uses:
-> "That pattern has 2+ uses now—ready to promote to L1?"
+### When Pattern Reaches Threshold:
+> "That pattern has reached your threshold—ready to promote to L1?"
 
 **This social accountability ensures workflow compliance.**
 
@@ -420,4 +489,15 @@ Let's build with SCMS tracking and enforcement!
 - ✅ Quick reference guide added
 - ✅ Testing metrics for validation
 
-**Based on**: Paper 3 Section 7.4 (Mandatory UX Patterns) + Labyrinth Protocol 4-month deployment learnings
+**v2.1** (Oct 27, 2025): Added adaptive threshold guidance
+- ✅ Project context section (greenfield/establishing/mature)
+- ✅ Adaptive promotion thresholds (5/3/2 based on phase)
+- ✅ Team size considerations (n_unique requirements)
+- ✅ Domain-specific adjustments (high-churn vs stable)
+- ✅ Updated all promotion rules to use context-dependent thresholds
+- ✅ Reflects Paper 2 Section 4.6.6 "Adaptive Promotion Thresholds"
+
+**Based on**: 
+- Paper 3 Section 7.4 (Mandatory UX Patterns / Soft Enforcement)
+- Paper 2 Section 4.6.6 (Adaptive Promotion Thresholds)
+- Labyrinth Protocol 4-month deployment learnings
