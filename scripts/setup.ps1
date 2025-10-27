@@ -414,9 +414,10 @@ See: config/windsurf/SETUP.md
 Write-Host ""
 Write-Host 'SCMS Setup Complete!' -ForegroundColor Green
 Write-Host ""
-Write-Host "Next steps:" -ForegroundColor Cyan
-Write-Host "1. Edit WORKSPACE_RULES.md with project-specific rules" -ForegroundColor White
-Write-Host "2. Configure memories in your IDE (see config/$IDE/SETUP.md)" -ForegroundColor White
+Write-Host 'Next steps:' -ForegroundColor Cyan
+Write-Host '1. Edit WORKSPACE_RULES.md with project-specific rules' -ForegroundColor White
+$ideConfigMsg = "2. Configure memories in your IDE (see config/$IDE/SETUP.md)"
+Write-Host $ideConfigMsg -ForegroundColor White
 Write-Host '3. Start developing - SCMS builds automatically!' -ForegroundColor White
 Write-Host ""
 Write-Host 'Documentation: docs/00_DOCUMENTATION_HIERARCHY.md' -ForegroundColor Gray
