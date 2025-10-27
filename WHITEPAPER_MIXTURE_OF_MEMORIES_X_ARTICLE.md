@@ -592,7 +592,7 @@ Use the MoM framework as template:
 
 **Repository**: https://github.com/AIalchemistART/scms-starter-kit
 
-**Video Explainer**: https://youtu.be/Rd1BVCm46z4
+**Video Explainer**: https://youtu.be/ORdhiSe0lJ8
 
 ---
 
@@ -612,7 +612,7 @@ And now you can use it in whatever you're building.
 
 🔗 **GitHub**: https://github.com/AIalchemistART/scms-starter-kit  
 📄 **Full Paper**: [WHITEPAPER_MIXTURE_OF_MEMORIES.md](https://github.com/AIalchemistART/scms-starter-kit/blob/master/WHITEPAPER_MIXTURE_OF_MEMORIES.md)  
-🎥 **Video**: https://youtu.be/Rd1BVCm46z4  
+🎥 **Video**: https://youtu.be/ORdhiSe0lJ8  
 📧 **Email**: manny@aialchemist.net
 
 ---

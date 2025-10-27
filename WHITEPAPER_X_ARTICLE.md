@@ -335,7 +335,7 @@ The paradigm shift isn't the tool. **It's realizing AI memories can test pattern
 
 🔗 **GitHub**: https://github.com/AIalchemistART/scms-starter-kit  
 📄 **Full Paper**: [WHITEPAPER.md](https://github.com/AIalchemistART/scms-starter-kit/blob/master/WHITEPAPER.md)  
-🎥 **Video Explainer**: https://youtu.be/Rd1BVCm46z4  
+🎥 **Video Explainer**: https://youtu.be/ORdhiSe0lJ8  
 📧 **Contact**: manny@aialchemist.net
 
 ---

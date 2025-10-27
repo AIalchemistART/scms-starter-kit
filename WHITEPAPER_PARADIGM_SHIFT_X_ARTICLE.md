@@ -389,7 +389,7 @@ Even without SCMS infrastructure:
 
 **Repository**: https://github.com/AIalchemistART/scms-starter-kit
 
-**Video Explainer**: https://youtu.be/Rd1BVCm46z4
+**Video Explainer**: https://youtu.be/ORdhiSe0lJ8
 
 ---
 
@@ -415,7 +415,7 @@ If you're building AI tools:
 
 🔗 **GitHub**: https://github.com/AIalchemistART/scms-starter-kit  
 📄 **Full Paper**: [WHITEPAPER_PARADIGM_SHIFT.md](https://github.com/AIalchemistART/scms-starter-kit/blob/master/WHITEPAPER_PARADIGM_SHIFT.md)  
-🎥 **Video**: https://youtu.be/Rd1BVCm46z4  
+🎥 **Video**: https://youtu.be/ORdhiSe0lJ8  
 📧 **Email**: manny@aialchemist.net
 
 ---
