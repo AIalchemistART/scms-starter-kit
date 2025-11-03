@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](docs/)
 
-**📄 Research Papers**: [SCMS (Empirical)](WHITEPAPER.md) | [Paradigm Shift (Design)](WHITEPAPER_PARADIGM_SHIFT.md) | [Mixture of Memories (Theory)](WHITEPAPER_MIXTURE_OF_MEMORIES.md)
+**📄 Research Papers**: [SCMS (Empirical)](docs/reference/WHITEPAPER.md) | [Paradigm Shift (Design)](docs/reference/WHITEPAPER_PARADIGM_SHIFT.md) | [Mixture of Memories (Theory)](docs/reference/WHITEPAPER_MIXTURE_OF_MEMORIES.md)
 
 ---
 
@@ -317,7 +317,7 @@ SCMS is based on published research from the **Labyrinth Protocol** project:
 
 ### Core Research Papers
 
-**📄 [SCMS (Empirical)](WHITEPAPER.md)** - v1.3  
+**📄 [SCMS (Empirical)](docs/reference/WHITEPAPER.md)** - v1.3  
 *Sparse Contextual Memory Scaffolding: A User-Facing Architecture for Continual Learning in AI-Assisted Development Workflows*
 
 Introduces the **dual validation pipeline architecture** where Layer 0 (destructive validation) tests patterns through natural selection and Layer 1 (stable validation) enforces proven patterns through deterministic loading. This transforms AI memory from passive storage into active quality control infrastructure.
@@ -331,7 +331,7 @@ Introduces the **dual validation pipeline architecture** where Layer 0 (destruct
 - Documentation lag: 11.5 days → 4 hours
 - Validated over 4 months, 127 implementation cycles
 
-**📄 [Paradigm Shift (Design)](WHITEPAPER_PARADIGM_SHIFT.md)** - v1.3  
+**📄 [Paradigm Shift (Design)](docs/reference/WHITEPAPER_PARADIGM_SHIFT.md)** - v1.3  
 *Paradigm Shift in AI Memory: From Preference Storage to Continual Learning*
 
 Documents the emergent paradigm shift from AI memories as "digital filing cabinets" to **dual validation infrastructure** (L0 test + L1 enforce). Fewer than 1% of users have discovered this pattern. 
@@ -340,7 +340,7 @@ Documents the emergent paradigm shift from AI memories as "digital filing cabine
 
 Includes comparative analysis across six dimensions, five design principles for validation-oriented systems, and multi-domain validation (research, content creation, data analysis, education).
 
-**📄 [Mixture of Memories (Theory)](WHITEPAPER_MIXTURE_OF_MEMORIES.md)** - v1.3  
+**📄 [Mixture of Memories (Theory)](docs/reference/WHITEPAPER_MIXTURE_OF_MEMORIES.md)** - v1.3  
 *Mixture of Memories: A Unified Framework for Sparse Activation Across Abstraction Levels*
 
 Proves that sparse selective activation is not merely an optimization but a **structural necessity** for continual learning at scale. 
@@ -449,6 +449,6 @@ If you use SCMS in your research or project, please cite:
 
 ---
 
-**Get Started**: [SETUP.md](SETUP.md) | **Learn More**: [Whitepaper](WHITEPAPER.md) | **See Examples**: [docs/examples/](docs/examples/)
+**Get Started**: [SETUP.md](SETUP.md) | **Learn More**: [Whitepaper](docs/reference/WHITEPAPER.md) | **See Examples**: [docs/examples/](docs/examples/)
 
 Built with ❤️ by the Labyrinth Protocol team • Validated over 4 months of real development • Open source and free to use
