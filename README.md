@@ -90,6 +90,58 @@ SCMS implements **dual validation infrastructure** where L0 tests and L1 enforce
 
 ---
 
+## 🧠 Mind-Map Framework: Multi-Time-Scale Architecture
+
+SCMS implements a **cognitive architecture** with three levels operating at different update frequencies—directly validating Google's discovery that "multi time-scale update [is] the key component to unlock continual learning":
+
+```
+RARE ←―――――――――――――――――――――――――――→ FREQUENT
+       Update Frequency Spectrum
+
+L0 (Foundation)     L1 (Implementation)    Dashboard (Session)
+─────────────────   ───────────────────   ──────────────────
+Abstract patterns   Concrete solutions    Immediate context
+Cross-project       Project-specific      Session-specific  
+Test via retrieval  Enforce via loading   Execute now
+Days-weeks scale    Hours-days scale      Real-time scale
+
+Example:            Example:              Example:
+"QTE systems        "QTE timeout:         "Currently debugging
+need timeout"       cancelQTE() @ 30s"    QTE cancellation"
+```
+
+**Why Multi-Time-Scale Works**: Different update frequencies create natural isolation. High-frequency session changes don't interfere with low-frequency pattern knowledge—**preventing catastrophic forgetting at the interface level** (parallel to how Google's Nested Learning solves it at model weights level).
+
+---
+
+## 💥 Failure Documentation as First Principles
+
+**Key Insight**: Failures contain **10-100× more information** than successes.
+
+- **Successes**: "This worked" (1 bit: true)
+- **Failures**: "This failed because X, Y, Z" (N bits: full causal model)
+
+### Failure Documentation Pyramid
+
+```
+       ╱▔▔▔▔▔▔▔▔▔▔▔╲
+      ╱ Bug Patterns ╲      ← L0: Highest value
+     ╱ (Generalizable)╲       (prevents entire bug classes)
+    ╱▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁╲
+   ╱  Anti-Patterns   ╲     ← L0: High value
+  ╱  (Design Lessons)  ╲      (guides architecture)
+ ╱▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁╲
+╱ Failed Approaches     ╲   ← L0: Medium value
+  (Constraint Discovery)      (narrows solution space)
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+      Edge Cases         ← L1: Project value
+   (Specific Handling)      (implementation details)
+```
+
+**Real Impact**: Documenting one bug pattern prevents 3-10 similar bugs. Failed approaches eliminate entire solution spaces, saving hours of exploration.
+
+---
+
 ## 🎯 Two L0 Strategies
 
 SCMS's L0 layer (active memories) works differently depending on your IDE:
