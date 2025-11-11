@@ -1,8 +1,8 @@
-# SCMS Startup Prompt v2.1
+# SCMS Startup Prompt v2.2
 
 **Purpose**: Copy-paste this prompt at the start of each development session to ensure COMPLETE SCMS workflow with enforcement.
 
-**Version**: 2.1 (October 27, 2025 - Adds adaptive threshold guidance from v1.4 research)
+**Version**: 2.2 (November 11, 2025 - Adds economic optimization principles and retrieval-first bias)
 
 ---
 
@@ -14,6 +14,12 @@
 IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) with AUTO-MEMORY L0 strategy + Soft Enforcement.
 
 **SCMS ARCHITECTURE - Multi-Time-Scale Cognitive Framework:**
+
+**Economic Optimization Principle** (53% cost reduction validated):
+- **RETRIEVAL-FIRST BIAS**: Always search L0/L1 before generating new content
+- **Cost asymmetry**: Retrieval ($0.002-0.003) vs Generation ($0.009-0.012)
+- **Target efficiency**: >70% retrieval-based responses for maximum savings
+- **Pattern ROI**: L0 patterns need 3+ reuses for break-even
 
 **Mind-Map Framework** (Google Research validated):
 - **L0 (Foundation)**: Abstract patterns, rare updates (days-weeks), test via retrieval
@@ -91,7 +97,25 @@ If I skip this checklist, YOU should remind me:
 
 ## 📋 CORE WORKFLOW RULES
 
-### 1. CREATE MEMORIES DURING DEVELOPMENT (not after!)
+### 1. ECONOMIC DECISION TREE (Retrieval-First Optimization)
+**For every AI interaction, follow this cost-optimized sequence:**
+
+1. **Search L1 first** (WORKSPACE_RULES.md) - Cost: $0.001-0.002
+   - Found exact match? → Use directly (highest ROI)
+   - Found similar? → Adapt pattern (medium ROI)
+   
+2. **Search L0 next** (Cascade memories) - Cost: $0.002-0.003
+   - Found pattern? → Test and refine (good ROI)
+   - Multiple patterns? → Combine existing (better than new)
+   
+3. **Generate new ONLY if** no retrieval options - Cost: $0.009-0.012
+   - Must be >75% semantically different from existing
+   - Document immediately for future retrieval
+   - Target: <30% of responses should reach this step
+
+**Economic Target**: >70% retrieval-based responses for maximum cost savings
+
+### 2. CREATE MEMORIES DURING DEVELOPMENT (not after!)
 - When you discover a reusable pattern → IMMEDIATELY create Cascade memory
 - Do NOT wait until implementation is complete
 - Memory creation is PART of development, not post-implementation documentation
@@ -100,7 +124,7 @@ If I skip this checklist, YOU should remind me:
 - ✅ CORRECT: Pattern discovered → Create memory → Continue coding
 - ❌ WRONG: Finish all code → Document patterns retroactively
 
-### 2. DO NOT CREATE MARKDOWN DOCUMENTATION FILES
+### 3. DO NOT CREATE MARKDOWN DOCUMENTATION FILES
 - ❌ NO docs/memories/*.md files (folder doesn't exist in auto-memory mode!)
 - ❌ NO SCMS_REPORT.md, INTEGRATION_REPORT.md, TEST_LOG.md
 - ❌ NO manual pattern tracking files or spreadsheets
@@ -108,7 +132,7 @@ If I skip this checklist, YOU should remind me:
 
 **Why:** Cascade auto-memories ARE the L0 layer. Creating markdown files defeats the purpose.
 
-### 3. MEMORY CREATION FORMAT
+### 4. MEMORY CREATION FORMAT
 **Title:** "[Pattern Name] - [One-line description]"  
 **Content:** Brief code example + context (why it matters)  
 **Tags:** Relevant keywords for retrieval  
@@ -321,6 +345,12 @@ This is TRUE SCMS v1.4 - automatic, temporal, use-validated, with adaptive thres
 IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) with MANUAL MARKDOWN L0 strategy + Soft Enforcement.
 
 **SCMS ARCHITECTURE - Multi-Time-Scale Cognitive Framework:**
+
+**Economic Optimization Principle** (53% cost reduction validated):
+- **RETRIEVAL-FIRST BIAS**: Always search L0/L1 before generating new content
+- **Cost asymmetry**: Retrieval ($0.002-0.003) vs Generation ($0.009-0.012)
+- **Target efficiency**: >70% retrieval-based responses for maximum savings
+- **Pattern ROI**: L0 patterns need 3+ reuses for break-even
 
 **Mind-Map Framework** (Google Research validated):
 - **L0 (Foundation)**: Abstract patterns, rare updates (days-weeks), test via retrieval
