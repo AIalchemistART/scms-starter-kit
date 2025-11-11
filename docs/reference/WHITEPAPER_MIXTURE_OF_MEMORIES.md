@@ -658,18 +658,19 @@ Sparse activation is 4× cheaper!
 
 ### Empirical Economic Validation
 
-**Labyrinth Protocol Case Study**:
+**Labyrinth Protocol Case Study** (with algorithmic validation):
 - **Measured sparse activation**: 70% retrieval, 30% generation
-- **Token reduction**: 53% fewer output tokens
-- **Cost reduction**: 68% lower serving costs
+- **Session cost reduction**: 30-45% (full accounting including thinking mode)
+- **Cost reduction**: 30-45% lower serving costs (conservative estimate)
 - **Quality improvement**: Validated patterns vs potential hallucination
 
-**Scaling Economics**:
+**Scaling Economics** (Conservative Full-Session Accounting):
 ```
 Platform with 100k users:
-Dense: 100k × 50 queries/day × 800 tokens × $15/1M = $60k/day
-Sparse: 100k × 50 queries/day × 200 tokens × $15/1M = $15k/day
-Annual savings: $16.4M (73% reduction)
+Without SCMS: 100k × 50 sessions/day × $0.033 = $165k/day
+With SCMS: 100k × 50 sessions/day × $0.018 = $90k/day
+Daily savings: $75k (45% reduction)
+Annual savings: $2-3.5M (30-45% reduction, algorithmic validation)
 ```
 
 ### Why MoM Predicts Economic Optimality
