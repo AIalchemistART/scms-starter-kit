@@ -8,7 +8,7 @@
 
 **🔥 Update (Nov 2025)**: Core SCMS principles **independently validated** by Google Research's "Nested Learning" (NeurIPS 2025)—published ~10 days after SCMS with perfect alignment on 6/6 fundamental principles!
 
-**📄 Research Papers**: [SCMS (Empirical)](docs/reference/WHITEPAPER.md) | [Paradigm Shift (Design)](docs/reference/WHITEPAPER_PARADIGM_SHIFT.md) | [Mixture of Memories (Theory)](docs/reference/WHITEPAPER_MIXTURE_OF_MEMORIES.md)
+**📄 Research Papers**: [SCMS (Empirical)](docs/reference/WHITEPAPER.md) | [Paradigm Shift (Design)](docs/reference/WHITEPAPER_PARADIGM_SHIFT.md) | [Mixture of Memories (Theory)](docs/reference/WHITEPAPER_MIXTURE_OF_MEMORIES.md) | [Economics of Continual Learning](docs/reference/WHITEPAPER_ECONOMICS.md)
 
 ---
 
@@ -291,7 +291,19 @@ AI: [validates and promotes when pattern reused]
 **Session closure is essential for SCMS long-term success!**
 
 ```
-You: "SCMS SESSION CLOSURE - Update system with lessons learned from this session while maintaining mind-map framing. Validate & promote necessary memories. Ensure memory dashboard and economic dashboard are up to date."
+You: "SCMS SESSION CLOSURE - CRITICAL SYSTEM UPDATE
+
+Great work on this feature! Now let's close the SCMS optimization loop:
+
+1. PATTERN REFLECTION & VALIDATION
+2. L0/L1 VALIDATION PIPELINE UPDATE  
+3. MEMORY DASHBOARD UPDATE
+4. ECONOMIC DASHBOARD UPDATE
+5. MIND-MAP FRAMEWORK MAINTENANCE
+6. SYSTEM OPTIMIZATION
+
+This ensures SCMS continues optimizing and compounding value over time."
+
 AI: [reflects on session, updates L0/L1 pipeline, refreshes dashboards, promotes patterns]
 ```
 
