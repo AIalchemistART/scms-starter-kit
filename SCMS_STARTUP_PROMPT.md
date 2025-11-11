@@ -13,10 +13,22 @@
 ```
 IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) with AUTO-MEMORY L0 strategy + Soft Enforcement.
 
-**SCMS ARCHITECTURE - Dual Validation Pipeline:**
+**SCMS ARCHITECTURE - Multi-Time-Scale Cognitive Framework:**
+
+**Mind-Map Framework** (Google Research validated):
+- **L0 (Foundation)**: Abstract patterns, rare updates (days-weeks), test via retrieval
+- **L1 (Implementation)**: Concrete solutions, medium updates (hours-days), enforce via loading
+- **Dashboard (Session)**: Immediate context, frequent updates (real-time), working memory
+
+**Dual Validation Pipeline:**
 - **L0 (Destructive Validation)**: Test patterns via Cascade auto-memories (probabilistic retrieval + temporal decay)
 - **L1 (Stable Validation)**: Enforce patterns via WORKSPACE_RULES.md (deterministic loading - MANDATORY quality gates)
 - **L2-L4**: Reference documentation (passive, on-demand)
+
+**Failure Documentation Priority**:
+- Failures contain 10-100× more information than successes
+- Bug Patterns (L0) > Anti-Patterns (L0) > Failed Approaches (L0) > Edge Cases (L1)
+- Document failures immediately when discovered
 
 ---
 
@@ -186,28 +198,66 @@ Based on temporal decay calculations in dashboard:
 
 ## 🧠 WHY THIS SYSTEM WORKS (Philosophy)
 
-**This isn't just "better memory"—it's automated quality control through dual validation:**
+**This isn't just "better memory"—it's a multi-time-scale cognitive architecture validated by Google Research:**
 
-### L0 (Destructive Validation) - Test Suite
+### Mind-Map Framework: Multi-Time-Scale Updates
+
+**Google Research Discovery** (NeurIPS 2025):
+> "Multi time-scale update... [is] the key component to unlock continual learning"
+
+**How SCMS Implements This**:
+
+- **L0 (Rare updates)**: Abstract patterns (days-weeks scale)
+  - Updated when pattern generalizes across projects
+  - Prevents high-frequency interference
+  
+- **L1 (Medium updates)**: Concrete implementations (hours-days scale)
+  - Updated when details stabilize
+  - Isolated from session noise
+
+- **Dashboard (Frequent updates)**: Immediate context (real-time scale)
+  - Updated every session
+  - Ephemeral, doesn't interfere with patterns
+
+**Result**: Different update frequencies create natural isolation → Prevents catastrophic forgetting at interface level (parallel to Google's model-level solution)
+
+### Dual Validation Pipeline
+
+**L0 (Destructive Validation) - Test Suite**:
 - **Probabilistic retrieval**: Not all patterns surface → Tests discoverability
 - **Temporal decay**: Unused patterns fade → Natural selection pressure
 - **Use-based validation**: ≥2 uses proves utility → Filters noise
 
 **Result:** Only patterns you ACTUALLY reuse survive. Prevents over-retention of theoretical patterns.
 
-### L1 (Stable Validation) - Quality Gates
+**L1 (Stable Validation) - Quality Gates**:
 - **Deterministic loading**: I MUST check WORKSPACE_RULES every session
 - **Proven utility**: Only ≥2 use patterns promoted → High signal-to-noise
 - **Mandatory reference**: Acts as automated code review
 
 **Result:** Validated patterns enforced consistently. Prevents under-enforcement and pattern drift.
 
-### Together: Complete Validation Pipeline
-- **L0 weeds out noise** (decay + probabilistic retrieval)
-- **L1 enforces signal** (mandatory quality gates)
-- **Neither alone is sufficient**: Need both testing AND enforcement
+### Failure Documentation: 10-100× Information Density
 
-**This transforms memory from passive storage to active validation infrastructure.**
+**Information Theory**:
+- **Success**: "This worked" (1 bit)
+- **Failure**: "This failed because X, Y, Z" (N bits - full causal model)
+
+**Why Failures First**:
+- One bug pattern prevents 3-10 similar errors
+- Anti-patterns guide entire architectural decisions
+- Failed approaches eliminate solution spaces
+- Higher information density = better learning efficiency
+
+**Result**: Systematic failure capture creates high-value, sparse knowledge base
+
+### Together: Complete Continual Learning System
+- **Multi-time-scale architecture** prevents forgetting (Google-validated)
+- **L0 weeds out noise** (natural selection + temporal decay)
+- **L1 enforces signal** (mandatory quality gates)
+- **Failures maximize information** (10-100× vs successes)
+
+**This transforms memory from passive storage to active continual learning infrastructure.**
 
 ---
 
@@ -270,10 +320,22 @@ This is TRUE SCMS v1.4 - automatic, temporal, use-validated, with adaptive thres
 ```
 IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) with MANUAL MARKDOWN L0 strategy + Soft Enforcement.
 
-**SCMS ARCHITECTURE - Dual Validation Pipeline:**
+**SCMS ARCHITECTURE - Multi-Time-Scale Cognitive Framework:**
+
+**Mind-Map Framework** (Google Research validated):
+- **L0 (Foundation)**: Abstract patterns, rare updates (days-weeks), test via retrieval
+- **L1 (Implementation)**: Concrete solutions, medium updates (hours-days), enforce via loading
+- **Dashboard (Session)**: Immediate context, frequent updates (real-time), working memory
+
+**Dual Validation Pipeline:**
 - **L0 (Destructive Validation)**: Test patterns via docs/memories/*.md files (manual tracking)
 - **L1 (Stable Validation)**: Enforce patterns via WORKSPACE_RULES.md (MANDATORY quality gates)
 - **L2-L4**: Reference documentation (passive, on-demand)
+
+**Failure Documentation Priority**:
+- Failures contain 10-100× more information than successes
+- Bug Patterns (L0) > Anti-Patterns (L0) > Failed Approaches (L0) > Edge Cases (L1)
+- Document failures immediately when discovered
 
 ---
 

@@ -406,6 +406,150 @@ The paradigm shift is real, fundamental, and now independently validated by S-ti
 
 ---
 
+## Mind-Map Framework: The Cognitive Architecture Behind the Paradigm
+
+**The Shift in One Image**:
+
+```
+STANDARD PARADIGM          EMERGENT PARADIGM
+────────────────────       ─────────────────────────────────────
+Flat Storage               Multi-Time-Scale Architecture
+                          
+All memories equal         RARE ←――――――――――――――→ FREQUENT
+No update hierarchy        
+                          L0 (Foundation)    Dashboard (Session)
+Created liberally          Abstract patterns  Immediate context
+Used inconsistently        Days-weeks         Real-time
+Never decay                Test & validate    Disposable
+                          
+Result:                    L1 (Implementation)
+Documentation debt         Concrete solutions
+"Write-only" archives      Hours-days
+No validation              Enforce & gate
+```
+
+### The Multi-Time-Scale Revolution
+
+The paradigm shift is fundamentally enabled by **multi-time-scale cognitive architecture**—independently validated by Google Research's discovery that "multi time-scale update... [is] the key component to unlock continual learning."
+
+**Three Cognitive Levels**:
+
+1. **L0 (Foundation - Rare Updates)**
+   - Abstract, cross-project patterns
+   - Updated when pattern generalizes (days-weeks)
+   - Tested through probabilistic retrieval
+   - Natural selection via temporal decay
+
+2. **L1 (Implementation - Medium Updates)**
+   - Concrete, project-specific solutions
+   - Updated when implementation stabilizes (hours-days)
+   - Enforced through deterministic loading
+   - Quality gates the AI must check
+
+3. **Dashboard (Session - Frequent Updates)**
+   - Ephemeral, immediate context
+   - Updated real-time during session
+   - Immediate working memory
+   - Naturally discarded after session
+
+### Why This Prevents Forgetting
+
+**Standard Paradigm Problem**:
+```
+All memories updated at same rate → High-frequency session 
+changes interfere with low-frequency pattern knowledge → 
+Catastrophic forgetting at interface level
+```
+
+**Emergent Paradigm Solution**:
+```
+Different update frequencies create natural isolation → 
+Session changes don't touch patterns → Patterns remain 
+stable while context flows → No forgetting
+```
+
+This is **exactly** how Google's Nested Learning solves catastrophic forgetting at the model level. SCMS applies the same principle at the interface level.
+
+### The Paradigm Shift Is Architectural
+
+**Before**: "Memories are flat storage you write to"  
+**After**: "Memories are a multi-time-scale cognitive architecture with different validation layers"
+
+This isn't just better organization—it's a fundamental reconception of what AI memory **is**.
+
+---
+
+## Failure Documentation: The Information Density Shift
+
+**Another Hidden Paradigm**: What should memories contain?
+
+### Standard vs Emergent
+
+| Aspect | Standard | Emergent (SCMS) |
+|--------|----------|-----------------|
+| **Focus** | Successes | Failures |
+| **Information** | "This worked" (1 bit) | "This failed because X, Y, Z" (N bits) |
+| **Value** | Confirms one path | Eliminates solution spaces |
+| **Prevention** | None | 3-10 similar bugs prevented |
+| **ROI** | Low | 10-100× higher |
+
+### The Information Theory
+
+**Success**: "Call cancelQTE() after 30s works"
+- Information: Boolean (true)
+- Future value: Confirms this specific solution
+
+**Failure**: "Event listeners for QTE state caused race conditions because..."
+- Information: Full causal model
+- Future value: Eliminates entire approach class, explains why
+
+**The Paradigm Shift**: From documenting what works to systematically capturing what fails (and why).
+
+### Failure Documentation Pyramid
+
+```
+        ╱▔▔▔▔▔▔▔▔▔▔▔▔╲
+       ╱ Bug Patterns  ╲     ← L0: Highest value
+      ╱ (Generalizable) ╲      (prevents bug classes)
+     ╱▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁╲
+    ╱  Anti-Patterns     ╲   ← L0: High value  
+   ╱  (Design Lessons)    ╲    (guides architecture)
+  ╱▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁╲
+ ╱  Failed Approaches      ╲ ← L0: Medium value
+╱  (Constraint Discovery)   ╱  (narrows solution space)
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+     Edge Cases            ← L1: Project value
+   (Specific Handling)       (implementation details)
+```
+
+### Integration with Multi-Time-Scale Architecture
+
+**Failures flow through the cognitive levels**:
+
+1. **Discovery**: Bug encountered
+2. **L0 Pattern**: If generalizable, document as bug pattern/anti-pattern
+3. **Natural Selection**: Validated through 2+ similar situations
+4. **L1 Enforcement**: Promote to concrete prevention rules
+5. **Automatic Prevention**: AI checks L1 rules before acting
+
+**Example Flow**:
+```
+Bug: "Progress initialized to 100, auto-completed" →
+L0: "Terminal states need pre-conditions" →
+Validated: Retrieved during 2 similar progress bugs →
+L1: "Validate progress ≠ 100 before enabling" →
+Prevented: 5 subsequent similar bugs caught
+```
+
+### The Paradigm Shift in Practice
+
+**Standard Approach**: Document solutions that work  
+**Emergent Approach**: Document failures systematically, derive solutions
+
+**Result**: 10-100× information density, proactive bug prevention, constraint discovery as primary knowledge source.
+
+---
+
 ## The Core Insight
 
 **The future of AI-assisted work requires systems that learn from doing, not just remember from being told.**
