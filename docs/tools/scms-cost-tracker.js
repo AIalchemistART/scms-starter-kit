@@ -1,5 +1,5 @@
 /**
- * SCMS Real Cost Tracking System
+ * SCMS Real Cost Tracking System - Combined Best Implementation
  * Algorithmic validation of economic benefits through actual token measurement
  * 
  * This system provides empirical data vs theoretical estimates by tracking:
@@ -8,6 +8,12 @@
  * - Context loading overhead
  * - Tool call generation costs
  * - Pattern usage ROI
+ * 
+ * Combines:
+ * - Clean event-driven architecture (from starter kit)
+ * - Comprehensive session tracking (from labyrinth)
+ * - Beautiful dashboard integration
+ * - Robust data persistence
  */
 
 class SCMSCostTracker {
@@ -23,13 +29,8 @@ class SCMSCostTracker {
             thinking: 15.00   // Thinking mode tokens
         };
         
-        this.init();
-    }
-    
-    init() {
-        this.loadData();
-        this.setupEventListeners();
-        console.log('SCMS Cost Tracker initialized - Ready for algorithmic validation');
+        // Auto-save every 30 seconds
+        setInterval(() => this.saveData(), 30000);
     }
     
     // Start a new session with classification
@@ -119,27 +120,14 @@ class SCMSCostTracker {
         this.currentSession.tokenBreakdown.tools += interaction.toolTokens;
     }
     
-    // Track pattern usage and ROI
+    // Update pattern usage for session
     updatePatternUsage(patternsUsed) {
         patternsUsed.forEach(pattern => {
-            if (!this.patterns.has(pattern)) {
-                this.patterns.set(pattern, {
-                    name: pattern,
-                    uses: 0,
-                    totalSavings: 0,
-                    avgSavingsPerUse: 0
-                });
+            if (this.patterns.has(pattern)) {
+                this.patterns.set(pattern, this.patterns.get(pattern) + 1);
+            } else {
+                this.patterns.set(pattern, 1);
             }
-            
-            const patternData = this.patterns.get(pattern);
-            patternData.uses++;
-            
-            // Estimate savings from pattern reuse (conservative)
-            const estimatedSavings = 0.015; // $0.015 per pattern reuse
-            patternData.totalSavings += estimatedSavings;
-            patternData.avgSavingsPerUse = patternData.totalSavings / patternData.uses;
-            
-            this.currentSession.patterns.push(pattern);
         });
     }
     
@@ -192,9 +180,15 @@ class SCMSCostTracker {
     
     // Get pattern ROI analysis
     getPatternROI() {
-        return Array.from(this.patterns.values())
+        return Array.from(this.patterns.entries())
+            .map(([name, uses]) => ({
+                name,
+                uses,
+                totalSavings: uses * 0.015, // $0.015 per reuse
+                avgSavingsPerUse: 0.015
+            }))
             .sort((a, b) => b.totalSavings - a.totalSavings)
-            .slice(0, 10); // Top 10 patterns
+            .slice(0, 10);
     }
     
     // Export data for analysis
@@ -215,22 +209,30 @@ class SCMSCostTracker {
         URL.revokeObjectURL(url);
     }
     
-    // Save data to localStorage
-    saveData() {
-        localStorage.setItem('scms-sessions', JSON.stringify(this.sessions));
-        localStorage.setItem('scms-patterns', JSON.stringify(Array.from(this.patterns.entries())));
+    // Load existing data
+    loadData() {
+        try {
+            const stored = localStorage.getItem('scms-cost-tracker-data');
+            if (stored) {
+                const data = JSON.parse(stored);
+                this.sessions = data.sessions || [];
+                this.patterns = new Map(data.patterns || []);
+            }
+        } catch (error) {
+            console.error('Failed to load cost tracker data:', error);
+        }
     }
     
-    // Load data from localStorage
-    loadData() {
-        const sessionsData = localStorage.getItem('scms-sessions');
-        if (sessionsData) {
-            this.sessions = JSON.parse(sessionsData);
-        }
-        
-        const patternsData = localStorage.getItem('scms-patterns');
-        if (patternsData) {
-            this.patterns = new Map(JSON.parse(patternsData));
+    // Save data to localStorage
+    saveData() {
+        try {
+            const data = {
+                sessions: this.sessions,
+                patterns: Array.from(this.patterns.entries())
+            };
+            localStorage.setItem('scms-cost-tracker-data', JSON.stringify(data));
+        } catch (error) {
+            console.error('Failed to save cost tracker data:', error);
         }
     }
     
@@ -267,10 +269,33 @@ class SCMSCostTracker {
             }
         }));
     }
+    
+    // Get current status
+    getStatus() {
+        return {
+            isTracking: !!this.currentSession,
+            currentSession: this.currentSession ? {
+                id: this.currentSession.id,
+                type: this.currentSession.type,
+                duration: Date.now() - this.currentSession.startTime,
+                interactions: this.currentSession.interactions.length,
+                totalCost: this.currentSession.totalCost
+            } : null,
+            totalSessions: this.sessions.length,
+            totalCost: this.sessions.reduce((sum, s) => sum + s.totalCost, 0)
+        };
+    }
+    
+    init() {
+        this.loadData();
+        this.setupEventListeners();
+        console.log('SCMS Cost Tracker initialized - Ready for algorithmic validation');
+    }
 }
 
 // Initialize global tracker
 window.scmsTracker = new SCMSCostTracker();
+window.scmsTracker.init();
 
 // Helper functions for manual tracking
 window.scmsStartSession = (type) => window.scmsTracker.startSession(type);
