@@ -286,6 +286,19 @@ You: [test and report results]
 AI: [validates and promotes when pattern reused]
 ```
 
+### 5. 🚨 **CRITICAL**: End Each Session Properly
+
+**Session closure is essential for SCMS long-term success!**
+
+```
+You: "SCMS SESSION CLOSURE - Update system with lessons learned from this session while maintaining mind-map framing. Validate & promote necessary memories. Ensure memory dashboard and economic dashboard are up to date."
+AI: [reflects on session, updates L0/L1 pipeline, refreshes dashboards, promotes patterns]
+```
+
+**Without session closure, SCMS degrades into passive documentation instead of active continual learning.**
+
+→ **[Complete Session Closure Guide](docs/guides/SCMS_SESSION_CLOSURE.md)**
+
 ---
 
 ## Features

@@ -332,7 +332,27 @@ Remind me to promote:
 
 ---
 
-This is TRUE SCMS v1.4 - automatic, temporal, use-validated, with adaptive thresholds and soft enforcement. Let's build!
+## 🚨 SESSION CLOSURE REMINDER
+
+**CRITICAL**: At the end of each development session, run the Session Closure prompt to:
+- ✅ Update L0/L1 validation pipeline with new patterns
+- ✅ Refresh memory and economic dashboards with session metrics
+- ✅ Maintain mind-map framework coherence and structure
+- ✅ Promote patterns that crossed validation threshold (3+ uses)
+- ✅ Ensure economic optimization continues compounding
+
+**Without session closure, SCMS degrades into passive documentation instead of active continual learning!**
+
+→ **[Session Closure Guide](docs/guides/SCMS_SESSION_CLOSURE.md)**
+
+**Session Closure Prompt (copy-paste ready)**:
+```
+SCMS SESSION CLOSURE - Update system with lessons learned from this session while maintaining mind-map framing. Validate & promote necessary memories. Ensure memory dashboard and economic dashboard are up to date.
+```
+
+---
+
+This is TRUE SCMS v1.4 - automatic, temporal, use-validated, with adaptive thresholds, economic optimization, and critical session closure loop. Let's build!
 ```
 
 ---
@@ -532,6 +552,22 @@ Let's build with SCMS tracking and enforcement!
 | Session Start Compliance | Unknown | 90%+ | Did AI check files before coding? |
 
 **Review after 2-4 weeks:** If targets met → Soft enforcement sufficient. If gaps → Consider hard enforcement (VS Code extension).
+
+---
+
+## 🚨 SESSION CLOSURE REMINDER (Manual L0)
+
+**CRITICAL**: At the end of each development session, run the Session Closure prompt to:
+- ✅ Update docs/memories/*.md files with new patterns
+- ✅ Refresh MEMORY_STATUS_DASHBOARD.md with session metrics
+- ✅ Update ECONOMIC_DASHBOARD.md with efficiency tracking
+- ✅ Promote L0→L1 patterns that crossed validation threshold
+- ✅ Maintain mind-map framework coherence
+
+**Session Closure Prompt for Manual L0**:
+```
+SCMS SESSION CLOSURE - Update markdown documentation with lessons learned from this session. Update memory dashboard, promote validated patterns to L1, and refresh economic tracking. Maintain mind-map framework structure.
+```
 
 ---
 
