@@ -269,6 +269,91 @@
             letter-spacing: 1px;
             margin-left: 10px;
         }
+        
+        .usage-guide {
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .usage-guide h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .usage-guide h3 {
+            color: #667eea;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .usage-guide ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .usage-guide li {
+            margin-bottom: 10px;
+            color: #34495e;
+            line-height: 1.6;
+        }
+        
+        .usage-guide strong {
+            color: #2c3e50;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .critical-box {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #fff;
+        }
+        
+        .critical-box h3 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .critical-box p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -350,6 +435,81 @@
             <button class="btn btn-primary" onclick="exportData()">Export Data for Analysis</button>
             <p style="margin-top: 15px; color: #7f8c8d;">
                 Export algorithmic measurements for statistical analysis and business case validation
+            </p>
+        </div>
+        
+        <!-- Usage Guide Section -->
+        <div class="usage-guide">
+            <h2>📚 Essential SCMS Workflow Guide</h2>
+            
+            <h3><span class="step-number">1</span> Copy the Startup Prompt</h3>
+            <p><strong>Location:</strong> <code>SCMS_STARTUP_PROMPT.md</code> in your project root</p>
+            <p><strong>Action:</strong> Paste this prompt to your AI assistant at the <strong>start of EVERY session</strong></p>
+            <div class="code-block">IMPORTANT: You are working in an SCMS-optimized environment.
+
+📋 SCMS CONFIGURATION:
+- L0 Strategy: [Auto-Memory or Manual]
+- IDE: [Windsurf/Cursor/Other]
+- Memory Location: [Cascade memories or WORKSPACE_RULES.md]
+
+🎯 CORE PRINCIPLE - RETRIEVAL-FIRST OPTIMIZATION:
+Before generating ANY code or response:
+1. Search L1 (WORKSPACE_RULES.md) for exact/similar patterns
+2. Search L0 (memories) for validated solutions
+3. Generate new ONLY if >75% semantically different
+
+💰 ECONOMIC TARGET: >70% retrieval-based responses
+- Retrieval: $0.002-0.003 per interaction
+- Generation: $0.009-0.012 per interaction
+- Target: 30-45% cost reduction through algorithmic validation</div>
+            
+            <h3><span class="step-number">2</span> Use This Dashboard During Development</h3>
+            <ol>
+                <li><strong>Click "Start SCMS Session"</strong> when you begin working with SCMS patterns</li>
+                <li><strong>Click "Start Baseline Session"</strong> for comparison without patterns</li>
+                <li><strong>Develop normally</strong> - the tracker auto-captures token usage</li>
+                <li><strong>Click "End Session"</strong> when you finish a work segment</li>
+                <li><strong>Export data</strong> for business case validation and statistical analysis</li>
+            </ol>
+            
+            <div class="critical-box">
+                <h3>🚨 CRITICAL: Session Closure (Most Important Step!)</h3>
+                <p><strong>Why it matters:</strong> Without session closure, SCMS degrades into passive documentation instead of active continual learning.</p>
+                <p><strong>When:</strong> At the end of EVERY development session</p>
+                <p><strong>What to do:</strong> Copy and paste this prompt to your AI:</p>
+            </div>
+            
+            <div class="code-block">SCMS SESSION CLOSURE - CRITICAL SYSTEM UPDATE
+
+Great work on this feature! Now let's close the SCMS optimization loop:
+
+1. PATTERN REFLECTION & VALIDATION
+2. L0/L1 VALIDATION PIPELINE UPDATE  
+3. MEMORY DASHBOARD UPDATE
+4. ECONOMIC DASHBOARD UPDATE
+5. MIND-MAP FRAMEWORK MAINTENANCE
+6. SYSTEM OPTIMIZATION
+
+This ensures SCMS continues optimizing and compounding value over time.</div>
+            
+            <h3><span class="step-number">3</span> What Happens During Session Closure</h3>
+            <ol>
+                <li><strong>Pattern Reflection:</strong> AI reviews which patterns were used and their effectiveness</li>
+                <li><strong>L0/L1 Pipeline Update:</strong> Promotes validated patterns from L0 → L1 based on use count</li>
+                <li><strong>Memory Dashboard:</strong> Updates pattern metrics and validation status</li>
+                <li><strong>Economic Dashboard:</strong> Records cost savings and ROI measurements</li>
+                <li><strong>Mind-Map Maintenance:</strong> Keeps system architecture current</li>
+                <li><strong>System Optimization:</strong> Identifies opportunities for improvement</li>
+            </ol>
+            
+            <p style="margin-top: 25px; padding: 20px; background: white; border-radius: 8px; border-left: 4px solid #27ae60;">
+                <strong>💡 Pro Tip:</strong> Session closure is what transforms SCMS from a documentation system into a <strong>continually learning optimization engine</strong>. It's the compound interest of development workflows!
+            </p>
+            
+            <p style="margin-top: 20px; text-align: center; color: #7f8c8d;">
+                <strong>Target Result:</strong> Conservative 30-45% cost reduction through algorithmic validation<br>
+                <strong>Annual Savings:</strong> $200-400 for heavy AI users<br>
+                <strong>Platform Savings:</strong> $2-3.5M annually for 100K users
             </p>
         </div>
     </div>
