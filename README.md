@@ -277,7 +277,31 @@ Choose your AI assistant:
 - **Cursor**: See [config/cursor/SETUP.md](config/cursor/SETUP.md)
 - **Other**: See [config/generic/SETUP.md](config/generic/SETUP.md)
 
-### 4. Start Developing
+### 4. 📊 Launch Real Cost Tracking Dashboard
+
+**Start tracking your economic benefits immediately!**
+
+**Windows (PowerShell)**:
+```powershell
+.\launch-dashboard.ps1
+```
+
+**Unix/Mac**:
+```bash
+./launch-dashboard.sh
+```
+
+**Or manually**: Open `docs/tools/scms-dashboard.html` in your browser
+
+**Quick Start**:
+- Click **"Start SCMS Session"** when using SCMS patterns
+- Click **"Start Baseline Session"** for comparison data
+- Watch real-time cost tracking as you develop
+- Export data after 30 days for business case validation
+
+**Key Advantage**: Algorithmic validation transforms economic claims from estimates to measurable facts! 📈
+
+### 5. Start Developing
 
 SCMS builds automatically as you work with your AI assistant!
 
@@ -288,7 +312,7 @@ You: [test and report results]
 AI: [validates and promotes when pattern reused]
 ```
 
-### 5. 🚨 **CRITICAL**: End Each Session Properly
+### 6. 🚨 **CRITICAL**: End Each Session Properly
 
 **Session closure is essential for SCMS long-term success!**
 

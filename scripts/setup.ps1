@@ -705,3 +705,40 @@ if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
     Write-Host 'This tells your AI how to use SCMS correctly' -ForegroundColor Gray
 }
 Write-Host ''
+
+# Offer to launch economic tracking dashboard
+Write-Host ''
+Write-Host '========================================' -ForegroundColor Cyan
+Write-Host 'REAL COST TRACKING DASHBOARD' -ForegroundColor Yellow
+Write-Host '========================================' -ForegroundColor Cyan
+Write-Host ''
+Write-Host '📊 Launch the algorithmic cost tracking dashboard?' -ForegroundColor White
+Write-Host '   Track actual economic benefits vs theoretical estimates' -ForegroundColor Gray
+Write-Host '   Export data for business case validation' -ForegroundColor Gray
+Write-Host ''
+$launchDashboard = Read-Host 'Launch dashboard now? [Y/n] (default: Y)'
+
+if ($launchDashboard -ne 'n' -and $launchDashboard -ne 'N') {
+    Write-Host ''
+    Write-Host '🚀 Launching SCMS Real Cost Tracking Dashboard...' -ForegroundColor Cyan
+    
+    $dashboardPath = Join-Path $PSScriptRoot '..\docs\tools\scms-dashboard.html'
+    
+    if (Test-Path $dashboardPath) {
+        Start-Process $dashboardPath
+        Write-Host '✅ Dashboard opened in your browser!' -ForegroundColor Green
+        Write-Host ''
+        Write-Host '💡 Quick Start:' -ForegroundColor Cyan
+        Write-Host '   1. Click "Start SCMS Session" when using patterns' -ForegroundColor White
+        Write-Host '   2. Click "Start Baseline Session" for comparison' -ForegroundColor White
+        Write-Host '   3. Develop normally and watch real-time tracking' -ForegroundColor White
+    } else {
+        Write-Host '⚠️  Dashboard not found at expected location' -ForegroundColor Yellow
+        Write-Host "   You can launch it manually: .\launch-dashboard.ps1" -ForegroundColor Gray
+    }
+} else {
+    Write-Host ''
+    Write-Host 'You can launch the dashboard anytime with: .\launch-dashboard.ps1' -ForegroundColor Gray
+}
+
+Write-Host ''

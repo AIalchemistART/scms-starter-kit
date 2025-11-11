@@ -291,3 +291,48 @@ if [ "$IDE" = "windsurf" ] && [ "$L0_STRATEGY" = "auto" ]; then
     echo "Paste it to Cascade AI at the start of EVERY session!"
     echo ""
 fi
+
+# Offer to launch economic tracking dashboard
+echo ""
+echo "========================================"
+echo "REAL COST TRACKING DASHBOARD"
+echo "========================================"
+echo ""
+echo "📊 Launch the algorithmic cost tracking dashboard?"
+echo "   Track actual economic benefits vs theoretical estimates"
+echo "   Export data for business case validation"
+echo ""
+read -p "Launch dashboard now? [Y/n] (default: Y): " launch_dashboard
+
+if [ "$launch_dashboard" != "n" ] && [ "$launch_dashboard" != "N" ]; then
+    echo ""
+    echo "🚀 Launching SCMS Real Cost Tracking Dashboard..."
+    
+    DASHBOARD_PATH="$SCRIPT_DIR/../docs/tools/scms-dashboard.html"
+    
+    if [ -f "$DASHBOARD_PATH" ]; then
+        # Open in default browser (cross-platform)
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            open "$DASHBOARD_PATH"
+        elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+            xdg-open "$DASHBOARD_PATH" 2>/dev/null || sensible-browser "$DASHBOARD_PATH" 2>/dev/null
+        else
+            echo "⚠️  Please open manually: $DASHBOARD_PATH"
+        fi
+        
+        echo "✅ Dashboard opened in your browser!"
+        echo ""
+        echo "💡 Quick Start:"
+        echo "   1. Click 'Start SCMS Session' when using patterns"
+        echo "   2. Click 'Start Baseline Session' for comparison"
+        echo "   3. Develop normally and watch real-time tracking"
+    else
+        echo "⚠️  Dashboard not found at expected location"
+        echo "   You can launch it manually: ./launch-dashboard.sh"
+    fi
+else
+    echo ""
+    echo "You can launch the dashboard anytime with: ./launch-dashboard.sh"
+fi
+
+echo ""
