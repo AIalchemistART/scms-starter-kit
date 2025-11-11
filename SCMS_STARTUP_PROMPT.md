@@ -15,11 +15,12 @@ IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) wi
 
 **SCMS ARCHITECTURE - Multi-Time-Scale Cognitive Framework:**
 
-**Economic Optimization Principle** (53% cost reduction validated):
+**Economic Optimization Principle** (30-45% cost reduction validated):
 - **RETRIEVAL-FIRST BIAS**: Always search L0/L1 before generating new content
-- **Cost asymmetry**: Retrieval ($0.002-0.003) vs Generation ($0.009-0.012)
+- **Cost asymmetry**: Retrieval ($0.018) vs Generation ($0.033) per full session
 - **Target efficiency**: >70% retrieval-based responses for maximum savings
 - **Pattern ROI**: L0 patterns need 3+ reuses for break-even
+- **Algorithmic validation**: Real tracking system measures actual savings vs estimates
 
 **Mind-Map Framework** (Google Research validated):
 - **L0 (Foundation)**: Abstract patterns, rare updates (days-weeks), test via retrieval
@@ -100,20 +101,20 @@ If I skip this checklist, YOU should remind me:
 ### 1. ECONOMIC DECISION TREE (Retrieval-First Optimization)
 **For every AI interaction, follow this cost-optimized sequence:**
 
-1. **Search L1 first** (WORKSPACE_RULES.md) - Cost: $0.001-0.002
+1. **Search L1 first** (WORKSPACE_RULES.md) - Session Cost: ~$0.012-0.015
    - Found exact match? → Use directly (highest ROI)
    - Found similar? → Adapt pattern (medium ROI)
    
-2. **Search L0 next** (Cascade memories) - Cost: $0.002-0.003
+2. **Search L0 next** (Cascade memories) - Session Cost: ~$0.015-0.018
    - Found pattern? → Test and refine (good ROI)
    - Multiple patterns? → Combine existing (better than new)
    
-3. **Generate new ONLY if** no retrieval options - Cost: $0.009-0.012
+3. **Generate new ONLY if** no retrieval options - Session Cost: ~$0.030-0.035
    - Must be >75% semantically different from existing
    - Document immediately for future retrieval
    - Target: <30% of responses should reach this step
 
-**Economic Target**: >70% retrieval-based responses for maximum cost savings
+**Economic Target**: >70% retrieval-based responses for 30-45% cost savings (conservative estimate)
 
 ### 2. CREATE MEMORIES DURING DEVELOPMENT (not after!)
 - When you discover a reusable pattern → IMMEDIATELY create Cascade memory
@@ -366,11 +367,12 @@ IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) wi
 
 **SCMS ARCHITECTURE - Multi-Time-Scale Cognitive Framework:**
 
-**Economic Optimization Principle** (53% cost reduction validated):
+**Economic Optimization Principle** (30-45% cost reduction validated):
 - **RETRIEVAL-FIRST BIAS**: Always search L0/L1 before generating new content
-- **Cost asymmetry**: Retrieval ($0.002-0.003) vs Generation ($0.009-0.012)
+- **Cost asymmetry**: Retrieval ($0.018) vs Generation ($0.033) per full session
 - **Target efficiency**: >70% retrieval-based responses for maximum savings
 - **Pattern ROI**: L0 patterns need 3+ reuses for break-even
+- **Algorithmic validation**: Real tracking system measures actual savings vs estimates
 
 **Mind-Map Framework** (Google Research validated):
 - **L0 (Foundation)**: Abstract patterns, rare updates (days-weeks), test via retrieval

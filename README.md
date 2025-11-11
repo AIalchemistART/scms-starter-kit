@@ -60,13 +60,13 @@
 
 ## How It Works
 
-SCMS implements **dual validation infrastructure** optimized for **53% cost reduction** through retrieval-over-generation:
+SCMS implements **dual validation infrastructure** optimized for **30-45% cost reduction** through retrieval-over-generation:
 
 ### 💰 **Economic Optimization Core**
 - **Retrieval-first bias**: Search L0/L1 before generating new content
-- **Cost asymmetry**: Retrieval ($0.002-0.003) vs Generation ($0.009-0.012) 
+- **Cost asymmetry**: Retrieval ($0.018) vs Generation ($0.033) per full session
 - **Target efficiency**: >70% retrieval-based responses
-- **Real-world impact**: $330-660 annual savings for users, $5.77M for platforms
+- **Conservative impact**: $200-400 annual savings for users, $2-3.5M for platforms
 
 SCMS transforms AI memory from passive storage to **active cost optimization**:
 
@@ -155,29 +155,31 @@ need timeout"       cancelQTE() @ 30s"    QTE cancellation"
 ### **Quantified Cost Savings**
 
 **Real-World Validation** (Labyrinth Protocol, 300+ interactions):
-- **53% token reduction**: 56,700 vs 120,000 tokens
-- **Response efficiency**: 189 vs 400 tokens average
-- **Cost per response**: $0.00284 vs $0.006 (53% reduction)
+- **30-45% session cost reduction**: Full accounting including thinking mode
+- **Response efficiency**: 300 vs 600 tokens average (including thinking)
+- **Cost per session**: $0.018 vs $0.033 (45% reduction conservative estimate)
 
-**User Economics**:
-- **Heavy users**: $660/year savings (2,000 → 4,200 credits prevented)
-- **Medium users**: $330/year savings
-- **Performance**: 3-4× faster responses through retrieval optimization
+**User Economics** (Conservative Projections):
+- **Heavy users**: $200-400/year savings with algorithmic validation
+- **Medium users**: $100-200/year savings
+- **Performance**: 2-3× faster responses through retrieval optimization
 
 **Platform Economics** (100K users):
-- **Annual savings**: $5.77M at full adoption
-- **ROI**: 476-764% over 3 years
-- **Payback period**: 4-6 months
+- **Annual savings**: $2-3.5M at full adoption (conservative estimate)
+- **ROI**: 200-400% over 3 years (realistic projections)
+- **Payback period**: 6-12 months
 
-### **Economic Dashboard**
+### **Real Cost Tracking System** 🆕
 
-Track your SCMS efficiency with real-time metrics:
-- **Retrieval ratio**: Target >70% for maximum savings
-- **Pattern ROI**: L0 patterns need 3+ reuses for break-even
-- **Cost trends**: Visual progress toward efficiency goals
-- **Achievement system**: Gamified optimization rewards
+**Algorithmic validation** replaces theoretical estimates with measurable data:
+- **Live session tracking**: Full-session cost accounting including thinking mode
+- **Pattern ROI analysis**: Measure actual savings from pattern reuse
+- **Comparative analysis**: SCMS vs baseline sessions with statistical confidence
+- **Export capabilities**: Generate business cases with real data
 
-→ **[See Economic Dashboard Guide](docs/guides/SCMS_ECONOMIC_DASHBOARD.md)**
+→ **[Launch Real Tracking Dashboard](docs/tools/scms-dashboard.html)** | **[Theoretical Design Guide](docs/guides/SCMS_ECONOMIC_DASHBOARD.md)**
+
+**Key Advantage**: Transforms economic claims from estimates to empirically validated measurements.
 
 ### **Strategic Value**
 
@@ -188,8 +190,8 @@ Track your SCMS efficiency with real-time metrics:
 
 **For Platform Providers**:
 - Transforms heavy users from loss-leaders to profit centers
-- 53% cost advantage over competitors
-- Sustainable scaling economics
+- 30-45% cost advantage over competitors (conservative estimate)
+- Sustainable scaling economics with measurable ROI
 
 → **[Read full economic analysis](docs/reference/WHITEPAPER_ECONOMICS.md)**
 

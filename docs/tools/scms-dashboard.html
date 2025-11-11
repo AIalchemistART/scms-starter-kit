@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCMS Real Cost Tracking Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-warning {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #3498db;
+        }
+        
+        .metric-card.savings {
+            border-left-color: #27ae60;
+        }
+        
+        .metric-card.efficiency {
+            border-left-color: #f39c12;
+        }
+        
+        .metric-card.patterns {
+            border-left-color: #9b59b6;
+        }
+        
+        .metric-title {
+            font-size: 14px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .metric-subtitle {
+            color: #95a5a6;
+            font-size: 14px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            transition: width 0.3s ease;
+        }
+        
+        .session-status {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .status-active {
+            background: #27ae60;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-inactive {
+            background: #95a5a6;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .comparison-chart {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .chart-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .bar-chart {
+            display: flex;
+            align-items: end;
+            height: 200px;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .bar {
+            flex: 1;
+            background: linear-gradient(to top, #3498db, #5dade2);
+            border-radius: 4px 4px 0 0;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            min-height: 40px;
+        }
+        
+        .bar.scms {
+            background: linear-gradient(to top, #27ae60, #58d68d);
+        }
+        
+        .pattern-list {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .pattern-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .pattern-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pattern-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .pattern-stats {
+            display: flex;
+            gap: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .export-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #ecf0f1;
+        }
+        
+        .validation-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>SCMS Real Cost Tracking <span class="validation-badge">Algorithmic Validation</span></h1>
+            <p class="subtitle">Empirical measurement of economic benefits through actual token consumption</p>
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-success" onclick="startSCMSSession()">Start SCMS Session</button>
+            <button class="btn btn-warning" onclick="startBaselineSession()">Start Baseline Session</button>
+            <button class="btn btn-primary" onclick="startMixedSession()">Start Mixed Session</button>
+            <button class="btn btn-danger" onclick="endSession()">End Session</button>
+        </div>
+        
+        <div class="session-status">
+            <h3><span id="sessionIndicator" class="status-indicator status-inactive"></span>Session Status: <span id="sessionType">No Active Session</span></h3>
+            <p id="sessionDetails">Start a session to begin algorithmic cost tracking</p>
+        </div>
+        
+        <div class="metrics-grid">
+            <div class="metric-card savings">
+                <div class="metric-title">Conservative Savings</div>
+                <div class="metric-value" id="savingsPercent">--</div>
+                <div class="metric-subtitle">30-45% target range</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="savingsProgress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <div class="metric-card efficiency">
+                <div class="metric-title">Retrieval Efficiency</div>
+                <div class="metric-value" id="retrievalRatio">--</div>
+                <div class="metric-subtitle">Target: >70% retrieval</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="efficiencyProgress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <div class="metric-card patterns">
+                <div class="metric-title">Pattern ROI</div>
+                <div class="metric-value" id="patternROI">--</div>
+                <div class="metric-subtitle">Validated patterns</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">Session Cost</div>
+                <div class="metric-value" id="sessionCost">$0.00</div>
+                <div class="metric-subtitle">Current session total</div>
+            </div>
+        </div>
+        
+        <div class="comparison-chart">
+            <h3 class="chart-title">Cost Comparison: SCMS vs Baseline</h3>
+            <div class="bar-chart">
+                <div class="bar" id="baselineBar" style="height: 0%">
+                    <span>Baseline<br>$0.00</span>
+                </div>
+                <div class="bar scms" id="scmsBar" style="height: 0%">
+                    <span>SCMS<br>$0.00</span>
+                </div>
+            </div>
+            <p style="text-align: center; color: #7f8c8d; margin-top: 15px;">
+                Conservative projections: 30-45% cost reduction through algorithmic validation
+            </p>
+        </div>
+        
+        <div class="pattern-list">
+            <h3 class="chart-title">Top Performing Patterns</h3>
+            <div id="patternsList">
+                <p style="text-align: center; color: #7f8c8d; padding: 20px;">
+                    Start using SCMS patterns to see ROI analysis
+                </p>
+            </div>
+        </div>
+        
+        <div class="export-section">
+            <button class="btn btn-primary" onclick="exportData()">Export Data for Analysis</button>
+            <p style="margin-top: 15px; color: #7f8c8d;">
+                Export algorithmic measurements for statistical analysis and business case validation
+            </p>
+        </div>
+    </div>
+
+    <script src="scms-cost-tracker.js"></script>
+    <script>
+        // Dashboard control functions
+        function startSCMSSession() {
+            window.scmsTracker.startSession('scms');
+            updateSessionDisplay('SCMS Session Active', 'Using L0/L1 patterns and retrieval-first approach');
+        }
+        
+        function startBaselineSession() {
+            window.scmsTracker.startSession('baseline');
+            updateSessionDisplay('Baseline Session Active', 'Fresh exploration without SCMS patterns');
+        }
+        
+        function startMixedSession() {
+            window.scmsTracker.startSession('mixed');
+            updateSessionDisplay('Mixed Session Active', 'Hybrid approach with some pattern usage');
+        }
+        
+        function endSession() {
+            window.scmsTracker.endSession();
+            updateSessionDisplay('No Active Session', 'Start a session to begin algorithmic cost tracking');
+        }
+        
+        function updateSessionDisplay(type, details) {
+            document.getElementById('sessionType').textContent = type;
+            document.getElementById('sessionDetails').textContent = details;
+            
+            const indicator = document.getElementById('sessionIndicator');
+            if (type.includes('Active')) {
+                indicator.className = 'status-indicator status-active';
+            } else {
+                indicator.className = 'status-indicator status-inactive';
+            }
+        }
+        
+        function exportData() {
+            window.scmsTracker.exportData();
+        }
+        
+        // Listen for data updates
+        document.addEventListener('scms-data-updated', (event) => {
+            const { currentSession, analysis, patterns } = event.detail;
+            
+            // Update current session metrics
+            if (currentSession) {
+                document.getElementById('sessionCost').textContent = `$${currentSession.totalCost.toFixed(4)}`;
+                document.getElementById('retrievalRatio').textContent = `${currentSession.retrievalRatio.toFixed(1)}%`;
+                document.getElementById('efficiencyProgress').style.width = `${Math.min(currentSession.retrievalRatio, 100)}%`;
+            }
+            
+            // Update comparative analysis
+            if (analysis) {
+                const savingsPercent = Math.max(0, analysis.savingsPercent);
+                document.getElementById('savingsPercent').textContent = `${savingsPercent.toFixed(1)}%`;
+                document.getElementById('savingsProgress').style.width = `${Math.min(savingsPercent / 45 * 100, 100)}%`;
+                
+                // Update comparison chart
+                const maxCost = Math.max(analysis.scmsAvgCost, analysis.baselineAvgCost);
+                if (maxCost > 0) {
+                    const baselineHeight = (analysis.baselineAvgCost / maxCost) * 100;
+                    const scmsHeight = (analysis.scmsAvgCost / maxCost) * 100;
+                    
+                    document.getElementById('baselineBar').style.height = `${baselineHeight}%`;
+                    document.getElementById('baselineBar').innerHTML = `<span>Baseline<br>$${analysis.baselineAvgCost.toFixed(4)}</span>`;
+                    
+                    document.getElementById('scmsBar').style.height = `${scmsHeight}%`;
+                    document.getElementById('scmsBar').innerHTML = `<span>SCMS<br>$${analysis.scmsAvgCost.toFixed(4)}</span>`;
+                }
+            }
+            
+            // Update pattern ROI
+            if (patterns && patterns.length > 0) {
+                document.getElementById('patternROI').textContent = patterns.length;
+                
+                const patternsList = document.getElementById('patternsList');
+                patternsList.innerHTML = patterns.slice(0, 5).map(pattern => `
+                    <div class="pattern-item">
+                        <div class="pattern-name">${pattern.name}</div>
+                        <div class="pattern-stats">
+                            <span>Uses: ${pattern.uses}</span>
+                            <span>Savings: $${pattern.totalSavings.toFixed(4)}</span>
+                            <span>ROI: $${pattern.avgSavingsPerUse.toFixed(4)}/use</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        });
+        
+        // Simulate some demo interactions for testing
+        function simulateDemo() {
+            // Simulate SCMS session
+            window.scmsTracker.startSession('scms');
+            
+            // Simulate pattern usage
+            setTimeout(() => {
+                window.scmsLogPattern('Error Handling Pattern', 250);
+            }, 1000);
+            
+            setTimeout(() => {
+                window.scmsLogPattern('API Integration Pattern', 300);
+            }, 2000);
+            
+            setTimeout(() => {
+                window.scmsLogGeneration(400, 300, 100);
+            }, 3000);
+            
+            setTimeout(() => {
+                window.scmsTracker.endSession();
+                
+                // Start baseline session
+                window.scmsTracker.startSession('baseline');
+                
+                setTimeout(() => {
+                    window.scmsLogGeneration(600, 800, 200);
+                }, 1000);
+                
+                setTimeout(() => {
+                    window.scmsLogGeneration(550, 750, 150);
+                }, 2000);
+                
+                setTimeout(() => {
+                    window.scmsTracker.endSession();
+                }, 3000);
+            }, 4000);
+        }
+        
+        // Add demo button for testing
+        document.addEventListener('DOMContentLoaded', () => {
+            const controls = document.querySelector('.controls');
+            const demoBtn = document.createElement('button');
+            demoBtn.className = 'btn btn-primary';
+            demoBtn.textContent = 'Run Demo';
+            demoBtn.onclick = simulateDemo;
+            controls.appendChild(demoBtn);
+        });
+    </script>
+</body>
+</html>
