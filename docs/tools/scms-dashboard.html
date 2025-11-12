@@ -501,6 +501,22 @@ npm run checkpoint:monitor
                 <strong>💡 How it works:</strong> Windsurf includes token usage in checkpoint summaries (e.g., "Token usage: 78652/200000"). The monitor parses these, calculates costs, detects pattern usage, and updates this dashboard automatically. <strong>No Cascade API needed!</strong>
             </p>
             
+            <p style="margin-top: 15px; padding: 15px; background: #f8d7da; border-left: 4px solid #dc3545; border-radius: 5px;">
+                <strong>📊 Terminal Dashboard:</strong> You can also view tracking results in your terminal anytime:
+            </p>
+            <div class="code-block"># View results in terminal (beautifully formatted!)
+npm run dashboard
+
+# This shows:
+# - Session overview (total sessions, costs, tokens)
+# - Cost analysis (SCMS vs baseline comparison)
+# - Top performing patterns (with ROI)
+# - Recent session history
+# - Savings percentage toward 30-45% target</div>
+            <p style="margin-top: 10px; color: #6c757d; font-size: 14px; text-align: center;">
+                <strong>Pro tip:</strong> Run <code>npm run dashboard</code> after each checkpoint capture to see instant results!
+            </p>
+            
             <div class="critical-box">
                 <h3>🚨 STEP 4 - CRITICAL: Session Closure (Most Important Step!)</h3>
                 <p><strong>Why it matters:</strong> Without session closure, SCMS degrades into passive documentation instead of active continual learning.</p>

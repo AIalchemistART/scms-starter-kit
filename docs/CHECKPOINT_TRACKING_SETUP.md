@@ -52,8 +52,9 @@ npm run checkpoint:monitor
    - In Cascade conversation: `Ctrl+A` (select all)
    - `Ctrl+C` (copy)
 4. **Auto-Magic**: Monitor processes and updates dashboard!
-5. **In Dashboard**: Click "End Session" when done
-6. **Export**: Click "Export Data for Analysis"
+5. **View Results** (optional): Run `npm run dashboard` in terminal for instant formatted results
+6. **In Dashboard**: Click "End Session" when done
+7. **Export**: Click "Export Data for Analysis"
 
 ---
 
@@ -155,6 +156,21 @@ Processes all saved checkpoint files in `checkpoints/` directory.
 npm run checkpoint:watch
 ```
 Continuously watches `checkpoints/` directory for new files and auto-parses.
+
+### **Terminal Dashboard** 🆕
+```bash
+npm run dashboard
+```
+Displays beautifully formatted tracking results in your terminal!
+
+**Shows:**
+- 📊 Session overview (total sessions, costs, tokens)
+- 💰 Cost analysis (SCMS vs baseline comparison)
+- 🎯 Top performing patterns (with ROI calculations)
+- 📅 Recent session history
+- 📈 Savings percentage toward 30-45% target
+
+**Pro tip:** Run after each checkpoint capture to see instant results!
 
 ---
 
