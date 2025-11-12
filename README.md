@@ -281,25 +281,55 @@ Choose your AI assistant:
 
 **Start tracking your economic benefits immediately!**
 
-**Windows (PowerShell)**:
+**Option A: With Automated Token Tracking (Recommended)** 🚀
 ```powershell
-.\launch-dashboard.ps1
+# Windows - Auto-starts checkpoint monitor + opens dashboard
+.\scripts\launch-dashboard-with-tracking.ps1
 ```
 
-**Unix/Mac**:
-```bash
+**Option B: Dashboard Only**
+```powershell
+# Windows
+.\launch-dashboard.ps1
+
+# Unix/Mac
 ./launch-dashboard.sh
 ```
 
 **Or manually**: Open `docs/tools/scms-dashboard.html` in your browser
 
-**Quick Start**:
-- Click **"Start SCMS Session"** when using SCMS patterns
-- Click **"Start Baseline Session"** for comparison data
-- Watch real-time cost tracking as you develop
-- Export data after 30 days for business case validation
+---
+
+**🎯 Automated Token Tracking (NEW!)**
+
+The checkpoint monitor automatically captures your Cascade AI token usage:
+
+```bash
+# First time only: Install dependencies
+npm install
+
+# Start monitor (if not using automated launcher)
+npm run checkpoint:monitor
+```
+
+**How it works:**
+1. Monitor watches clipboard for Cascade checkpoint data
+2. Copy conversation anytime (Ctrl+A, Ctrl+C) to capture tokens
+3. Auto-parses costs, patterns, and updates dashboard
+4. Dashboard auto-refreshes every 5 seconds with live data!
+
+**Complete Workflow:**
+1. Start: `.\scripts\launch-dashboard-with-tracking.ps1`
+2. Click **"Start SCMS Session"** in dashboard
+3. Work in Cascade normally
+4. Copy conversation periodically (Ctrl+A, Ctrl+C) - auto-processed!
+5. Watch dashboard update with live token costs ✨
+6. Click **"End Session"** when done
+7. Click **"Export Data"** for analysis
 
 **Key Advantage**: Algorithmic validation transforms economic claims from estimates to measurable facts! 📈
+
+→ **[Complete Checkpoint Tracking Guide](docs/CHECKPOINT_TRACKING_SETUP.md)**
 
 ### 5. Start Developing
 

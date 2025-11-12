@@ -289,7 +289,19 @@ class SCMSCostTracker {
     init() {
         this.loadData();
         this.setupEventListeners();
+        this.startAutoRefresh();
         console.log('SCMS Cost Tracker initialized - Ready for algorithmic validation');
+    }
+    
+    // Auto-refresh data from checkpoint monitor
+    startAutoRefresh() {
+        // Refresh every 5 seconds to pick up checkpoint monitor updates
+        setInterval(() => {
+            this.loadData();
+            if (this.currentSession) {
+                this.updateDashboard();
+            }
+        }, 5000);
     }
 }
 

@@ -1,0 +1,18 @@
+{
+  "name": "scms-starter-kit",
+  "version": "1.0.0",
+  "description": "Sparse Contextual Memory Scaffolding - Production-ready starter kit",
+  "scripts": {
+    "checkpoint:monitor": "node scripts/checkpoint-monitor.js",
+    "checkpoint:parse": "node scripts/parse-checkpoints.js",
+    "checkpoint:watch": "node scripts/parse-checkpoints.js --watch",
+    "dashboard": "node scripts/launch-dashboard.js"
+  },
+  "dependencies": {
+    "clipboardy": "^3.0.0"
+  },
+  "devDependencies": {},
+  "keywords": ["scms", "ai", "memory", "optimization", "cost-tracking"],
+  "author": "AIalchemistART",
+  "license": "MIT"
+}

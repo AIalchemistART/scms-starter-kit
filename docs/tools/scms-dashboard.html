@@ -463,17 +463,46 @@ Before generating ANY code or response:
 - Generation: $0.009-0.012 per interaction
 - Target: 30-45% cost reduction through algorithmic validation</div>
             
-            <h3><span class="step-number">2</span> Use This Dashboard During Development</h3>
+            <h3><span class="step-number">2</span> Enable Automated Token Tracking</h3>
+            <p><strong>Option A: Automated (Recommended)</strong></p>
+            <div class="code-block"># Windows PowerShell
+.\scripts\launch-dashboard-with-tracking.ps1
+
+# This starts checkpoint monitor + opens dashboard automatically!</div>
+            
+            <p><strong>Option B: Manual</strong></p>
+            <div class="code-block"># Terminal 1: Start checkpoint monitor
+npm install  # First time only
+npm run checkpoint:monitor
+
+# Terminal 2: Open this dashboard in browser</div>
+            
+            <p style="margin-top: 15px; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 5px;">
+                <strong>⚡ What the monitor does:</strong> Watches your clipboard for Cascade checkpoint data (from conversation copies) and automatically extracts token usage, calculates costs, and updates this dashboard in real-time!
+            </p>
+            
+            <h3><span class="step-number">3</span> Use This Dashboard During Development</h3>
             <ol>
                 <li><strong>Click "Start SCMS Session"</strong> when you begin working with SCMS patterns</li>
-                <li><strong>Click "Start Baseline Session"</strong> for comparison without patterns</li>
-                <li><strong>Develop normally</strong> - the tracker auto-captures token usage</li>
+                <li><strong>Work in Cascade normally</strong> - develop your features</li>
+                <li><strong>Capture checkpoints</strong> (when convenient, every 15-30 min):
+                    <ul style="margin-top: 8px;">
+                        <li>In Cascade: <code>Ctrl+A</code> (select all conversation)</li>
+                        <li>In Cascade: <code>Ctrl+C</code> (copy)</li>
+                        <li>Monitor auto-processes and updates dashboard! ✨</li>
+                    </ul>
+                </li>
+                <li><strong>Watch live updates</strong> - dashboard refreshes every 5 seconds</li>
                 <li><strong>Click "End Session"</strong> when you finish a work segment</li>
                 <li><strong>Export data</strong> for business case validation and statistical analysis</li>
             </ol>
             
+            <p style="margin-top: 15px; padding: 15px; background: #d1ecf1; border-left: 4px solid #17a2b8; border-radius: 5px;">
+                <strong>💡 How it works:</strong> Windsurf includes token usage in checkpoint summaries (e.g., "Token usage: 78652/200000"). The monitor parses these, calculates costs, detects pattern usage, and updates this dashboard automatically. <strong>No Cascade API needed!</strong>
+            </p>
+            
             <div class="critical-box">
-                <h3>🚨 CRITICAL: Session Closure (Most Important Step!)</h3>
+                <h3>🚨 STEP 4 - CRITICAL: Session Closure (Most Important Step!)</h3>
                 <p><strong>Why it matters:</strong> Without session closure, SCMS degrades into passive documentation instead of active continual learning.</p>
                 <p><strong>When:</strong> At the end of EVERY development session</p>
                 <p><strong>What to do:</strong> Copy and paste this prompt to your AI:</p>
@@ -492,7 +521,7 @@ Great work on this feature! Now let's close the SCMS optimization loop:
 
 This ensures SCMS continues optimizing and compounding value over time.</div>
             
-            <h3><span class="step-number">3</span> What Happens During Session Closure</h3>
+            <h3><span class="step-number">5</span> What Happens During Session Closure</h3>
             <ol>
                 <li><strong>Pattern Reflection:</strong> AI reviews which patterns were used and their effectiveness</li>
                 <li><strong>L0/L1 Pipeline Update:</strong> Promotes validated patterns from L0 → L1 based on use count</li>
