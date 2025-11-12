@@ -448,15 +448,17 @@
             <div class="code-block">SCMS Session Start - Retrieval-First Mode Active
 
 🎯 TASK APPROACH (Every Request):
-1. Check L5/ docs first (domain-specific patterns)
-2. Check WORKSPACE_RULES.md (project standards)  
-3. Check memories (validated solutions)
-4. Generate new ONLY if >75% different
+1. Check L0/L1 first (validated patterns & project standards)
+2. If nothing found → Check L5/ docs (passive reference layer)
+3. Generate new ONLY if L0/L1/L5 all fail (>75% different)
 
-📁 L5 LAYER LOCATIONS:
-- L5 Standards: /L5/L5_STANDARDS.md
-- Domain Docs: /L5/[domain]/ (e.g., /L5/api/, /L5/ui/)
-- Index: /L5/INDEX.md
+📁 LAYER HIERARCHY:
+- L0: Cascade memories (validated solutions)
+- L1: WORKSPACE_RULES.md (project standards)
+- L5: Domain docs (passive fallback before generation)
+  • Standards: /L5/L5_STANDARDS.md
+  • Domains: /L5/[domain]/ (e.g., /L5/api/, /L5/ui/)
+  • Index: /L5/INDEX.md
 
 💰 ECONOMICS: Target 70%+ retrieval ratio
 - Retrieval: ~$0.003/interaction
@@ -544,7 +546,7 @@ This ensures SCMS continues optimizing and compounding value over time.</div>
             <ol>
                 <li><strong>Pattern Reflection:</strong> AI reviews which patterns were used and their effectiveness</li>
                 <li><strong>L0/L1 Pipeline Update:</strong> Promotes validated patterns from L0 → L1 based on use count</li>
-                <li><strong>L5 Layer Maintenance:</strong> Updates INDEX.md with new docs, adds cross-references between related documents, refreshes tags for better discoverability, ensures domain organization stays clean</li>
+                <li><strong>L5 Layer Maintenance:</strong> Updates INDEX.md with new docs, adds cross-references, refreshes tags - maintains passive reference layer as fallback before generation</li>
                 <li><strong>Memory Dashboard:</strong> Updates pattern metrics and validation status</li>
                 <li><strong>Economic Dashboard:</strong> Records cost savings and ROI measurements</li>
                 <li><strong>Mind-Map Maintenance:</strong> Keeps system architecture current</li>
