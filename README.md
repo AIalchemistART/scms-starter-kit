@@ -327,6 +327,15 @@ npm run checkpoint:monitor
 6. Click **"End Session"** when done
 7. Click **"Export Data"** for analysis
 
+**📊 View Results Anytime:**
+```bash
+# Terminal Dashboard - Beautiful CLI display
+npm run dashboard
+
+# Shows: session costs, SCMS vs baseline comparison, 
+# top patterns with ROI, savings toward 30-45% target
+```
+
 **Key Advantage**: Algorithmic validation transforms economic claims from estimates to measurable facts! 📈
 
 → **[Complete Checkpoint Tracking Guide](docs/CHECKPOINT_TRACKING_SETUP.md)**
