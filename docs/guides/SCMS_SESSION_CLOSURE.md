@@ -87,25 +87,32 @@ Please perform the following session closure steps:
 - Add new L0 patterns for future validation
 - Document any anti-patterns or failure modes discovered
 
-## 3. MEMORY DASHBOARD UPDATE
+## 3. L5 LAYER MAINTENANCE (INDEX/TAGGING/CROSS-REFERENCES)
+- Update INDEX.md with any new L5 documents created
+- Add cross-references between related L5 documents
+- Refresh tags for improved discoverability (use snake_case taxonomy)
+- Ensure domain organization stays clean (categories ≥3 docs)
+- Archive stale docs (24+ months, 0 retrievals)
+
+## 4. MEMORY DASHBOARD UPDATE
 - Update pattern usage counts and validation status
 - Mark any HIGH urgency patterns that need attention
 - Track new patterns added this session
 - Update promotion candidates list
 
-## 4. ECONOMIC DASHBOARD UPDATE
+## 5. ECONOMIC DASHBOARD UPDATE
 - Calculate cost savings from retrieval vs generation this session
 - Update monthly efficiency ratio and savings projections
 - Track pattern ROI for patterns used this session
 - Update achievement progress and unlock any new achievements
 
-## 5. MIND-MAP FRAMEWORK MAINTENANCE
-- Ensure new patterns fit coherently into L0/L1/Dashboard structure
+## 6. MIND-MAP FRAMEWORK MAINTENANCE
+- Ensure new patterns fit coherently into L0/L1/L5/Dashboard structure
 - Maintain temporal hierarchy (rare → frequent updates)
 - Verify cross-pattern consistency and relationships
 - Update framework documentation if structural changes needed
 
-## 6. SYSTEM OPTIMIZATION
+## 7. SYSTEM OPTIMIZATION
 - Identify optimization opportunities for next session
 - Flag any patterns showing low reuse (candidates for removal)
 - Note any gaps in pattern coverage
@@ -129,6 +136,7 @@ Excellent session! Time for comprehensive SCMS system optimization and knowledge
 
 ## PHASE 2: KNOWLEDGE GRAPH UPDATE
 - **Pattern Validation**: Promote L0→L1 based on usage thresholds
+- **L5 Layer Maintenance**: Update INDEX.md, refresh tags, add cross-references, archive stale docs
 - **Anti-Pattern Documentation**: Capture failure modes and edge cases
 - **Cross-Pattern Relationships**: Update dependencies and conflicts
 - **Temporal Decay**: Remove/demote unused patterns per decay rules
@@ -140,9 +148,9 @@ Excellent session! Time for comprehensive SCMS system optimization and knowledge
 - **Achievement Progress**: Check for unlocked efficiency milestones
 
 ## PHASE 4: MIND-MAP COHERENCE
-- **Structural Integrity**: Verify L0/L1/Dashboard hierarchy
-- **Semantic Consistency**: Ensure pattern naming and categorization
-- **Abstraction Levels**: Maintain proper foundation→implementation→session flow
+- **Structural Integrity**: Verify L0/L1/L5/Dashboard hierarchy
+- **Semantic Consistency**: Ensure pattern naming and categorization across all layers
+- **Abstraction Levels**: Maintain proper foundation→implementation→documentation→session flow
 - **Framework Evolution**: Update structure if new patterns require it
 
 ## PHASE 5: PREDICTIVE OPTIMIZATION
@@ -153,6 +161,7 @@ Excellent session! Time for comprehensive SCMS system optimization and knowledge
 
 ## PHASE 6: SYSTEM HEALTH CHECK
 - **Validation Pipeline**: Ensure L0/L1 promotion mechanisms working
+- **L5 Documentation Health**: Verify INDEX accuracy, tag consistency, cross-reference integrity
 - **Dashboard Accuracy**: Verify all metrics reflect actual usage
 - **Economic Tracking**: Confirm cost calculations are accurate
 - **Framework Stability**: Check for any structural inconsistencies
