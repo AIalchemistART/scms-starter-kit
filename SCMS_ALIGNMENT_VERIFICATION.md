@@ -83,29 +83,55 @@
 
 ---
 
-## 🔄 **Retrieval Priority Order (Now Explicit)**
+## 🔄 **Retrieval Priority Order (Actual AI Behavior)**
 
-### **Step-by-Step Process**
+### **CRITICAL: This Reflects How AI Actually Works**
 
-**1. Check L0/L1 First** (Active Validation Pipeline)
-- Search Cascade memories (L0)
-- Search WORKSPACE_RULES.md (L1)
-- **This is the primary retrieval source**
+**AUTOMATIC (Hardcoded - No User Control)**
 
-**2. Check L2-L4 If Relevant** (High-Frequency Reference Docs)
-- Referenced by L1 for deep documentation
-- Only if pattern area is relevant to task
-- Provides detailed implementation guidance
+**1. L0: Cascade Auto-Gen Memories**
+- Retrieved FIRST automatically
+- Probabilistic semantic search
+- Temporal decay for relevance
 
-**3. Check L5 As Fallback** (Low-Frequency Patterns)
-- Only if L0/L1 retrieval fails
-- Prevents regeneration of infrequent but proven patterns
-- Semantic search through index
+**2. L4: Global Rules**
+- Checked AUTOMATICALLY after L0
+- Universal constraints
+- Compliance verification
 
-**4. Generate New** (Last Resort)
-- ONLY if all layers (L0/L1/L2-L4/L5) fail to retrieve
-- Must be >75% semantically different from existing
-- Document immediately for future retrieval
+**3. L1: WORKSPACE_RULES.md**
+- Loaded AUTOMATICALLY
+- Deterministic enforcement
+- Mandatory quality gates
+
+**SELF-DIRECTED (Prompt-Guided - User Controls)**
+
+**4. L2: Standard Operating Procedures**
+- Referenced when L1 patterns indicate
+- Deep documentation for common tasks
+- High-frequency patterns (5+ uses)
+
+**5. L3: Case Studies**
+- Implementation examples
+- Learning from complete solutions
+- Multiple patterns working together
+
+**6. L5: Low-Frequency Overflow**
+- Infrequent patterns (3-6mo cycles)
+- Prevents regeneration waste
+- Semantic search as fallback
+
+**FINAL PASS (Automatic)**
+
+**7. Generate New**
+- Only if nothing retrieved
+- Must be >75% semantically different
+- Document immediately
+
+**8. L4: Global Rules Confirmation**
+- Validates ALL output (retrieved OR generated)
+- Final compliance check
+- Universal constraint enforcement
 
 ---
 
@@ -288,12 +314,21 @@ OVERFLOW (Low-Frequency, 3-6mo):
 └─ L5: Infrequent Patterns (validated but too rare for L0)
 ```
 
-### **Retrieval Order**
+### **Retrieval Order (Actual AI Behavior)**
 
-1. **L0/L1** (active pipeline) - **CHECK FIRST**
-2. **L2-L4** (reference docs) - if relevant
-3. **L5** (overflow) - as fallback
-4. **Generate** - only if all fail (>75% different)
+**AUTOMATIC (Hardcoded):**
+1. **L0** (Cascade memories) - retrieved first
+2. **L4** (Global Rules) - checked automatically
+3. **L1** (WORKSPACE_RULES) - loaded automatically
+
+**SELF-DIRECTED (Prompt-Guided):**
+4. **L2** (SOPs) - when referenced by L1
+5. **L3** (Case Studies) - for learning
+6. **L5** (Overflow) - low-frequency fallback
+
+**FINAL PASS:**
+7. **Generate** - if nothing retrieved (>75% different)
+8. **L4** (Confirm) - validate ALL output
 
 ### **Key Thresholds**
 

@@ -36,11 +36,21 @@ IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) wi
   - L4: Global Rules (universal constraints)
 - **L5 (Low-Frequency Overflow)**: Validated patterns too rare for L0 (3-6 month cycles), checked before novel generation
 
-**Retrieval Priority Order:**
-1. Check L0/L1 first (active validation pipeline)
-2. Check L2-L4 if relevant (high-frequency reference docs)
-3. Check L5 as fallback (low-frequency patterns)
-4. Generate new ONLY if all layers fail (>75% semantically different)
+**Retrieval Priority Order (Actual AI Behavior):**
+
+AUTOMATIC (Hardcoded - No Control):
+1. L0: Cascade auto-gen memories (retrieved first)
+2. L4: Global Rules (checked automatically)
+3. L1: Workspace Rules (loaded automatically)
+
+SELF-DIRECTED (Prompt-Guided):
+4. L2: SOPs (when referenced by L1)
+5. L3: Case Studies (for learning/examples)
+6. L5: Overflow (low-frequency patterns)
+
+FINAL PASS:
+7. Generate new (if nothing retrieved, >75% different)
+8. L4: Global Rules confirmation (validate ALL output)
 
 **Failure Documentation Priority**:
 - Failures contain 10-100× more information than successes

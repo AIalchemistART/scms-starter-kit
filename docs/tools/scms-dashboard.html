@@ -457,11 +457,21 @@
             <p><strong>Action:</strong> Paste this prompt to your AI assistant at the <strong>start of EVERY session</strong></p>
             <div class="code-block">SCMS Session Start - Retrieval-First Mode Active
 
-🎯 RETRIEVAL PRIORITY ORDER:
-1. Check L0/L1 first (active validation pipeline)
-2. Check L2-L4 if relevant (high-frequency reference docs)
-3. Check L5 as fallback (low-frequency patterns)
-4. Generate new ONLY if all layers fail (>75% different)
+🎯 RETRIEVAL ORDER (Actual AI Behavior):
+
+AUTOMATIC (Hardcoded):
+1. L0: Cascade memories (retrieved first)
+2. L4: Global Rules (checked automatically)
+3. L1: WORKSPACE_RULES.md (loaded automatically)
+
+SELF-DIRECTED (Prompt-Guided):
+4. L2: SOPs (when referenced by L1)
+5. L3: Case Studies (for learning)
+6. L5: Overflow (low-frequency patterns)
+
+FINAL PASS:
+7. Generate new (if needed, >75% different)
+8. L4: Global Rules confirm (validate ALL output)
 
 📁 COMPLETE LAYER HIERARCHY:
 
@@ -477,7 +487,7 @@ REFERENCE DOCS (Passive, 5+ uses):
 LOW-FREQUENCY OVERFLOW (3-6 month cycles):
 - L5: Infrequent patterns (validated but too rare for L0)
   • Prevents regeneration waste
-  • Checked before novel generation
+  • Checked in self-directed phase
   • Location: /L5/ directory
 
 💰 ECONOMICS: Target 70%+ retrieval ratio
