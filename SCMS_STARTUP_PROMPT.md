@@ -30,7 +30,17 @@ IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) wi
 **Dual Validation Pipeline:**
 - **L0 (Destructive Validation)**: Test patterns via Cascade auto-memories (probabilistic retrieval + temporal decay)
 - **L1 (Stable Validation)**: Enforce patterns via WORKSPACE_RULES.md (deterministic loading - MANDATORY quality gates)
-- **L2-L4**: Reference documentation (passive, on-demand)
+- **L2-L4 (Reference Docs)**: Passive documentation for high-frequency patterns (5+ uses)
+  - L2: Standard Operating Procedures (SOPs)
+  - L3: Case Studies (complete implementation examples)
+  - L4: Global Rules (universal constraints)
+- **L5 (Low-Frequency Overflow)**: Validated patterns too rare for L0 (3-6 month cycles), checked before novel generation
+
+**Retrieval Priority Order:**
+1. Check L0/L1 first (active validation pipeline)
+2. Check L2-L4 if relevant (high-frequency reference docs)
+3. Check L5 as fallback (low-frequency patterns)
+4. Generate new ONLY if all layers fail (>75% semantically different)
 
 **Failure Documentation Priority**:
 - Failures contain 10-100× more information than successes

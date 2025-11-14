@@ -89,8 +89,24 @@ SCMS transforms AI memory from passive storage to **active cost optimization**:
 │ REFERENCE DOCUMENTATION (Passive)       │
 ├─────────────────────────────────────────┤
 │ L2: Standard Operating Procedures       │
+│  → High-frequency patterns (5+ uses)    │
+│  → Deep documentation for common tasks  │
 │ L3: Case Studies & Architecture         │
+│  → Complete implementation examples     │
+│  → Multiple patterns working together   │
 │ L4: Global Rules                        │
+│  → Universal standards & constraints    │
+│  → Checked after L0 for compliance      │
+└─────────────────────────────────────────┘
+         ↓ (fallback)
+┌─────────────────────────────────────────┐
+│ LOW-FREQUENCY OVERFLOW (Experimental)   │
+├─────────────────────────────────────────┤
+│ L5: Infrequent Patterns (3-6mo cycles)  │
+│  → Validated but too rare for L0        │
+│  → Prevents regeneration waste          │
+│  → Checked before novel generation      │
+│  → Lightweight docs for seasonal tasks  │
 └─────────────────────────────────────────┘
 ```
 

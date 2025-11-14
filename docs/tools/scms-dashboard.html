@@ -457,18 +457,28 @@
             <p><strong>Action:</strong> Paste this prompt to your AI assistant at the <strong>start of EVERY session</strong></p>
             <div class="code-block">SCMS Session Start - Retrieval-First Mode Active
 
-🎯 TASK APPROACH (Every Request):
-1. Check L0/L1 first (validated patterns & project standards)
-2. If nothing found → Check L5/ docs (passive reference layer)
-3. Generate new ONLY if L0/L1/L5 all fail (>75% different)
+🎯 RETRIEVAL PRIORITY ORDER:
+1. Check L0/L1 first (active validation pipeline)
+2. Check L2-L4 if relevant (high-frequency reference docs)
+3. Check L5 as fallback (low-frequency patterns)
+4. Generate new ONLY if all layers fail (>75% different)
 
-📁 LAYER HIERARCHY:
-- L0: Cascade memories (validated solutions)
-- L1: WORKSPACE_RULES.md (project standards)
-- L5: Domain docs (passive fallback before generation)
-  • Standards: /L5/L5_STANDARDS.md
-  • Domains: /L5/[domain]/ (e.g., /L5/api/, /L5/ui/)
-  • Index: /L5/INDEX.md
+📁 COMPLETE LAYER HIERARCHY:
+
+VALIDATION PIPELINE (Active):
+- L0: Cascade memories (probabilistic testing)
+- L1: WORKSPACE_RULES.md (deterministic enforcement)
+
+REFERENCE DOCS (Passive, 5+ uses):
+- L2: Standard Operating Procedures
+- L3: Case Studies (implementation examples)
+- L4: Global Rules (universal constraints)
+
+LOW-FREQUENCY OVERFLOW (3-6 month cycles):
+- L5: Infrequent patterns (validated but too rare for L0)
+  • Prevents regeneration waste
+  • Checked before novel generation
+  • Location: /L5/ directory
 
 💰 ECONOMICS: Target 70%+ retrieval ratio
 - Retrieval: ~$0.003/interaction
