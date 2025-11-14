@@ -39,10 +39,13 @@ class SCMSCostTracker {
             this.endSession();
         }
         
+        const sessionId = Date.now();
+        const timestamp = new Date();
+        
         this.currentSession = {
-            id: Date.now(),
+            id: sessionId,
             type: type, // 'scms', 'baseline', 'mixed'
-            startTime: new Date(),
+            startTime: timestamp,
             interactions: [],
             totalCost: 0,
             tokenBreakdown: {
@@ -52,8 +55,18 @@ class SCMSCostTracker {
                 tools: 0
             },
             patterns: [],
-            retrievalRatio: 0
+            retrievalRatio: 0,
+            sessionStamp: {
+                action: 'session_started',
+                timestamp: timestamp.toISOString(),
+                type: type,
+                dashboardVersion: '1.0.0',
+                userInitiated: true
+            }
         };
+        
+        // Save active session to localStorage for recovery
+        this.saveActiveSession();
         
         console.log(`Started ${type} session for algorithmic cost measurement`);
         this.updateDashboard();
@@ -139,16 +152,33 @@ class SCMSCostTracker {
     }
     
     // End current session
-    endSession() {
+    endSession(reason = 'manual') {
         if (!this.currentSession) return;
         
-        this.currentSession.endTime = new Date();
-        this.currentSession.duration = this.currentSession.endTime - this.currentSession.startTime;
+        const endTime = new Date();
+        this.currentSession.endTime = endTime;
+        this.currentSession.duration = endTime - this.currentSession.startTime;
+        
+        // Add end stamp
+        this.currentSession.endStamp = {
+            action: 'session_ended',
+            timestamp: endTime.toISOString(),
+            userInitiated: reason === 'manual',
+            reason: reason
+        };
+        
+        if (reason !== 'manual') {
+            this.currentSession.endStamp.note = 'Session was not manually ended - auto-closed on next dashboard open';
+        }
         
         this.sessions.push(this.currentSession);
         console.log(`Session ended: $${this.currentSession.totalCost.toFixed(4)} total cost, ${this.currentSession.retrievalRatio.toFixed(1)}% retrieval`);
         
         this.currentSession = null;
+        
+        // Clear active session from localStorage
+        this.clearActiveSession();
+        
         this.saveData();
         this.updateDashboard();
     }
@@ -218,6 +248,9 @@ class SCMSCostTracker {
                 this.sessions = data.sessions || [];
                 this.patterns = new Map(data.patterns || []);
             }
+            
+            // Check for abandoned session and auto-recover
+            this.recoverAbandonedSession();
         } catch (error) {
             console.error('Failed to load cost tracker data:', error);
         }
@@ -284,6 +317,110 @@ class SCMSCostTracker {
             totalSessions: this.sessions.length,
             totalCost: this.sessions.reduce((sum, s) => sum + s.totalCost, 0)
         };
+    }
+    
+    // Save active session for recovery
+    saveActiveSession() {
+        if (!this.currentSession) return;
+        
+        try {
+            const activeSession = {
+                id: this.currentSession.id,
+                type: this.currentSession.type,
+                startTime: this.currentSession.startTime.toISOString(),
+                sessionStamp: this.currentSession.sessionStamp
+            };
+            localStorage.setItem('scms-active-session', JSON.stringify(activeSession));
+        } catch (error) {
+            console.error('Failed to save active session:', error);
+        }
+    }
+    
+    // Clear active session from localStorage
+    clearActiveSession() {
+        try {
+            localStorage.removeItem('scms-active-session');
+        } catch (error) {
+            console.error('Failed to clear active session:', error);
+        }
+    }
+    
+    // Recover abandoned session if found
+    recoverAbandonedSession() {
+        try {
+            const activeSessionData = localStorage.getItem('scms-active-session');
+            if (!activeSessionData) return;
+            
+            const abandonedSession = JSON.parse(activeSessionData);
+            const startTime = new Date(abandonedSession.startTime);
+            const now = new Date();
+            const hoursSinceStart = (now - startTime) / (1000 * 60 * 60);
+            
+            // Auto-close if session is older than 1 hour
+            if (hoursSinceStart > 1) {
+                // Find the session in saved sessions (might have been partially saved)
+                const existingSession = this.sessions.find(s => s.id === abandonedSession.id);
+                
+                if (!existingSession || !existingSession.endTime) {
+                    console.warn(`⚠️  Abandoned session detected from ${startTime.toLocaleString()}`);
+                    console.log('Auto-closing session...');
+                    
+                    // Create a minimal closed session if not found
+                    if (!existingSession) {
+                        const recoveredSession = {
+                            id: abandonedSession.id,
+                            type: abandonedSession.type,
+                            startTime: startTime,
+                            endTime: now,
+                            duration: now - startTime,
+                            totalCost: 0,
+                            tokenBreakdown: { input: 0, output: 0, thinking: 0, tools: 0 },
+                            patterns: [],
+                            retrievalRatio: 0,
+                            sessionStamp: abandonedSession.sessionStamp,
+                            endStamp: {
+                                action: 'session_auto_closed',
+                                timestamp: now.toISOString(),
+                                originalStartTime: abandonedSession.startTime,
+                                userInitiated: false,
+                                reason: 'improper_shutdown',
+                                note: 'Session was not manually ended - auto-closed on next dashboard open'
+                            }
+                        };
+                        this.sessions.push(recoveredSession);
+                    } else {
+                        // Update existing session with end stamp
+                        existingSession.endTime = now;
+                        existingSession.duration = now - startTime;
+                        existingSession.endStamp = {
+                            action: 'session_auto_closed',
+                            timestamp: now.toISOString(),
+                            originalStartTime: abandonedSession.startTime,
+                            userInitiated: false,
+                            reason: 'improper_shutdown',
+                            note: 'Session was not manually ended - auto-closed on next dashboard open'
+                        };
+                    }
+                    
+                    this.saveData();
+                    this.clearActiveSession();
+                    
+                    // Notify user
+                    if (typeof document !== 'undefined') {
+                        const notification = document.createElement('div');
+                        notification.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #f39c12; color: white; padding: 15px 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 10000; max-width: 400px;';
+                        notification.innerHTML = `
+                            <strong>⚠️ Session Recovered</strong><br>
+                            <span style="font-size: 14px;">An abandoned session from ${startTime.toLocaleString()} was auto-closed.</span>
+                        `;
+                        document.body.appendChild(notification);
+                        setTimeout(() => notification.remove(), 5000);
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Failed to recover abandoned session:', error);
+        }
     }
     
     init() {
