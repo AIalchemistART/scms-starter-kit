@@ -455,47 +455,63 @@
             <h3><span class="step-number">1</span> Copy the Startup Prompt</h3>
             <p><strong>Location:</strong> <code>SCMS_STARTUP_PROMPT.md</code> in your project root</p>
             <p><strong>Action:</strong> Paste this prompt to your AI assistant at the <strong>start of EVERY session</strong></p>
-            <div class="code-block">SCMS Session Start - Retrieval-First Mode Active
+            <div class="code-block">SCMS SESSION START
 
-🎯 RETRIEVAL ORDER (Actual AI Behavior):
+Working on: [brief task description]
 
-AUTOMATIC (Hardcoded):
-1. L0: Cascade memories (retrieved first)
-2. L4: Global Rules (checked automatically)
-3. L1: WORKSPACE_RULES.md (loaded automatically)
+Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
 
-SELF-DIRECTED (Prompt-Guided):
-4. L2: SOPs (when referenced by L1)
-5. L3: Case Studies (for learning)
-6. L5: Overflow (low-frequency patterns)
+1. L0/L1 RETRIEVAL FIRST
+   - Check scms/INDEX.md for relevant patterns
+   - Review validation records for similar work
+   - Cite existing patterns before generating new solutions
 
-FINAL PASS:
-7. Generate new (if needed, >75% different)
-8. L4: Global Rules confirm (validate ALL output)
+2. LAYER STRUCTURE & RETRIEVAL PRIORITY
+   AUTOMATIC RETRIEVAL (hardcoded AI behavior):
+   - L0: Auto-gen memories (Cascade) - retrieved first automatically
+   - L4: Global Rules - checked automatically
+   - L1: Workspace Rules (WORKSPACE_RULES) - loaded automatically
+   
+   SELF-DIRECTED RETRIEVAL (prompt-guided, check when relevant):
+   - L2: SOPs (5+ uses) - detailed procedures when L1 references them
+   - L3: Case Studies - complete examples for learning
+   - L5: Overflow - low-frequency patterns (3-6 month intervals)
+   
+   GENERATION & FINAL VALIDATION:
+   - Generate new solution (only if no existing pattern found)
+   - L4: Global Rules confirmation pass on all output
+   
+   SESSION CONTEXT:
+   - Dashboard: Current task/objectives (this conversation)
+   - Memory Dashboard: Pattern tracking system (separate)
+   
+   Actual retrieval flow: L0 → L4 → L1 → [L2/L3/L5 as needed] → Generate → L4 confirm
 
-📁 COMPLETE LAYER HIERARCHY:
+3. MIND-MAP FRAMEWORK = ORGANIZATIONAL FRAMING
+   - NOT visual diagrams
+   - IS: Tags, cross-references, semantic coherence
+   - Maintain L0/L1/Dashboard boundaries
 
-VALIDATION PIPELINE (Active):
-- L0: Cascade memories (probabilistic testing)
-- L1: WORKSPACE_RULES.md (deterministic enforcement)
+4. ECONOMIC TRACKING
+   - Retrieval ratio matters (currently: 0%, target: 30-50%)
+   - Pattern reuse = cost savings
+   - Session closure updates economics
 
-REFERENCE DOCS (Passive, 5+ uses):
-- L2: Standard Operating Procedures
-- L3: Case Studies (implementation examples)
-- L4: Global Rules (universal constraints)
+5. FAILURE DOCUMENTATION PRIORITY
+   - Failures = 3-10× more informative than successes
+   - Bug patterns (L0) - prevent entire bug classes
+   - Anti-patterns (L0) - design principles  
+   - Failed approaches (L0) - avoid wasted effort
+   - Edge cases (L1) - special handling
+   - Document "what NOT to do" first
 
-LOW-FREQUENCY OVERFLOW (3-6 month cycles):
-- L5: Infrequent patterns (validated but too rare for L0)
-  • Prevents regeneration waste
-  • Checked in self-directed phase
-  • Location: /L5/ directory
+6. SESSION CLOSURE REMINDER
+   - After work: pattern validation, L0/L1 updates, economic tracking
+   - Target: 10-15 minutes
+   - Update INDEX.md with tags/cross-refs (not visual graphs)
+   - Document failures discovered (higher value than successes)
 
-💰 ECONOMICS: Target 70%+ retrieval ratio
-- Retrieval: ~$0.003/interaction
-- Generation: ~$0.012/interaction  
-- Goal: 30-45% cost reduction
-
-Ready for retrieval-first optimization!</div>
+Let's start by checking for relevant existing patterns, then proceed with the work.</div>
             
             <h3><span class="step-number">2</span> Enable Automated Token Tracking</h3>
             <p><strong>Option A: Automated (Recommended)</strong></p>
@@ -563,24 +579,25 @@ npm run dashboard
 Great work on this feature! Now let's close the SCMS optimization loop:
 
 1. PATTERN REFLECTION & VALIDATION
-2. L0/L1 VALIDATION PIPELINE UPDATE  
-3. L5 LAYER MAINTENANCE (INDEX/TAGGING/CROSS-REFERENCES)
-4. MEMORY DASHBOARD UPDATE
-5. ECONOMIC DASHBOARD UPDATE
-6. MIND-MAP FRAMEWORK MAINTENANCE
-7. SYSTEM OPTIMIZATION
+   - FAILURES FIRST (3-10× more informative than successes)
+2. L0/L1 VALIDATION PIPELINE UPDATE (threshold: 2+ uses)
+3. INDEX & CROSS-REFERENCE MAINTENANCE (NOT visual diagrams)
+4. MEMORY DASHBOARD UPDATE (Cascade persistent memory)
+5. ECONOMIC DASHBOARD UPDATE (cost/savings/ROI)
+6. ORGANIZATIONAL FRAMING MAINTENANCE (L0/L1/Dashboard boundaries)
+7. SYSTEM OPTIMIZATION (health status & compliance)
 
 This ensures SCMS continues optimizing and compounding value over time.</div>
             
             <h3><span class="step-number">5</span> What Happens During Session Closure</h3>
             <ol>
-                <li><strong>Pattern Reflection:</strong> AI reviews which patterns were used and their effectiveness</li>
-                <li><strong>L0/L1 Pipeline Update:</strong> Promotes validated patterns from L0 → L1 based on use count</li>
-                <li><strong>L5 Layer Maintenance:</strong> Updates INDEX.md with new docs, adds cross-references, refreshes tags - maintains passive reference layer as fallback before generation</li>
-                <li><strong>Memory Dashboard:</strong> Updates pattern metrics and validation status</li>
-                <li><strong>Economic Dashboard:</strong> Records cost savings and ROI measurements</li>
-                <li><strong>Mind-Map Maintenance:</strong> Keeps system architecture current</li>
-                <li><strong>System Optimization:</strong> Identifies opportunities for improvement</li>
+                <li><strong>Pattern Reflection & Validation:</strong> AI reviews patterns used, with FAILURES documented first (3-10× more informative than successes)</li>
+                <li><strong>L0/L1 Pipeline Update:</strong> Promotes validated patterns from L0 → L1 based on threshold (2+ uses)</li>
+                <li><strong>INDEX & Cross-Reference Maintenance:</strong> Updates INDEX.md with tags/cross-refs for organizational framing (NOT visual diagrams)</li>
+                <li><strong>Memory Dashboard Update:</strong> Updates Cascade persistent memory with pattern metrics and validation status</li>
+                <li><strong>Economic Dashboard Update:</strong> Records cost/savings/ROI measurements for retrieval optimization</li>
+                <li><strong>Organizational Framing Maintenance:</strong> Maintains L0/L1/Dashboard boundaries and semantic coherence</li>
+                <li><strong>System Optimization:</strong> Reviews health status, compliance, and identifies improvement opportunities</li>
             </ol>
             
             <p style="margin-top: 25px; padding: 20px; background: white; border-radius: 8px; border-left: 4px solid #27ae60;">

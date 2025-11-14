@@ -1,8 +1,8 @@
-# SCMS Startup Prompt v2.2
+# SCMS Startup Prompt v3.0
 
 **Purpose**: Copy-paste this prompt at the start of each development session to ensure COMPLETE SCMS workflow with enforcement.
 
-**Version**: 2.2 (November 11, 2025 - Adds economic optimization principles and retrieval-first bias)
+**Version**: 3.0 (November 13, 2025 - Comprehensive session start with actual AI behavior and organizational framing)
 
 ---
 
@@ -11,51 +11,63 @@
 **Copy this entire prompt and send to Cascade AI:**
 
 ```
-IMPORTANT: This project uses SCMS v1.4 (Sparse Contextual Memory Scaffolding) with AUTO-MEMORY L0 strategy + Soft Enforcement.
+SCMS SESSION START
 
-**SCMS ARCHITECTURE - Multi-Time-Scale Cognitive Framework:**
+Working on: [brief task description]
 
-**Economic Optimization Principle** (30-45% cost reduction validated):
-- **RETRIEVAL-FIRST BIAS**: Always search L0/L1 before generating new content
-- **Cost asymmetry**: Retrieval ($0.018) vs Generation ($0.033) per full session
-- **Target efficiency**: >70% retrieval-based responses for maximum savings
-- **Pattern ROI**: L0 patterns need 3+ reuses for break-even
-- **Algorithmic validation**: Real tracking system measures actual savings vs estimates
+Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
 
-**Mind-Map Framework** (Google Research validated):
-- **L0 (Foundation)**: Abstract patterns, rare updates (days-weeks), test via retrieval
-- **L1 (Implementation)**: Concrete solutions, medium updates (hours-days), enforce via loading
-- **Dashboard (Session)**: Immediate context, frequent updates (real-time), working memory
+1. L0/L1 RETRIEVAL FIRST
+   - Check scms/INDEX.md for relevant patterns
+   - Review validation records for similar work
+   - Cite existing patterns before generating new solutions
 
-**Dual Validation Pipeline:**
-- **L0 (Destructive Validation)**: Test patterns via Cascade auto-memories (probabilistic retrieval + temporal decay)
-- **L1 (Stable Validation)**: Enforce patterns via WORKSPACE_RULES.md (deterministic loading - MANDATORY quality gates)
-- **L2-L4 (Reference Docs)**: Passive documentation for high-frequency patterns (5+ uses)
-  - L2: Standard Operating Procedures (SOPs)
-  - L3: Case Studies (complete implementation examples)
-  - L4: Global Rules (universal constraints)
-- **L5 (Low-Frequency Overflow)**: Validated patterns too rare for L0 (3-6 month cycles), checked before novel generation
+2. LAYER STRUCTURE & RETRIEVAL PRIORITY
+   AUTOMATIC RETRIEVAL (hardcoded AI behavior):
+   - L0: Auto-gen memories (Cascade) - retrieved first automatically
+   - L4: Global Rules - checked automatically
+   - L1: Workspace Rules (WORKSPACE_RULES) - loaded automatically
+   
+   SELF-DIRECTED RETRIEVAL (prompt-guided, check when relevant):
+   - L2: SOPs (5+ uses) - detailed procedures when L1 references them
+   - L3: Case Studies - complete examples for learning
+   - L5: Overflow - low-frequency patterns (3-6 month intervals)
+   
+   GENERATION & FINAL VALIDATION:
+   - Generate new solution (only if no existing pattern found)
+   - L4: Global Rules confirmation pass on all output
+   
+   SESSION CONTEXT:
+   - Dashboard: Current task/objectives (this conversation)
+   - Memory Dashboard: Pattern tracking system (separate)
+   
+   Actual retrieval flow: L0 → L4 → L1 → [L2/L3/L5 as needed] → Generate → L4 confirm
 
-**Retrieval Priority Order (Actual AI Behavior):**
+3. MIND-MAP FRAMEWORK = ORGANIZATIONAL FRAMING
+   - NOT visual diagrams
+   - IS: Tags, cross-references, semantic coherence
+   - Maintain L0/L1/Dashboard boundaries
 
-AUTOMATIC (Hardcoded - No Control):
-1. L0: Cascade auto-gen memories (retrieved first)
-2. L4: Global Rules (checked automatically)
-3. L1: Workspace Rules (loaded automatically)
+4. ECONOMIC TRACKING
+   - Retrieval ratio matters (currently: 0%, target: 30-50%)
+   - Pattern reuse = cost savings
+   - Session closure updates economics
 
-SELF-DIRECTED (Prompt-Guided):
-4. L2: SOPs (when referenced by L1)
-5. L3: Case Studies (for learning/examples)
-6. L5: Overflow (low-frequency patterns)
+5. FAILURE DOCUMENTATION PRIORITY
+   - Failures = 3-10× more informative than successes
+   - Bug patterns (L0) - prevent entire bug classes
+   - Anti-patterns (L0) - design principles  
+   - Failed approaches (L0) - avoid wasted effort
+   - Edge cases (L1) - special handling
+   - Document "what NOT to do" first
 
-FINAL PASS:
-7. Generate new (if nothing retrieved, >75% different)
-8. L4: Global Rules confirmation (validate ALL output)
+6. SESSION CLOSURE REMINDER
+   - After work: pattern validation, L0/L1 updates, economic tracking
+   - Target: 10-15 minutes
+   - Update INDEX.md with tags/cross-refs (not visual graphs)
+   - Document failures discovered (higher value than successes)
 
-**Failure Documentation Priority**:
-- Failures contain 10-100× more information than successes
-- Bug Patterns (L0) > Anti-Patterns (L0) > Failed Approaches (L0) > Edge Cases (L1)
-- Document failures immediately when discovered
+Let's start by checking for relevant existing patterns, then proceed with the work.
 
 ---
 
@@ -356,11 +368,13 @@ Remind me to promote:
 ## 🚨 SESSION CLOSURE REMINDER
 
 **CRITICAL**: At the end of each development session, run the Session Closure prompt to:
-- ✅ Update L0/L1 validation pipeline with new patterns
-- ✅ Refresh memory and economic dashboards with session metrics
-- ✅ Maintain mind-map framework coherence and structure
-- ✅ Promote patterns that crossed validation threshold (3+ uses)
-- ✅ Ensure economic optimization continues compounding
+- ✅ Document FAILURES FIRST (3-10× more informative than successes)
+- ✅ Update L0/L1 validation pipeline with threshold (2+ uses)
+- ✅ Maintain INDEX & cross-references (NOT visual diagrams)
+- ✅ Update Cascade persistent memory (Memory Dashboard)
+- ✅ Track cost/savings/ROI (Economic Dashboard)
+- ✅ Maintain organizational framing (L0/L1/Dashboard boundaries)
+- ✅ Review system health status & compliance
 
 **Without session closure, SCMS degrades into passive documentation instead of active continual learning!**
 
@@ -368,7 +382,20 @@ Remind me to promote:
 
 **Session Closure Prompt (copy-paste ready)**:
 ```
-SCMS SESSION CLOSURE - Update system with lessons learned from this session while maintaining mind-map framing. Validate & promote necessary memories. Ensure memory dashboard and economic dashboard are up to date.
+SCMS SESSION CLOSURE - CRITICAL SYSTEM UPDATE
+
+Great work on this feature! Now let's close the SCMS optimization loop:
+
+1. PATTERN REFLECTION & VALIDATION
+   - FAILURES FIRST (3-10× more informative than successes)
+2. L0/L1 VALIDATION PIPELINE UPDATE (threshold: 2+ uses)
+3. INDEX & CROSS-REFERENCE MAINTENANCE (NOT visual diagrams)
+4. MEMORY DASHBOARD UPDATE (Cascade persistent memory)
+5. ECONOMIC DASHBOARD UPDATE (cost/savings/ROI)
+6. ORGANIZATIONAL FRAMING MAINTENANCE (L0/L1/Dashboard boundaries)
+7. SYSTEM OPTIMIZATION (health status & compliance)
+
+This ensures SCMS continues optimizing and compounding value over time.
 ```
 
 ---
@@ -580,15 +607,29 @@ Let's build with SCMS tracking and enforcement!
 ## 🚨 SESSION CLOSURE REMINDER (Manual L0)
 
 **CRITICAL**: At the end of each development session, run the Session Closure prompt to:
-- ✅ Update docs/memories/*.md files with new patterns
-- ✅ Refresh MEMORY_STATUS_DASHBOARD.md with session metrics
-- ✅ Update ECONOMIC_DASHBOARD.md with efficiency tracking
+- ✅ Document FAILURES FIRST (3-10× more informative than successes)
+- ✅ Update docs/memories/*.md files with new patterns (threshold: 2+ uses)
+- ✅ Maintain INDEX & cross-references in MEMORY_STATUS_DASHBOARD.md
+- ✅ Update ECONOMIC_DASHBOARD.md with cost/savings/ROI tracking
 - ✅ Promote L0→L1 patterns that crossed validation threshold
-- ✅ Maintain mind-map framework coherence
+- ✅ Maintain organizational framing (NOT visual diagrams)
 
 **Session Closure Prompt for Manual L0**:
 ```
-SCMS SESSION CLOSURE - Update markdown documentation with lessons learned from this session. Update memory dashboard, promote validated patterns to L1, and refresh economic tracking. Maintain mind-map framework structure.
+SCMS SESSION CLOSURE - CRITICAL SYSTEM UPDATE
+
+Great work on this feature! Now let's close the SCMS optimization loop:
+
+1. PATTERN REFLECTION & VALIDATION
+   - FAILURES FIRST (3-10× more informative than successes)
+2. L0/L1 VALIDATION PIPELINE UPDATE (threshold: 2+ uses)
+3. INDEX & CROSS-REFERENCE MAINTENANCE (NOT visual diagrams)
+4. MEMORY DASHBOARD UPDATE (update markdown docs)
+5. ECONOMIC DASHBOARD UPDATE (cost/savings/ROI)
+6. ORGANIZATIONAL FRAMING MAINTENANCE (L0/L1/Dashboard boundaries)
+7. SYSTEM OPTIMIZATION (health status & compliance)
+
+This ensures SCMS continues optimizing and compounding value over time.
 ```
 
 ---
