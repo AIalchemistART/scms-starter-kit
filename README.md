@@ -193,7 +193,16 @@ need timeout"       cancelQTE() @ 30s"    QTE cancellation"
 - **Comparative analysis**: SCMS vs baseline sessions with statistical confidence
 - **Export capabilities**: Generate business cases with real data
 
-→ **[Launch Real Tracking Dashboard](docs/tools/scms-dashboard.html)** | **[Theoretical Design Guide](docs/guides/SCMS_ECONOMIC_DASHBOARD.md)**
+> **🎯 SCMS DASHBOARD = YOUR CONTROL CENTER**  
+> The dashboard (`docs/tools/scms-dashboard.html`) is your one-stop shop for:
+> - **Session Start & End Prompts** (v3.0, copy-paste ready)
+> - **Real-time cost tracking** with live updates
+> - **Complete workflow instructions** in one place
+> - **Economic analytics** showing SCMS vs baseline savings
+> 
+> **Pro Tip**: Bookmark it and keep it open during development!
+
+→ **[Launch Dashboard Now](docs/tools/scms-dashboard.html)** | **[Theoretical Design Guide](docs/guides/SCMS_ECONOMIC_DASHBOARD.md)**
 
 **Key Advantage**: Transforms economic claims from estimates to empirically validated measurements.
 
@@ -238,6 +247,10 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 ---
 
 ## Quick Start
+
+> **🎯 FIRST STEP AFTER SETUP**: Open `docs/tools/scms-dashboard.html` in your browser!  
+> It contains your **Session Start & End Prompts** (copy-paste ready) plus all workflow instructions.  
+> Keep it open during development as your SCMS control center!
 
 ### 1. Install
 
@@ -293,11 +306,22 @@ Choose your AI assistant:
 - **Cursor**: See [config/cursor/SETUP.md](config/cursor/SETUP.md)
 - **Other**: See [config/generic/SETUP.md](config/generic/SETUP.md)
 
-### 4. 📊 Launch Real Cost Tracking Dashboard
+### 4. 📊 Launch SCMS Dashboard - Your Control Center
 
-**Start tracking your economic benefits immediately!**
+**🎯 THE DASHBOARD IS YOUR GO-TO SOURCE FOR:**
+- ✅ **Session Start Prompt** (v3.0) - Copy-paste ready, updated with latest workflow
+- ✅ **Session Closure Prompt** - Complete 7-step optimization loop
+- ✅ **Real-Time Cost Tracking** - Live token usage and savings calculations
+- ✅ **Economic Analytics** - SCMS vs baseline comparison with ROI metrics
+- ✅ **Complete Instructions** - All workflow steps in one place
 
-**Option A: With Automated Token Tracking (Recommended)** 🚀
+> **💡 Pro Tip**: Keep the dashboard open during development as your SCMS reference guide!
+
+---
+
+**🚀 How to Open the Dashboard:**
+
+**Option A: With Automated Token Tracking (Recommended)**
 ```powershell
 # Windows - Auto-starts checkpoint monitor + opens dashboard
 .\scripts\launch-dashboard-with-tracking.ps1
@@ -312,7 +336,15 @@ Choose your AI assistant:
 ./launch-dashboard.sh
 ```
 
-**Or manually**: Open `docs/tools/scms-dashboard.html` in your browser
+**Option C: Manually**
+- Simply open `docs/tools/scms-dashboard.html` in your browser
+- Bookmark it for quick access!
+
+**Option D: Terminal Dashboard (Between Sessions)**
+```bash
+npm run dashboard
+# Quick CLI view of costs, patterns, ROI without opening browser
+```
 
 ---
 
@@ -371,17 +403,23 @@ AI: [validates and promotes when pattern reused]
 
 **Session closure is essential for SCMS long-term success!**
 
+> **📋 GET THE LATEST PROMPTS**: Open the **SCMS Dashboard** (`docs/tools/scms-dashboard.html`)  
+> Scroll to **Step 4: Session Closure** for the complete, copy-paste ready prompt (v3.0)
+
+**Quick Version** (see dashboard for full details):
 ```
 You: "SCMS SESSION CLOSURE - CRITICAL SYSTEM UPDATE
 
 Great work on this feature! Now let's close the SCMS optimization loop:
 
 1. PATTERN REFLECTION & VALIDATION
-2. L0/L1 VALIDATION PIPELINE UPDATE  
-3. MEMORY DASHBOARD UPDATE
-4. ECONOMIC DASHBOARD UPDATE
-5. MIND-MAP FRAMEWORK MAINTENANCE
-6. SYSTEM OPTIMIZATION
+   - FAILURES FIRST (3-10× more informative than successes)
+2. L0/L1 VALIDATION PIPELINE UPDATE (threshold: 2+ uses)
+3. INDEX & CROSS-REFERENCE MAINTENANCE (NOT visual diagrams)
+4. MEMORY DASHBOARD UPDATE (Cascade persistent memory)
+5. ECONOMIC DASHBOARD UPDATE (cost/savings/ROI)
+6. ORGANIZATIONAL FRAMING MAINTENANCE (L0/L1/Dashboard boundaries)
+7. SYSTEM OPTIMIZATION (health status & compliance)
 
 This ensures SCMS continues optimizing and compounding value over time."
 
@@ -390,7 +428,7 @@ AI: [reflects on session, updates L0/L1 pipeline, refreshes dashboards, promotes
 
 **Without session closure, SCMS degrades into passive documentation instead of active continual learning.**
 
-→ **[Complete Session Closure Guide](docs/guides/SCMS_SESSION_CLOSURE.md)**
+→ **[Complete Session Closure Guide](docs/guides/SCMS_SESSION_CLOSURE.md)** | **[Dashboard (Latest Prompts)](docs/tools/scms-dashboard.html)**
 
 ---
 
