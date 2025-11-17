@@ -88,7 +88,7 @@
         
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
@@ -419,6 +419,47 @@
         .signature-early { background: #f39c12; color: white; }
         .signature-baseline-plus { background: #e67e22; color: white; }
         .signature-baseline { background: #95a5a6; color: white; }
+        
+        /* Data Freshness Warning */
+        .data-warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .data-warning.show {
+            display: block;
+        }
+        
+        .data-warning h3 {
+            color: #856404;
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .data-warning p {
+            color: #856404;
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+        
+        .data-warning .reload-btn {
+            background: #ffc107;
+            color: #856404;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .data-warning .reload-btn:hover {
+            background: #e0a800;
+        }
     </style>
 </head>
 <body>
@@ -433,6 +474,15 @@
             <button class="btn btn-warning" onclick="startBaselineSession()">Start Baseline Session</button>
             <button class="btn btn-primary" onclick="startMixedSession()">Start Mixed Session</button>
             <button class="btn btn-danger" onclick="endSession()">End Session</button>
+        </div>
+        
+        <!-- Data Freshness Warning -->
+        <div id="dataFreshnessWarning" class="data-warning">
+            <h3>⚠️ WARNING: Data May Be Stale</h3>
+            <p id="freshnessMessage"></p>
+            <p id="freshnessTimestamp"></p>
+            <p style="font-size: 0.9em; margin-top: 8px;">Savings percentage and session counts may be outdated.</p>
+            <button class="reload-btn" onclick="location.reload()">🔄 Reload Dashboard</button>
         </div>
         
         <div class="session-status">
@@ -469,6 +519,12 @@
                 <div class="metric-title">Session Cost</div>
                 <div class="metric-value" id="sessionCost">$0.00</div>
                 <div class="metric-subtitle">Current session total</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-title">Sessions Tracked</div>
+                <div class="metric-value" id="sessionCount">--</div>
+                <div class="metric-subtitle" id="sessionBreakdown">-- SCMS • -- Baseline</div>
             </div>
         </div>
         
@@ -775,6 +831,55 @@ This ensures SCMS continues optimizing and compounding value over time.</div>
 
     <script src="scms-cost-tracker.js"></script>
     <script>
+        // Data Freshness Validation
+        function validateDataFreshness(data) {
+            if (!data || !data.exportDate) {
+                console.warn('[dashboard] ⚠️ No export date found in data');
+                return { severity: 'unknown', message: 'No export date available', daysSince: 0 };
+            }
+            
+            const exportDate = new Date(data.exportDate);
+            const now = new Date();
+            const hoursDiff = (now - exportDate) / (1000 * 60 * 60);
+            const daysDiff = hoursDiff / 24;
+            
+            let severity, message;
+            
+            if (hoursDiff < 6) {
+                severity = 'fresh';
+                message = `Data is fresh (< 6 hours old) ✅`;
+            } else if (hoursDiff < 24) {
+                severity = 'stale';
+                message = `Data is ${hoursDiff.toFixed(1)} hours old ⚠️`;
+            } else if (daysDiff < 7) {
+                severity = 'warning';
+                message = `Data is ${daysDiff.toFixed(1)} days old ⚠️`;
+            } else {
+                severity = 'critical';
+                message = `Data is ${daysDiff.toFixed(1)} days old 🚨`;
+            }
+            
+            console.log(`[dashboard] ${message}`);
+            console.log(`[dashboard] Export date: ${exportDate.toLocaleString()}`);
+            
+            return { severity, message, daysSince: daysDiff, exportDate };
+        }
+        
+        function displayDataFreshnessWarning(freshness) {
+            const warningDiv = document.getElementById('dataFreshnessWarning');
+            const messageP = document.getElementById('freshnessMessage');
+            const timestampP = document.getElementById('freshnessTimestamp');
+            
+            if (freshness.severity === 'fresh') {
+                warningDiv.classList.remove('show');
+                return;
+            }
+            
+            warningDiv.classList.add('show');
+            messageP.textContent = freshness.message;
+            timestampP.textContent = `Last export: ${freshness.exportDate.toLocaleString()}`;
+        }
+        
         // Dashboard control functions
         function startSCMSSession() {
             window.scmsTracker.startSession('scms');
@@ -809,12 +914,54 @@ This ensures SCMS continues optimizing and compounding value over time.</div>
         }
         
         function exportData() {
-            window.scmsTracker.exportData();
+            const data = window.scmsTracker.exportData();
+            
+            // Add current timestamp and metadata
+            if (data) {
+                const now = new Date().toISOString();
+                data.exportDate = now;
+                
+                if (!data.exportMetadata) {
+                    data.exportMetadata = {};
+                }
+                data.exportMetadata.exportedAt = now;
+                data.exportMetadata.exportedBy = 'Dashboard UI';
+                data.exportMetadata.dashboardVersion = '3.2';
+                data.exportMetadata.totalSessionsExported = (data.scmsSessions || 0) + (data.baselineSessions || 0);
+                
+                console.log('[dashboard] 📊 Data exported successfully');
+                console.log('[dashboard] Sessions exported:', data.exportMetadata.totalSessionsExported);
+                console.log('[dashboard] Savings:', data.analysis?.savingsPercent?.toFixed(1) + '%' || 'N/A');
+                
+                alert(`Dashboard data exported successfully!\n\nSessions exported: ${data.exportMetadata.totalSessionsExported}\nSavings: ${data.analysis?.savingsPercent?.toFixed(1)}%`);
+            }
         }
         
         // Listen for data updates
         document.addEventListener('scms-data-updated', (event) => {
             const { currentSession, analysis, patterns } = event.detail;
+            
+            // Validate data freshness
+            const fullData = event.detail.fullData || {};
+            if (fullData.exportDate) {
+                const freshness = validateDataFreshness(fullData);
+                displayDataFreshnessWarning(freshness);
+            }
+            
+            // Session tracking console logs
+            console.log('[dashboard] 📊 Session Tracking Status:');
+            console.log('[dashboard] Total sessions:', (fullData.scmsSessions || 0) + (fullData.baselineSessions || 0));
+            console.log('[dashboard] SCMS sessions:', fullData.scmsSessions || 0);
+            console.log('[dashboard] Baseline sessions:', fullData.baselineSessions || 0);
+            if (analysis) {
+                console.log('[dashboard] Savings:', analysis.savingsPercent?.toFixed(1) + '%' || 'N/A');
+            }
+            
+            // Update session counter
+            const totalSessions = (fullData.scmsSessions || 0) + (fullData.baselineSessions || 0);
+            document.getElementById('sessionCount').textContent = totalSessions > 0 ? totalSessions : '--';
+            document.getElementById('sessionBreakdown').textContent = 
+                `${fullData.scmsSessions || 0} SCMS • ${fullData.baselineSessions || 0} Baseline`;
             
             // Update current session metrics
             if (currentSession) {
