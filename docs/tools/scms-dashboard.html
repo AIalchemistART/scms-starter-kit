@@ -547,19 +547,73 @@
         <div class="usage-guide">
             <h2>📚 Essential SCMS Workflow Guide</h2>
             
-            <h3><span class="step-number">📊</span> View Economics Dashboard (Without Opening Game)</h3>
+            <h3><span class="step-number">📊</span> View Economics Dashboard (Without Opening App)</h3>
             <p><strong>Command:</strong> Run this in your terminal to view economics data:</p>
             <div class="code-block">npm run dashboard</div>
             
-            <p style="margin-top: 10px;"><strong>What it does:</strong> Displays cost comparison, session data, and savings analysis without launching the Electron game. Perfect for quick checks!</p>
+            <p style="margin-top: 10px;"><strong>What it does:</strong> Displays cost comparison, session data, and savings analysis without launching the Electron app. Perfect for quick checks!</p>
             
-            <p style="margin-top: 15px; padding: 15px; background: #d1ecf1; border-left: 4px solid #17a2b8; border-radius: 5px;">
-                <strong>Note:</strong> This dashboard (in-game) provides real-time tracking during development. Use <code>npm run dashboard</code> for quick analysis between sessions.
+            <p style="margin-top: 15px; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 5px;">
+                <strong>💡 To re-open the app with dashboard:</strong>
+            </p>
+            <div class="code-block">npm run dashboard:app</div>
+            <p style="margin-top: 10px; color: #6c757d; font-size: 14px;">
+                <strong>Note:</strong> The app auto-opens on first use of SCMS. Use this command to re-launch the dashboard app if you've closed it.
             </p>
             
-            <h3><span class="step-number">1</span> Copy the Startup Prompt</h3>
+            <p style="margin-top: 15px; padding: 15px; background: #d1ecf1; border-left: 4px solid #17a2b8; border-radius: 5px;">
+                <strong>Tip:</strong> This dashboard (in-app) provides real-time tracking during development. Use <code>npm run dashboard</code> for quick terminal analysis between sessions.
+            </p>
+            
+            <h3><span class="step-number">1</span> Copy the SCMS Startup Prompt (First Time Only)</h3>
+            <p><strong>Purpose:</strong> Configure SCMS for your project on first use</p>
+            <p><strong>Action:</strong> Paste this prompt to your AI assistant <strong>ONCE when starting a new project</strong></p>
+            <div class="code-block">SCMS PROJECT SETUP
+
+Please configure SCMS (Sparse Contextual Memory Scaffolding) for this project:
+
+**MULTI-TIME-SCALE ARCHITECTURE:**
+Windsurf hardcoded (automatic): L0 → L4 → L1
+SCMS directed (prompt-guided): L2/L3 → L5 (if no validated retrieval) → Generate (if no retrieval) → L4 compliance check
+
+**ECONOMIC OPTIMIZATION PRINCIPLE** (30-45% cost reduction validated):
+- RETRIEVAL-FIRST BIAS: Always search L0/L1 before generating
+- Cost asymmetry: Retrieval (~$0.018) vs Generation (~$0.033) per session
+- Target efficiency: >70% retrieval-based responses
+- Pattern ROI: L0 patterns need 3+ reuses for break-even
+
+**VALIDATION PIPELINE:**
+- L0 (Destructive): Test patterns via probabilistic retrieval + temporal decay
+- L1 (Stable): Enforce patterns via WORKSPACE_RULES.md (MANDATORY quality gates)
+- Promotion threshold: n≥2 uses for mature projects (adaptive based on phase)
+
+**SESSION START CHECKLIST (Before ANY code):**
+1. ✅ Check L4 Global Rules (WORKSPACE_RULES.md or .cursorrules)
+2. ✅ Review L1 Validated Patterns (WORKSPACE_RULES.md)
+3. ✅ Check Memory Dashboard (pattern metrics, urgency warnings)
+4. ✅ Review project promotion threshold and current validation status
+
+**DURING DEVELOPMENT:**
+- Create memories DURING coding (not after)
+- Retrieval flow: L0→L4→L1 (automatic) → L2/L3→L5 if needed → Generate → L4 final check
+- Document FAILURES FIRST (3-10× more information than successes)
+- Pattern promotion: ≥2 uses → copy to WORKSPACE_RULES.md within 2 hours
+
+**SESSION CLOSURE (CRITICAL):**
+After every session, run the Validation Commit Layer prompt:
+1. Pattern reflection & validation (failures first)
+2. L0/L1 pipeline update (threshold: 2+ uses)
+3. INDEX & cross-reference maintenance (tags, not visual diagrams)
+4. Memory dashboard update
+5. Economic dashboard update (cost/savings/ROI)
+6. Organizational framing maintenance (L0/L1/Dashboard boundaries)
+7. System optimization (health status & compliance)
+
+Ready to start tracking patterns and optimizing costs!</div>
+            
+            <h3><span class="step-number">2</span> Copy the Session Start Prompt (Daily Use)</h3>
             <p><strong>Location:</strong> <code>SCMS_STARTUP_PROMPT.md</code> in your project root</p>
-            <p><strong>Action:</strong> Paste this prompt to your AI assistant at the <strong>start of EVERY session</strong></p>
+            <p><strong>Action:</strong> Paste this prompt to your AI assistant at the <strong>start of EVERY development session</strong></p>
             <div class="code-block">SCMS SESSION START
 
 Working on: [brief task description]
@@ -580,17 +634,18 @@ Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
    SELF-DIRECTED RETRIEVAL (prompt-guided, check when relevant):
    - L2: SOPs (5+ uses) - detailed procedures when L1 references them
    - L3: Case Studies - complete examples for learning
-   - L5: Overflow - low-frequency patterns (3-6 month intervals)
+   - L5: Overflow - low-frequency patterns (only if no validated retrieval from L2/L3)
    
    GENERATION & FINAL VALIDATION:
-   - Generate new solution (only if no existing pattern found)
-   - L4: Global Rules confirmation pass on all output
+   - Generate new solution (only if no retrieval from ALL other layers)
+   - L4: Global Rules final compliance check on all output
    
    SESSION CONTEXT:
    - Dashboard: Current task/objectives (this conversation)
    - Memory Dashboard: Pattern tracking system (separate)
    
-   Actual retrieval flow: L0 → L4 → L1 → [L2/L3/L5 as needed] → Generate → L4 confirm
+   Actual retrieval flow: 
+   L0 → L4 → L1 → [L2/L3 → L5 if needed] → Generate (if no retrieval) → L4 compliance check
 
 3. MIND-MAP FRAMEWORK = ORGANIZATIONAL FRAMING
    - NOT visual diagrams
@@ -618,7 +673,7 @@ Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
 
 Let's start by checking for relevant existing patterns, then proceed with the work.</div>
             
-            <h3><span class="step-number">2</span> Enable Automated Token Tracking</h3>
+            <h3><span class="step-number">3</span> Enable Automated Token Tracking</h3>
             <p><strong>Option A: Automated (Recommended)</strong></p>
             <div class="code-block"># Windows PowerShell
 .\scripts\launch-dashboard-with-tracking.ps1
@@ -636,7 +691,7 @@ npm run checkpoint:monitor
                 <strong>⚡ What the monitor does:</strong> Watches your clipboard for Cascade checkpoint data (from conversation copies) and automatically extracts token usage, calculates costs, and updates this dashboard in real-time!
             </p>
             
-            <h3><span class="step-number">3</span> Use This Dashboard During Development</h3>
+            <h3><span class="step-number">4</span> Use This Dashboard During Development</h3>
             <ol>
                 <li><strong>Click "Start SCMS Session"</strong> when you begin working with SCMS patterns</li>
                 <li><strong>Work in Cascade normally</strong> - develop your features</li>
