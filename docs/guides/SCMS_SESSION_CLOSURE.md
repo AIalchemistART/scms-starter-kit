@@ -1,8 +1,12 @@
-# SCMS Session Closure: The Critical Feedback Loop
+# SCMS Validation Commit Layer: The Critical Feedback Loop
 
+**Also Known As**: "Session Closure" (in practical workflows)  
+**Academic Term**: "Validation Commit Layer" (emphasizes mandatory architectural component)  
 **Status**: 🚨 **ESSENTIAL** - System breaks down without this step  
 **Purpose**: Close the SCMS optimization loop after each feature session  
 **Impact**: Transforms one-time documentation into self-optimizing knowledge engine
+
+> **📋 Terminology Note**: In academic literature (whitepapers), this is called the **"Validation Commit Layer"** to emphasize its role as a mandatory architectural component, not optional housekeeping. In practical workflows and user-facing documentation, we use **"Session Closure"** because it's more intuitive and action-oriented.
 
 ---
 
