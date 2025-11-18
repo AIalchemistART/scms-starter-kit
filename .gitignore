@@ -1,6 +1,35 @@
 # SCMS Starter Kit - .gitignore
 
+# User Data (DO NOT TRACK - Protected)
+economics-dashboard-data.json
+economics-dashboard-data.*.json
+checkpoints/
+scms-sessions/
+*.backup.json
+
+# User Customizations
+WORKSPACE_RULES.custom.md
+.env.local
+
 # IDE-specific files
 .vscode/
 .idea/
-*.sw
+*.swp
+*.swo
+
+# Dependencies (CRITICAL - Never track)
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-error.log*
+yarn.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build outputs
+dist/
+build/
+*.log
