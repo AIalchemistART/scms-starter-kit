@@ -79,6 +79,41 @@ $finalThreshold = [Math]::Max(2, $baseThreshold + $domainAdjust)
 Write-Host ''
 Write-Host "Selected: $domainType (adjustment: $domainAdjust)" -ForegroundColor Green
 Write-Host ''
+
+# Initialize INDEX.md
+Write-Host ''
+Write-Host 'Initializing INDEX.md...' -ForegroundColor Yellow
+$indexPath = Join-Path $projectRoot 'docs\scms\INDEX.md'
+if (-not (Test-Path $indexPath)) {
+    $indexContent = @"
+# SCMS Knowledge Graph Index
+
+**Purpose**: Central hub for cross-referencing SCMS layers.
+**Maintenance**: Updated automatically during session closure.
+
+## L0: Active Memories (Auto/Manual)
+- See MEMORY_STATUS_DASHBOARD.md for active validation list
+
+## L1: Workspace Rules
+- See WORKSPACE_RULES.md for validated mandatory patterns
+
+## L2: SOPs (Standard Operating Procedures)
+- (Populate when SOPs are created in docs/scms/sops/)
+
+## L3: Case Studies
+- (Populate when Case Studies are created in docs/scms/case-studies/)
+
+## L4: Global Rules
+- See rules/GLOBAL_CODING_RULES.md for universal constraints
+
+"@
+    Set-Content -Path $indexPath -Value $indexContent -Encoding UTF8
+    Write-Host 'docs/scms/INDEX.md created' -ForegroundColor Green
+} else {
+    Write-Host '  docs/scms/INDEX.md already exists' -ForegroundColor Gray
+}
+
+Write-Host ''
 Write-Host '========================================' -ForegroundColor Cyan
 Write-Host 'YOUR SCMS CONFIGURATION:' -ForegroundColor Yellow
 Write-Host '========================================' -ForegroundColor Cyan
@@ -146,14 +181,14 @@ Write-Host ''
 Write-Host 'Creating directory structure...' -ForegroundColor Yellow
 
 $dirs = @(
-    'docs\sops',
-    'docs\case-studies',
-    'docs\sessions',
+    'docs\scms\sops',
+    'docs\scms\case-studies',
+    'docs\scms\sessions',
     'rules'
 )
 
 if ($L0_STRATEGY -eq 'manual') {
-    $dirs += 'docs\memories'
+    $dirs += 'docs\scms\memories'
 }
 
 foreach ($dir in $dirs) {
@@ -172,16 +207,16 @@ Write-Host 'Copying documentation templates...' -ForegroundColor Yellow
 
 # WORKSPACE_RULES.md with customized threshold
 $templateSource = Join-Path $PSScriptRoot '..\docs\templates\WORKSPACE_RULES_TEMPLATE.md'
-$templateDest = Join-Path $projectRoot 'WORKSPACE_RULES.md'
+$templateDest = Join-Path $projectRoot 'docs\scms\WORKSPACE_RULES.md'
 
 if (-not (Test-Path $templateDest)) {
     # Read template and replace placeholder threshold with actual calculated value
     $templateContent = Get-Content -Path $templateSource -Raw
     $customizedTemplate = $templateContent -replace '≥2', ">=$($THRESHOLD_CONFIG.FinalThreshold)"
     Set-Content -Path $templateDest -Value $customizedTemplate -Encoding UTF8
-    Write-Host "WORKSPACE_RULES.md created (threshold: n>=$($THRESHOLD_CONFIG.FinalThreshold))" -ForegroundColor Green
+    Write-Host "docs/scms/WORKSPACE_RULES.md created (threshold: n>=$($THRESHOLD_CONFIG.FinalThreshold))" -ForegroundColor Green
 } else {
-    Write-Host '  WORKSPACE_RULES.md already exists' -ForegroundColor Gray
+    Write-Host '  docs/scms/WORKSPACE_RULES.md already exists' -ForegroundColor Gray
 }
 
 # GLOBAL_CODING_RULES.md (L4) with date substitution
@@ -202,7 +237,7 @@ if (-not (Test-Path $globalRulesDest)) {
 Write-Host ''
 Write-Host 'Initializing memory dashboard...' -ForegroundColor Yellow
 
-$dashboardPath = Join-Path $projectRoot 'MEMORY_STATUS_DASHBOARD.md'
+$dashboardPath = Join-Path $projectRoot 'docs\scms\MEMORY_STATUS_DASHBOARD.md'
 if (-not (Test-Path $dashboardPath)) {
     $dateStr = Get-Date -Format 'yyyy-MM-dd'
     $strategyStr = if ($L0_STRATEGY -eq 'auto') { '**Strategy**: Auto-Memory (Windsurf Cascade)' } else { '**Strategy**: Manual Markdown Files' }
@@ -223,7 +258,7 @@ if (-not (Test-Path $dashboardPath)) {
 **Domain**: $($THRESHOLD_CONFIG.Domain)
 **Promotion Threshold**: n>=$($THRESHOLD_CONFIG.FinalThreshold)
 
-*Patterns need $($THRESHOLD_CONFIG.FinalThreshold) uses before promoting to L1 (WORKSPACE_RULES.md)*
+*Patterns need $($THRESHOLD_CONFIG.FinalThreshold) uses before promoting to L1 (docs/scms/WORKSPACE_RULES.md)*
 
 ---
 
@@ -237,15 +272,15 @@ No memories yet - will populate as you develop
 
 ## Validated Patterns (L1)
 
-Check WORKSPACE_RULES.md for promoted patterns.
+Check docs/scms/WORKSPACE_RULES.md for promoted patterns.
 
 ---
 
 ## Next Steps
 
-1. Customize WORKSPACE_RULES.md for your project
+1. Customize docs/scms/WORKSPACE_RULES.md for your project
 2. Configure your IDE (see config/$IDE/SETUP.md)
-3. Copy SCMS_STARTUP_PROMPT.md content to AI at each session
+3. Copy docs/scms/SCMS_STARTUP_PROMPT.md content to AI at each session
 4. Start developing
 
 "@
@@ -260,7 +295,7 @@ Check WORKSPACE_RULES.md for promoted patterns.
 Write-Host ''
 Write-Host 'Generating startup prompt...' -ForegroundColor Yellow
 
-$startupPromptPath = Join-Path $projectRoot 'SCMS_STARTUP_PROMPT.md'
+$startupPromptPath = Join-Path $projectRoot 'docs\scms\SCMS_STARTUP_PROMPT.md'
 
 if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
     # Windsurf Auto-Memory Startup Prompt
@@ -288,29 +323,29 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 ### How SCMS Works (5-Layer Architecture):
 
 **L0 (Auto-Memory)**: Cascade memories - temporal validation (30 day decay)
-**L1 (Workspace Rules)**: WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
-**L2 (SOPs)**: docs/sops/ - detailed procedures (created when pattern becomes standard)
-**L3 (Case Studies)**: docs/case-studies/ - complete examples (created at feature milestones)
+**L1 (Workspace Rules)**: docs/scms/WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
+**L2 (SOPs)**: docs/scms/sops/ - detailed procedures (created when pattern becomes standard)
+**L3 (Case Studies)**: docs/scms/case-studies/ - complete examples (created at feature milestones)
 **L4 (Global Rules)**: Universal constraints that apply across all projects
 
 **Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
 
 ### Dashboard Tracking:
 
-**MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
+**docs/scms/MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
 - Shows all active L0 memories with retrieval counts
-- Shows promoted L1 patterns in WORKSPACE_RULES.md
+- Shows promoted L1 patterns in docs/scms/WORKSPACE_RULES.md
 - Lists available L2-L4 reference docs
 - YOU update this as patterns progress through layers
 
 ### BEFORE You Start Coding:
 
 1. **Check L1 Validated Patterns**
-   - Location: WORKSPACE_RULES.md
+   - Location: docs/scms/WORKSPACE_RULES.md
    - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
 
 2. **Check Dashboard**
-   - Location: MEMORY_STATUS_DASHBOARD.md
+   - Location: docs/scms/MEMORY_STATUS_DASHBOARD.md
    - Current tracking status
 
 3. **Tell me what you reviewed**
@@ -334,19 +369,19 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
    - Tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
 
 4. **AT $($THRESHOLD_CONFIG.FinalThreshold) RETRIEVALS - AUTOMATIC PROMOTION TO L1**
-   - YOU automatically promote pattern to WORKSPACE_RULES.md
+   - YOU automatically promote pattern to docs/scms/WORKSPACE_RULES.md
    - Add to the appropriate section with promotion metadata
-   - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
-   - Update MEMORY_STATUS_DASHBOARD.md to reflect the promotion
+   - Tell me "PROMOTED: [pattern] to docs/scms/WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
+   - Update docs/scms/MEMORY_STATUS_DASHBOARD.md to reflect the promotion
 
 5. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
-   - YOU automatically create detailed SOP in docs/sops/
+   - YOU automatically create detailed SOP in docs/scms/sops/
    - Include step-by-step implementation guide
    - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
    - Update dashboard with L2 reference
 
 6. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
-   - When a feature is complete, YOU automatically create case study in docs/case-studies/
+   - When a feature is complete, YOU automatically create case study in docs/scms/case-studies/
    - Show pattern usage in complete working context
    - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
    - Update dashboard with L3 reference
@@ -392,30 +427,30 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 
 ### How SCMS Works (5-Layer Architecture):
 
-**L0 (Manual Markdown)**: docs/memories/ - pattern documentation
-**L1 (Workspace Rules)**: WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
-**L2 (SOPs)**: docs/sops/ - detailed procedures (created when pattern becomes standard)
-**L3 (Case Studies)**: docs/case-studies/ - complete examples (created at feature milestones)
+**L0 (Manual Markdown)**: docs/scms/memories/ - pattern documentation
+**L1 (Workspace Rules)**: docs/scms/WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
+**L2 (SOPs)**: docs/scms/sops/ - detailed procedures (created when pattern becomes standard)
+**L3 (Case Studies)**: docs/scms/case-studies/ - complete examples (created at feature milestones)
 **L4 (Global Rules)**: Universal constraints that apply across all projects
 
 **Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
 
 ### Dashboard Tracking:
 
-**MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
+**docs/scms/MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
 - Shows all active L0 patterns with usage counts
-- Shows promoted L1 patterns in WORKSPACE_RULES.md
+- Shows promoted L1 patterns in docs/scms/WORKSPACE_RULES.md
 - Lists available L2-L4 reference docs
 - YOU update this as patterns progress through layers
 
 ### BEFORE You Start Coding:
 
 1. **Check L1 Validated Patterns**
-   - Location: WORKSPACE_RULES.md
+   - Location: docs/scms/WORKSPACE_RULES.md
    - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
 
 2. **Check Dashboard**
-   - Location: MEMORY_STATUS_DASHBOARD.md
+   - Location: docs/scms/MEMORY_STATUS_DASHBOARD.md
    - Current tracking status
 
 3. **Tell me what you reviewed**
@@ -424,28 +459,28 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 ### Your Workflow:
 
 1. **DOCUMENT PATTERNS IN MARKDOWN**
-   - Create files in docs/memories/ as patterns emerge
+   - Create files in docs/scms/memories/ as patterns emerge
    - Use descriptive names (e.g., api-error-handling.md)
-   - Track usage count in MEMORY_STATUS_DASHBOARD.md
+   - Track usage count in docs/scms/MEMORY_STATUS_DASHBOARD.md
 
 2. **TRACK PATTERN USAGE**
    - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard with new retrieval count
 
 3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION TO L1**
-   - YOU automatically promote pattern to WORKSPACE_RULES.md
+   - YOU automatically promote pattern to docs/scms/WORKSPACE_RULES.md
    - Add to the appropriate section with promotion metadata
-   - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
+   - Tell me "PROMOTED: [pattern] to docs/scms/WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard to reflect the promotion
 
 4. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
-   - YOU automatically create detailed SOP in docs/sops/
+   - YOU automatically create detailed SOP in docs/scms/sops/
    - Include step-by-step implementation guide
    - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
    - Update dashboard with L2 reference
 
 5. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
-   - When a feature is complete, YOU automatically create case study in docs/case-studies/
+   - When a feature is complete, YOU automatically create case study in docs/scms/case-studies/
    - Show pattern usage in complete working context
    - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
    - Update dashboard with L3 reference
@@ -484,30 +519,30 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 
 ### How SCMS Works (5-Layer Architecture):
 
-**L0 (Manual Markdown)**: docs/memories/ - pattern documentation
-**L1 (Workspace Rules)**: WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
-**L2 (SOPs)**: docs/sops/ - detailed procedures (created when pattern becomes standard)
-**L3 (Case Studies)**: docs/case-studies/ - complete examples (created at feature milestones)
+**L0 (Manual Markdown)**: docs/scms/memories/ - pattern documentation
+**L1 (Workspace Rules)**: docs/scms/WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
+**L2 (SOPs)**: docs/scms/sops/ - detailed procedures (created when pattern becomes standard)
+**L3 (Case Studies)**: docs/scms/case-studies/ - complete examples (created at feature milestones)
 **L4 (Global Rules)**: Universal constraints that apply across all projects
 
 **Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
 
 ### Dashboard Tracking:
 
-**MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
+**docs/scms/MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
 - Shows all active L0 patterns with usage counts
-- Shows promoted L1 patterns in WORKSPACE_RULES.md
+- Shows promoted L1 patterns in docs/scms/WORKSPACE_RULES.md
 - Lists available L2-L4 reference docs
 - YOU update this as patterns progress through layers
 
 ### BEFORE You Start Coding:
 
 1. **Check L1 Validated Patterns**
-   - Location: WORKSPACE_RULES.md
+   - Location: docs/scms/WORKSPACE_RULES.md
    - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
 
 2. **Check Dashboard**
-   - Location: MEMORY_STATUS_DASHBOARD.md
+   - Location: docs/scms/MEMORY_STATUS_DASHBOARD.md
    - Current tracking status
 
 3. **Tell me what you reviewed**
@@ -516,28 +551,28 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 ### Your Workflow:
 
 1. **DOCUMENT PATTERNS IN MARKDOWN**
-   - Create files in docs/memories/ as patterns emerge
+   - Create files in docs/scms/memories/ as patterns emerge
    - Use descriptive names (e.g., api-error-handling.md)
-   - Track usage count in MEMORY_STATUS_DASHBOARD.md
+   - Track usage count in docs/scms/MEMORY_STATUS_DASHBOARD.md
 
 2. **TRACK PATTERN USAGE**
    - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard with new retrieval count
 
 3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION TO L1**
-   - YOU automatically promote pattern to WORKSPACE_RULES.md
+   - YOU automatically promote pattern to docs/scms/WORKSPACE_RULES.md
    - Add to the appropriate section with promotion metadata
-   - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
+   - Tell me "PROMOTED: [pattern] to docs/scms/WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard to reflect the promotion
 
 4. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
-   - YOU automatically create detailed SOP in docs/sops/
+   - YOU automatically create detailed SOP in docs/scms/sops/
    - Include step-by-step implementation guide
    - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
    - Update dashboard with L2 reference
 
 5. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
-   - When a feature is complete, YOU automatically create case study in docs/case-studies/
+   - When a feature is complete, YOU automatically create case study in docs/scms/case-studies/
    - Show pattern usage in complete working context
    - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
    - Update dashboard with L3 reference
@@ -575,30 +610,30 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 
 ### How SCMS Works (5-Layer Architecture):
 
-**L0 (Manual Markdown)**: docs/memories/ - pattern documentation
-**L1 (Workspace Rules)**: WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
-**L2 (SOPs)**: docs/sops/ - detailed procedures (created when pattern becomes standard)
-**L3 (Case Studies)**: docs/case-studies/ - complete examples (created at feature milestones)
+**L0 (Manual Markdown)**: docs/scms/memories/ - pattern documentation
+**L1 (Workspace Rules)**: docs/scms/WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
+**L2 (SOPs)**: docs/scms/sops/ - detailed procedures (created when pattern becomes standard)
+**L3 (Case Studies)**: docs/scms/case-studies/ - complete examples (created at feature milestones)
 **L4 (Global Rules)**: Universal constraints that apply across all projects
 
 **Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
 
 ### Dashboard Tracking:
 
-**MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
+**docs/scms/MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
 - Shows all active L0 patterns with usage counts
-- Shows promoted L1 patterns in WORKSPACE_RULES.md
+- Shows promoted L1 patterns in docs/scms/WORKSPACE_RULES.md
 - Lists available L2-L4 reference docs
 - YOU update this as patterns progress through layers
 
 ### BEFORE You Start Coding:
 
 1. **Check L1 Validated Patterns**
-   - Location: WORKSPACE_RULES.md
+   - Location: docs/scms/WORKSPACE_RULES.md
    - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
 
 2. **Check Dashboard**
-   - Location: MEMORY_STATUS_DASHBOARD.md
+   - Location: docs/scms/MEMORY_STATUS_DASHBOARD.md
    - Current tracking status
 
 3. **Tell me what you reviewed**
@@ -607,28 +642,28 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 ### Your Workflow:
 
 1. **DOCUMENT PATTERNS IN MARKDOWN**
-   - Create files in docs/memories/ as patterns emerge
+   - Create files in docs/scms/memories/ as patterns emerge
    - Use descriptive names (e.g., api-error-handling.md)
-   - Track usage count in MEMORY_STATUS_DASHBOARD.md
+   - Track usage count in docs/scms/MEMORY_STATUS_DASHBOARD.md
 
 2. **TRACK PATTERN USAGE**
    - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard with new retrieval count
 
 3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION TO L1**
-   - YOU automatically promote pattern to WORKSPACE_RULES.md
+   - YOU automatically promote pattern to docs/scms/WORKSPACE_RULES.md
    - Add to the appropriate section with promotion metadata
-   - Tell me "PROMOTED: [pattern] to WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
+   - Tell me "PROMOTED: [pattern] to docs/scms/WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
    - Update dashboard to reflect the promotion
 
 4. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
-   - YOU automatically create detailed SOP in docs/sops/
+   - YOU automatically create detailed SOP in docs/scms/sops/
    - Include step-by-step implementation guide
    - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
    - Update dashboard with L2 reference
 
 5. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
-   - When a feature is complete, YOU automatically create case study in docs/case-studies/
+   - When a feature is complete, YOU automatically create case study in docs/scms/case-studies/
    - Show pattern usage in complete working context
    - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
    - Update dashboard with L3 reference
@@ -646,145 +681,14 @@ You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffol
 
 Set-Content -Path $startupPromptPath -Value $startupPrompt -Encoding UTF8
 Write-Host 'Startup prompt generated' -ForegroundColor Green
-
-# IDE setup
-Write-Host ''
-Write-Host "Running $IDE setup..." -ForegroundColor Yellow
-
-switch ($IDE) {
-    'cursor' {
-        $cursorrules = Join-Path $PSScriptRoot '..\config\cursor\.cursorrules'
-        $dest = Join-Path $projectRoot '.cursorrules'
-        
-        if (-not (Test-Path $dest)) {
-            Copy-Item -Path $cursorrules -Destination $dest
-            Write-Host '.cursorrules configured' -ForegroundColor Green
-        } else {
-            Write-Host '  .cursorrules already exists' -ForegroundColor Gray
-        }
-    }
-    'windsurf' {
-        if ($L0_STRATEGY -eq 'auto') {
-            Write-Host 'Auto-memory L0 strategy selected' -ForegroundColor Green
-            Write-Host 'See config/windsurf/SETUP.md for instructions' -ForegroundColor Gray
-        } else {
-            Write-Host 'Manual markdown L0 strategy selected' -ForegroundColor Yellow
-            Write-Host '  See config/windsurf/SETUP.md for instructions' -ForegroundColor Gray
-        }
-    }
-    default {
-        Write-Host 'See config/generic/SETUP.md for manual setup' -ForegroundColor Gray
-    }
-}
-
-# Final message
-Write-Host ''
-Write-Host 'Setup complete - see WORKSPACE_RULES.md to begin' -ForegroundColor Green
 Write-Host ''
 
-# Startup prompt reminder - ALL users need this
-Write-Host ''
 Write-Host '========================================' -ForegroundColor Cyan
-Write-Host 'IMPORTANT: STARTUP PROMPT REQUIRED' -ForegroundColor Yellow
-Write-Host '========================================' -ForegroundColor Cyan
+Write-Host 'SCMS Setup Complete!' -ForegroundColor Green
 Write-Host ''
-Write-Host 'To complete SCMS setup:' -ForegroundColor White
-Write-Host '1. Open SCMS_STARTUP_PROMPT.md in this directory' -ForegroundColor White
-Write-Host '2. Copy the entire content' -ForegroundColor White
-Write-Host '3. Paste it to your AI assistant at the START of each dev session' -ForegroundColor White
-Write-Host ''
-
-# Add specific notes based on setup
-if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
-    Write-Host 'This tells Cascade how to use SCMS auto-memory correctly' -ForegroundColor Gray
-} elseif ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'manual') {
-    Write-Host 'This tells Cascade how to use SCMS with manual markdown files' -ForegroundColor Gray
-} elseif ($IDE -eq 'cursor') {
-    Write-Host 'This tells Cursor how to use SCMS with manual markdown files' -ForegroundColor Gray
-} else {
-    Write-Host 'This tells your AI how to use SCMS correctly' -ForegroundColor Gray
-}
-Write-Host ''
-
-# Save SCMS config to economics-dashboard-data.json
-Write-Host 'Saving SCMS configuration to economics-dashboard-data.json...' -ForegroundColor Yellow
-$dataPath = Join-Path (Join-Path (Split-Path $PSScriptRoot -Parent) '..') 'economics-dashboard-data.json'
-
-$scmsConfigData = @{
-    scmsSessions = 0
-    baselineSessions = 0
-    sessions = @()
-    exportDate = $null
-    analysis = @{
-        scmsAvgCost = 0
-        baselineAvgCost = 0
-        savingsPercent = 0
-    }
-    scmsConfig = @{
-        projectPhase = $phaseName
-        teamSize = $teamSize
-        domain = $domainType
-        promotionThreshold = $finalThreshold
-        nUnique = $nUnique
-        setupCompleted = $true
-    }
-}
-
-$scmsConfigData | ConvertTo-Json -Depth 10 | Set-Content -Path $dataPath -Encoding UTF8
-Write-Host "Configuration saved (threshold: n>=$finalThreshold)" -ForegroundColor Green
-Write-Host ''
-
-# Offer to launch economic tracking dashboard
-Write-Host ''
-Write-Host '========================================' -ForegroundColor Cyan
-Write-Host 'REAL COST TRACKING DASHBOARD' -ForegroundColor Yellow
-Write-Host '========================================' -ForegroundColor Cyan
-Write-Host ''
-Write-Host 'Launch the algorithmic cost tracking dashboard?' -ForegroundColor White
-Write-Host '   Track actual economic benefits vs theoretical estimates' -ForegroundColor Gray
-Write-Host '   Export data for business case validation' -ForegroundColor Gray
-Write-Host ''
-$launchDashboard = Read-Host 'Launch dashboard now? [Y/n] (default: Y)'
-
-if ($launchDashboard -ne 'n' -and $launchDashboard -ne 'N') {
-    Write-Host ''
-    Write-Host 'Setting up SCMS Dashboard App...' -ForegroundColor Cyan
-    
-    $projectRoot = Join-Path $PSScriptRoot '..'
-    $packageJson = Join-Path $projectRoot 'package.json'
-    
-    if (Test-Path $packageJson) {
-        Write-Host '   Installing dependencies...' -ForegroundColor Yellow
-        
-        # Navigate to project root and install dependencies
-        Push-Location $projectRoot
-        try {
-            npm install 2>&1 | Out-Null
-            Write-Host '   Dependencies installed!' -ForegroundColor Green
-            Write-Host ''
-            Write-Host 'Launching SCMS Dashboard App (Electron)...' -ForegroundColor Cyan
-            
-            # Launch Electron app in new PowerShell window
-            Start-Process -FilePath "powershell" -ArgumentList "-NoExit", "-Command", "cd '$projectRoot'; npm run dashboard:app"
-            
-            Write-Host ''
-            Write-Host 'Dashboard app launched!' -ForegroundColor Green
-            Write-Host ''
-            Write-Host 'Quick Start:' -ForegroundColor Cyan
-            Write-Host '   1. Click "Start SCMS Session" when using patterns' -ForegroundColor White
-            Write-Host '   2. Click "Start Baseline Session" for comparison' -ForegroundColor White
-            Write-Host '   3. Click "Export Data" when finished - checkpoint auto-generated!' -ForegroundColor White
-        }
-        finally {
-            Pop-Location
-        }
-    } else {
-        Write-Host 'Setup files not found!' -ForegroundColor Yellow
-        Write-Host '   You can launch it manually: npm run dashboard:app' -ForegroundColor Gray
-    }
-} else {
-    Write-Host ''
-    Write-Host 'You can launch the dashboard anytime with: npm run dashboard:app' -ForegroundColor Gray
-}
-
+Write-Host 'Next steps:' -ForegroundColor Yellow
+Write-Host "1. Edit docs/scms/WORKSPACE_RULES.md with project-specific rules"
+Write-Host "2. Configure memories in your IDE (see config/$IDE/SETUP.md)"
+Write-Host "3. Copy docs/scms/SCMS_STARTUP_PROMPT.md to your AI at each session"
+Write-Host "4. Start developing - SCMS builds automatically!"
 Write-Host ''
