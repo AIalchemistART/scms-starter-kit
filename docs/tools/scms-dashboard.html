@@ -1074,19 +1074,16 @@ Let's start by checking for relevant existing patterns, then proceed with the wo
                 </div>
             </div> <!-- End Session Start wrapper -->
             
-            <h3><span class="step-number">3</span> Enable Automated Token Tracking</h3>
-            <p><strong>Option A: Automated (Recommended)</strong></p>
-            <div class="code-block"># Windows PowerShell
-.\scripts\launch-dashboard-with-tracking.ps1
+            <h3><span class="step-number">3</span> Launch the Dashboard</h3>
+            <p><strong>Command:</strong> Open the SCMS dashboard in Electron app</p>
+            <div class="code-block"># Windows PowerShell / Terminal
+npm run dashboard:app
 
-# This starts checkpoint monitor + opens dashboard automatically!</div>
+# This opens the dashboard with all tracking features enabled!</div>
             
-            <p><strong>Option B: Manual</strong></p>
-            <div class="code-block"># Terminal 1: Start checkpoint monitor
-npm install  # First time only
-npm run checkpoint:monitor
-
-# Terminal 2: Open this dashboard in browser</div>
+            <p style="margin-top: 10px;"><strong>Alternative:</strong> View dashboard in browser (if app already open)</p>
+            <div class="code-block"># Open docs/tools/scms-dashboard.html in your browser
+# The Electron app provides better integration with file system</div>
             
             <p style="margin-top: 15px; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 5px;">
                 <strong>⚡ How automated tracking works:</strong> Click "Start SCMS Session" to begin tracking. Work normally in Windsurf. When ready to export, the dashboard will prompt you to create a checkpoint file, then automatically process and export your session data with real token costs!
