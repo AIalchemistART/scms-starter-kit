@@ -1232,8 +1232,8 @@ cd new-folder && npm run dashboard:app</div>
             updateSessionDisplay('No Active Session', 'Start a session to begin algorithmic cost tracking');
         }
         
-        function clearAllData() {
-            if (!confirm('⚠️ Clear all dashboard data?\n\nThis will remove:\n• All session data\n• Pattern usage history\n• Economic analysis\n• Demo data (if any)\n\nThis cannot be undone!')) {
+        async function clearAllData() {
+            if (!confirm('⚠️ Clear all dashboard data?\n\nThis will remove:\n• All session data\n• Pattern usage history\n• Economic analysis\n• Demo data (if any)\n• economics-dashboard-data.json file\n\nThis cannot be undone!')) {
                 return;
             }
             
@@ -1247,10 +1247,31 @@ cd new-folder && npm run dashboard:app</div>
                 window.scmsTracker.endSession();
             }
             
-            // Reset tracker
+            // Reset tracker in memory
             window.scmsTracker.sessions = [];
             window.scmsTracker.patterns = new Map();
             window.scmsTracker.currentSession = null;
+            
+            // Clear the economics-dashboard-data.json file if Electron API available
+            if (window.electronAPI && window.electronAPI.updateDashboardData) {
+                try {
+                    const emptyData = {
+                        scmsSessions: 0,
+                        baselineSessions: 0,
+                        sessions: [],
+                        exportDate: null,
+                        analysis: {
+                            scmsAvgCost: 0,
+                            baselineAvgCost: 0,
+                            savingsPercent: 0
+                        }
+                    };
+                    await window.electronAPI.updateDashboardData(emptyData);
+                    console.log('[dashboard] ✅ Data file cleared: economics-dashboard-data.json');
+                } catch (error) {
+                    console.error('[dashboard] Failed to clear data file:', error);
+                }
+            }
             
             // Reload page to show fresh state
             alert('✅ Data cleared! Dashboard will reload...');
