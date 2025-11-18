@@ -736,8 +736,8 @@ if ($launchDashboard -ne 'n' -and $launchDashboard -ne 'N') {
             Write-Host ''
             Write-Host 'Launching SCMS Dashboard App (Electron)...' -ForegroundColor Cyan
             
-            # Launch Electron app
-            Start-Process -FilePath "npm" -ArgumentList "run", "dashboard:app" -WorkingDirectory $projectRoot
+            # Launch Electron app in new PowerShell window
+            Start-Process -FilePath "powershell" -ArgumentList "-NoExit", "-Command", "cd '$projectRoot'; npm run dashboard:app"
             
             Write-Host ''
             Write-Host 'Dashboard app launched!' -ForegroundColor Green
