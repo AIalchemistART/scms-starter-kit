@@ -71,7 +71,7 @@ ipcMain.handle('dashboard:update-data', async (_event, data) => {
 });
 
 // Start checkpoint monitor
-ipcMain.handle('dashboard:start-monitor', async () => {
+ipcMain.handle('dashboard:start-monitor', async (_event, sessionStamp = {}) => {
   try {
     if (checkpointMonitor) {
       return { ok: false, error: 'Monitor already running' };
@@ -94,8 +94,8 @@ ipcMain.handle('dashboard:start-monitor', async () => {
       checkpointMonitor = null;
     });
 
-    await checkpointMonitor.start();
-    console.log('[dashboard] Checkpoint monitor started');
+    await checkpointMonitor.start(sessionStamp);
+    console.log('[dashboard] Checkpoint monitor started with type:', sessionStamp.type);
     return { ok: true };
   } catch (error) {
     console.error('[dashboard] Monitor start error:', error);

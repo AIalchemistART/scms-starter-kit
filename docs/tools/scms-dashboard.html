@@ -1244,6 +1244,48 @@ cd new-folder && npm run dashboard:app</div>
         }
         
         async function exportData() {
+            // Get current session info
+            const currentSession = window.scmsTracker.getCurrentSession();
+            
+            // Check if we have an active or recently ended session
+            if (currentSession && currentSession.id) {
+                // Generate checkpoint creation prompt
+                const checkpointPrompt = generateCheckpointPrompt(currentSession);
+                
+                // Copy to clipboard
+                try {
+                    await navigator.clipboard.writeText(checkpointPrompt);
+                    
+                    // Show instructions to user
+                    const userConfirmed = confirm(
+                        '📊 CREATE CHECKPOINT FOR EXPORT\n\n' +
+                        'STEP 1: A checkpoint prompt has been copied to your clipboard\n\n' +
+                        'STEP 2: Switch to Windsurf and paste (Ctrl+V)\n' +
+                        '   → AI will extract all token usage data\n' +
+                        '   → AI will create checkpoint file automatically\n\n' +
+                        'STEP 3: Wait ~5 seconds for AI to create the file\n\n' +
+                        'STEP 4: Click OK to finalize export\n' +
+                        '   → Dashboard will include checkpoint data\n' +
+                        '   → Download will be created\n\n' +
+                        'Click OK when checkpoint file is created, or Cancel to skip'
+                    );
+                    
+                    if (!userConfirmed) {
+                        console.log('[export] Export cancelled by user');
+                        return;
+                    }
+                    
+                    // Reload data to include new checkpoint
+                    console.log('[export] Reloading data to include new checkpoint...');
+                    await new Promise(resolve => setTimeout(resolve, 1000)); // Small delay
+                    
+                } catch (err) {
+                    console.warn('[export] Clipboard copy failed:', err);
+                    alert('⚠️ Could not copy checkpoint prompt to clipboard.\n\nPlease ensure browser has clipboard permissions.');
+                    return;
+                }
+            }
+            
             const data = window.scmsTracker.exportData();
             
             // Add current timestamp and metadata
@@ -1283,6 +1325,21 @@ cd new-folder && npm run dashboard:app</div>
                     console.log('[dashboard] ℹ️ Manual step required: Copy exported file to project folder');
                 }
             }
+            
+            // Update UI with fresh data
+            console.log('[export] ✅ Export complete!');
+            console.log('[export] Checkpoint file included:', currentSession ? 'Yes' : 'No');
+            console.log('[export] Dashboard metrics updated');
+        }
+        
+        // Generate checkpoint creation prompt for AI
+        function generateCheckpointPrompt(session) {
+            const now = new Date();
+            const duration = session.endTime ? 
+                Math.round((new Date(session.endTime) - new Date(session.startTime)) / 60000) : 
+                'ongoing';
+            
+            return `📊 CREATE CHECKPOINT FOR DASHBOARD\n\nPlease create a checkpoint file for this session's economic tracking:\n\n**SESSION METADATA:**\n- Session ID: ${session.id}\n- Type: ${session.type}\n- Start Time: ${session.startTime}\n- End Time: ${session.endTime || 'Not ended'}\n- Duration: ${duration} minutes\n\n**INSTRUCTIONS:**\n1. Extract ALL <system_warning>Token usage: entries from this conversation\n2. Create file: \`checkpoints/checkpoint-${session.id}.txt\`\n3. Include session metadata at top of file:\n   \`\`\`\n   CHECKPOINT - Session ${session.id}\n   Session ID: ${session.id}\n   Type: ${session.type}\n   Start Time: ${session.startTime}\n   End Time: ${session.endTime || 'ongoing'}\n   Duration: ${duration} minutes\n   \`\`\`\n4. Then include all token usage warnings from the conversation\n\n**CRITICAL:** File must be named exactly \`checkpoint-${session.id}.txt\` so dashboard can correlate session data.\n\nPlease create this file now.`;
         }
         
         // Listen for data updates
