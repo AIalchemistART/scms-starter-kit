@@ -913,7 +913,7 @@ This ensures SCMS continues optimizing and compounding value over time.</div>
             }
         }
         
-        function exportData() {
+        async function exportData() {
             const data = window.scmsTracker.exportData();
             
             // Add current timestamp and metadata
@@ -933,7 +933,25 @@ This ensures SCMS continues optimizing and compounding value over time.</div>
                 console.log('[dashboard] Sessions exported:', data.exportMetadata.totalSessionsExported);
                 console.log('[dashboard] Savings:', data.analysis?.savingsPercent?.toFixed(1) + '%' || 'N/A');
                 
-                alert(`Dashboard data exported successfully!\n\nSessions exported: ${data.exportMetadata.totalSessionsExported}\nSavings: ${data.analysis?.savingsPercent?.toFixed(1)}%`);
+                // Try to update source file if Electron API available
+                let sourceFileUpdated = false;
+                if (window.electronAPI && window.electronAPI.updateDashboardData) {
+                    try {
+                        await window.electronAPI.updateDashboardData(data);
+                        sourceFileUpdated = true;
+                        console.log('[dashboard] ✅ Source file updated: economics-dashboard-data.json');
+                    } catch (error) {
+                        console.warn('[dashboard] ⚠️ Could not update source file:', error.message);
+                    }
+                }
+                
+                // Alert with appropriate message
+                if (sourceFileUpdated) {
+                    alert(`✅ Dashboard data exported AND source file updated!\n\nSessions: ${data.exportMetadata.totalSessionsExported}\nSavings: ${data.analysis?.savingsPercent?.toFixed(1)}%\n\nSource file: economics-dashboard-data.json\nDownload file: ~/Downloads/scms-economics-${now.split('T')[0]}.json`);
+                } else {
+                    alert(`⚠️ Dashboard data exported to Downloads\n\nSessions: ${data.exportMetadata.totalSessionsExported}\nSavings: ${data.analysis?.savingsPercent?.toFixed(1)}%\n\nIMPORTANT: To clear staleness warning, copy the exported file to:\nproject-folder/economics-dashboard-data.json`);
+                    console.log('[dashboard] ℹ️ Manual step required: Copy exported file to project folder');
+                }
             }
         }
         
