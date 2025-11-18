@@ -268,9 +268,15 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 
 ## Quick Start
 
-> **🎯 FIRST STEP AFTER SETUP**: Open `docs/tools/scms-dashboard.html` in your browser!  
-> It contains your **Session Start & End Prompts** (copy-paste ready) plus all workflow instructions.  
-> Keep it open during development as your SCMS control center!
+> **🎯 FIRST STEP AFTER SETUP**: Launch the SCMS Dashboard App!  
+> ```bash
+> npm run dashboard:app
+> ```
+> The dashboard is your **SCMS control center** with:
+> - ✅ Session Start & End Prompts (copy-paste ready)
+> - ✅ Real-time cost tracking with integrated monitoring
+> - ✅ Visual charts and live metrics
+> - ✅ Complete workflow instructions
 
 ### 1. Install
 
@@ -342,24 +348,26 @@ Choose your AI assistant:
 
 **🚀 How to Open the Dashboard:**
 
-**Option A: With Automated Token Tracking (Recommended)**
-```powershell
-# Windows - Auto-starts checkpoint monitor + opens dashboard
-.\scripts\launch-dashboard-with-tracking.ps1
+**Option A: Electron App with Integrated Tracking (Recommended)**
+```bash
+npm run dashboard:app
 ```
+- ✅ All-in-one solution (monitoring + dashboard)
+- ✅ Real-time tracking (auto-refresh)
+- ✅ Visual interface with charts
+- ✅ Session controls (start/stop buttons)
 
-**Option B: Dashboard Only**
-```powershell
-# Windows
-.\launch-dashboard.ps1
+**Option B: Browser-Based (Fallback)**
+- Open `docs/tools/scms-dashboard.html` in your browser
+- Use when Electron not available
+- Requires manual monitoring setup
 
-# Unix/Mac
-./launch-dashboard.sh
+**Option C: Quick CLI Check**
+```bash
+npm run dashboard
 ```
-
-**Option C: Manually**
-- Simply open `docs/tools/scms-dashboard.html` in your browser
-- Bookmark it for quick access!
+- Terminal output for quick status checks
+- No real-time tracking
 
 **Option D: Terminal Dashboard (Between Sessions)**
 ```bash
@@ -388,10 +396,10 @@ npm run checkpoint:monitor
 4. Dashboard auto-refreshes every 5 seconds with live data!
 
 **Complete Workflow:**
-1. Start: `.\scripts\launch-dashboard-with-tracking.ps1`
+1. Start: `npm run dashboard:app`
 2. Click **"Start SCMS Session"** in dashboard
-3. Work in Cascade normally
-4. Copy conversation periodically (Ctrl+A, Ctrl+C) - auto-processed!
+3. Click **"Export Data"** when finished
+4. Paste prompt in Windsurf (Ctrl+V) - AI creates checkpoint automatically!
 5. Watch dashboard update with live token costs ✨
 6. Click **"End Session"** when done
 7. Click **"Export Data"** for analysis
@@ -426,8 +434,8 @@ AI: [validates and promotes when pattern reused]
 
 > **📋 Terminology Note**: In academic literature, this is called the **"Validation Commit Layer"** (emphasizing its role as a mandatory architectural component). In practical workflows, we call it **"Session Closure"** for simplicity.
 
-> **📋 GET THE LATEST PROMPTS**: Open the **SCMS Dashboard** (`docs/tools/scms-dashboard.html`)  
-> Scroll to **Step 4: Validation Commit Layer** for the complete, copy-paste ready prompt (v3.0)
+> **📋 GET THE LATEST PROMPTS**: Launch the **SCMS Dashboard App** (`npm run dashboard:app`)  
+> All session prompts are copy-paste ready in the dashboard UI (v3.0)
 
 **Quick Version** (see dashboard for full details):
 ```
