@@ -692,3 +692,34 @@ Write-Host "2. Configure memories in your IDE (see config/$IDE/SETUP.md)"
 Write-Host "3. Copy docs/scms/SCMS_STARTUP_PROMPT.md to your AI at each session"
 Write-Host "4. Start developing - SCMS builds automatically!"
 Write-Host ''
+
+# Optional: Launch Dashboard
+$launchChoice = Read-Host 'Do you want to install dependencies and launch the dashboard now? [y/N]'
+if ($launchChoice -match '^[yY]') {
+    Write-Host 'Installing dependencies...' -ForegroundColor Yellow
+    
+    # Check where package.json is (assume sibling of scripts dir)
+    $pkgPath = Join-Path $PSScriptRoot '..\package.json'
+    $pkgRoot = Join-Path $PSScriptRoot '..'
+    
+    if (Test-Path $pkgPath) {
+        Push-Location $pkgRoot
+        try {
+            npm install
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host 'Starting dashboard...' -ForegroundColor Green
+                npm run dashboard:app
+            } else {
+                Write-Host 'npm install failed. Please run "npm install" manually.' -ForegroundColor Red
+            }
+        } catch {
+            Write-Host "Error: $_" -ForegroundColor Red
+        } finally {
+            Pop-Location
+        }
+    } else {
+        Write-Host "Could not find package.json at $pkgPath" -ForegroundColor Red
+        Write-Host "Please navigate to the SCMS directory and run 'npm install' then 'npm run dashboard:app'" -ForegroundColor Gray
+    }
+}
+
