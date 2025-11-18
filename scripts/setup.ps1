@@ -720,25 +720,43 @@ $launchDashboard = Read-Host 'Launch dashboard now? [Y/n] (default: Y)'
 
 if ($launchDashboard -ne 'n' -and $launchDashboard -ne 'N') {
     Write-Host ''
-    Write-Host 'Launching SCMS Real Cost Tracking Dashboard...' -ForegroundColor Cyan
+    Write-Host 'Setting up SCMS Dashboard App...' -ForegroundColor Cyan
     
-    $dashboardPath = Join-Path $PSScriptRoot '..\docs\tools\scms-dashboard.html'
+    $projectRoot = Join-Path $PSScriptRoot '..'
+    $packageJson = Join-Path $projectRoot 'package.json'
     
-    if (Test-Path $dashboardPath) {
-        Start-Process $dashboardPath
-        Write-Host 'Dashboard opened in your browser!' -ForegroundColor Green
-        Write-Host ''
-        Write-Host 'Quick Start:' -ForegroundColor Cyan
-        Write-Host '   1. Click Start SCMS Session when using patterns' -ForegroundColor White
-        Write-Host '   2. Click Start Baseline Session for comparison' -ForegroundColor White
-        Write-Host '   3. Develop normally and watch real-time tracking' -ForegroundColor White
+    if (Test-Path $packageJson) {
+        Write-Host '   Installing dependencies...' -ForegroundColor Yellow
+        
+        # Navigate to project root and install dependencies
+        Push-Location $projectRoot
+        try {
+            npm install 2>&1 | Out-Null
+            Write-Host '   Dependencies installed!' -ForegroundColor Green
+            Write-Host ''
+            Write-Host 'Launching SCMS Dashboard App (Electron)...' -ForegroundColor Cyan
+            
+            # Launch Electron app
+            Start-Process -FilePath "npm" -ArgumentList "run", "dashboard:app" -WorkingDirectory $projectRoot
+            
+            Write-Host ''
+            Write-Host 'Dashboard app launched!' -ForegroundColor Green
+            Write-Host ''
+            Write-Host 'Quick Start:' -ForegroundColor Cyan
+            Write-Host '   1. Click "Start SCMS Session" when using patterns' -ForegroundColor White
+            Write-Host '   2. Click "Start Baseline Session" for comparison' -ForegroundColor White
+            Write-Host '   3. Click "Export Data" when finished - checkpoint auto-generated!' -ForegroundColor White
+        }
+        finally {
+            Pop-Location
+        }
     } else {
-        Write-Host 'Dashboard not found at expected location' -ForegroundColor Yellow
-        Write-Host '   You can launch it manually: .\launch-dashboard.ps1' -ForegroundColor Gray
+        Write-Host 'Setup files not found!' -ForegroundColor Yellow
+        Write-Host '   You can launch it manually: npm run dashboard:app' -ForegroundColor Gray
     }
 } else {
     Write-Host ''
-    Write-Host 'You can launch the dashboard anytime with: .\launch-dashboard.ps1' -ForegroundColor Gray
+    Write-Host 'You can launch the dashboard anytime with: npm run dashboard:app' -ForegroundColor Gray
 }
 
 Write-Host ''

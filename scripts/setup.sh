@@ -306,33 +306,39 @@ read -p "Launch dashboard now? [Y/n] (default: Y): " launch_dashboard
 
 if [ "$launch_dashboard" != "n" ] && [ "$launch_dashboard" != "N" ]; then
     echo ""
-    echo "🚀 Launching SCMS Real Cost Tracking Dashboard..."
+    echo "⚙️  Setting up SCMS Dashboard App..."
     
-    DASHBOARD_PATH="$SCRIPT_DIR/../docs/tools/scms-dashboard.html"
+    PROJECT_ROOT="$SCRIPT_DIR/.."
+    PACKAGE_JSON="$PROJECT_ROOT/package.json"
     
-    if [ -f "$DASHBOARD_PATH" ]; then
-        # Open in default browser (cross-platform)
-        if [[ "$OSTYPE" == "darwin"* ]]; then
-            open "$DASHBOARD_PATH"
-        elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            xdg-open "$DASHBOARD_PATH" 2>/dev/null || sensible-browser "$DASHBOARD_PATH" 2>/dev/null
-        else
-            echo "⚠️  Please open manually: $DASHBOARD_PATH"
-        fi
+    if [ -f "$PACKAGE_JSON" ]; then
+        echo "   Installing dependencies..."
         
-        echo "✅ Dashboard opened in your browser!"
+        # Navigate to project root and install dependencies
+        cd "$PROJECT_ROOT"
+        npm install > /dev/null 2>&1
+        
+        echo "   ✅ Dependencies installed!"
+        echo ""
+        echo "🚀 Launching SCMS Dashboard App (Electron)..."
+        
+        # Launch Electron app in background
+        npm run dashboard:app &
+        
+        echo ""
+        echo "✅ Dashboard app launched!"
         echo ""
         echo "💡 Quick Start:"
         echo "   1. Click 'Start SCMS Session' when using patterns"
         echo "   2. Click 'Start Baseline Session' for comparison"
-        echo "   3. Develop normally and watch real-time tracking"
+        echo "   3. Click 'Export Data' when finished - checkpoint auto-generated!"
     else
-        echo "⚠️  Dashboard not found at expected location"
-        echo "   You can launch it manually: ./launch-dashboard.sh"
+        echo "⚠️  Setup files not found!"
+        echo "   You can launch it manually: npm run dashboard:app"
     fi
 else
     echo ""
-    echo "You can launch the dashboard anytime with: ./launch-dashboard.sh"
+    echo "You can launch the dashboard anytime with: npm run dashboard:app"
 fi
 
 echo ""
