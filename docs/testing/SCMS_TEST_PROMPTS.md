@@ -1,6 +1,8 @@
 # SCMS Economic Validation Test Prompts
 
 **Purpose:** 50 realistic development prompts for comparing baseline vs SCMS-activated performance
+**Theme:** "Star Merchant" - Single-player Space Trading Game (CLI/Text-based)
+**Focus:** Pure logic patterns, architectural structuring, state management (No external DB/Auth/Redis)
 
 **Use Case:** Run these prompts in two identical projects:
 1. **Baseline:** No SCMS (standard AI assistant)
@@ -21,11 +23,11 @@
 
 1. **Create two identical project folders:**
    ```bash
-   mkdir baseline-test
-   mkdir scms-test
+   mkdir baseline-star-merchant
+   mkdir scms-star-merchant
    ```
 
-2. **Baseline folder:** Empty project or minimal setup
+2. **Baseline folder:** Empty project
 3. **SCMS folder:** Run SCMS setup script
 4. **Both:** Start economic dashboard tracking
 
@@ -37,514 +39,438 @@
 4. Export data after each session
 5. Compare results at end
 
-### **Analysis:**
-
-- **Token Efficiency:** SCMS should use 30-50% fewer tokens
-- **Pattern Reuse:** SCMS should cite patterns 30-50% of time
-- **Rework Rate:** SCMS should require fewer corrections
-- **Time:** SCMS should be faster after initial patterns established
-
 ---
 
 ## 🎯 Test Prompt Categories
 
-- **Initial Features (1-10):** Fresh implementations
-- **Related Features (11-20):** Similar patterns emerge
-- **Refactoring (21-30):** Pattern consolidation opportunities
-- **Bug Fixes (31-40):** Pattern debugging
-- **Advanced Features (41-50):** Complex pattern combinations
+- **Core Systems (1-10):** Engine, Loop, State
+- **Game Features (11-20):** Gameplay logic (Trading, Travel)
+- **Architecture Refactoring (21-30):** Pattern consolidation (ECS, Events)
+- **Debugging & Optimization (31-40):** Fixes and Perf
+- **Advanced Systems (41-50):** Simulation, AI, Quests
 
 ---
 
 ## 📝 The 50 Test Prompts
 
-### **Category 1: Initial Features (Building Foundation)**
+### **Category 1: Core Systems (Foundation)**
 
-#### **Prompt 1: User Authentication**
+#### **Prompt 1: Project Setup & Game Loop**
 ```
-Create a user authentication system with:
-- User registration (email + password)
-- Login with JWT tokens
-- Password hashing with bcrypt
-- Input validation
-- Error handling for duplicate emails
-```
-
-#### **Prompt 2: Database Setup**
-```
-Set up a database connection and schema for:
-- Users table (id, email, password_hash, created_at)
-- Connection pooling
-- Migration system
-- Environment-based configuration
-- Error handling for connection failures
+Initialize a TypeScript project for a text-based space trading game. 
+Create a `Game` class with a main loop that:
+- Accepts text input from the user (CLI)
+- Updates game state
+- Renders text output
+- Handles a clear 'exit' command
+Use standard Node.js readline or similar.
 ```
 
-#### **Prompt 3: API Endpoints**
+#### **Prompt 2: Player State**
 ```
-Create REST API endpoints for:
-- POST /api/auth/register
-- POST /api/auth/login
-- GET /api/auth/profile (authenticated)
-- Proper HTTP status codes
-- Request/response validation
-```
-
-#### **Prompt 4: Logging System**
-```
-Implement a logging system with:
-- Different log levels (debug, info, warn, error)
-- File rotation
-- Structured log format (JSON)
-- Request ID tracking
-- Sensitive data masking
+Implement a `Player` class to track:
+- Name and Rank
+- Credits (money)
+- Current Location (System/Planet)
+- Ship (start with a basic shuttle)
+- Cargo hold (capacity vs used)
+Add methods to view status.
 ```
 
-#### **Prompt 5: Error Handling Middleware**
+#### **Prompt 3: Universe Generation (Basic)**
 ```
-Create centralized error handling:
-- Custom error classes
-- Express error middleware
-- Consistent error response format
-- Error logging integration
-- Development vs production error messages
-```
-
-#### **Prompt 6: Input Validation**
-```
-Add comprehensive input validation for:
-- Email format validation
-- Password strength requirements
-- Request body sanitization
-- SQL injection prevention
-- XSS protection
+Create a `Universe` generator that:
+- Creates a fixed list of 5 Star Systems
+- Each System has 1-3 Planets
+- Each Planet has a name, type (Agri, Tech, Mining), and economy rating
+- Store this data in memory for now.
 ```
 
-#### **Prompt 7: Rate Limiting**
+#### **Prompt 4: Navigation Command**
 ```
-Implement rate limiting to prevent abuse:
-- Limit login attempts (5 per 15 minutes)
-- API endpoint rate limits
-- IP-based tracking
-- Redis-backed storage (or memory for testing)
-- Clear error messages when limited
-```
-
-#### **Prompt 8: Email Service**
-```
-Create email service for:
-- Welcome emails on registration
-- Password reset emails
-- Email templates (HTML + plain text)
-- SMTP configuration
-- Queue system for async sending
+Implement a `navigate` command:
+- List available destinations from current location
+- Allow player to travel to a new system/planet
+- Deduct fuel/time (simple cost)
+- Update player location state
 ```
 
-#### **Prompt 9: Password Reset Flow**
+#### **Prompt 5: Market System (Basic)**
 ```
-Implement password reset functionality:
-- Generate secure reset tokens
-- Email reset link
-- Token expiration (1 hour)
-- Validate token and update password
-- Prevent token reuse
+Create a `Market` class for each planet:
+- Generate prices for 5 goods (Food, Ore, Tech, luxury, Fuel) based on planet type
+- Agri planets sell Food cheap, buy Tech high
+- Tech planets sell Tech cheap, buy Ore high
+- Display market prices to player.
 ```
 
-#### **Prompt 10: User Profile Management**
+#### **Prompt 6: Buy/Sell Logic**
 ```
-Add user profile features:
-- GET /api/profile (view own profile)
-- PUT /api/profile (update name, bio)
-- Profile picture upload
-- Input validation
-- Authorization checks
+Implement `buy` and `sell` commands:
+- Check player credits vs cost
+- Check cargo capacity
+- Update player inventory and credits
+- Validate item existence and quantity
+- Show success/failure messages
+```
+
+#### **Prompt 7: Save/Load System (JSON)**
+```
+Implement persistence:
+- Save full game state to `savegame.json`
+- Load game state from file on startup if exists
+- Handle file errors (missing/corrupt)
+- Create a `GameState` interface for type safety
+```
+
+#### **Prompt 8: Ship Upgrades**
+```
+Add a Shipyard system:
+- Allow buying better ships (more cargo, hull, speed)
+- Allow buying upgrades (Fuel tank, Scanner)
+- Validates credits and applies changes to Player Ship state.
+```
+
+#### **Prompt 9: Random Events (Basic)**
+```
+Implement a random event system during travel:
+- 10% chance of Pirate Attack (lose credits)
+- 10% chance of Finding Derelict (gain credits)
+- Display event text and update state before arrival.
+```
+
+#### **Prompt 10: High Score System**
+```
+Create a local high score tracker:
+- Track highest credits earned in a run
+- Save to `highscores.json`
+- Display top 5 scores on game exit or 'scores' command.
 ```
 
 ---
 
-### **Category 2: Related Features (Pattern Reuse Opportunities)**
+### **Category 2: Game Features (Pattern Reuse)**
 
-#### **Prompt 11: Admin Authentication**
+#### **Prompt 11: Enhanced Economy**
 ```
-Add admin user functionality:
-- Admin flag in users table
-- Admin-only login endpoint
-- Role-based middleware
-- Admin dashboard access
-- Audit logging for admin actions
+Refactor Market Generation to be dynamic:
+- Prices fluctuate slightly each turn (random variance)
+- Event-driven price spikes (e.g., "Famine" event doubles Food price)
+- Reuses the `Random` helper pattern established earlier.
 ```
 
-#### **Prompt 12: Blog Post CRUD**
+#### **Prompt 12: Fuel System**
 ```
-Create blog post management:
-- Create, read, update, delete posts
-- Author association (foreign key to users)
-- Published/draft status
-- Slug generation from titles
-- Markdown support
-```
-
-#### **Prompt 13: Comment System**
-```
-Add comments to blog posts:
-- Create/read/delete comments
-- Nested replies (one level)
-- Author association
-- Spam detection (basic keyword filtering)
-- Moderation flags
+Implement a proper Fuel mechanic:
+- Each system jump costs Fuel
+- Player must buy Fuel at markets
+- Game Over if stranded without Fuel
+- Reuses `Inventory` logic for Fuel management.
 ```
 
-#### **Prompt 14: Search Functionality**
+#### **Prompt 13: Combat System (Turn-based)**
 ```
-Implement search for blog posts:
-- Full-text search in title and content
-- Filter by author
-- Filter by date range
-- Pagination of results
-- Relevance sorting
+Expand Pirate Attacks into a mini-game:
+- Turn-based choices: Attack, Flee, Surrender Cargo
+- Simple RNG resolution based on Ship stats (Hull/Weapons)
+- Damage persistence (Repair needed at Shipyard)
 ```
 
-#### **Prompt 15: Image Upload Service**
+#### **Prompt 14: Mission System**
 ```
-Create image upload system:
-- File type validation (jpg, png, gif)
-- Size limits (5MB max)
-- S3 or local storage
-- Thumbnail generation
-- Secure filename handling
-```
-
-#### **Prompt 16: Category System**
-```
-Add categories to blog posts:
-- Categories table
-- Many-to-many relationship with posts
-- CRUD operations for categories
-- Filter posts by category
-- Category usage counts
+Create a Mission Board at planets:
+- Generate delivery missions (Transport X to Planet Y)
+- Reward credits upon completion
+- Time limit (turns)
+- Track active missions in Player state.
 ```
 
-#### **Prompt 17: Like/Favorite System**
+#### **Prompt 15: Mining Mechanic**
 ```
-Implement post favoriting:
-- User can like/unlike posts
-- Like count on posts
-- User's favorite posts list
-- Prevent duplicate likes
-- Unlike functionality
-```
-
-#### **Prompt 18: Notification System**
-```
-Create notification system:
-- Notify on new comments
-- Notify on post likes
-- Mark as read/unread
-- List user notifications
-- Push to database queue
+Add a 'mine' command for Asteroid Belts:
+- Minable resource (Ore, Gems)
+- Requires Mining Laser upgrade
+- Yield depends on random chance + equipment level
+- Adds to Cargo (reuses Cargo logic).
 ```
 
-#### **Prompt 19: API Pagination**
+#### **Prompt 16: Reputation System**
 ```
-Add pagination to all list endpoints:
-- Page and limit query parameters
-- Total count in response
-- Next/previous page links
-- Consistent pagination format
-- Default values (page=1, limit=10)
+Track Reputation with different Factions:
+- Trading/Missions affects Faction standing
+- High rep = Better prices, unique ships
+- Low rep = Hostile patrols
+- Stored in Player State map.
 ```
 
-#### **Prompt 20: API Filtering**
+#### **Prompt 17: Crafting System**
 ```
-Implement advanced filtering:
-- Filter posts by multiple criteria
-- Sort by different fields
-- Combine filters with AND/OR logic
-- Validate filter parameters
-- Optimize database queries
+Allow players to craft items:
+- Combine raw resources (Ore + Chem) -> Product (Alloy)
+- Recipes defined in config
+- Requires 'Factory' upgrade
+- Reuses Inventory add/remove logic.
+```
+
+#### **Prompt 18: Banking System**
+```
+Add a Bank feature:
+- Deposit credits (safe from pirates)
+- Withdraw credits
+- Interest accrual every X turns
+- Loan system (must repay or Reputation drops).
+```
+
+#### **Prompt 19: Encyclopedia/Help System**
+```
+Implement a detailed 'help' command:
+- Lookup info on Items, Planets, Ships
+- Dynamic text generation based on game data
+- Pagination for long lists (reuses CLI display logic).
+```
+
+#### **Prompt 20: Achievement System**
+```
+Track specific milestones:
+- "Earn 1M Credits", "Visit 10 Systems", "Destroy 5 Pirates"
+- Unlock special titles or bonuses
+- Notification when achieved (Observer pattern).
 ```
 
 ---
 
-### **Category 3: Refactoring (Pattern Consolidation)**
+### **Category 3: Architecture Refactoring (Pattern Consolidation)**
 
-#### **Prompt 21: Extract Validation Helpers**
+#### **Prompt 21: Command Pattern**
 ```
-Refactor validation code:
-- Create reusable validation functions
-- Centralize common patterns
-- Use validator middleware
-- Reduce code duplication
-- Maintain backward compatibility
+Refactor input handling to use the Command Pattern:
+- Abstract each action (Buy, Sell, Navigate) into Command classes
+- Centralize parsing and execution
+- Enable 'Undo' functionality for last action (if applicable).
 ```
 
-#### **Prompt 22: Database Query Builder**
+#### **Prompt 22: Event Bus**
 ```
-Create a query builder utility:
-- Abstract common query patterns
-- Support filtering, sorting, pagination
-- Type-safe query construction
-- Prevent SQL injection
-- Reuse across all models
+Implement a global Event Bus (Pub/Sub):
+- Decouple systems (Combat shouldn't know about GUI)
+- Emit events: `PlayerMoved`, `CreditsChanged`, `CombatStarted`
+- Listeners update UI/Stats independently.
 ```
 
-#### **Prompt 23: Standardize Error Responses**
+#### **Prompt 23: Entity-Component-System (ECS) Lite**
 ```
-Refactor all error handling to use:
-- Consistent error object shape
-- HTTP status code mapping
-- Error code constants
-- Validation error formatting
-- Update all endpoints
-```
-
-#### **Prompt 24: Extract Auth Logic**
-```
-Consolidate authentication code:
-- Create auth service class
-- Token generation/validation helpers
-- Password hashing utilities
-- Centralize JWT configuration
-- Remove duplicate code
+Refactor Game Objects to use Composition over Inheritance:
+- Entities: Player, Enemy, Planet
+- Components: Position, Inventory, Stats, Renderable
+- Systems: MovementSystem, MarketSystem
+- Simplifies adding new features.
 ```
 
-#### **Prompt 25: Service Layer Pattern**
+#### **Prompt 24: State Machine**
 ```
-Introduce service layer:
-- Separate business logic from routes
-- Create service classes for each resource
-- Move database calls to services
-- Improve testability
-- Maintain single responsibility
+Implement a Finite State Machine for Game Flow:
+- States: `MainMenu`, `Exploring`, `Docked`, `Combat`, `GameOver`
+- Define valid transitions
+- Clean up the main loop logic.
 ```
 
-#### **Prompt 26: Repository Pattern**
+#### **Prompt 25: Factory Pattern for Generation**
 ```
-Implement repository pattern:
-- Abstract database operations
-- Create repositories for each model
-- Standardize CRUD operations
-- Support transaction handling
-- Easier to swap databases
+Standardize object creation:
+- `PlanetFactory`, `ShipFactory`, `MissionFactory`
+- Centralized config for generation rules
+- Consistent ID generation and initialization.
 ```
 
-#### **Prompt 27: DTO Pattern**
+#### **Prompt 26: Service Locator**
 ```
-Add Data Transfer Objects:
-- Define request/response shapes
-- Validation in DTOs
-- Transform database models to DTOs
-- Hide sensitive fields
-- Versioning support
+Create a Service Locator or Dependency Injection container:
+- Manage singletons (GameState, EventBus, RNG)
+- Remove global variables
+- Improve testability.
 ```
 
-#### **Prompt 28: Config Management**
+#### **Prompt 27: UI Manager (CLI)**
 ```
-Centralize configuration:
-- Environment variable validation
-- Type-safe config object
-- Default values
-- Config documentation
-- Fail fast on missing required config
-```
-
-#### **Prompt 29: Test Utilities**
-```
-Create testing helpers:
-- Mock user factory
-- Database seeding utilities
-- API test helpers
-- Common assertions
-- Cleanup utilities
+Abstract the Console output:
+- Create `UIManager` to handle rendering
+- Support colored text (using ANSI codes)
+- Standardize headers, lists, tables
+- Decouple logic from `console.log`.
 ```
 
-#### **Prompt 30: API Documentation**
+#### **Prompt 28: Data Repository Pattern**
 ```
-Add comprehensive API docs:
-- OpenAPI/Swagger specification
-- Endpoint descriptions
-- Request/response examples
-- Error code documentation
-- Interactive API explorer
+Abstract Data Access:
+- Separate JSON file I/O from Game Logic
+- Create `Repository` interfaces for Saves, HighScores, Config
+- Enable easy swapping of storage method later.
+```
+
+#### **Prompt 29: Configuration Manager**
+```
+Centralize Magic Numbers:
+- Move all game balance constants (prices, probabilities, stats) to `config.json`
+- Load at startup
+- Allow modding by editing the file.
+```
+
+#### **Prompt 30: Logger Utility**
+```
+Add a robust Logger:
+- Log to file `game.log` for debugging
+- Log levels (INFO, DEBUG, ERROR)
+- Track game flow events for replay analysis.
 ```
 
 ---
 
-### **Category 4: Bug Fixes (Pattern Debugging)**
+### **Category 4: Debugging & Optimization**
 
-#### **Prompt 31: Fix Race Condition**
+#### **Prompt 31: Fix Save Corruption**
 ```
-There's a race condition in the like system where users can like a post
-multiple times if they click rapidly. Fix this with proper database
-constraints and optimistic locking.
-```
-
-#### **Prompt 32: Memory Leak in Email Queue**
-```
-The email queue is growing indefinitely and causing memory issues.
-Implement proper cleanup of processed jobs and add monitoring to
-detect queue buildup.
+The save file sometimes corrupts if the game crashes during write.
+Implement atomic writes (write to temp, then rename) to prevent this.
+Also add checksum validation.
 ```
 
-#### **Prompt 33: SQL Injection Vulnerability**
+#### **Prompt 32: Memory Leak in Event Bus**
 ```
-Security audit found SQL injection risk in the search endpoint.
-Refactor to use parameterized queries and validate all user input
-properly. Add tests to prevent regression.
-```
-
-#### **Prompt 34: JWT Token Expiry Issue**
-```
-Users are getting logged out unexpectedly. Debug the JWT token
-expiry logic, implement refresh tokens, and add proper client-side
-token renewal before expiry.
+Listeners are not being removed when entities are destroyed, causing a leak.
+Implement `unsubscribe` logic and auto-cleanup for destroyed entities.
 ```
 
-#### **Prompt 35: Pagination Edge Cases**
+#### **Prompt 33: Performance Fix (Pathfinding)**
 ```
-Pagination breaks when there are exactly N items (where N is the
-page size). Fix off-by-one errors and add tests for edge cases:
-empty results, single page, exact multiple of page size.
-```
-
-#### **Prompt 36: File Upload Size Limit**
-```
-Large file uploads are timing out. Implement chunked uploads,
-add progress tracking, properly handle upload interruptions,
-and add resume capability.
+The auto-pilot (if added) pathfinding is slow on large maps.
+Optimize the route calculation (A* or Dijkstra) and cache results.
 ```
 
-#### **Prompt 37: Cascading Delete Issue**
+#### **Prompt 34: Negative Credit Glitch**
 ```
-Deleting a user leaves orphaned posts and comments. Implement
-proper cascading deletes or set to null strategies. Add soft
-delete option for audit trail.
-```
-
-#### **Prompt 38: N+1 Query Problem**
-```
-Loading a list of posts with authors is very slow. Fix the N+1
-query issue using proper joins/eager loading. Add query
-performance monitoring.
+Players can buy items even with 0 credits if they buy negative amounts.
+Fix input validation in the Buy/Sell commands to strictly disallow negative numbers.
 ```
 
-#### **Prompt 39: CORS Configuration**
+#### **Prompt 35: Inventory Sync Bug**
 ```
-Frontend can't access API from localhost:3000. Configure CORS
-properly for development and production, whitelist allowed
-origins, handle preflight requests.
+Cargo capacity checks fail when swapping items rapidly.
+Fix the race condition/logic error in the Inventory `add/remove` methods.
 ```
 
-#### **Prompt 40: Timezone Handling**
+#### **Prompt 36: RNG Bias**
 ```
-Created_at timestamps are displaying in different timezones.
-Standardize all dates to UTC in database, add timezone support
-to API responses, document expected formats.
+Players report Pirates appear too often.
+Audit the RNG distribution. Implement a 'deck bag' or 'entropy' system to smooth out random events.
+```
+
+#### **Prompt 37: Circular Dependency**
+```
+`Player` depends on `Ship`, which depends on `Player` (owner).
+Break this circular dependency using IDs or the Event Bus.
+```
+
+#### **Prompt 38: Slow Startup**
+```
+Universe generation takes too long.
+Implement lazy loading for Systems (generate only when visited) or use a seeded random generator for instant deterministic procedural generation.
+```
+
+#### **Prompt 39: UI Flicker**
+```
+The console clears and redraws too frequently, causing flicker.
+Optimize the `UIManager` to only redraw changed sections or use a buffer.
+```
+
+#### **Prompt 40: Quest Logic Error**
+```
+Delivery quests don't complete if you have MORE than the required amount.
+Fix the condition `==` to `>=` and ensure it only removes the required amount.
 ```
 
 ---
 
-### **Category 5: Advanced Features (Complex Pattern Combinations)**
+### **Category 5: Advanced Systems (Complex Combinations)**
 
-#### **Prompt 41: Real-time Notifications**
+#### **Prompt 41: Market Simulation AI**
 ```
-Add WebSocket support for real-time notifications:
-- WebSocket server setup
-- Authentication over WebSocket
-- Broadcast notifications to connected users
-- Reconnection handling
-- Fallback to polling for unsupported clients
+Implement AI Traders:
+- NPC ships travel between planets
+- They buy low/sell high, actually affecting Market supply/demand
+- Market prices update based on actual stock levels.
 ```
 
-#### **Prompt 42: Full-Text Search with Elasticsearch**
+#### **Prompt 42: Procedural Factions**
 ```
-Integrate Elasticsearch for advanced search:
-- Index blog posts and comments
-- Support fuzzy matching
-- Faceted search (filter by multiple criteria)
-- Search suggestions/autocomplete
-- Sync database changes to index
+Generate Factions procedurally:
+- Random Names, Colors, Ethos (Aggressive, Peaceful)
+- Dynamic territory control (Systems flip ownership based on influence)
+- Conflicts generate War zones.
 ```
 
-#### **Prompt 43: Caching Layer**
+#### **Prompt 43: Dynamic Story Engine**
 ```
-Implement Redis caching:
-- Cache frequently accessed posts
-- Cache user profiles
-- Cache-aside pattern
-- TTL configuration
-- Cache invalidation on updates
+Create a Story Director:
+- Tracks player actions (Peaceful vs Pirate)
+- Spawns 'Boss' enemies or 'Hero' allies based on reputation
+- Generates narrative arcs (e.g., "The Pirate King Hunt").
 ```
 
-#### **Prompt 44: Analytics Tracking**
+#### **Prompt 44: Plugin System**
 ```
-Add analytics for blog posts:
-- Track view counts
-- Track unique visitors
-- Track read time
-- Popular posts dashboard
-- Time-series data storage
+Add support for user scripts:
+- Load `.js` files from a `mods/` folder
+- Expose a safe API for mods to add Items, Ships, or Events
+- Sandboxing/Error handling for bad mods.
 ```
 
-#### **Prompt 45: GraphQL API**
+#### **Prompt 45: Analytics Dashboard (Internal)**
 ```
-Add GraphQL endpoint alongside REST:
-- Schema definition for all types
-- Resolvers for queries and mutations
-- Authentication/authorization
-- DataLoader for N+1 prevention
-- GraphQL playground
+Track player behavior for balance:
+- Log 'Average Credits per Turn', 'Most Bought Item', 'Death Locations'
+- Export to CSV for analysis
+- Use this to visualize game balance.
 ```
 
-#### **Prompt 46: Multi-tenant Architecture**
+#### **Prompt 46: Networking (Local Multiplayer)**
 ```
-Convert to multi-tenant system:
-- Tenant isolation in database
-- Tenant detection from subdomain/header
-- Tenant-scoped queries
-- Separate file storage per tenant
-- Admin tenant management
+Add a simple socket server (optional):
+- Allow a second CLI client to connect
+- Shared Universe state
+- Trade or Fight between players.
 ```
 
-#### **Prompt 47: Export/Import System**
+#### **Prompt 47: Advanced Combat AI**
 ```
-Add data export and import:
-- Export user data to JSON/CSV
-- Import bulk users from CSV
-- Validation during import
-- Progress tracking for large imports
-- Error handling and rollback
+Upgrade Enemy AI:
+- Enemies evaluate threat (Player Shield/Weapon)
+- They use items (Repair Kits, Boosters)
+- They coordinate (if in groups) to focus fire.
 ```
 
-#### **Prompt 48: Automated Backups**
+#### **Prompt 48: Stock Market**
 ```
-Implement automated backup system:
-- Scheduled database backups
-- File storage backups
-- Backup rotation (keep last 7 days)
-- Backup to S3/cloud storage
-- Restore functionality and testing
-```
-
-#### **Prompt 49: API Versioning**
-```
-Implement API versioning strategy:
-- Version in URL path (/v1/, /v2/)
-- Support multiple versions simultaneously
-- Deprecation warnings
-- Migration guide for clients
-- Version-specific documentation
+Add a Corporate Stock system:
+- Companies exist independently of Planets
+- Player can buy shares
+- Company value depends on their AI fleet performance
+- Dividends paid periodically.
 ```
 
-#### **Prompt 50: Performance Monitoring**
+#### **Prompt 49: Galaxy Map Visualization**
 ```
-Add comprehensive monitoring:
-- Request/response time tracking
-- Database query performance
-- Error rate monitoring
-- Custom business metrics
-- Integration with monitoring service (Datadog/New Relic)
-- Alerting for critical issues
+Generate a visual map:
+- Render the universe layout to an ASCII grid or HTML file
+- Show visited nodes, current location, and trade routes.
+```
+
+#### **Prompt 50: "The End" Scenario**
+```
+Implement a Win Condition:
+- e.g., Construct a "Dyson Sphere"
+- Requires massive resources from all economy sectors
+- Triggers a final "Defend the Construction" wave event
+- Roll credits!
 ```
 
 ---
@@ -553,133 +479,30 @@ Add comprehensive monitoring:
 
 ### **Patterns That Should Emerge:**
 
-1. **CRUD Operations** (prompts 1-3, 12, 16)
-   - Should be abstracted after 3rd use
-   - Database operations standardized
-   - Validation patterns reused
-
-2. **Authentication/Authorization** (prompts 1, 9, 11, 41)
-   - JWT handling consolidated
-   - Middleware reused
-   - Token patterns standardized
-
-3. **Error Handling** (prompts 5, 23, 31-40)
-   - Custom error classes
-   - Consistent response format
-   - Logging integration
-
-4. **Input Validation** (prompts 6, 21, 27)
-   - Validation helpers
-   - Sanitization patterns
-   - Error message format
-
-5. **Database Queries** (prompts 2, 22, 26, 38)
-   - Query builder pattern
-   - Connection pooling
-   - Transaction handling
-
-6. **API Patterns** (prompts 3, 19, 20, 30)
-   - Pagination
-   - Filtering
-   - Sorting
-   - Response formatting
-
-7. **File Operations** (prompts 15, 36, 48)
-   - Upload handling
-   - Storage abstraction
-   - Validation patterns
-
-8. **Testing Patterns** (prompts 29, 35)
-   - Mock factories
-   - Test utilities
-   - Assertion helpers
+1.  **Command Pattern**: Handling diverse user inputs consistently.
+2.  **Observer/PubSub**: Decoupling UI, Logic, and Achievements.
+3.  **State Machine**: Managing complex game states (Combat vs Trading).
+4.  **Factory/Builder**: Generating complex procedural content.
+5.  **Repository**: Abstracting file I/O.
+6.  **Singleton**: Managing global game state (carefully).
+7.  **Strategy**: Defining different AI behaviors.
 
 ### **SCMS Benefits Timeline:**
 
-- **Prompts 1-10:** SCMS overhead (creating patterns)
-- **Prompts 11-20:** SCMS starts showing value (pattern reuse)
-- **Prompts 21-30:** SCMS major advantage (refactoring guided by patterns)
-- **Prompts 31-40:** SCMS debugging advantage (pattern-based fixes)
-- **Prompts 41-50:** SCMS compound value (complex pattern combinations)
-
-**Expected crossover point:** Around prompt 15-20 where SCMS efficiency surpasses baseline
+-   **Prompts 1-10:** Creating the core Loop and State (High L0 activity).
+-   **Prompts 11-20:** Reusing 'Inventory', 'Math', and 'UI' patterns.
+-   **Prompts 21-30:** Heavy Refactoring - SCMS should shine here by retrieving architectural patterns.
+-   **Prompts 31-40:** Debugging - SCMS recalls specific logic implementations.
+-   **Prompts 41-50:** Complex synthesis of all previous systems.
 
 ---
 
 ## 📈 Tracking Sheet Template
 
-Use this to track results:
+| Prompt # | Task | Baseline Tokens | SCMS Tokens | Savings | Patterns Cited |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | Game Loop | 2,500 | 2,400 | 4% | 0 |
+| 2 | Player Class | 1,800 | 1,200 | 33% | 1 |
+| ... | ... | ... | ... | ... | ... |
 
-| Prompt # | Task | Baseline Tokens | SCMS Tokens | Savings | Patterns Cited | Rework Needed |
-|----------|------|----------------|-------------|---------|----------------|---------------|
-| 1 | User Auth | 5,234 | 5,890 | -12% | 0 | None |
-| 2 | Database | 3,456 | 3,234 | +6% | 0 | None |
-| ... | ... | ... | ... | ... | ... | ... |
-| **Total** | | **150,000** | **105,000** | **30%** | **45** | **3 vs 12** |
-
----
-
-## 🎯 Success Criteria
-
-**SCMS is validated if:**
-
-- ✅ Overall token savings: 25-40%
-- ✅ Pattern citation rate: 30-50%
-- ✅ Rework reduction: 50%+
-- ✅ Time to completion: 20-30% faster (after initial patterns)
-- ✅ Code quality: Equal or better
-- ✅ Consistency: Higher in SCMS version
-
----
-
-## 💡 Testing Tips
-
-### **For Baseline:**
-- Track all manual repetition of code patterns
-- Note how many times you re-explain similar concepts
-- Count corrections and iterations
-
-### **For SCMS:**
-- Note pattern promotions (L0 → L1)
-- Track pattern retrievals
-- Observe refactoring suggestions based on patterns
-- Monitor when AI cites existing patterns
-
-### **Documentation:**
-- Keep session notes for both
-- Export dashboard data after each session
-- Screenshot key metrics
-- Note qualitative observations
-
----
-
-## 🚀 Quick Start
-
-```bash
-# Baseline test
-mkdir baseline-test && cd baseline-test
-# Start dashboard tracking
-# Run prompts 1-50, track tokens
-
-# SCMS test  
-mkdir scms-test && cd scms-test
-git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
-cd docs/scms && npm install && npm run dashboard:app
-# Start SCMS session
-# Run same prompts 1-50, track tokens
-
-# Compare results!
-```
-
----
-
-## 📚 Related Documentation
-
-- **Economic Dashboard:** Track real-time metrics
-- **Session Closure:** Analyze pattern validation
-- **INDEX.md:** Review pattern emergence
-- **WORKSPACE_RULES.md:** See promoted patterns
-
----
-
-**These 50 prompts provide comprehensive validation of SCMS economic benefits in a realistic development scenario!** 🎯
+**Ready to launch Star Merchant!** 🚀
