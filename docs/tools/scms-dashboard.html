@@ -1089,27 +1089,31 @@ npm run checkpoint:monitor
 # Terminal 2: Open this dashboard in browser</div>
             
             <p style="margin-top: 15px; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 5px;">
-                <strong>⚡ What the monitor does:</strong> Watches your clipboard for Cascade checkpoint data (from conversation copies) and automatically extracts token usage, calculates costs, and updates this dashboard in real-time!
+                <strong>⚡ How automated tracking works:</strong> Click "Start SCMS Session" to begin tracking. Work normally in Windsurf. When ready to export, the dashboard will prompt you to create a checkpoint file, then automatically process and export your session data with real token costs!
             </p>
             
             <h3><span class="step-number">4</span> Use This Dashboard During Development</h3>
             <ol>
                 <li><strong>Click "Start SCMS Session"</strong> when you begin working with SCMS patterns</li>
-                <li><strong>Work in Cascade normally</strong> - develop your features</li>
-                <li><strong>Capture checkpoints</strong> (when convenient, every 15-30 min):
+                <li><strong>Work in Windsurf normally</strong> - develop your features
                     <ul style="margin-top: 8px;">
-                        <li>In Cascade: <code>Ctrl+A</code> (select all conversation)</li>
-                        <li>In Cascade: <code>Ctrl+C</code> (copy)</li>
-                        <li>Monitor auto-processes and updates dashboard! ✨</li>
+                        <li>Session timestamps are tracked automatically</li>
+                        <li>No need to manually capture checkpoints during development</li>
                     </ul>
                 </li>
-                <li><strong>Watch live updates</strong> - dashboard refreshes every 5 seconds</li>
                 <li><strong>Click "End Session"</strong> when you finish a work segment</li>
-                <li><strong>Export data</strong> for business case validation and statistical analysis</li>
+                <li><strong>Click "Export Data"</strong> when ready:
+                    <ul style="margin-top: 8px;">
+                        <li>Dashboard generates a checkpoint creation prompt</li>
+                        <li>Paste it in Windsurf (AI extracts token usage automatically)</li>
+                        <li>After AI creates checkpoint file, click OK to export</li>
+                        <li>Session data downloads with real cost analysis!</li>
+                    </ul>
+                </li>
             </ol>
             
             <p style="margin-top: 15px; padding: 15px; background: #d1ecf1; border-left: 4px solid #17a2b8; border-radius: 5px;">
-                <strong>💡 How it works:</strong> Windsurf includes token usage in checkpoint summaries (e.g., "Token usage: 78652/200000"). The monitor parses these, calculates costs, detects pattern usage, and updates this dashboard automatically. <strong>No Cascade API needed!</strong>
+                <strong>💡 How it works:</strong> When you export, the dashboard prompts you to create a checkpoint file. Windsurf's AI extracts token usage from the conversation (e.g., "Token usage: 78652/200000"), saves it to a checkpoint file, then the dashboard reads that file to calculate real costs, detect pattern usage, and generate your export. <strong>No manual tracking needed!</strong>
             </p>
             
             <p style="margin-top: 15px; padding: 15px; background: #f8d7da; border-left: 4px solid #dc3545; border-radius: 5px;">
