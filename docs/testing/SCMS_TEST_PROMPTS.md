@@ -21,15 +21,34 @@
 
 ### **Setup:**
 
-1. **Create two identical project folders:**
+1. **Create project folders:**
    ```bash
    mkdir baseline-star-merchant
    mkdir scms-star-merchant
    ```
 
-2. **Baseline folder:** Empty project
-3. **SCMS folder:** Run SCMS setup script
-4. **Both:** Start economic dashboard tracking
+2. **Baseline Configuration:**
+   - Initialize empty project (`npm init -y`)
+   - No SCMS scripts or docs.
+
+3. **SCMS Configuration (CRITICAL):**
+   - **Step A:** Clone/Copy the SCMS Starter Kit into `scms-star-merchant/`
+     ```bash
+     # Example: Clone directly into the folder
+     git clone https://github.com/AIalchemistART/scms-starter-kit.git scms-star-merchant
+     # OR copy contents if you have them locally
+     ```
+   - **Step B:** Run the Setup Script
+     ```bash
+     cd scms-star-merchant
+     ./scripts/setup.ps1
+     # Choose 'Y' to launch dashboard when prompted
+     ```
+   - **Step C:** Verify Setup
+     - Ensure `docs/scms/WORKSPACE_RULES.md` exists.
+     - Ensure Dashboard App is running (`npm run dashboard:app`).
+
+4. **Both:** Start tracking tokens/time for Prompt 1.
 
 ### **Execution:**
 
