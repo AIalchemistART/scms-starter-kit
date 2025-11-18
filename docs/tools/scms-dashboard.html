@@ -682,6 +682,7 @@
                 <button class="btn btn-success" onclick="startSCMSSession()">Start SCMS Session</button>
                 <button class="btn btn-warning" onclick="startBaselineSession()">Start Baseline Session</button>
                 <button class="btn btn-danger" onclick="endSession()">End Session</button>
+                <button class="btn btn-secondary" onclick="clearAllData()" style="margin-left: 20px;" title="Clear all dashboard data and start fresh">Clear Data</button>
             </div>
         
         <!-- Data Freshness Warning -->
@@ -1231,6 +1232,31 @@ cd new-folder && npm run dashboard:app</div>
             updateSessionDisplay('No Active Session', 'Start a session to begin algorithmic cost tracking');
         }
         
+        function clearAllData() {
+            if (!confirm('⚠️ Clear all dashboard data?\n\nThis will remove:\n• All session data\n• Pattern usage history\n• Economic analysis\n• Demo data (if any)\n\nThis cannot be undone!')) {
+                return;
+            }
+            
+            // Clear localStorage
+            localStorage.removeItem('scms-cost-tracker-data');
+            localStorage.removeItem('scms-active-session');
+            localStorage.removeItem('scms-startup-prompt-hidden');
+            
+            // End any active session
+            if (window.scmsTracker.currentSession) {
+                window.scmsTracker.endSession();
+            }
+            
+            // Reset tracker
+            window.scmsTracker.sessions = [];
+            window.scmsTracker.patterns = new Map();
+            window.scmsTracker.currentSession = null;
+            
+            // Reload page to show fresh state
+            alert('✅ Data cleared! Dashboard will reload...');
+            location.reload();
+        }
+        
         function updateSessionDisplay(type, details) {
             document.getElementById('sessionType').textContent = type;
             document.getElementById('sessionDetails').textContent = details;
@@ -1702,15 +1728,9 @@ cd new-folder && npm run dashboard:app</div>
             }, 4000);
         }
         
-        // Add demo button for testing
-        document.addEventListener('DOMContentLoaded', () => {
-            const controls = document.querySelector('.controls');
-            const demoBtn = document.createElement('button');
-            demoBtn.className = 'btn btn-primary';
-            demoBtn.textContent = 'Run Demo';
-            demoBtn.onclick = simulateDemo;
-            controls.appendChild(demoBtn);
-        });
+        // Demo function available via console for testing
+        // To run: simulateDemo()
+        // Note: Demo data persists in localStorage - use clearAllData() to reset
     </script>
 </body>
 </html>
