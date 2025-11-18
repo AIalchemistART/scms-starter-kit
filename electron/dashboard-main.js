@@ -12,7 +12,7 @@ let mainWindow = null;
 let checkpointMonitor = null;
 
 // Paths
-const DATA_PATH = path.join(__dirname, '..', 'docs', 'tools', 'scms-cost-data.json');
+const DATA_PATH = path.join(__dirname, '..', 'economics-dashboard-data.json');
 const DASHBOARD_HTML = path.join(__dirname, '..', 'docs', 'tools', 'scms-dashboard.html');
 
 function createWindow() {
@@ -54,6 +54,18 @@ ipcMain.handle('dashboard:load-data', async () => {
     return { ok: true, data };
   } catch (error) {
     console.error('[dashboard] Load error:', error);
+    return { ok: false, error: error.message };
+  }
+});
+
+// Update dashboard data (for export disconnect fix)
+ipcMain.handle('dashboard:update-data', async (_event, data) => {
+  try {
+    fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2), 'utf-8');
+    console.log('[dashboard] Data updated:', DATA_PATH);
+    return { ok: true };
+  } catch (error) {
+    console.error('[dashboard] Update error:', error);
     return { ok: false, error: error.message };
   }
 });

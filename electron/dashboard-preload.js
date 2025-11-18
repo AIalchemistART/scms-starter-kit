@@ -11,6 +11,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
   // Load dashboard data
   loadDashboardData: () => ipcRenderer.invoke('dashboard:load-data'),
   
+  // Update dashboard data (for export disconnect fix)
+  updateDashboardData: (data) => ipcRenderer.invoke('dashboard:update-data', data),
+  
   // Start checkpoint monitoring
   startCheckpointMonitor: () => ipcRenderer.invoke('dashboard:start-monitor'),
   
