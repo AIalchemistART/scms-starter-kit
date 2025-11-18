@@ -7,19 +7,32 @@ This file now has **two** key prompts:
 
 ---
 
-## 1️⃣ SCMS STARTUP (First Session Configuration)
+## 1️⃣ SCMS STARTUP (First Session - Context Loading)
 
-**Copy this entire block for the FIRST session when configuring SCMS for a new project:**
+**Copy this entire block for the FIRST session to load the SCMS context (files are already created by setup script):**
 
 ```
-SCMS STARTUP (First Session Configuration)
+SCMS STARTUP (First Session - Context Loading)
 
 Working on: [project name and brief description]
+
+## SCMS Status: Initialized
+
+The SCMS infrastructure has already been created via setup script.
+**DO NOT create these files manually:**
+- `docs/scms/WORKSPACE_RULES.md` (Exists)
+- `docs/scms/MEMORY_STATUS_DASHBOARD.md` (Exists)
+- `docs/scms/INDEX.md` (Exists)
+
+**YOUR GOAL:**
+1. Read `docs/scms/MEMORY_STATUS_DASHBOARD.md` to understand project context.
+2. Read `docs/scms/WORKSPACE_RULES.md` for active patterns.
+3. Begin working on the user's request.
 
 ## SCMS Configuration - Sparse Contextual Memory Scaffolding
 
 **IMPORTANT LOCATION RULE:**
-- All SCMS files must live under `docs/scms/` (for example: `docs/scms/WORKSPACE_RULES.md`, `docs/scms/INDEX.md`)
+- All SCMS files live under `docs/scms/`
 - Do NOT create SCMS files directly in the project root
 
 **Architecture:** Multi-time-scale cognitive framework (Google Research validated)
