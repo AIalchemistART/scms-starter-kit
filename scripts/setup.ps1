@@ -708,7 +708,7 @@ Write-Host ''
 
 # Save SCMS config to economics-dashboard-data.json
 Write-Host 'Saving SCMS configuration to economics-dashboard-data.json...' -ForegroundColor Yellow
-$dataPath = Join-Path (Split-Path $PSScriptRoot -Parent) '..' 'economics-dashboard-data.json'
+$dataPath = Join-Path (Join-Path (Split-Path $PSScriptRoot -Parent) '..') 'economics-dashboard-data.json'
 
 $scmsConfigData = @{
     scmsSessions = 0
