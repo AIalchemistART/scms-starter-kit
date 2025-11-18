@@ -10,6 +10,9 @@ const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('electronAPI', {
   // Load dashboard data
   loadDashboardData: () => ipcRenderer.invoke('dashboard:load-data'),
+
+  // Load SCMS startup/session prompts
+  loadPrompts: () => ipcRenderer.invoke('dashboard:load-prompts'),
   
   // Update dashboard data (for export disconnect fix)
   updateDashboardData: (data) => ipcRenderer.invoke('dashboard:update-data', data),

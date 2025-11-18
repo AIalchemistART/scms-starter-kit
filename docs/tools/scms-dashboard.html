@@ -538,91 +538,157 @@
         }
         
         /* System Health Metrics */
-        .health-card {
+        .health-overview {
             background: white;
             border-radius: 12px;
             padding: 25px;
+            margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .health-status-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             margin-bottom: 20px;
         }
         
-        .health-status {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
+        .health-icon {
+            font-size: 3em;
         }
         
-        .health-status.green {
-            background: #d4edda;
-            color: #155724;
-            border: 2px solid #c3e6cb;
+        .health-title {
+            flex: 1;
         }
         
-        .health-status.yellow {
-            background: #fff3cd;
-            color: #856404;
-            border: 2px solid #ffeaa7;
+        .health-title h2 {
+            color: #2c3e50;
+            margin-bottom: 5px;
         }
         
-        .health-status.orange {
-            background: #ffe5cc;
-            color: #cc5200;
-            border: 2px solid #ffcc99;
+        .health-subtitle {
+            color: #7f8c8d;
+            font-size: 0.9em;
         }
         
-        .health-status.red {
-            background: #f8d7da;
-            color: #721c24;
-            border: 2px solid #f5c6cb;
+        .health-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
         
         .health-metric {
-            padding: 15px 0;
-            border-bottom: 1px solid #ecf0f1;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
         }
         
-        .health-metric:last-child {
-            border-bottom: none;
+        .health-metric.green {
+            border-left-color: #27ae60;
+        }
+        
+        .health-metric.yellow {
+            border-left-color: #f39c12;
+        }
+        
+        .health-metric.orange {
+            border-left-color: #e67e22;
+        }
+        
+        .health-metric.red {
+            border-left-color: #e74c3c;
         }
         
         .health-metric-title {
-            font-size: 0.9em;
-            color: #7f8c8d;
-            margin-bottom: 8px;
+            font-size: 1.1em;
             font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
         }
         
         .health-metric-value {
-            font-size: 1.3em;
+            font-size: 2em;
             font-weight: bold;
-            color: #2c3e50;
+            color: #3498db;
+            margin: 10px 0;
+        }
+        
+        .health-metric-value.green {
+            color: #27ae60;
+        }
+        
+        .health-metric-value.yellow {
+            color: #f39c12;
+        }
+        
+        .health-metric-details {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 10px;
+        }
+        
+        .health-metric-details > div {
+            margin: 5px 0;
         }
         
         .health-metric-trend {
+            display: inline-block;
+            padding: 4px 8px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 4px;
             font-size: 0.85em;
-            color: #95a5a6;
-            margin-top: 5px;
+            margin-top: 8px;
         }
         
-        .recommendations {
-            background: #e8f5e9;
-            border-left: 4px solid #4caf50;
-            padding: 20px;
+        .health-metric-trend.improving {
+            background: rgba(39, 174, 96, 0.1);
+            color: #27ae60;
+        }
+        
+        .health-metric-trend.degrading {
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+        
+        .recommendations-panel {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(155, 89, 182, 0.1));
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        
+        .recommendations-panel h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .recommendation-item {
+            padding: 12px 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .recommendation-icon {
+            font-size: 1.5em;
+        }
+        
+        .warning-panel {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid #e74c3c;
+            padding: 15px 20px;
             border-radius: 8px;
             margin-top: 20px;
         }
         
-        .recommendations h4 {
-            color: #2c5f2d;
+        .warning-panel h3 {
+            color: #e74c3c;
             margin-bottom: 10px;
-        }
-        
-        .recommendations ul {
-            margin-left: 20px;
-            color: #2c5f2d;
         }
         
         .session-history-item {
@@ -836,55 +902,114 @@
             </div>
             <div id="startupPromptSection">
                 <p><strong>Purpose:</strong> Configure SCMS for your project on first use</p>
-                <p><strong>Action:</strong> Run the setup script in your project's <code>docs/scms/</code> folder</p>
+                <p><strong>Action:</strong> Paste this prompt to your AI assistant <strong>ONCE when starting a new project</strong></p>
+                <p style="margin-top: 8px; font-size: 0.9em; color: #555;">
+                    <strong>Edit source:</strong> Update this text in <code>SCMS_STARTUP_PROMPT.md</code> at your project root. The dashboard always loads the latest version from that file.
+                </p>
                 <div class="code-block-wrapper">
-                    <button class="copy-btn" onclick="copyPrompt(this, 'startupPrompt')">📋 Copy Commands</button>
-                    <div class="code-block" id="startupPrompt">SCMS PROJECT SETUP
+                    <button class="copy-btn" onclick="copyPrompt(this, 'startupPrompt')">📋 Copy Prompt</button>
+                    <div class="code-block" id="startupPrompt">SCMS STARTUP (First Session Configuration)
 
-⚠️ **IMPORTANT:** Use the setup script instead of manual configuration!
+Working on: [project name and brief description]
 
-The setup script will:
-✅ Calculate optimal promotion threshold based on your project phase
-✅ Create WORKSPACE_RULES.md in docs/scms/ (not project root)
-✅ Configure economic dashboard
-✅ Set up checkpoint monitoring
-✅ Launch the dashboard app
+## SCMS Configuration - Sparse Contextual Memory Scaffolding
 
-**RUN THESE COMMANDS:**
+**IMPORTANT LOCATION RULE:**
+- All SCMS files must live under <code>docs/scms/</code> (for example: <code>docs/scms/WORKSPACE_RULES.md</code>, <code>docs/scms/INDEX.md</code>)
+- Do NOT create SCMS files directly in the project root
 
-```bash
-# In your project folder
-cd docs/scms
-npm install
+**Architecture:** Multi-time-scale cognitive framework (Google Research validated)
+- L0 (Foundation): Auto-memories - rare updates, test via probabilistic retrieval
+- L1 (Implementation): Validated patterns - medium updates, enforce via mandatory loading
+- L4 (Global Rules): Universal constraints - rare updates, check automatically
+- L2-L3 (Reference): SOPs & case studies - on-demand retrieval
+- L5 (Overflow): Low-frequency patterns - checked only if no validated retrieval from L2/L3
+- Dashboard: Session context - frequent updates, working memory
 
-# Windows:
-.\scripts\setup.ps1
+**Retrieval Workflow:** Windsurf hardcoded (L0 f L4 f L1) f SCMS directed (L2/L3 f L5 if needed) f Generate (if no retrieval) f L4 compliance check
 
-# Mac/Linux:
-./scripts/setup.sh
-```
+**Economic Principle:** Retrieval-first bias (30-45% cost reduction validated)
+- Cost asymmetry: Retrieval ($0.018) vs Generation ($0.033) per session
+- Target: >70% retrieval-based responses
+- Pattern ROI: 3+ reuses for break-even
 
-**The setup script will ask you:**
-1. Project Phase (Greenfield/Establishing/Mature)
-2. Team Size (Solo/Small/Medium/Large)
-3. Domain Type (High-churn/Moderate/Stable)
+**Validation Pipeline:**
+- L0 (Destructive): Probabilistic retrieval + temporal decay + use-based validation
+- L1 (Stable): Deterministic loading + proven utility (2 uses) + mandatory reference
 
-**Result:**
-✅ Optimal threshold calculated (typically n≥2 to n≥5)
-✅ All files created in docs/scms/ (keeps project root clean)
-✅ Dashboard configured with your settings
-✅ Ready to start tracking!
+**Project Context & Promotion Threshold:**
+- Check MEMORY_STATUS_DASHBOARD.md for configured threshold
+- Greenfield (Weeks 1-4): n5 uses for promotion
+- Establishing (Months 2-3): n3 uses
+- Mature (4+ months): n2 uses
 
-**DO NOT manually create SCMS files at project root!**
-The starter kit is self-contained in docs/scms/
+## Instructions for AI
 
-After setup, use the "Session Start Prompt" below for daily development.</div>
+### Session Start Checklist (BEFORE coding):
+1. 0 Check L4 Global Rules (if rules/GLOBAL_CODING_RULES.md exists)
+   - Universal constraints applying to ALL code
+   - Examples: "No duplicate code", "Always use X pattern"
+   
+2. 0 Check L1 Validated Patterns (WORKSPACE_RULES.md)
+   - Project-specific validated patterns (promoted at threshold)
+   - These are MANDATORY quality gates, not suggestions
+   
+3. 0 Review Memory Dashboard (MEMORY_STATUS_DASHBOARD.md)
+   - HIGH urgency patterns (validated but fading - use NOW)
+   - Patterns ready for promotion (6threshold uses)
+   - Sprint goals and current progress
+   
+4. 0 Acknowledge what you've reviewed
+   - State: "Reviewed L4 global rules, L1 patterns for [task area]"
+
+### During Development:
+1. **CREATE MEMORIES DURING work** (not after!)
+   - Pattern discovered f Create Cascade memory immediately f Continue
+   - Do NOT wait until implementation complete
+   
+2. **DO NOT CREATE markdown documentation files**
+   - NO docs/memories/*.md (defeats auto-memory purpose)
+   - NO SCMS_REPORT.md or manual tracking files
+   - ONLY update: MEMORY_STATUS_DASHBOARD.md for counts/urgency
+   
+3. **ECONOMIC DECISION TREE** (Retrieval-First):
+   - Search L1 (WORKSPACE_RULES.md) first f Use/adapt if found
+   - Search L0 (Cascade memories) next f Test/refine if found
+   - Generate new ONLY if no retrieval options (>75% different)
+   - Document immediately for future retrieval
+   
+4. **FAILURE DOCUMENTATION PRIORITY**:
+   - Failures = 10-1001 more informative than successes
+   - Bug patterns (L0) > Anti-patterns (L0) > Failed approaches (L0)
+   - Document failures immediately when discovered
+
+### Pattern Promotion:
+**When pattern reaches threshold** (see Project Context above):
+1. Copy full pattern to WORKSPACE_RULES.md (L1)
+2. Include: name, code examples, when to use/avoid, related patterns
+3. Update dashboard: Mark as PROMOTED with date
+
+### Session Closure (CRITICAL):
+At end of EVERY session, run closure prompt to:
+- Document failures first (highest value)
+- Update L0/L1 validation pipeline
+- Maintain INDEX & cross-references (NOT visual diagrams)
+- Update Memory Dashboard (Cascade persistent memory)
+- Track economics (cost/savings/ROI)
+- Maintain organizational framing (L0/L1/Dashboard boundaries)
+
+**Without session closure, SCMS degrades into passive documentation!**
+
+Ready to configure SCMS for this project. Let's start by checking existing patterns.</div>
                 </div>
             </div> <!-- End startupPromptSection -->
             
             <h3><span class="step-number">2</span> Copy the Session Start Prompt (Daily Use)</h3>
             <p><strong>Location:</strong> <code>docs/scms/SCMS_STARTUP_PROMPT.md</code></p>
             <p><strong>Action:</strong> Paste this prompt to your AI assistant at the <strong>start of EVERY development session</strong></p>
+            <p style="margin-top: 4px; font-size: 0.9em; color: #555;">
+                <strong>Edit source:</strong> The session prompt is also loaded from <code>SCMS_STARTUP_PROMPT.md</code>, so you can maintain both prompts in one place.
+            </p>
             <p id="thresholdInfo" style="background: #3498db; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;"><strong>Current Threshold:</strong> Loading...</p>
             <div class="code-block-wrapper">
                 <button class="copy-btn" onclick="copyPrompt(this, 'sessionStartPrompt')">📋 Copy Prompt</button>
@@ -1097,63 +1222,115 @@ cd new-folder && npm run dashboard:app</div>
         
         <!-- System Health Tab -->
         <div id="health-tab" class="tab-content">
-            <div class="health-card">
-                <div id="healthStatus" class="health-status green">
-                    🟢 SYSTEM HEALTH: GREEN
+            <!-- System Health Overview -->
+            <div class="health-overview">
+                <div class="health-status-header">
+                    <div class="health-icon" id="healthIcon">🟢</div>
+                    <div class="health-title">
+                        <h2>System Health: <span id="healthStatusText">GREEN</span></h2>
+                        <p class="health-subtitle">Real-time performance tracking • Last updated: <span id="lastUpdateTime">--</span></p>
+                    </div>
                 </div>
                 
-                <h3 style="color: #2c3e50; margin-bottom: 20px;">Real-Time Performance Monitoring</h3>
-                
-                <div class="health-metric">
-                    <div class="health-metric-title">⚡ Retrieval Performance</div>
-                    <div class="health-metric-value" id="retrievalTime">2.3s avg</div>
-                    <div class="health-metric-trend" id="retrievalTrend">🟢 Fast · Stable trend</div>
-                </div>
-                
-                <div class="health-metric">
-                    <div class="health-metric-title">✅ Pattern Success Rate</div>
-                    <div class="health-metric-value" id="successRate">80%</div>
-                    <div class="health-metric-trend" id="successTrend">🟢 Excellent · +5% vs baseline</div>
-                </div>
-                
-                <div class="health-metric">
-                    <div class="health-metric-title">🔍 Scan Efficiency</div>
-                    <div class="health-metric-value" id="scanEfficiency">14%</div>
-                    <div class="health-metric-trend" id="scanTrend">🟢 Optimal · 4/28 patterns used</div>
-                </div>
-                
-                <div class="health-metric">
-                    <div class="health-metric-title">📉 Temporal Health</div>
-                    <div class="health-metric-value" id="temporalHealth">5 unused (30d)</div>
-                    <div class="health-metric-trend" id="temporalTrend">🟢 Healthy · Avg age: 12 days</div>
-                </div>
-                
-                <div class="health-metric">
-                    <div class="health-metric-title">💰 Economic Efficiency</div>
-                    <div class="health-metric-value" id="economicEfficiency">23% retrieval</div>
-                    <div class="health-metric-trend" id="economicTrend">🟢 Good · +5% vs baseline</div>
-                </div>
-                
-                <div class="health-metric">
-                    <div class="health-metric-title">🧠 Memory Capacity</div>
-                    <div class="health-metric-value" id="memoryCapacity">28 memories</div>
-                    <div class="health-metric-trend" id="capacityTrend">🟢 Green Zone · 7 until yellow</div>
-                </div>
-                
-                <div id="recommendations" class="recommendations">
-                    <h4>💡 Recommendations</h4>
-                    <ul id="recommendationsList">
-                        <li>System performing optimally at 28 memories</li>
-                        <li>Continue to 35-40 memories before reassessing</li>
-                        <li>No performance degradation detected</li>
-                    </ul>
+                <div class="health-metrics">
+                    <!-- Retrieval Performance -->
+                    <div class="health-metric green" id="retrievalMetric">
+                        <div class="health-metric-title">⚡ Retrieval Performance</div>
+                        <div class="health-metric-value green" id="retrievalTime">2.3s</div>
+                        <div class="health-metric-details">
+                            <div>Max: <span id="maxRetrievalTime">5.1s</span></div>
+                            <div>Retrievals: <span id="retrievalCount">12</span> this session</div>
+                            <div class="health-metric-trend" id="retrievalTrend">Stable →</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pattern Success Rate -->
+                    <div class="health-metric green" id="successMetric">
+                        <div class="health-metric-title">✅ Pattern Success Rate</div>
+                        <div class="health-metric-value green" id="successRate">80%</div>
+                        <div class="health-metric-details">
+                            <div>Success: <span id="successCount">12</span> / <span id="totalAttempts">15</span></div>
+                            <div>New patterns: <span id="newPatternsCount">3</span></div>
+                            <div class="health-metric-trend improving" id="successTrend">+5% vs baseline</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Scan Efficiency -->
+                    <div class="health-metric green" id="scanMetric">
+                        <div class="health-metric-title">🔍 Scan Efficiency</div>
+                        <div class="health-metric-value" id="scanEfficiency">14%</div>
+                        <div class="health-metric-details">
+                            <div>Relevant: <span id="patternsUsed">4</span> / <span id="memoriesScanned">28</span></div>
+                            <div>Noise: <span id="irrelevantPatterns">24</span> patterns skipped</div>
+                            <div class="health-metric-trend" id="scanTrend">Optimal range</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Temporal Health -->
+                    <div class="health-metric green" id="temporalMetric">
+                        <div class="health-metric-title">📉 Temporal Health</div>
+                        <div class="health-metric-value green" id="temporalHealth">5</div>
+                        <div class="health-metric-details">
+                            <div>Unused 30d: <span id="unused30d">5</span> patterns</div>
+                            <div>Avg age: <span id="avgAge">12</span> days</div>
+                            <div class="health-metric-trend" id="temporalTrend">🟢 Healthy</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Economic Efficiency -->
+                    <div class="health-metric green" id="economicMetric">
+                        <div class="health-metric-title">💰 Economic Efficiency</div>
+                        <div class="health-metric-value green" id="economicEfficiencyValue">23%</div>
+                        <div class="health-metric-details">
+                            <div>Savings: <span id="currentSavings">45%</span></div>
+                            <div>Retrieved: <span id="patternsRetrieved">3</span> patterns</div>
+                            <div class="health-metric-trend improving" id="economicTrend">+5% vs baseline</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Memory Capacity -->
+                    <div class="health-metric green" id="capacityMetric">
+                        <div class="health-metric-title">🧠 Memory Capacity</div>
+                        <div class="health-metric-value green" id="memoryCapacity">28</div>
+                        <div class="health-metric-details">
+                            <div>Zone: <span id="capacityZone">Green (0-35)</span></div>
+                            <div>Headroom: <span id="headroom">7</span> memories</div>
+                            <div class="health-metric-trend" id="capacityTrend">No degradation</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="health-card">
-                <h3 style="color: #2c3e50; margin-bottom: 20px;">📅 Recent Session History</h3>
+            <!-- Recommendations Panel -->
+            <div class="recommendations-panel" id="recommendationsPanel">
+                <h3>💡 Smart Recommendations</h3>
+                <div id="recommendationsList">
+                    <div class="recommendation-item">
+                        <span class="recommendation-icon">✅</span>
+                        <span>System performing optimally at 28 memories</span>
+                    </div>
+                    <div class="recommendation-item">
+                        <span class="recommendation-icon">📈</span>
+                        <span>Continue to 35-40 memories before reassessing</span>
+                    </div>
+                    <div class="recommendation-item">
+                        <span class="recommendation-icon">👀</span>
+                        <span>Monitor retrieval time for degradation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Warnings Panel (hidden by default) -->
+            <div class="warning-panel" id="warningsPanel" style="display: none;">
+                <h3>⚠️ Performance Warnings</h3>
+                <div id="warningsList"></div>
+            </div>
+            
+            <!-- Session History -->
+            <div class="health-overview" style="margin-top: 20px;">
+                <h3 style="margin-bottom: 15px;">📅 Recent Sessions</h3>
                 <div id="sessionHistory">
-                    <!-- Populated by JavaScript -->
+                    <!-- Will be populated by JavaScript -->
                 </div>
             </div>
             
@@ -1804,10 +1981,45 @@ cd new-folder && npm run dashboard:app</div>
             }
         }
         
+        // Load prompts from SCMS_STARTUP_PROMPT.md if available
+        async function loadPromptsFromFile() {
+            try {
+                if (!window.electronAPI || !window.electronAPI.loadPrompts) {
+                    return; // Browser/static mode
+                }
+
+                const result = await window.electronAPI.loadPrompts();
+                if (!result.ok || !result.prompts) {
+                    return;
+                }
+
+                const { firstSessionPrompt, sessionStartPrompt } = result.prompts;
+
+                if (firstSessionPrompt) {
+                    const startupEl = document.getElementById('startupPrompt');
+                    if (startupEl) {
+                        startupEl.textContent = firstSessionPrompt;
+                    }
+                }
+
+                if (sessionStartPrompt) {
+                    const sessionEl = document.getElementById('sessionStartPrompt');
+                    if (sessionEl) {
+                        sessionEl.textContent = sessionStartPrompt;
+                    }
+                }
+
+                console.log('[dashboard] Prompts loaded from SCMS_STARTUP_PROMPT.md');
+            } catch (error) {
+                console.error('[dashboard] Failed to load prompts from file:', error);
+            }
+        }
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', async () => {
             await clearStorageIfFreshProject();
             await loadSCMSConfig();
+            await loadPromptsFromFile();
             restoreStartupPromptState();
             startHealthRefresh();
         });

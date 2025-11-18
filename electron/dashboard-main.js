@@ -57,6 +57,50 @@ function createWindow() {
     }
   });
 
+// Load SCMS prompts from SCMS_STARTUP_PROMPT.md
+ipcMain.handle('dashboard:load-prompts', async () => {
+  try {
+    const projectRoot = path.join(__dirname, '..', '..');
+    const promptPath = path.join(projectRoot, 'SCMS_STARTUP_PROMPT.md');
+
+    if (!fs.existsSync(promptPath)) {
+      return { ok: false, error: 'SCMS_STARTUP_PROMPT.md not found', prompts: null };
+    }
+
+    const content = fs.readFileSync(promptPath, 'utf-8');
+
+    // Helper to extract the first ``` block after a marker
+    function extractPrompt(marker) {
+      const markerIndex = content.indexOf(marker);
+      if (markerIndex === -1) return null;
+
+      const afterMarker = content.slice(markerIndex);
+      const firstFence = afterMarker.indexOf('```');
+      if (firstFence === -1) return null;
+
+      const rest = afterMarker.slice(firstFence + 3);
+      const secondFence = rest.indexOf('```');
+      if (secondFence === -1) return null;
+
+      return rest.slice(0, secondFence).trim();
+    }
+
+    const firstSessionPrompt = extractPrompt('SCMS STARTUP (First Session Configuration)');
+    const sessionStartPrompt = extractPrompt('SCMS SESSION START');
+
+    return {
+      ok: true,
+      prompts: {
+        firstSessionPrompt,
+        sessionStartPrompt
+      }
+    };
+  } catch (error) {
+    console.error('[dashboard] Failed to load SCMS prompts:', error);
+    return { ok: false, error: error.message, prompts: null };
+  }
+});
+
   // Load dashboard HTML
   mainWindow.loadFile(DASHBOARD_HTML);
   

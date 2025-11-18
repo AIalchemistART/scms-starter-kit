@@ -1,14 +1,117 @@
-# SCMS Startup Prompt v3.0
+# SCMS Startup Prompt v3.1
 
-**Purpose**: Copy-paste this prompt at the start of each development session to ensure COMPLETE SCMS workflow with enforcement.
+This file now has **two** key prompts:
 
-**Version**: 3.0 (November 13, 2025 - Comprehensive session start with actual AI behavior and organizational framing)
+1. **First-Session Configuration Prompt** – configure SCMS for a new project and enforce the correct file locations.
+2. **Per-Session Startup Prompt (v3.0)** – run at the start of every development session (unchanged in spirit, just moved down).
 
 ---
 
-## 🚀 For Auto-Memory L0 (Windsurf Cascade)
+## 1️⃣ SCMS STARTUP (First Session Configuration)
 
-**Copy this entire prompt and send to Cascade AI:**
+**Copy this entire block for the FIRST session when configuring SCMS for a new project:**
+
+```
+SCMS STARTUP (First Session Configuration)
+
+Working on: [project name and brief description]
+
+## SCMS Configuration - Sparse Contextual Memory Scaffolding
+
+**IMPORTANT LOCATION RULE:**
+- All SCMS files must live under `docs/scms/` (for example: `docs/scms/WORKSPACE_RULES.md`, `docs/scms/INDEX.md`)
+- Do NOT create SCMS files directly in the project root
+
+**Architecture:** Multi-time-scale cognitive framework (Google Research validated)
+- L0 (Foundation): Auto-memories - rare updates, test via probabilistic retrieval
+- L1 (Implementation): Validated patterns - medium updates, enforce via mandatory loading
+- L4 (Global Rules): Universal constraints - rare updates, check automatically
+- L2-L3 (Reference): SOPs & case studies - on-demand retrieval
+- L5 (Overflow): Low-frequency patterns - checked only if no validated retrieval from L2/L3
+- Dashboard: Session context - frequent updates, working memory
+
+**Retrieval Workflow:** Windsurf hardcoded (L0 → L4 → L1) → SCMS directed (L2/L3 → L5 if needed) → Generate (if no retrieval) → L4 compliance check
+
+**Economic Principle:** Retrieval-first bias (30-45% cost reduction validated)
+- Cost asymmetry: Retrieval ($0.018) vs Generation ($0.033) per session
+- Target: >70% retrieval-based responses
+- Pattern ROI: 3+ reuses for break-even
+
+**Validation Pipeline:**
+- L0 (Destructive): Probabilistic retrieval + temporal decay + use-based validation
+- L1 (Stable): Deterministic loading + proven utility (≥2 uses) + mandatory reference
+
+**Project Context & Promotion Threshold:**
+- Check MEMORY_STATUS_DASHBOARD.md for configured threshold
+- Greenfield (Weeks 1-4): n≥5 uses for promotion
+- Establishing (Months 2-3): n≥3 uses
+- Mature (4+ months): n≥2 uses
+
+## Instructions for AI
+
+### Session Start Checklist (BEFORE coding):
+1. ✅ Check L4 Global Rules (if `rules/GLOBAL_CODING_RULES.md` exists)
+   - Universal constraints applying to ALL code
+   - Examples: "No duplicate code", "Always use X pattern"
+   
+2. ✅ Check L1 Validated Patterns (`docs/scms/WORKSPACE_RULES.md`)
+   - Project-specific validated patterns (promoted at threshold)
+   - These are MANDATORY quality gates, not suggestions
+   
+3. ✅ Review Memory Dashboard (`docs/scms/MEMORY_STATUS_DASHBOARD.md`)
+   - HIGH urgency patterns (validated but fading - use NOW)
+   - Patterns ready for promotion (≥ threshold uses)
+   - Sprint goals and current progress
+   
+4. ✅ Acknowledge what you've reviewed
+   - State: "Reviewed L4 global rules, L1 patterns for [task area]"
+
+### During Development:
+1. **CREATE MEMORIES DURING work** (not after!)
+   - Pattern discovered → Create Cascade memory immediately → Continue
+   - Do NOT wait until implementation complete
+   
+2. **DO NOT CREATE markdown documentation files**
+   - NO `docs/memories/*.md` (defeats auto-memory purpose)
+   - NO `SCMS_REPORT.md` or manual tracking files
+   - ONLY update: `MEMORY_STATUS_DASHBOARD.md` for counts/urgency
+   
+3. **ECONOMIC DECISION TREE** (Retrieval-First):
+   - Search L1 (`WORKSPACE_RULES.md`) first → Use/adapt if found
+   - Search L0 (Cascade memories) next → Test/refine if found
+   - Generate new ONLY if no retrieval options (>75% different)
+   - Document immediately for future retrieval
+   
+4. **FAILURE DOCUMENTATION PRIORITY**:
+   - Failures = 10-100× more informative than successes
+   - Bug patterns (L0) > Anti-patterns (L0) > Failed approaches (L0)
+   - Document failures immediately when discovered
+
+### Pattern Promotion:
+**When pattern reaches threshold** (see Project Context above):
+1. Copy full pattern to `docs/scms/WORKSPACE_RULES.md` (L1)
+2. Include: name, code examples, when to use/avoid, related patterns
+3. Update dashboard: Mark as PROMOTED with date
+
+### Session Closure (CRITICAL):
+At end of EVERY session, run closure prompt to:
+- Document failures first (highest value)
+- Update L0/L1 validation pipeline
+- Maintain INDEX & cross-references (NOT visual diagrams)
+- Update Memory Dashboard (Cascade persistent memory)
+- Track economics (cost/savings/ROI)
+- Maintain organizational framing (L0/L1/Dashboard boundaries)
+
+**Without session closure, SCMS degrades into passive documentation!**
+
+Ready to configure SCMS for this project. Let's start by checking existing patterns.
+```
+
+---
+
+## 2️⃣ SCMS SESSION START (Per-Session Prompt, Auto-Memory L0 – Windsurf Cascade)
+
+**Copy this entire prompt and send to Cascade AI at the START of each development session:**
 
 ```
 SCMS SESSION START
@@ -68,6 +171,7 @@ Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
    - Document failures discovered (higher value than successes)
 
 Let's start by checking for relevant existing patterns, then proceed with the work.
+```
 
 ---
 
