@@ -52,11 +52,18 @@
 
 ### **Execution:**
 
-1. Run prompts in **order** (they build on each other)
-2. Track token usage for each prompt
-3. Note any rework/corrections needed
-4. Export data after each session
-5. Compare results at end
+#### **For SCMS Test (Automated):**
+1. Run prompts in **order**.
+2. Dashboard automatically tracks tokens and patterns.
+3. Export data at the end of the session via the Dashboard.
+
+#### **For Baseline Test (Manual Tracking):**
+1. **DO NOT** use the SCMS Dashboard or Startup Prompt.
+2. Use a generic system prompt:
+   > "You are an expert Game Developer. We are building 'Star Merchant' (CLI Game). I will give you tasks one by one."
+3. **Every 10 Prompts:** Ask the Agent:
+   > "Create (or update) `baseline-metrics.md`. Log the current total token usage for this session and list the features completed so far."
+4. Compare `baseline-metrics.md` vs SCMS Dashboard export at the end.
 
 ---
 
