@@ -1,0 +1,91 @@
+{
+  "currentMetrics": {
+    "memoryCount": 28,
+    "avgRetrievalTime": 2.3,
+    "maxRetrievalTime": 5.1,
+    "retrievalTrend": "stable",
+    "successRate": 80,
+    "scanEfficiency": 14,
+    "unusedMemories30d": 5,
+    "unusedMemories60d": 2,
+    "economicEfficiency": 23,
+    "performanceStatus": "green"
+  },
+  "baseline": {
+    "avgRetrievalTime": 2.1,
+    "successRate": 75,
+    "scanEfficiency": 18,
+    "economicEfficiency": 18
+  },
+  "adaptiveThresholds": {
+    "retrievalTime": {
+      "green": 3.0,
+      "yellow": 5.0,
+      "orange": 8.0,
+      "red": 10.0
+    },
+    "successRate": {
+      "green": 70,
+      "yellow": 50,
+      "orange": 30,
+      "red": 0
+    },
+    "scanEfficiency": {
+      "green": 15,
+      "yellow": 10,
+      "orange": 5,
+      "red": 0
+    },
+    "unusedMemories": {
+      "green": 10,
+      "yellow": 20,
+      "orange": 35,
+      "red": 50
+    }
+  },
+  "sessionHistory": [
+    {
+      "date": "2025-11-17",
+      "task": "Update-safe workflow implementation",
+      "retrievalTime": 2.3,
+      "successRate": 80,
+      "retrievalRatio": 23,
+      "memoryCount": 28,
+      "patternsCreated": 3,
+      "patternsPromoted": 1,
+      "savingsPercent": 45
+    },
+    {
+      "date": "2025-11-17",
+      "task": "Dashboard tracking fixes",
+      "retrievalTime": 2.1,
+      "successRate": 75,
+      "retrievalRatio": 18,
+      "memoryCount": 25,
+      "patternsCreated": 5,
+      "patternsPromoted": 0,
+      "savingsPercent": 23
+    },
+    {
+      "date": "2025-11-14",
+      "task": "Session closure v3.0 updates",
+      "retrievalTime": 2.5,
+      "successRate": 85,
+      "retrievalRatio": 30,
+      "memoryCount": 23,
+      "patternsCreated": 2,
+      "patternsPromoted": 2,
+      "savingsPercent": 60
+    }
+  ],
+  "performanceTrend": "stable",
+  "healthStatus": "green",
+  "warnings": [],
+  "recommendations": [
+    "System performing optimally at 28 memories",
+    "Continue to 35-40 memories before reassessing",
+    "No performance degradation detected",
+    "Current retrieval speed is excellent (2.3s avg)"
+  ],
+  "lastUpdated": "2025-11-17T19:00:00Z"
+}

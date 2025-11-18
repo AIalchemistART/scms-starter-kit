@@ -460,6 +460,207 @@
         .data-warning .reload-btn:hover {
             background: #e0a800;
         }
+        
+        /* Tab System */
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .tab-btn {
+            padding: 15px 30px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Copy Button */
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 16px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .copy-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .copy-btn.copied {
+            background: #27ae60;
+        }
+        
+        .code-block-wrapper {
+            position: relative;
+        }
+        
+        /* System Health Metrics */
+        .health-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+        }
+        
+        .health-status {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .health-status.green {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .health-status.yellow {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffeaa7;
+        }
+        
+        .health-status.orange {
+            background: #ffe5cc;
+            color: #cc5200;
+            border: 2px solid #ffcc99;
+        }
+        
+        .health-status.red {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+        
+        .health-metric {
+            padding: 15px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .health-metric:last-child {
+            border-bottom: none;
+        }
+        
+        .health-metric-title {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .health-metric-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .health-metric-trend {
+            font-size: 0.85em;
+            color: #95a5a6;
+            margin-top: 5px;
+        }
+        
+        .recommendations {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .recommendations h4 {
+            color: #2c5f2d;
+            margin-bottom: 10px;
+        }
+        
+        .recommendations ul {
+            margin-left: 20px;
+            color: #2c5f2d;
+        }
+        
+        .session-history-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .session-history-item h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .session-history-item p {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+        
+        /* Toggle Button */
+        .toggle-btn {
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #5568d3;
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body>
@@ -469,12 +670,19 @@
             <p class="subtitle">Empirical measurement of economic benefits through actual token consumption</p>
         </div>
         
-        <div class="controls">
-            <button class="btn btn-success" onclick="startSCMSSession()">Start SCMS Session</button>
-            <button class="btn btn-warning" onclick="startBaselineSession()">Start Baseline Session</button>
-            <button class="btn btn-primary" onclick="startMixedSession()">Start Mixed Session</button>
-            <button class="btn btn-danger" onclick="endSession()">End Session</button>
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('economics')">💰 Economics</button>
+            <button class="tab-btn" onclick="switchTab('health')">🧠 System Health</button>
         </div>
+        
+        <!-- Economics Tab -->
+        <div id="economics-tab" class="tab-content active">
+            <div class="controls">
+                <button class="btn btn-success" onclick="startSCMSSession()">Start SCMS Session</button>
+                <button class="btn btn-warning" onclick="startBaselineSession()">Start Baseline Session</button>
+                <button class="btn btn-danger" onclick="endSession()">End Session</button>
+            </div>
         
         <!-- Data Freshness Warning -->
         <div id="dataFreshnessWarning" class="data-warning">
@@ -621,10 +829,16 @@
                 <strong>Tip:</strong> This dashboard (in-app) provides real-time tracking during development. Use <code>npm run dashboard</code> for quick terminal analysis between sessions.
             </p>
             
-            <h3><span class="step-number">1</span> Copy the SCMS Startup Prompt (First Time Only)</h3>
-            <p><strong>Purpose:</strong> Configure SCMS for your project on first use</p>
-            <p><strong>Action:</strong> Paste this prompt to your AI assistant <strong>ONCE when starting a new project</strong></p>
-            <div class="code-block">SCMS PROJECT SETUP
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3><span class="step-number">1</span> Copy the SCMS Startup Prompt (First Time Only)</h3>
+                <button class="toggle-btn" onclick="toggleStartupPrompt()" id="toggleStartupBtn">▼ Hide Startup Prompt</button>
+            </div>
+            <div id="startupPromptSection">
+                <p><strong>Purpose:</strong> Configure SCMS for your project on first use</p>
+                <p><strong>Action:</strong> Paste this prompt to your AI assistant <strong>ONCE when starting a new project</strong></p>
+                <div class="code-block-wrapper">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'startupPrompt')">📋 Copy Prompt</button>
+                    <div class="code-block" id="startupPrompt">SCMS PROJECT SETUP
 
 Please configure SCMS (Sparse Contextual Memory Scaffolding) for this project:
 
@@ -666,11 +880,15 @@ After every session, run the Validation Commit Layer prompt:
 7. System optimization (health status & compliance)
 
 Ready to start tracking patterns and optimizing costs!</div>
+                </div>
+            </div> <!-- End startupPromptSection -->
             
             <h3><span class="step-number">2</span> Copy the Session Start Prompt (Daily Use)</h3>
             <p><strong>Location:</strong> <code>SCMS_STARTUP_PROMPT.md</code> in your project root</p>
             <p><strong>Action:</strong> Paste this prompt to your AI assistant at the <strong>start of EVERY development session</strong></p>
-            <div class="code-block">SCMS SESSION START
+            <div class="code-block-wrapper">
+                <button class="copy-btn" onclick="copyPrompt(this, 'sessionStartPrompt')">📋 Copy Prompt</button>
+                <div class="code-block" id="sessionStartPrompt">SCMS SESSION START
 
 Working on: [brief task description]
 
@@ -728,6 +946,8 @@ Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
    - Document failures discovered (higher value than successes)
 
 Let's start by checking for relevant existing patterns, then proceed with the work.</div>
+                </div>
+            </div> <!-- End Session Start wrapper -->
             
             <h3><span class="step-number">3</span> Enable Automated Token Tracking</h3>
             <p><strong>Option A: Automated (Recommended)</strong></p>
@@ -791,7 +1011,9 @@ npm run dashboard
                 <p><strong>What to do:</strong> Copy and paste this prompt to your AI:</p>
             </div>
             
-            <div class="code-block">SCMS SESSION CLOSURE - CRITICAL SYSTEM UPDATE
+            <div class="code-block-wrapper">
+                <button class="copy-btn" onclick="copyPrompt(this, 'sessionClosurePrompt')">📋 Copy Prompt</button>
+                <div class="code-block" id="sessionClosurePrompt">SCMS SESSION CLOSURE - CRITICAL SYSTEM UPDATE
 
 Great work on this feature! Now let's close the SCMS optimization loop:
 
@@ -805,6 +1027,8 @@ Great work on this feature! Now let's close the SCMS optimization loop:
 7. SYSTEM OPTIMIZATION (health status & compliance)
 
 This ensures SCMS continues optimizing and compounding value over time.</div>
+                </div>
+            </div> <!-- End Session Closure wrapper -->
             
             <h3><span class="step-number">5</span> What Happens During Session Closure</h3>
             <ol>
@@ -869,6 +1093,75 @@ cd new-folder && npm run dashboard:app</div>
                 → <a href="../../UPDATE_GUIDE.md" style="color: #2980b9; font-weight: bold;">Complete Update Guide</a> - Troubleshooting & version history
             </p>
         </div>
+        </div> <!-- End Economics Tab -->
+        
+        <!-- System Health Tab -->
+        <div id="health-tab" class="tab-content">
+            <div class="health-card">
+                <div id="healthStatus" class="health-status green">
+                    🟢 SYSTEM HEALTH: GREEN
+                </div>
+                
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">Real-Time Performance Monitoring</h3>
+                
+                <div class="health-metric">
+                    <div class="health-metric-title">⚡ Retrieval Performance</div>
+                    <div class="health-metric-value" id="retrievalTime">2.3s avg</div>
+                    <div class="health-metric-trend" id="retrievalTrend">🟢 Fast · Stable trend</div>
+                </div>
+                
+                <div class="health-metric">
+                    <div class="health-metric-title">✅ Pattern Success Rate</div>
+                    <div class="health-metric-value" id="successRate">80%</div>
+                    <div class="health-metric-trend" id="successTrend">🟢 Excellent · +5% vs baseline</div>
+                </div>
+                
+                <div class="health-metric">
+                    <div class="health-metric-title">🔍 Scan Efficiency</div>
+                    <div class="health-metric-value" id="scanEfficiency">14%</div>
+                    <div class="health-metric-trend" id="scanTrend">🟢 Optimal · 4/28 patterns used</div>
+                </div>
+                
+                <div class="health-metric">
+                    <div class="health-metric-title">📉 Temporal Health</div>
+                    <div class="health-metric-value" id="temporalHealth">5 unused (30d)</div>
+                    <div class="health-metric-trend" id="temporalTrend">🟢 Healthy · Avg age: 12 days</div>
+                </div>
+                
+                <div class="health-metric">
+                    <div class="health-metric-title">💰 Economic Efficiency</div>
+                    <div class="health-metric-value" id="economicEfficiency">23% retrieval</div>
+                    <div class="health-metric-trend" id="economicTrend">🟢 Good · +5% vs baseline</div>
+                </div>
+                
+                <div class="health-metric">
+                    <div class="health-metric-title">🧠 Memory Capacity</div>
+                    <div class="health-metric-value" id="memoryCapacity">28 memories</div>
+                    <div class="health-metric-trend" id="capacityTrend">🟢 Green Zone · 7 until yellow</div>
+                </div>
+                
+                <div id="recommendations" class="recommendations">
+                    <h4>💡 Recommendations</h4>
+                    <ul id="recommendationsList">
+                        <li>System performing optimally at 28 memories</li>
+                        <li>Continue to 35-40 memories before reassessing</li>
+                        <li>No performance degradation detected</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="health-card">
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">📅 Recent Session History</h3>
+                <div id="sessionHistory">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px; color: #7f8c8d; font-size: 0.9em;">
+                <p id="lastRefresh">Last refresh: --</p>
+                <p>Auto-refreshes every 60 seconds</p>
+            </div>
+        </div> <!-- End System Health Tab -->
     </div>
 
     <script src="scms-cost-tracker.js"></script>
@@ -931,11 +1224,6 @@ cd new-folder && npm run dashboard:app</div>
         function startBaselineSession() {
             window.scmsTracker.startSession('baseline');
             updateSessionDisplay('Baseline Session Active', 'Fresh exploration without SCMS patterns');
-        }
-        
-        function startMixedSession() {
-            window.scmsTracker.startSession('mixed');
-            updateSessionDisplay('Mixed Session Active', 'Hybrid approach with some pattern usage');
         }
         
         function endSession() {
@@ -1134,6 +1422,190 @@ cd new-folder && npm run dashboard:app</div>
             document.getElementById('scale10K').textContent = savingsPercent > 0 ? `$${(scale10K / 1000).toFixed(1)}K` : '--';
             document.getElementById('scale100K').textContent = savingsPercent > 0 ? `$${scale100K}M` : '--';
         }
+        
+        // Tab Switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            
+            // Activate button
+            event.target.classList.add('active');
+            
+            // Load health data if switching to health tab
+            if (tabName === 'health') {
+                loadHealthData();
+            }
+        }
+        
+        // Load Health Data
+        async function loadHealthData() {
+            try {
+                const response = await fetch('../../scms-performance-data.json');
+                const data = await response.json();
+                
+                console.log('[health] Data loaded successfully');
+                
+                // Update metrics
+                const metrics = data.currentMetrics;
+                document.getElementById('retrievalTime').textContent = `${metrics.avgRetrievalTime}s avg`;
+                document.getElementById('retrievalTrend').textContent = `🟢 ${metrics.performanceStatus === 'green' ? 'Fast' : 'Slow'} · ${metrics.retrievalTrend} trend`;
+                
+                document.getElementById('successRate').textContent = `${metrics.successRate}%`;
+                const successDiff = metrics.successRate - data.baseline.successRate;
+                document.getElementById('successTrend').textContent = `🟢 Excellent · ${successDiff > 0 ? '+' : ''}${successDiff}% vs baseline`;
+                
+                document.getElementById('scanEfficiency').textContent = `${metrics.scanEfficiency}%`;
+                document.getElementById('scanTrend').textContent = `🟢 Optimal · Used patterns efficiently`;
+                
+                document.getElementById('temporalHealth').textContent = `${metrics.unusedMemories30d} unused (30d)`;
+                document.getElementById('temporalTrend').textContent = `🟢 Healthy · Active system`;
+                
+                document.getElementById('economicEfficiency').textContent = `${metrics.economicEfficiency}% retrieval`;
+                const econDiff = metrics.economicEfficiency - data.baseline.economicEfficiency;
+                document.getElementById('economicTrend').textContent = `🟢 Good · ${econDiff > 0 ? '+' : ''}${econDiff}% vs baseline`;
+                
+                document.getElementById('memoryCapacity').textContent = `${metrics.memoryCount} memories`;
+                const threshold = data.adaptiveThresholds.unusedMemories.yellow;
+                document.getElementById('capacityTrend').textContent = `🟢 Green Zone · ${threshold - metrics.memoryCount} until yellow`;
+                
+                // Update health status
+                const statusMap = {
+                    green: '🟢 SYSTEM HEALTH: GREEN',
+                    yellow: '🟡 SYSTEM HEALTH: YELLOW',
+                    orange: '🟠 SYSTEM HEALTH: ORANGE',
+                    red: '🔴 SYSTEM HEALTH: RED'
+                };
+                document.getElementById('healthStatus').textContent = statusMap[data.healthStatus] || statusMap.green;
+                document.getElementById('healthStatus').className = `health-status ${data.healthStatus}`;
+                
+                // Update recommendations
+                const recList = document.getElementById('recommendationsList');
+                recList.innerHTML = data.recommendations.map(rec => `<li>${rec}</li>`).join('');
+                
+                // Update session history
+                const historyHtml = data.sessionHistory.slice(0, 3).map(session => `
+                    <div class="session-history-item">
+                        <h4>${session.date}: ${session.task}</h4>
+                        <p>├─ ${session.patternsCreated} patterns created (L0)</p>
+                        <p>├─ ${session.patternsPromoted} promoted</p>
+                        <p>└─ Savings: ${session.savingsPercent}%</p>
+                    </div>
+                `).join('');
+                document.getElementById('sessionHistory').innerHTML = historyHtml;
+                
+                // Update last refresh time
+                const now = new Date().toLocaleTimeString();
+                document.getElementById('lastRefresh').textContent = `Last refresh: ${now}`;
+                
+            } catch (error) {
+                console.error('[health] Failed to load data:', error);
+                document.getElementById('healthStatus').textContent = '⚠️ Failed to load performance data';
+            }
+        }
+        
+        // Auto-refresh health data every 60 seconds
+        let healthRefreshInterval = null;
+        function startHealthRefresh() {
+            if (healthRefreshInterval) clearInterval(healthRefreshInterval);
+            healthRefreshInterval = setInterval(() => {
+                const healthTab = document.getElementById('health-tab');
+                if (healthTab && healthTab.classList.contains('active')) {
+                    console.log('[health] Auto-refresh triggered');
+                    loadHealthData();
+                }
+            }, 60000); // 60 seconds
+        }
+        
+        // Copy Prompt Function
+        function copyPrompt(button, promptId) {
+            const promptElement = document.getElementById(promptId);
+            const text = promptElement.textContent;
+            
+            // Try modern clipboard API first
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showCopySuccess(button);
+                }).catch(err => {
+                    console.error('Clipboard write failed:', err);
+                    fallbackCopy(text, button);
+                });
+            } else {
+                fallbackCopy(text, button);
+            }
+        }
+        
+        function fallbackCopy(text, button) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showCopySuccess(button);
+            } catch (err) {
+                console.error('Fallback copy failed:', err);
+                alert('Copy failed. Please select and copy manually.');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        
+        function showCopySuccess(button) {
+            const originalText = button.textContent;
+            button.textContent = 'Copied! ✓';
+            button.classList.add('copied');
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('copied');
+            }, 2000);
+        }
+        
+        // Toggle Startup Prompt
+        function toggleStartupPrompt() {
+            const section = document.getElementById('startupPromptSection');
+            const button = document.getElementById('toggleStartupBtn');
+            
+            if (section.style.display === 'none') {
+                section.style.display = 'block';
+                button.textContent = '▼ Hide Startup Prompt';
+                localStorage.setItem('scms_startup_prompt_visible', 'true');
+            } else {
+                section.style.display = 'none';
+                button.textContent = '▶ Show Startup Prompt';
+                localStorage.setItem('scms_startup_prompt_visible', 'false');
+            }
+        }
+        
+        // Restore startup prompt state on page load
+        function restoreStartupPromptState() {
+            const visible = localStorage.getItem('scms_startup_prompt_visible');
+            if (visible === 'false') {
+                const section = document.getElementById('startupPromptSection');
+                const button = document.getElementById('toggleStartupBtn');
+                section.style.display = 'none';
+                button.textContent = '▶ Show Startup Prompt';
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            restoreStartupPromptState();
+            startHealthRefresh();
+        });
         
         // Simulate some demo interactions for testing
         function simulateDemo() {
