@@ -826,6 +826,48 @@ This ensures SCMS continues optimizing and compounding value over time.</div>
                 <strong>Annual Savings:</strong> $200-400 for heavy AI users<br>
                 <strong>Platform Savings:</strong> $2-3.5M annually for 100K users
             </p>
+            
+            <h3 style="margin-top: 40px;"><span class="step-number">🔄</span> Updating Your Starter Kit</h3>
+            
+            <div style="padding: 20px; background: #e8f5e9; border-left: 4px solid #4caf50; border-radius: 5px; margin-bottom: 15px;">
+                <strong>✅ Your data is safe!</strong> All session data is protected by <code>.gitignore</code> and won't be overwritten during updates.
+            </div>
+            
+            <p><strong>Quick Update (If you cloned the repo):</strong></p>
+            <div class="code-block">git pull origin master  # Your data is automatically protected
+npm run dashboard:app   # Test that everything works</div>
+            
+            <p style="margin-top: 15px;"><strong>Manual Update (If you downloaded as ZIP):</strong></p>
+            <div class="code-block"># 1. Backup your data
+cp economics-dashboard-data.json economics-dashboard-data.backup.json
+
+# 2. Download new version, extract to new folder
+
+# 3. Copy your data back
+cp economics-dashboard-data.backup.json new-folder/economics-dashboard-data.json
+
+# 4. Test
+cd new-folder && npm run dashboard:app</div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                <p style="margin: 0 0 10px 0;"><strong>What Gets Updated:</strong></p>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>✅ Dashboard features & bug fixes</li>
+                    <li>✅ Documentation & guides</li>
+                    <li>✅ L1 validated patterns</li>
+                </ul>
+                
+                <p style="margin: 15px 0 10px 0;"><strong>What's Protected:</strong></p>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>🔒 Your session data (<code>economics-dashboard-data.json</code>)</li>
+                    <li>🔒 Your checkpoints (<code>checkpoints/</code>)</li>
+                    <li>🔒 Your customizations (<code>WORKSPACE_RULES.custom.md</code>)</li>
+                </ul>
+            </div>
+            
+            <p style="margin-top: 15px; text-align: center;">
+                → <a href="../../UPDATE_GUIDE.md" style="color: #2980b9; font-weight: bold;">Complete Update Guide</a> - Troubleshooting & version history
+            </p>
         </div>
     </div>
 

@@ -1,0 +1,14 @@
+{
+  "scmsSessions": 0,
+  "baselineSessions": 0,
+  "sessions": [],
+  "exportDate": null,
+  "exportMetadata": {
+    "note": "This is an example template. Your actual data will be saved to economics-dashboard-data.json (which is git-ignored for safety)."
+  },
+  "analysis": {
+    "scmsAvgCost": 0,
+    "baselineAvgCost": 0,
+    "savingsPercent": 0
+  }
+}

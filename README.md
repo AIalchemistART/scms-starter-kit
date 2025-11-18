@@ -736,6 +736,46 @@ Free to use in commercial and open-source projects. Attribution appreciated!
 
 ---
 
+## 🔄 Updating Your Starter Kit
+
+### Quick Update (If you cloned the repo)
+
+```bash
+git pull origin master
+npm run dashboard:app  # Test that everything works
+```
+
+**✅ Your data is safe!** All session data is protected by `.gitignore`.
+
+### Manual Update (If you downloaded as ZIP)
+
+```bash
+# 1. Backup your data
+cp economics-dashboard-data.json economics-dashboard-data.backup.json
+
+# 2. Download new version, extract to new folder
+
+# 3. Copy your data back
+cp economics-dashboard-data.backup.json new-folder/economics-dashboard-data.json
+
+# 4. Test
+cd new-folder && npm run dashboard:app
+```
+
+**What Gets Updated:**
+- ✅ Dashboard features & bug fixes
+- ✅ Documentation & guides
+- ✅ L1 validated patterns
+
+**What's Protected:**
+- 🔒 Your session data (`economics-dashboard-data.json`)
+- 🔒 Your checkpoints (`checkpoints/`)
+- 🔒 Your customizations (`WORKSPACE_RULES.custom.md`)
+
+→ [Complete Update Guide](UPDATE_GUIDE.md) - Troubleshooting & version history
+
+---
+
 ## Quick Links
 
 - [Setup Guide](SETUP.md) - Detailed installation
