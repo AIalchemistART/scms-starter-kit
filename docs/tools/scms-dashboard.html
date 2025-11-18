@@ -1705,8 +1705,57 @@ cd new-folder && npm run dashboard:app</div>
             }
         }
         
+        // Clear localStorage if this is a fresh project (prevents demo data pollution)
+        async function clearStorageIfFreshProject() {
+            try {
+                // Check if Electron API available
+                if (!window.electronAPI || !window.electronAPI.loadDashboardData) {
+                    return; // Browser mode, skip check
+                }
+                
+                // Load data file
+                const result = await window.electronAPI.loadDashboardData();
+                if (!result.ok) {
+                    return; // No data file, will be created
+                }
+                
+                const fileData = result.data;
+                
+                // Check if file is fresh (all zeros)
+                const isFreshFile = (
+                    fileData.scmsSessions === 0 &&
+                    fileData.baselineSessions === 0 &&
+                    fileData.sessions?.length === 0
+                );
+                
+                // Check if localStorage has data
+                const storedData = localStorage.getItem('scms-cost-tracker-data');
+                const hasLocalData = storedData && storedData !== '{}';
+                
+                // If file is fresh but localStorage has data, clear localStorage
+                if (isFreshFile && hasLocalData) {
+                    console.log('[dashboard] 🧹 Fresh project detected - clearing localStorage to prevent demo data pollution');
+                    localStorage.removeItem('scms-cost-tracker-data');
+                    localStorage.removeItem('scms-active-session');
+                    
+                    // Show notification
+                    const notification = document.createElement('div');
+                    notification.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #3498db; color: white; padding: 15px 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 10000; max-width: 400px;';
+                    notification.innerHTML = `
+                        <strong>✨ Fresh Project</strong><br>
+                        <span style="font-size: 14px;">Storage cleared for clean start!</span>
+                    `;
+                    document.body.appendChild(notification);
+                    setTimeout(() => notification.remove(), 3000);
+                }
+            } catch (error) {
+                console.error('[dashboard] Failed to check for fresh project:', error);
+            }
+        }
+        
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            await clearStorageIfFreshProject();
             restoreStartupPromptState();
             startHealthRefresh();
         });

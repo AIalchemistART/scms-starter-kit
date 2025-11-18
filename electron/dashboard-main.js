@@ -11,9 +11,30 @@ const fs = require('fs');
 let mainWindow = null;
 let checkpointMonitor = null;
 
-// Paths
-const DATA_PATH = path.join(__dirname, '..', 'economics-dashboard-data.json');
+// Paths - Data file should be at project root (2 levels up from electron/)
+// Structure: project-root/economics-dashboard-data.json
+//            project-root/docs/scms/electron/dashboard-main.js
+const DATA_PATH = path.join(__dirname, '..', '..', 'economics-dashboard-data.json');
 const DASHBOARD_HTML = path.join(__dirname, '..', 'docs', 'tools', 'scms-dashboard.html');
+
+// Ensure data file exists with clean state
+function ensureDataFile() {
+  if (!fs.existsSync(DATA_PATH)) {
+    const emptyData = {
+      scmsSessions: 0,
+      baselineSessions: 0,
+      sessions: [],
+      exportDate: null,
+      analysis: {
+        scmsAvgCost: 0,
+        baselineAvgCost: 0,
+        savingsPercent: 0
+      }
+    };
+    fs.writeFileSync(DATA_PATH, JSON.stringify(emptyData, null, 2), 'utf-8');
+    console.log('[dashboard] Created clean data file:', DATA_PATH);
+  }
+}
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -122,6 +143,8 @@ ipcMain.handle('dashboard:stop-monitor', async () => {
 
 // App lifecycle
 app.whenReady().then(() => {
+  // Ensure data file exists before creating window
+  ensureDataFile();
   createWindow();
 
   app.on('activate', () => {
