@@ -836,57 +836,56 @@
             </div>
             <div id="startupPromptSection">
                 <p><strong>Purpose:</strong> Configure SCMS for your project on first use</p>
-                <p><strong>Action:</strong> Paste this prompt to your AI assistant <strong>ONCE when starting a new project</strong></p>
+                <p><strong>Action:</strong> Run the setup script in your project's <code>docs/scms/</code> folder</p>
                 <div class="code-block-wrapper">
-                    <button class="copy-btn" onclick="copyPrompt(this, 'startupPrompt')">📋 Copy Prompt</button>
+                    <button class="copy-btn" onclick="copyPrompt(this, 'startupPrompt')">📋 Copy Commands</button>
                     <div class="code-block" id="startupPrompt">SCMS PROJECT SETUP
 
-Please configure SCMS (Sparse Contextual Memory Scaffolding) for this project:
+⚠️ **IMPORTANT:** Use the setup script instead of manual configuration!
 
-**MULTI-TIME-SCALE ARCHITECTURE:**
-Windsurf hardcoded (automatic): L0 → L4 → L1
-SCMS directed (prompt-guided): L2/L3 → L5 (if no validated retrieval) → Generate (if no retrieval) → L4 compliance check
+The setup script will:
+✅ Calculate optimal promotion threshold based on your project phase
+✅ Create WORKSPACE_RULES.md in docs/scms/ (not project root)
+✅ Configure economic dashboard
+✅ Set up checkpoint monitoring
+✅ Launch the dashboard app
 
-**ECONOMIC OPTIMIZATION PRINCIPLE** (30-45% cost reduction validated):
-- RETRIEVAL-FIRST BIAS: Always search L0/L1 before generating
-- Cost asymmetry: Retrieval (~$0.018) vs Generation (~$0.033) per session
-- Target efficiency: >70% retrieval-based responses
-- Pattern ROI: L0 patterns need 3+ reuses for break-even
+**RUN THESE COMMANDS:**
 
-**VALIDATION PIPELINE:**
-- L0 (Destructive): Test patterns via probabilistic retrieval + temporal decay
-- L1 (Stable): Enforce patterns via WORKSPACE_RULES.md (MANDATORY quality gates)
-- Promotion threshold: n≥2 uses for mature projects (adaptive based on phase)
+```bash
+# In your project folder
+cd docs/scms
+npm install
 
-**SESSION START CHECKLIST (Before ANY code):**
-1. ✅ Check L4 Global Rules (WORKSPACE_RULES.md or .cursorrules)
-2. ✅ Review L1 Validated Patterns (WORKSPACE_RULES.md)
-3. ✅ Check Memory Dashboard (pattern metrics, urgency warnings)
-4. ✅ Review project promotion threshold and current validation status
+# Windows:
+.\scripts\setup.ps1
 
-**DURING DEVELOPMENT:**
-- Create memories DURING coding (not after)
-- Retrieval flow: L0→L4→L1 (automatic) → L2/L3→L5 if needed → Generate → L4 final check
-- Document FAILURES FIRST (3-10× more information than successes)
-- Pattern promotion: ≥2 uses → copy to WORKSPACE_RULES.md within 2 hours
+# Mac/Linux:
+./scripts/setup.sh
+```
 
-**SESSION CLOSURE (CRITICAL):**
-After every session, run the Validation Commit Layer prompt:
-1. Pattern reflection & validation (failures first)
-2. L0/L1 pipeline update (threshold: 2+ uses)
-3. INDEX & cross-reference maintenance (tags, not visual diagrams)
-4. Memory dashboard update
-5. Economic dashboard update (cost/savings/ROI)
-6. Organizational framing maintenance (L0/L1/Dashboard boundaries)
-7. System optimization (health status & compliance)
+**The setup script will ask you:**
+1. Project Phase (Greenfield/Establishing/Mature)
+2. Team Size (Solo/Small/Medium/Large)
+3. Domain Type (High-churn/Moderate/Stable)
 
-Ready to start tracking patterns and optimizing costs!</div>
+**Result:**
+✅ Optimal threshold calculated (typically n≥2 to n≥5)
+✅ All files created in docs/scms/ (keeps project root clean)
+✅ Dashboard configured with your settings
+✅ Ready to start tracking!
+
+**DO NOT manually create SCMS files at project root!**
+The starter kit is self-contained in docs/scms/
+
+After setup, use the "Session Start Prompt" below for daily development.</div>
                 </div>
             </div> <!-- End startupPromptSection -->
             
             <h3><span class="step-number">2</span> Copy the Session Start Prompt (Daily Use)</h3>
-            <p><strong>Location:</strong> <code>SCMS_STARTUP_PROMPT.md</code> in your project root</p>
+            <p><strong>Location:</strong> <code>docs/scms/SCMS_STARTUP_PROMPT.md</code></p>
             <p><strong>Action:</strong> Paste this prompt to your AI assistant at the <strong>start of EVERY development session</strong></p>
+            <p id="thresholdInfo" style="background: #3498db; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;"><strong>Current Threshold:</strong> Loading...</p>
             <div class="code-block-wrapper">
                 <button class="copy-btn" onclick="copyPrompt(this, 'sessionStartPrompt')">📋 Copy Prompt</button>
                 <div class="code-block" id="sessionStartPrompt">SCMS SESSION START
@@ -1753,9 +1752,62 @@ cd new-folder && npm run dashboard:app</div>
             }
         }
         
+        // Load SCMS config and update prompts with actual threshold
+        async function loadSCMSConfig() {
+            try {
+                if (!window.electronAPI || !window.electronAPI.loadDashboardData) {
+                    // Browser mode - show default
+                    document.getElementById('thresholdInfo').innerHTML = 
+                        '<strong>Current Threshold:</strong> n≥2 (default - run setup script to configure)';
+                    return;
+                }
+                
+                const result = await window.electronAPI.loadDashboardData();
+                if (!result.ok || !result.data.scmsConfig) {
+                    document.getElementById('thresholdInfo').innerHTML = 
+                        '<strong>⚠️ Setup Required:</strong> Run setup script to configure your threshold';
+                    document.getElementById('thresholdInfo').style.background = '#f39c12';
+                    return;
+                }
+                
+                const config = result.data.scmsConfig;
+                const threshold = config.promotionThreshold || 2;
+                
+                // Update threshold display
+                if (config.setupCompleted) {
+                    document.getElementById('thresholdInfo').innerHTML = 
+                        `<strong>✅ Current Threshold:</strong> n≥${threshold} (${config.projectPhase}, ${config.teamSize}, ${config.domain})`;
+                    document.getElementById('thresholdInfo').style.background = '#27ae60';
+                } else {
+                    document.getElementById('thresholdInfo').innerHTML = 
+                        `<strong>⚠️ Current Threshold:</strong> n≥${threshold} (default - run setup script to customize)`;
+                    document.getElementById('thresholdInfo').style.background = '#f39c12';
+                }
+                
+                // Update all threshold references in session start prompt
+                const sessionPrompt = document.getElementById('sessionStartPrompt');
+                if (sessionPrompt) {
+                    let promptText = sessionPrompt.textContent;
+                    // Replace threshold references (be specific to avoid false positives)
+                    promptText = promptText.replace(/n≥\d+/g, `n≥${threshold}`);
+                    promptText = promptText.replace(/threshold: \d+/g, `threshold: ${threshold}`);
+                    promptText = promptText.replace(/≥\d+ uses/g, `≥${threshold} uses`);
+                    sessionPrompt.textContent = promptText;
+                }
+                
+                console.log(`[dashboard] SCMS config loaded: n≥${threshold} (${config.projectPhase})`);
+            } catch (error) {
+                console.error('[dashboard] Failed to load SCMS config:', error);
+                document.getElementById('thresholdInfo').innerHTML = 
+                    '<strong>⚠️ Error:</strong> Could not load configuration';
+                document.getElementById('thresholdInfo').style.background = '#e74c3c';
+            }
+        }
+        
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', async () => {
             await clearStorageIfFreshProject();
+            await loadSCMSConfig();
             restoreStartupPromptState();
             startHealthRefresh();
         });

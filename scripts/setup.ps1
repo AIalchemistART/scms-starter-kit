@@ -706,6 +706,34 @@ if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
 }
 Write-Host ''
 
+# Save SCMS config to economics-dashboard-data.json
+Write-Host 'Saving SCMS configuration to economics-dashboard-data.json...' -ForegroundColor Yellow
+$dataPath = Join-Path (Split-Path $PSScriptRoot -Parent) '..' 'economics-dashboard-data.json'
+
+$scmsConfigData = @{
+    scmsSessions = 0
+    baselineSessions = 0
+    sessions = @()
+    exportDate = $null
+    analysis = @{
+        scmsAvgCost = 0
+        baselineAvgCost = 0
+        savingsPercent = 0
+    }
+    scmsConfig = @{
+        projectPhase = $phaseName
+        teamSize = $teamSize
+        domain = $domainType
+        promotionThreshold = $finalThreshold
+        nUnique = $nUnique
+        setupCompleted = $true
+    }
+}
+
+$scmsConfigData | ConvertTo-Json -Depth 10 | Set-Content -Path $dataPath -Encoding UTF8
+Write-Host "Configuration saved (threshold: n>=$finalThreshold)" -ForegroundColor Green
+Write-Host ''
+
 # Offer to launch economic tracking dashboard
 Write-Host ''
 Write-Host '========================================' -ForegroundColor Cyan

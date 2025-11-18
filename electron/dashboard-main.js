@@ -29,6 +29,14 @@ function ensureDataFile() {
         scmsAvgCost: 0,
         baselineAvgCost: 0,
         savingsPercent: 0
+      },
+      scmsConfig: {
+        projectPhase: 'Mature',
+        teamSize: 'Solo',
+        domain: 'Moderate',
+        promotionThreshold: 2,
+        nUnique: 1,
+        setupCompleted: false
       }
     };
     fs.writeFileSync(DATA_PATH, JSON.stringify(emptyData, null, 2), 'utf-8');
