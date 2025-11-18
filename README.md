@@ -268,21 +268,34 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 
 ## Quick Start
 
-> **🎯 FIRST STEP AFTER SETUP**: Launch the SCMS Dashboard App!  
+### 📦 **Choose Your Setup Approach**
+
+**Option A: Subdirectory (Recommended for existing projects)**
+- Clone SCMS into `docs/scms` within your project
+- Run dashboard from `docs/scms` folder
+- Your project files stay separate
+
+**Option B: Standalone (Recommended for testing/new projects)**
+- Clone SCMS as your entire project
+- Run dashboard from project root
+- All SCMS files at root level
+
+> **🎯 AFTER SETUP**: Launch the SCMS Dashboard App!  
 > ```bash
-> npm run dashboard:app
+> cd docs/scms              # If using subdirectory approach
+> npm install               # First time only
+> npm run dashboard:app     # Launch dashboard
 > ```
-> The dashboard is your **SCMS control center** with:
-> - ✅ Session Start & End Prompts (copy-paste ready)
-> - ✅ Real-time cost tracking with integrated monitoring
-> - ✅ Visual charts and live metrics
-> - ✅ Complete workflow instructions
 
-### 1. Install
+---
 
-> ⚠️ **First**: Navigate to your project directory in the terminal before running these commands.
-> 
-> Don't copy the `cd` commands literally - use your actual project path!
+### 1. Install SCMS
+
+> ⚠️ **Important**: Commands run from different locations depending on your approach!
+> - **Subdirectory**: Run setup from your project root, dashboard from `docs/scms`
+> - **Standalone**: Run everything from project root
+
+#### Option A: Subdirectory Setup (Existing Project)
 
 #### Unix/Mac/Linux
 
@@ -317,7 +330,45 @@ mv docs/scms-starter-kit-master docs/scms
 rm scms.zip
 ```
 
-### 2. Run Setup
+---
+
+#### Option B: Standalone Setup (Testing/New Projects)
+
+**Git Clone:**
+```bash
+# Clone as your entire project
+git clone https://github.com/AIalchemistART/scms-starter-kit.git your-project-name
+cd your-project-name
+npm install
+npm run dashboard:app  # Ready to go!
+```
+
+**Or Download ZIP:**
+```powershell
+# Windows
+Invoke-WebRequest -Uri "https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip" -OutFile "scms.zip"
+Expand-Archive -Path "scms.zip" -DestinationPath "./"
+Rename-Item -Path "scms-starter-kit-master" -NewName "your-project-name"
+cd your-project-name
+Remove-Item "../scms.zip"
+npm install
+npm run dashboard:app
+```
+
+```bash
+# Unix/Mac
+curl -L https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip -o scms.zip
+unzip scms.zip
+mv scms-starter-kit-master your-project-name
+cd your-project-name
+rm ../scms.zip
+npm install
+npm run dashboard:app
+```
+
+---
+
+### 2. Run Setup (Subdirectory approach only)
 
 ```bash
 cd docs/scms
