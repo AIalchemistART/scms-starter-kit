@@ -1721,8 +1721,8 @@ cd new-folder && npm run dashboard:app</div>
             // Activate button
             event.target.classList.add('active');
             
-            // Scroll to top of dashboard to show the new tab content
-            document.querySelector('.dashboard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Scroll to top to show the new tab content
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             
             // Load health data if switching to health tab
             if (tabName === 'health') {
