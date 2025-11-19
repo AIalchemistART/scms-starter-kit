@@ -71,6 +71,12 @@ $domainAdjust = $domainConfig[1]
 # Calculate threshold
 $finalThreshold = [Math]::Max(2, $baseThreshold + $domainAdjust)
 
+# Recalculate effective phase based on final threshold
+# This ensures "(Current Target)" marker appears on correct line in startup prompt
+$effectivePhase = if ($finalThreshold -ge 5) { 'Greenfield' } 
+                  elseif ($finalThreshold -ge 3) { 'Establishing' } 
+                  else { 'Mature' }
+
 Write-Host ''
 Write-Host "Selected: $domainType (adjustment: $domainAdjust)" -ForegroundColor Green
 Write-Host ''
@@ -113,6 +119,9 @@ Write-Host '========================================' -ForegroundColor Cyan
 Write-Host 'YOUR SCMS CONFIGURATION:' -ForegroundColor Yellow
 Write-Host '========================================' -ForegroundColor Cyan
 Write-Host "Project Phase: $phaseName" -ForegroundColor White
+if ($effectivePhase -ne $phaseName) {
+    Write-Host "  (Effective Phase: $effectivePhase due to domain adjustment)" -ForegroundColor Yellow
+}
 Write-Host "Team Size: $teamSize (n_unique>=$nUnique)" -ForegroundColor White
 Write-Host "Domain: $domainType" -ForegroundColor White
 Write-Host ''
@@ -128,7 +137,8 @@ Write-Host ''
 
 # Store config
 $THRESHOLD_CONFIG = @{
-    Phase = $phaseName
+    Phase = $effectivePhase  # Use effective phase (matches final threshold after adjustments)
+    UserSelectedPhase = $phaseName  # Original user selection
     BaseThreshold = $baseThreshold
     Team = $teamSize
     NUnique = $nUnique
