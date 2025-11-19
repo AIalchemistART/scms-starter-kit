@@ -65,31 +65,44 @@ Before starting, ensure you have:
 
 ## Installation Methods
 
-### Method 1: Clone into Existing Project (Recommended)
+### Method 1: Integrate into Existing Project (Recommended)
 
-> ⚠️ **First**: Open terminal and navigate to your project root directory before running these commands.
+**This method copies only the SCMS templates into your project, not the entire repo.**
 
 #### Unix/Mac/Linux
 
 ```bash
-# Clone SCMS into docs folder
-git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
+# Step 1: Clone SCMS temporarily (outside your project)
+cd ~/Downloads
+git clone https://github.com/AIalchemistART/scms-starter-kit.git
 
-# Run setup
-cd docs/scms
-./scripts/setup.sh
+# Step 2: Run setup FROM your project root
+cd /path/to/your/project
+~/Downloads/scms-starter-kit/scripts/setup.sh
+
+# Step 3: Delete the cloned repo (optional)
+rm -rf ~/Downloads/scms-starter-kit
 ```
 
 #### Windows (PowerShell)
 
 ```powershell
-# Clone SCMS into docs folder
-git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
+# Step 1: Clone SCMS temporarily (outside your project)
+cd $env:USERPROFILE\Downloads
+git clone https://github.com/AIalchemistART/scms-starter-kit.git
 
-# Run setup
-cd docs/scms
-.\scripts\setup.ps1
+# Step 2: Run setup FROM your project root
+cd C:\path\to\your\project
+& "$env:USERPROFILE\Downloads\scms-starter-kit\scripts\setup.ps1"
+
+# Step 3: Delete the cloned repo (optional)
+Remove-Item -Recurse "$env:USERPROFILE\Downloads\scms-starter-kit"
 ```
+
+**What this does:**
+- Creates `docs/scms/`, `docs/templates/`, `rules/` in YOUR project
+- Copies templates (not the entire repo!)
+- Initializes INDEX.md, WORKSPACE_RULES.md, etc.
 
 ---
 
@@ -98,33 +111,35 @@ cd docs/scms
 #### Windows (PowerShell)
 
 ```powershell
-# Download
+# Step 1: Download to temp location
+cd $env:USERPROFILE\Downloads
 Invoke-WebRequest -Uri "https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip" -OutFile "scms.zip"
+Expand-Archive -Path "scms.zip" -DestinationPath "./"
 
-# Extract and rename
-Expand-Archive -Path "scms.zip" -DestinationPath "docs/"
-Rename-Item -Path "docs/scms-starter-kit-master" -NewName "scms"
-Remove-Item "scms.zip"
+# Step 2: Run setup FROM your project root
+cd C:\path\to\your\project
+& "$env:USERPROFILE\Downloads\scms-starter-kit-master\scripts\setup.ps1"
 
-# Run setup
-cd docs/scms
-.\scripts\setup.ps1
+# Step 3: Clean up
+Remove-Item -Recurse "$env:USERPROFILE\Downloads\scms-starter-kit-master"
+Remove-Item "$env:USERPROFILE\Downloads\scms.zip"
 ```
 
 #### Unix/Mac/Linux
 
 ```bash
-# Download
+# Step 1: Download to temp location
+cd ~/Downloads
 curl -L https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip -o scms.zip
+unzip scms.zip
 
-# Extract and rename
-unzip scms.zip -d docs/
-mv docs/scms-starter-kit-master docs/scms
-rm scms.zip
+# Step 2: Run setup FROM your project root
+cd /path/to/your/project
+~/Downloads/scms-starter-kit-master/scripts/setup.sh
 
-# Run setup
-cd docs/scms
-./scripts/setup.sh
+# Step 3: Clean up
+rm -rf ~/Downloads/scms-starter-kit-master
+rm ~/Downloads/scms.zip
 ```
 
 ---
