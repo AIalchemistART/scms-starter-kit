@@ -1060,8 +1060,10 @@ Before marking ANY task complete, verify:
             <div id="startupPromptSection">
                 <p><strong>Purpose:</strong> Configure SCMS for your project on first use</p>
                 <p><strong>Action:</strong> Paste this prompt to your AI assistant <strong>ONCE when starting a new project</strong></p>
-                <p style="margin-top: 8px; font-size: 0.9em; color: #555;">
-                    <strong>Edit source:</strong> Update this text in <code>SCMS_STARTUP_PROMPT.md</code> at your project root. The dashboard always loads the latest version from that file.
+                <p style="margin-top: 12px; padding: 12px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
+                    <strong>⚠️ IMPORTANT:</strong> The startup prompt below is a <strong>generic template</strong>. After running <code>.\scripts\setup.ps1</code>, use the customized version from:<br>
+                    <code style="background: #fff; padding: 4px 8px; border-radius: 3px; margin-top: 8px; display: inline-block;">docs/scms/SCMS_STARTUP_PROMPT.md</code><br>
+                    <span style="font-size: 0.9em; color: #856404;">That file has your project-specific threshold configuration (Greenfield n≥5, Establishing n≥3, or Mature n≥2) with the correct "(Current Target)" marker.</span>
                 </p>
                 <div class="code-block-wrapper">
                     <button class="copy-btn" onclick="copyPrompt(this, 'startupPrompt')">📋 Copy Prompt</button>
@@ -1087,7 +1089,9 @@ Working on: [project name and brief description]
 **Promotion Thresholds:**
 - Greenfield (Weeks 1-4): n>5 uses
 - Establishing (Months 2-3): n>3 uses
-- Mature (4+ months): n≥2 uses (Current Target)
+- Mature (4+ months): n≥2 uses
+
+**⚠️ NOTE:** This is a generic template. Your project-specific prompt in `docs/scms/SCMS_STARTUP_PROMPT.md` will show "(Current Target)" next to your configured threshold.
 
 ## Instructions for AI
 
