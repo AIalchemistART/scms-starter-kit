@@ -1746,6 +1746,14 @@ cd new-folder && npm run dashboard:app</div>
                 const freshness = validateDataFreshness(fullData);
                 displayDataFreshnessWarning(freshness);
             }
+
+            // ⚡ AUTO-SAVE (CRITICAL FIX)
+            // Persist data to disk on every update to prevent data loss during crashes/restarts
+            if (window.electronAPI && window.electronAPI.updateDashboardData) {
+                window.electronAPI.updateDashboardData(fullData)
+                    .then(() => console.log('[dashboard] 💾 Auto-saved to disk'))
+                    .catch(err => console.warn('[dashboard] Auto-save failed:', err));
+            }
             
             // Session tracking console logs
             console.log('[dashboard] 📊 Session Tracking Status:');
