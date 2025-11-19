@@ -1067,6 +1067,8 @@ Before marking ANY task complete, verify:
 
 Working on: [project name and brief description]
 
+⚠️ **BEFORE PROCEEDING:** If the line above contains `[project name and brief description]`, **STOP and ask the user for project details** before initializing anything.
+
 ## SCMS Configuration - Sparse Contextual Memory Scaffolding
 
 **IMPORTANT LOCATION RULE:**
@@ -1106,22 +1108,33 @@ Working on: [project name and brief description]
 
 **C. Initialize Operational Files:**
 1. `docs/scms/INDEX.md` (Central Hub skeleton)
-2. `docs/scms/MEMORY_STATUS_DASHBOARD.md` (Greenfield config)
+2. `docs/scms/MEMORY_STATUS_DASHBOARD.md` (**READ-ONLY** - configured by setup.ps1, **NEVER modify**)
 3. `docs/scms/FAILURES.md` (Empty log)
-4. `docs/scms/WORKSPACE_RULES.md` (Empty L1)
+4. `docs/scms/WORKSPACE_RULES.md` (Template - configure with project details when provided)
 5. `economics-dashboard-data.json` OR `scms-metrics.json` (Initialize with session: [] array)
 
 ### 2. SESSION START CHECKLIST (Before Coding)
-1. **Environment Check**:
+1. **Project Details Verification**:
+   - If you initialized with `[project name and brief description]` placeholder:
+   - **MANDATORY:** Ask user for actual project details before proceeding.
+   - Once received, update `docs/scms/WORKSPACE_RULES.md` with:
+     - Project name and description
+     - Tech stack and architecture
+     - Naming conventions
+     - L1 Validated Patterns section (empty initially)
+   
+2. **Environment Check**:
    - Verify `package.json` scripts (`test`, `start`).
    - **Template Verification**: Do `docs/templates/` exist? If not, regenerate them.
    
-2. **Review L4 Global Rules**:
+3. **Review L4 Global Rules**:
    - Check `GLOBAL_CODING_RULES` (Memory or File).
    - Constraint: "No duplicate code", "No broken builds".
    
-3. **Review Memory Dashboard**:
-   - Check `MEMORY_STATUS_DASHBOARD.md` for Active Patterns.
+4. **Review Memory Dashboard**:
+   - **READ** `MEMORY_STATUS_DASHBOARD.md` for threshold configuration.
+   - **DO NOT MODIFY** this file - it's configured by setup.ps1.
+   - Note the promotion threshold (n≥2, n≥3, or n≥5) for pattern promotion.
 
 ### 3. DURING DEVELOPMENT (The Workflow)
 1. **CREATE MEMORIES (L0)**: 
@@ -1142,7 +1155,12 @@ At end of EVERY session, run closure protocol:
 2. **Export:** Run Dashboard Export to capture `checkpoints/checkpoint-[ID].txt`.
 3. **Update:** `INDEX.md` and Dashboards.
 
-Ready to configure SCMS. Let's start by initializing the directory structure and templates.</div>
+**CRITICAL CONSTRAINTS:**
+- **NEVER modify** `docs/scms/MEMORY_STATUS_DASHBOARD.md` (configured by setup.ps1)
+- **ALWAYS ask** for project details if working on `[project name and brief description]`
+- **MUST configure** `docs/scms/WORKSPACE_RULES.md` when project details are provided
+
+Ready to configure SCMS. If project name is a placeholder, ask the user for details first.</div>
                 </div>
             </div> <!-- End startupPromptSection -->
             
