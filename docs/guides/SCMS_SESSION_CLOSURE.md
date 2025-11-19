@@ -86,7 +86,7 @@ Please perform the following session closure steps:
 - Calculate retrieval ratio for this session (target: >70%)
 
 ## 2. L0/L1 VALIDATION PIPELINE UPDATE
-- Promote any L0 patterns that reached threshold (3+ uses)
+- Promote any L0 patterns that reached threshold (see `docs/scms/MEMORY_STATUS_DASHBOARD.md` for project-specific threshold)
 - Update existing L1 patterns based on session refinements
 - Add new L0 patterns for future validation
 - Document any anti-patterns or failure modes discovered

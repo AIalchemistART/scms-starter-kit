@@ -1144,7 +1144,7 @@ Working on: [project name and brief description]
    - **Constraint:** MUST uses `docs/templates/FAILURE_LOG_TEMPLATE.md` (5 Whys required).
    
 3. **PATTERN PROMOTION (L3)**:
-   - **Trigger:** L0 Pattern used n≥2 times.
+   - **Trigger:** L0 Pattern used per threshold (see `docs/scms/MEMORY_STATUS_DASHBOARD.md`).
    - **Action:** Fill `docs/templates/PATTERN_PROMOTION_TEMPLATE.md` to request L1 status.
 
 ### 4. SESSION CLOSURE (L5 - Critical)
@@ -1207,7 +1207,7 @@ Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
    - **Target:** 10-15 mins remaining
    - **Mandatory Steps:**
      1. **Reflect:** Log failures using L2 Template
-     2. **Promote:** Check n≥2 patterns using L3 Template
+     2. **Promote:** Check patterns per threshold (see `docs/scms/MEMORY_STATUS_DASHBOARD.md`) using L3 Template
      3. **Audit:** Generate `docs/scms/SESSION_LOG_L5.md` using **L5 Template**
      4. **Export:** Run Dashboard Export to finalize metrics
 
@@ -1329,7 +1329,7 @@ Close the session by executing this Audit Protocol now.</div>
             <h3><span class="step-number">5</span> What Happens During Session Closure</h3>
             <ol>
                 <li><strong>Pattern Reflection & Validation:</strong> AI reviews patterns used, with FAILURES documented first (3-10× more informative than successes)</li>
-                <li><strong>L0/L1 Pipeline Update:</strong> Promotes validated patterns from L0 → L1 based on threshold (2+ uses)</li>
+                <li><strong>L0/L1 Pipeline Update:</strong> Promotes validated patterns from L0 → L1 based on project-specific threshold (see docs/scms/MEMORY_STATUS_DASHBOARD.md)</li>
                 <li><strong>INDEX & Cross-Reference Maintenance:</strong> Updates INDEX.md with tags/cross-refs for organizational framing (NOT visual diagrams)</li>
                 <li><strong>Memory Dashboard Update:</strong> Updates Cascade persistent memory with pattern metrics and validation status</li>
                 <li><strong>Economic Dashboard Update:</strong> Records cost/savings/ROI measurements for retrieval optimization</li>
