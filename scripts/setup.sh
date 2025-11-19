@@ -62,13 +62,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
 # Base directories (always created)
-mkdir -p "$PROJECT_ROOT/../sops"
-mkdir -p "$PROJECT_ROOT/../case-studies"
-mkdir -p "$PROJECT_ROOT/../sessions"
+mkdir -p "$PROJECT_ROOT/docs/scms/sops"
+mkdir -p "$PROJECT_ROOT/docs/scms/case-studies"
+mkdir -p "$PROJECT_ROOT/docs/scms/sessions"
+mkdir -p "$PROJECT_ROOT/rules"
 
 # Only create memories/ folder if using manual strategy
 if [ "$L0_STRATEGY" = "manual" ]; then
-    mkdir -p "$PROJECT_ROOT/../memories"
+    mkdir -p "$PROJECT_ROOT/docs/scms/memories"
 fi
 
 echo "Directories created"
@@ -78,7 +79,7 @@ echo ""
 echo "Copying documentation templates..."
 
 TEMPLATE_SOURCE="$SCRIPT_DIR/../docs/templates/WORKSPACE_RULES_TEMPLATE.md"
-TEMPLATE_DEST="$PROJECT_ROOT/../WORKSPACE_RULES.md"
+TEMPLATE_DEST="$PROJECT_ROOT/docs/scms/WORKSPACE_RULES.md"
 
 if [ ! -f "$TEMPLATE_DEST" ]; then
     cp "$TEMPLATE_SOURCE" "$TEMPLATE_DEST"
@@ -91,7 +92,7 @@ fi
 echo ""
 echo "Initializing memory dashboard..."
 
-DASHBOARD_PATH="$PROJECT_ROOT/../MEMORY_STATUS_DASHBOARD.md"
+DASHBOARD_PATH="$PROJECT_ROOT/docs/scms/MEMORY_STATUS_DASHBOARD.md"
 if [ ! -f "$DASHBOARD_PATH" ]; then
     STRATEGY_LINE=""
     if [ "$L0_STRATEGY" = "auto" ]; then
@@ -141,7 +142,7 @@ echo "Running $IDE setup..."
 case $IDE in
     cursor)
         CURSORRULES="$SCRIPT_DIR/../config/cursor/.cursorrules"
-        DEST="$PROJECT_ROOT/../../.cursorrules"
+        DEST="$PROJECT_ROOT/.cursorrules"
         
         if [ ! -f "$DEST" ]; then
             cp "$CURSORRULES" "$DEST"
@@ -167,7 +168,7 @@ case $IDE in
             echo "See config/windsurf/SETUP.md for detailed instructions"
             
             # Create guide file
-            GUIDE_PATH="$PROJECT_ROOT/../L0_AUTO_MEMORY_GUIDE.md"
+            GUIDE_PATH="$PROJECT_ROOT/docs/scms/L0_AUTO_MEMORY_GUIDE.md"
             cat > "$GUIDE_PATH" << 'EOF'
 # L0 Auto-Memory Strategy (Windsurf)
 
@@ -246,9 +247,9 @@ EOF
             echo ""
             echo "Full prompt saved to: SCMS_STARTUP_PROMPT.md"
             
-            # Copy startup prompt to project root
+            # Copy startup prompt to docs/scms
             STARTUP_PROMPT_SOURCE="$SCRIPT_DIR/../SCMS_STARTUP_PROMPT.md"
-            STARTUP_PROMPT_DEST="$PROJECT_ROOT/../SCMS_STARTUP_PROMPT.md"
+            STARTUP_PROMPT_DEST="$PROJECT_ROOT/docs/scms/SCMS_STARTUP_PROMPT.md"
             if [ -f "$STARTUP_PROMPT_SOURCE" ]; then
                 cp "$STARTUP_PROMPT_SOURCE" "$STARTUP_PROMPT_DEST"
             fi

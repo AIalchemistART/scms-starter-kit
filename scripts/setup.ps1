@@ -4,14 +4,9 @@ Write-Host 'SCMS Starter Kit Setup' -ForegroundColor Cyan
 Write-Host ''
 
 # Determine project root - where files should be created
-# User should run this script from their project root, or we'll use parent of scms dir
-$projectRoot = if (Test-Path (Join-Path $PSScriptRoot '..\..\..')) {
-    # Running from docs/scms/scripts - go up to project root
-    Resolve-Path (Join-Path $PSScriptRoot '..\..\..')
-} else {
-    # Running from elsewhere - use current directory
-    Get-Location
-}
+# Script is at: project-root/scripts/setup.ps1
+# So project root is one level up from $PSScriptRoot
+$projectRoot = Resolve-Path (Join-Path $PSScriptRoot '..')
 
 Write-Host "Project root: $projectRoot" -ForegroundColor Gray
 Write-Host ''
