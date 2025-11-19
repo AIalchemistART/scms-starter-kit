@@ -37,7 +37,13 @@
 
 ## 📝 Validated Patterns (L1)
 
-*This section auto-populates as patterns reach use_count ≥2*
+> ⚠️ **GREENFIELD PROJECTS:** This section should be EMPTY at project start!  
+> Patterns are discovered and promoted DURING development, not pre-populated.  
+> **Promotion Threshold:** n≥2 uses (configured during setup)
+
+*This section auto-populates as patterns reach the promotion threshold*
+
+---
 
 ### Pattern Template (Remove this when you add real patterns)
 

@@ -348,10 +348,18 @@ Working on: [project name and brief description]
    - Verify package.json scripts.
    - **Template Verification**: Do docs/templates/ exist?
    
-2. **Review L4 Global Rules**:
+2. **Greenfield Project Validation** ⚠️:
+   - IF this is the FIRST session on a NEW project:
+     - WORKSPACE_RULES.md should contain ONLY scaffolding (no promoted patterns)
+     - L1 section should be EMPTY or show "Pattern Template (Remove this when you add real patterns)"
+     - DO NOT pre-populate with invented patterns
+     - Patterns will be discovered and promoted DURING development
+   - IF patterns exist in L1: VERIFY they have legitimate use counts from THIS project
+   
+3. **Review L4 Global Rules**:
    - Check rules/GLOBAL_CODING_RULES.md.
    
-3. **Review Memory Dashboard**:
+4. **Review Memory Dashboard**:
    - Check docs/scms/MEMORY_STATUS_DASHBOARD.md for Active Patterns.
 
 ### 3. DURING DEVELOPMENT (The Workflow)
@@ -433,10 +441,18 @@ Working on: [project name and brief description]
    - Verify package.json scripts.
    - **Template Verification**: Do docs/templates/ exist?
    
-2. **Review L4 Global Rules**:
+2. **Greenfield Project Validation** ⚠️:
+   - IF this is the FIRST session on a NEW project:
+     - WORKSPACE_RULES.md should contain ONLY scaffolding (no promoted patterns)
+     - L1 section should be EMPTY or show "Pattern Template (Remove this when you add real patterns)"
+     - DO NOT pre-populate with invented patterns
+     - Patterns will be discovered and promoted DURING development
+   - IF patterns exist in L1: VERIFY they have legitimate use counts from THIS project
+   
+3. **Review L4 Global Rules**:
    - Check rules/GLOBAL_CODING_RULES.md.
    
-3. **Review Memory Dashboard**:
+4. **Review Memory Dashboard**:
    - Check docs/scms/MEMORY_STATUS_DASHBOARD.md for Active Patterns.
 
 ### 3. DURING DEVELOPMENT (The Workflow)
@@ -519,10 +535,18 @@ Working on: [project name and brief description]
    - Verify package.json scripts.
    - **Template Verification**: Do docs/templates/ exist?
    
-2. **Review L4 Global Rules**:
+2. **Greenfield Project Validation** ⚠️:
+   - IF this is the FIRST session on a NEW project:
+     - WORKSPACE_RULES.md should contain ONLY scaffolding (no promoted patterns)
+     - L1 section should be EMPTY or show "Pattern Template (Remove this when you add real patterns)"
+     - DO NOT pre-populate with invented patterns
+     - Patterns will be discovered and promoted DURING development
+   - IF patterns exist in L1: VERIFY they have legitimate use counts from THIS project
+   
+3. **Review L4 Global Rules**:
    - Check rules/GLOBAL_CODING_RULES.md.
    
-3. **Review Memory Dashboard**:
+4. **Review Memory Dashboard**:
    - Check docs/scms/MEMORY_STATUS_DASHBOARD.md for Active Patterns.
 
 ### 3. DURING DEVELOPMENT (The Workflow)
