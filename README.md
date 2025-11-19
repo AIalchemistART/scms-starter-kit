@@ -345,21 +345,16 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\Downloads\scms-starter-kit"
 
 #### Option B: Standalone Setup (Testing/New Projects)
 
-> **✅ Simplest approach** - 3 steps and you're running!
+> **✅ Simplest approach** - 2 steps and you're running!
 
 **Unix/Mac/Linux:**
 
-**Step 1:** Clone the repository
+**Step 1:** Clone and enter directory
 ```bash
-git clone https://github.com/AIalchemistART/scms-starter-kit.git your-project-name
+git clone https://github.com/AIalchemistART/scms-starter-kit.git your-project-name && cd your-project-name
 ```
 
-**Step 2:** Enter directory
-```bash
-cd your-project-name
-```
-
-**Step 3:** Configure (2-3 min, interactive)
+**Step 2:** Configure (2-3 min, interactive)
 ```bash
 ./scripts/setup.sh
 ```
@@ -375,17 +370,12 @@ npm run dashboard:app
 
 **Windows (PowerShell):**
 
-**Step 1:** Clone the repository
+**Step 1:** Clone and enter directory
 ```powershell
-git clone https://github.com/AIalchemistART/scms-starter-kit.git your-project-name
+git clone https://github.com/AIalchemistART/scms-starter-kit.git your-project-name; cd your-project-name
 ```
 
-**Step 2:** Enter directory
-```powershell
-cd your-project-name
-```
-
-**Step 3:** Configure (2-3 min, interactive)
+**Step 2:** Configure (2-3 min, interactive)
 ```powershell
 .\scripts\setup.ps1
 ```

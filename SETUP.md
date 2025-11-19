@@ -156,16 +156,13 @@ rm ~/Downloads/scms.zip
 
 ### Method 3: Start New Project with SCMS (Simplest!)
 
-> **✅ Fastest way to test SCMS** - 3 steps and you're running!
+> **✅ Fastest way to test SCMS** - 2 steps and you're running!
 
 #### Unix/Mac/Linux
 
-**Step 1:** Clone as complete project
+**Step 1:** Clone and enter directory
 ```bash
-git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project
-```
-```bash
-cd my-project
+git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project && cd my-project
 ```
 
 **Step 2:** Configure (2-3 min, detects IDE, sets thresholds)
@@ -184,12 +181,9 @@ npm run dashboard:app
 
 #### Windows (PowerShell)
 
-**Step 1:** Clone as complete project
+**Step 1:** Clone and enter directory
 ```powershell
-git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project
-```
-```powershell
-cd my-project
+git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project; cd my-project
 ```
 
 **Step 2:** Configure (2-3 min, detects IDE, sets thresholds)
