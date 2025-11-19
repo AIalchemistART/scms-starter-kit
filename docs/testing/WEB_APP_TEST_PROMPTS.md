@@ -1,392 +1,520 @@
-# SCMS Test Prompts - Web Application
+# SCMS Test Prompts: "TaskFlow Pro" (Web Application Pivot)
 
-**Purpose:** Test SCMS with a clean web application project to avoid L0 pattern pollution from previous game development.
-
-**Test Project:** Task Management Web Application (REST API + React Frontend)
-
----
-
-## 🎯 Test Objectives
-
-1. **Greenfield Pattern Discovery** - Start with empty L0, discover patterns organically
-2. **Threshold Validation** - Track pattern usage and validate n≥5 promotion threshold
-3. **WORKSPACE_RULES Configuration** - Verify project-specific configuration on session start
-4. **Baseline Comparison** - Compare SCMS vs non-SCMS development metrics
+This roadmap outlines the 50-prompt journey to build a **Full-Stack Task Management Application** from scratch.
+**Goal:** Compare Baseline vs SCMS on architectural stability when scaling from simple CRUD to multi-tenant SaaS.
 
 ---
 
-## 📋 Test Sequence
+## ⚠️ Test Protocol
 
-### Step 1: Setup SCMS (First Time Only)
+1. **Clean Slate:** Delete previous `backend/`, `frontend/`, and `node_modules/` folders.
+2. **Environment:** Monorepo setup with TypeScript, Node.js, React (Agent choice of bundler).
+3. **Execution:** Run the exact same prompt for both Agents.
+4. **Validation:**
+   - **Baseline:** Does it work? Does it handle edge cases?
+   - **SCMS:** Does it follow patterns? Are there tests?
 
-**In clean test directory:**
+---
 
-```bash
-git clone https://github.com/AIalchemistART/scms-starter-kit.git task-manager-app
-cd task-manager-app
-.\scripts\setup.ps1
+## 🚀 Phase 1: The Foundation (Prompts 1-10)
+
+*Focus: Setting up the backend API and basic frontend.*
+
+#### **Prompt 1: Project Setup & Express Server**
+```
+Initialize a monorepo TypeScript project:
+- Create `backend/` folder with Express server setup.
+- Create `package.json` with TypeScript, Express, and nodemon.
+- Create `backend/src/server.ts` with basic Express server listening on port 3001.
+- Log "Server running on http://localhost:3001" on startup.
 ```
 
-**Setup selections:**
-- Project Phase: **Greenfield**
-- Team Size: **Solo**
-- Domain: **Moderate**
-- Expected threshold: **n≥5**
-
----
-
-### Step 2: Baseline Tracking (Baseline Agent)
-
-**Purpose:** Track non-SCMS metrics for comparison
-
-**Paste this to baseline agent:**
-
-```markdown
-SYSTEM_AUDIT_REQUEST:
-Please begin tracking these metrics in a standalone file after each prompt & response.
-Ensure you're figuring in the entire workflow from user prompt to summary - both input & output tokens.
-
-1. **Token Usage:**
-   - Count the ENTIRE workflow: user prompt → your response → summary
-   - Include BOTH input tokens (user prompt + context) AND output tokens (your response)
-   - Check the context window or usage logs
-   - Output format: "Token usage: [Used]/[Total]" (e.g., 15000/200000)
-   - Break down: "Input: [X] | Output: [Y] | Total: [Z]"
-
-2. **Cost Estimate:**
-   - Calculate based on FULL workflow (input + output):
-     - Input: $3.00 / 1M tokens
-     - Output: $15.00 / 1M tokens
-   - Output format: "Current Cost: $[Amount]"
-
-3. **File Impact:**
-   - List files modified in this step
-   - Count total lines of code (LOC) in the project (approx)
-
-4. **Track in File:**
-   - Append this checkpoint to: `docs/testing/baseline-tracking.md`
-   - Do this AFTER EACH PROMPT & RESPONSE (not just milestones)
-   - Format:
-     ```
-     ## Checkpoint [X] - [Date/Time]
-     Token usage: [Used]/[Context]
-     Input: [X] | Output: [Y] | Total: [Z]
-     Current Cost: $[Cost]
-     Files modified: [Number]
-     Project LOC: [Number]
-     ```
-
-**REQUIRED OUTPUT FORMAT (Plain Text):**
-Token usage: [Used]/[Context]
-Input: [X] | Output: [Y] | Total: [Z]
-Current Cost: $[Cost]
-Files modified: [Number]
-Project LOC: [Number]
-
-**THEN:** Append this data to `docs/testing/baseline-tracking.md` with checkpoint header.
+#### **Prompt 2: Database Setup (SQLite)**
+```
+Add SQLite database:
+- Install `sqlite3` and `better-sqlite3`.
+- Create `backend/src/database.ts` with connection setup.
+- Create `tasks` table schema (id, title, description, completed, createdAt).
+- Initialize database on server startup.
 ```
 
-**Then give project request (see Step 4 below)**
+#### **Prompt 3: Task Model & Repository**
+```
+Create Task data layer:
+- Create `backend/src/models/Task.ts` interface.
+- Create `backend/src/repositories/TaskRepository.ts` with CRUD methods.
+- Methods: `create()`, `findAll()`, `findById()`, `update()`, `delete()`.
+- Use prepared statements for SQL queries.
+```
 
----
+#### **Prompt 4: REST API Routes**
+```
+Implement Task API endpoints:
+- `POST /api/tasks` - Create task.
+- `GET /api/tasks` - Get all tasks.
+- `GET /api/tasks/:id` - Get single task.
+- `PUT /api/tasks/:id` - Update task.
+- `DELETE /api/tasks/:id` - Delete task.
+```
 
-### Step 3: SCMS Startup (SCMS Agent - First Time Only)
+#### **Prompt 5: Validation Middleware**
+```
+Add input validation:
+- Install `express-validator`.
+- Create `backend/src/middleware/validation.ts`.
+- Validate task creation: title (required, 3-100 chars), description (optional).
+- Return 400 errors with validation messages.
+```
 
-**Purpose:** Initialize SCMS for the project
+#### **Prompt 6: Error Handling Middleware**
+```
+Create error handling system:
+- Create `backend/src/middleware/errorHandler.ts`.
+- Catch all errors and return consistent JSON format.
+- Include status code, message, and stack trace (dev only).
+- Log errors to console with timestamps.
+```
 
-**Paste this to SCMS agent:**
+#### **Prompt 7: React Frontend Setup**
+```
+Initialize React frontend:
+- Create `frontend/` folder with Vite + React + TypeScript.
+- Setup `frontend/src/App.tsx` with basic component.
+- Add TailwindCSS for styling.
+- Verify dev server runs on port 5173.
+```
 
-```markdown
-SCMS STARTUP (First Session Configuration)
+#### **Prompt 8: API Client Service**
+```
+Create API communication layer:
+- Create `frontend/src/services/api.ts`.
+- Axios/fetch wrapper with base URL configuration.
+- Methods: `getTasks()`, `getTask(id)`, `createTask()`, `updateTask()`, `deleteTask()`.
+- Handle errors and return typed responses.
+```
 
-Working on: Task Manager Web Application - REST API + React frontend for personal task management
+#### **Prompt 9: Task List Component**
+```
+Implement Task List UI:
+- Create `frontend/src/components/TaskList.tsx`.
+- Fetch tasks on mount using API service.
+- Display tasks in a list with title, description, status.
+- Show loading state and error messages.
+```
 
-## SCMS Configuration - Sparse Contextual Memory Scaffolding
-
-**IMPORTANT LOCATION RULE:**
-- All Operational Logs live in: `docs/scms/` (e.g., `FAILURES.md`)
-- All Templates live in: `docs/templates/`
-- Do NOT create SCMS files in root.
-
-**Architecture:** Multi-time-scale cognitive framework
-- L0: Auto-memories (Probabilistic retrieval) - **Active Strategy**
-- L1: Validated patterns (Mandatory loading via WORKSPACE_RULES.md)
-- L2: Failure Analysis (5 Whys enforced via Template)
-- L3: Pattern Promotion (Evidence-based validation)
-- L5: Session Audit (Closure verification)
-- Dashboard: Economic & Context tracking
-
-**Promotion Thresholds:**
-- Greenfield (Weeks 1-4): n>5 uses
-- Establishing (Months 2-3): n>3 uses
-- Mature (4+ months): n≥2 uses
-
-**Current Threshold:** Check `docs/scms/MEMORY_STATUS_DASHBOARD.md` for your project-specific threshold.
-
-## Instructions for AI
-
-### 1. ZERO-STATE INITIALIZATION (Greenfield/Integration)
-**IF `docs/scms/` DOES NOT EXIST:**
-
-**A. Create Directory Structure:**
-1. `docs/scms/` (Operational Logs)
-2. `docs/templates/` (Standardization)
-3. `docs/guides/` (Manuals)
-
-**B. Initialize Templates (The "Gold Standard"):**
-1. Create `docs/templates/FAILURE_LOG_TEMPLATE.md` (Fields: Severity, Impact, 5 Whys, Prevention)
-2. Create `docs/templates/PATTERN_PROMOTION_TEMPLATE.md` (Fields: Use Cases, Impact Score, Rule Draft)
-3. Create `docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md` (Fields: L2/L3/L5 Checklist, Export Verification)
-
-**C. Initialize Operational Files:**
-1. `docs/scms/INDEX.md` (Central Hub skeleton)
-2. `docs/scms/MEMORY_STATUS_DASHBOARD.md` (Greenfield config)
-3. `docs/scms/FAILURES.md` (Empty log)
-4. `docs/scms/WORKSPACE_RULES.md` (Empty L1)
-5. `economics-dashboard-data.json` OR `scms-metrics.json` (Initialize with session: [] array)
-
-### 2. SESSION START CHECKLIST (Before Coding)
-1. **Environment Check**:
-   - Verify package.json scripts (test, start).
-   - **Template Verification**: Do `docs/templates/` exist? If not, regenerate them.
-   
-2. **Review L4 Global Rules**:
-   - Check GLOBAL_CODING_RULES (Memory or File).
-   - Constraint: "No duplicate code", "No broken builds".
-   
-3. **Review Memory Dashboard**:
-   - Check `MEMORY_STATUS_DASHBOARD.md` for Active Patterns.
-
-### 3. DURING DEVELOPMENT (The Workflow)
-1. **CREATE MEMORIES (L0)**: 
-   - Pattern discovered -> Create Cascade memory.
-   
-2. **FAILURE DOCUMENTATION (L2 - Priority)**:
-   - **Trigger:** Any mock failure, tool error, or regression.
-   - **Action:** Update `docs/scms/FAILURES.md`.
-   - **Constraint:** MUST uses `docs/templates/FAILURE_LOG_TEMPLATE.md` (5 Whys required).
-   
-3. **PATTERN PROMOTION (L3)**:
-   - **Trigger:** L0 Pattern used per threshold (see `docs/scms/MEMORY_STATUS_DASHBOARD.md`).
-   - **Action:** Fill `docs/templates/PATTERN_PROMOTION_TEMPLATE.md` to request L1 status.
-
-### 4. SESSION CLOSURE (L5 - Critical)
-At end of EVERY session, run closure protocol:
-1. **Audit:** Generate `docs/scms/SESSION_LOG_L5.md` using `docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md`.
-2. **Export:** Run Dashboard Export to capture `checkpoints/checkpoint-[ID].txt`.
-3. **Update:** `INDEX.md` and Dashboards.
-
-Ready to configure SCMS. Let's start by initializing the directory structure and templates.
+#### **Prompt 10: Task Form Component**
+```
+Create Task creation form:
+- Create `frontend/src/components/TaskForm.tsx`.
+- Form fields: title (input), description (textarea), completed (checkbox).
+- Client-side validation matching backend rules.
+- Submit to API and refresh task list on success.
 ```
 
 ---
 
-### Step 4: Session Start (SCMS Agent - Daily Use)
+## 🔐 Phase 2: Authentication & Security (Prompts 11-20)
 
-**Purpose:** Start each development session with SCMS context loaded
+*Focus: User system and protected routes.*
 
-**Paste this at start of EVERY session:**
+#### **Prompt 11: User Model & Registration**
+```
+Add User authentication:
+- Create `users` table schema (id, email, passwordHash, createdAt).
+- Create `backend/src/models/User.ts`.
+- Install `bcrypt` for password hashing.
+- `POST /api/auth/register` endpoint with email/password validation.
+```
 
-```markdown
-SCMS SESSION START
+#### **Prompt 12: Login & JWT Tokens**
+```
+Implement login system:
+- Install `jsonwebtoken`.
+- `POST /api/auth/login` - validate credentials.
+- Generate JWT token with user ID and email.
+- Return token + user data on successful login.
+```
 
-Working on: Task Manager Web Application - REST API + React frontend
+#### **Prompt 13: Auth Middleware**
+```
+Protect API routes:
+- Create `backend/src/middleware/auth.ts`.
+- Verify JWT token from `Authorization` header.
+- Attach user data to `req.user`.
+- Return 401 for invalid/missing tokens.
+```
 
-Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
+#### **Prompt 14: User-Task Association**
+```
+Link tasks to users:
+- Add `userId` column to `tasks` table.
+- Update TaskRepository to filter by userId.
+- Modify all task endpoints to use `req.user.id`.
+- Users can only see/modify their own tasks.
+```
 
-1. 🛠️ CONTEXT LOADING & SYSTEM CHECK
-   - Check `scms/INDEX.md` for relevant patterns
-   - **CRITICAL:** Review `docs/scms/FAILURES.md` to avoid known pitfalls (L2)
-   - **TEMPLATE CHECK:** Ensure `docs/templates/` exists (L2/L3/L5 templates)
-   - Verify Environment: Quick check of package.json scripts & config
-   - **PROJECT CONFIGURATION:** If `docs/scms/WORKSPACE_RULES.md` is still a template and project details are provided, configure it now with:
-     - Project name and description
-     - Tech stack and architecture
-     - Naming conventions and file structure
-     - L1 Validated Patterns section (empty, ready for promotion)
+#### **Prompt 15: Login Form Component**
+```
+Create login UI:
+- Create `frontend/src/components/LoginForm.tsx`.
+- Email and password inputs with validation.
+- Call `/api/auth/login` on submit.
+- Store token in localStorage on success.
+```
 
-2. 🧠 LAYER RETRIEVAL PRIORITY
-   AUTOMATIC (System):
-   - L0: Auto-gen memories (Cascade) - **Primary Context**
-   - L4: Global Rules (User Rules) - **Hard Constraints**
-   - L1: Workspace Rules (valid_patterns) - **Quality Gates**
-   
-   SELF-DIRECTED (Agent):
-   - L2: SOPs & Failure Logs - **Must check `FAILURES.md` if doing risky work**
-   - L3: Case Studies - Retrieve if implementing complex features
-   - L5: Overflow - Low-frequency patterns
-   
-**Retrieval Workflow:** Windsurf hardcoded (L0 → L4 → L1) → SCMS directed (L2/L3 → L5 if needed) → Generate (if no retrieval) → L4 compliance check
+#### **Prompt 16: Register Form Component**
+```
+Add registration UI:
+- Create `frontend/src/components/RegisterForm.tsx`.
+- Email, password, confirm password fields.
+- Password strength validation (8+ chars, number, special char).
+- Navigate to login after successful registration.
+```
 
-3. 💰 ECONOMIC TRACKING (EXPORT-TRIGGERED)
-   - **Goal:** 30-50% Retrieval Ratio
-   - **Requirement:** Maintain accurate token warnings in chat
-   - **Update Method:** Dashboard Export -> `checkpoints/checkpoint-[ID].txt` 
-   - **Do not manually edit** `economics-dashboard-data.json` (it is auto-generated)
+#### **Prompt 17: Auth Context**
+```
+Implement global auth state:
+- Create `frontend/src/context/AuthContext.tsx`.
+- Manage user state, token, login/logout functions.
+- `useAuth()` hook for components.
+- Auto-load user from localStorage on app start.
+```
 
-4. 🚨 FAILURE DOCUMENTATION (L2)
-   - **Trigger:** Any mock failure, tool error, or regression
-   - **Action:** Log immediately to `docs/scms/FAILURES.md` 
-   - **Constraint:** MUST use `docs/templates/FAILURE_LOG_TEMPLATE.md` (5 Whys required)
-   - **Philosophy:** "What NOT to do" is more valuable than "What to do"
+#### **Prompt 18: Protected Routes**
+```
+Add route protection:
+- Install `react-router-dom`.
+- Create `ProtectedRoute` component.
+- Redirect to `/login` if not authenticated.
+- Setup routes: `/login`, `/register`, `/tasks` (protected).
+```
 
-5. 🏁 SESSION CLOSURE PROTOCOL (L5)
-   - **Target:** 10-15 mins remaining
-   - **Mandatory Steps:**
-     1. **Reflect:** Log failures using L2 Template
-     2. **Promote:** Check patterns per threshold (see `docs/scms/MEMORY_STATUS_DASHBOARD.md`) using L3 Template
-     3. **Audit:** Generate `docs/scms/SESSION_LOG_L5.md` using **L5 Template**
-     4. **Export:** Run Dashboard Export to finalize metrics
+#### **Prompt 19: API Client with Auth**
+```
+Update API service for authentication:
+- Auto-attach JWT token to all requests.
+- Intercept 401 responses and redirect to login.
+- Clear token from storage on logout.
+- Refresh token on API client initialization.
+```
 
-Let's start by loading failure context and verifying the templates are ready.
+#### **Prompt 20: Logout & Session Management**
+```
+Complete auth flow:
+- Add logout button in header/navbar.
+- Clear token and user state on logout.
+- Add token expiration check (auto-logout after 24h).
+- Show "Session expired" message and redirect.
 ```
 
 ---
 
-### Step 5: Development Requests (Both Agents)
+## 🧪 Phase 3: Testing & Quality (Prompts 21-30)
 
-**Send identical requests to both agents for comparison**
+*Focus: Automated testing and code quality.*
 
-#### Request 1: Initial Setup
-
-```markdown
-Create a Task Manager web application with the following structure:
-
-**Backend (Node.js + Express):**
-- REST API with endpoints for tasks (CRUD)
-- SQLite database with task model
-- Input validation middleware
-- Error handling middleware
-- CORS configuration
-
-**Frontend (React + TypeScript):**
-- Task list component with add/edit/delete
-- Task form with validation
-- API client service
-- Basic styling (CSS modules)
-
-**Tech Stack:**
-- Backend: Node.js 18+, Express 4.x, SQLite3, TypeScript
-- Frontend: React 18+, TypeScript, Vite
-- Testing: Jest (backend), Vitest (frontend)
-
-Please scaffold the complete application with:
-1. Project structure (monorepo with backend/ and frontend/ folders)
-2. All necessary configuration files
-3. Core functionality implementation
-4. README with setup instructions
+#### **Prompt 21: Backend Unit Tests Setup**
+```
+Initialize backend testing:
+- Install Jest and `@types/jest`.
+- Create `backend/jest.config.js`.
+- Create `backend/src/__tests__/` folder.
+- Add `npm test` script for backend.
 ```
 
-#### Request 2: Feature Addition
-
-```markdown
-Add user authentication to the Task Manager:
-
-**Backend:**
-- User registration endpoint with password hashing (bcrypt)
-- Login endpoint with JWT token generation
-- Auth middleware to protect task routes
-- User-task association (tasks belong to users)
-
-**Frontend:**
-- Login/Register form components
-- Auth context for managing user state
-- Protected routes
-- Token storage (localStorage)
-- Auto-logout on token expiration
-
-Update all task endpoints to be user-specific.
+#### **Prompt 22: Task Repository Tests**
+```
+Test data layer:
+- Create `TaskRepository.test.ts`.
+- Test CRUD operations with in-memory SQLite.
+- Verify: create returns new task, findAll returns array, update modifies record.
+- Use beforeEach to reset database state.
 ```
 
-#### Request 3: Testing & Validation
+#### **Prompt 23: API Endpoint Tests**
+```
+Integration tests for routes:
+- Install `supertest`.
+- Create `routes/tasks.test.ts`.
+- Test all endpoints: POST/GET/PUT/DELETE.
+- Verify status codes and response structure.
+```
 
-```markdown
-Add comprehensive tests to the Task Manager:
+#### **Prompt 24: Auth Flow Tests**
+```
+Test authentication:
+- Create `auth.test.ts`.
+- Test registration with valid/invalid data.
+- Test login with correct/incorrect credentials.
+- Test protected endpoints with/without token.
+```
 
-**Backend Tests:**
-- Unit tests for task CRUD operations
-- Integration tests for auth flow
-- API endpoint tests with supertest
-- Error handling validation
+#### **Prompt 25: Frontend Test Setup**
+```
+Initialize frontend testing:
+- Install Vitest and `@testing-library/react`.
+- Create `frontend/vitest.config.ts`.
+- Add `npm test` script for frontend.
+- Create `frontend/src/__tests__/` folder.
+```
 
-**Frontend Tests:**
-- Component tests for TaskList, TaskForm
-- Auth flow tests
-- API client mocking
-- Form validation tests
+#### **Prompt 26: Component Tests**
+```
+Test React components:
+- Create `TaskList.test.tsx`.
+- Mock API calls with `vi.mock()`.
+- Test: loading state, error state, successful render.
+- Verify tasks display correctly.
+```
 
-Aim for >80% code coverage.
+#### **Prompt 27: Form Validation Tests**
+```
+Test form behavior:
+- Create `TaskForm.test.tsx`.
+- Test: empty submission shows errors.
+- Test: valid submission calls API.
+- Test: successful submission clears form.
+```
+
+#### **Prompt 28: Auth Context Tests**
+```
+Test authentication state:
+- Create `AuthContext.test.tsx`.
+- Test login updates state and stores token.
+- Test logout clears state.
+- Test auto-login from localStorage.
+```
+
+#### **Prompt 29: API Client Tests**
+```
+Test service layer:
+- Create `api.test.ts`.
+- Mock fetch/axios responses.
+- Test error handling (network errors, 404, 500).
+- Verify request headers include auth token.
+```
+
+#### **Prompt 30: E2E Test Setup**
+```
+Add end-to-end testing:
+- Install Playwright.
+- Create `e2e/auth.spec.ts`.
+- Test full flow: register -> login -> create task -> logout.
+- Run tests in CI-ready mode.
 ```
 
 ---
 
-## 📊 Validation Checklist
+## 🎨 Phase 4: UI/UX Enhancement (Prompts 31-40)
 
-After completing the test, verify:
+*Focus: User experience and visual polish.*
 
-**SCMS Agent:**
-- [ ] `WORKSPACE_RULES.md` configured with project specifics (tech stack, patterns)
-- [ ] L0 patterns discovered organically (not pre-existing)
-- [ ] Pattern usage tracked in memories
-- [ ] Patterns promoted to L1 when n≥5 threshold reached
-- [ ] `FAILURES.md` updated if any errors occurred (with 5 Whys)
-- [ ] `economics-dashboard-data.json` contains session data
-- [ ] Session closure report generated
+#### **Prompt 31: Task Filtering**
+```
+Add filter controls:
+- Filter by status: All, Active, Completed.
+- Filter by date: Today, This Week, All Time.
+- Update TaskList component with filter state.
+- Filter tasks client-side after fetch.
+```
 
-**Baseline Agent:**
-- [ ] `baseline-tracking.md` contains all checkpoints
-- [ ] Token usage tracked after each request
-- [ ] Cost calculations accurate
+#### **Prompt 32: Task Sorting**
+```
+Implement sorting:
+- Sort options: Date (newest/oldest), Title (A-Z), Status.
+- Dropdown selector for sort method.
+- Sort tasks before rendering.
+- Persist sort preference to localStorage.
+```
 
-**Comparison Metrics:**
-- [ ] SCMS retrieval ratio calculated (target 30-50%)
-- [ ] Token savings identified
-- [ ] Development speed comparison
-- [ ] Code quality assessment
+#### **Prompt 33: Task Search**
+```
+Add search functionality:
+- Search input above task list.
+- Filter by title and description (case-insensitive).
+- Debounce search input (300ms).
+- Show "No results" message when empty.
+```
+
+#### **Prompt 34: Inline Task Editing**
+```
+Enable quick edits:
+- Double-click task to enter edit mode.
+- Inline inputs for title/description.
+- Save on Enter, cancel on Escape.
+- Update API and refresh list.
+```
+
+#### **Prompt 35: Drag & Drop Reordering**
+```
+Add task reordering:
+- Install `react-beautiful-dnd` or `@dnd-kit/core`.
+- Allow dragging tasks to reorder.
+- Save order to database (add `position` column).
+- Persist order across page reloads.
+```
+
+#### **Prompt 36: Task Categories/Tags**
+```
+Implement tagging system:
+- Add `tags` column to tasks (JSON array).
+- Tag input component with autocomplete.
+- Filter tasks by tag.
+- Display tags as colored badges.
+```
+
+#### **Prompt 37: Dark Mode**
+```
+Add theme toggle:
+- Create theme context (light/dark).
+- Toggle button in header.
+- Update TailwindCSS classes dynamically.
+- Persist theme preference to localStorage.
+```
+
+#### **Prompt 38: Animations & Transitions**
+```
+Add UI polish:
+- Fade in tasks on load.
+- Slide animation for task creation/deletion.
+- Loading spinners for async operations.
+- Toast notifications for success/error messages.
+```
+
+#### **Prompt 39: Responsive Design**
+```
+Mobile optimization:
+- Responsive grid for task cards (1/2/3 columns).
+- Mobile-friendly forms and buttons.
+- Hamburger menu for navigation.
+- Test on mobile viewport sizes.
+```
+
+#### **Prompt 40: Accessibility (A11y)**
+```
+Improve accessibility:
+- Add ARIA labels to interactive elements.
+- Keyboard navigation for all features.
+- Focus management in modals.
+- Screen reader announcements for state changes.
+```
 
 ---
 
-## 🎯 Expected Patterns (SCMS Agent Should Discover)
+## 🚀 Phase 5: Advanced Features (Prompts 41-50)
 
-**Backend Patterns:**
-1. Express Route Handler Pattern
-2. Middleware Chain Pattern
-3. Database Query Builder Pattern
-4. Error Response Formatter
-5. JWT Token Management
-6. Request Validation Pattern
+*Focus: Production-ready capabilities.*
 
-**Frontend Patterns:**
-1. React Component Composition
-2. API Service Layer Pattern
-3. Form State Management
-4. Auth Context Provider
-5. Protected Route Wrapper
-6. Error Boundary Pattern
+#### **Prompt 41: Due Dates & Reminders**
+```
+Add time-based features:
+- Add `dueDate` column to tasks.
+- Date picker input in task form.
+- Highlight overdue tasks in red.
+- Sort by due date option.
+```
 
-**General Patterns:**
-1. TypeScript Interface Definition
-2. Environment Configuration
-3. Testing Setup Pattern
-4. Build Configuration Pattern
+#### **Prompt 42: Task Priority Levels**
+```
+Implement priority system:
+- Add `priority` column (Low/Medium/High/Urgent).
+- Priority selector in form.
+- Color-code tasks by priority.
+- Sort by priority.
+```
+
+#### **Prompt 43: Subtasks (Nested Tasks)**
+```
+Add task hierarchy:
+- Add `parentId` column for subtasks.
+- Nested task list rendering.
+- Create subtask button.
+- Track completion percentage for parent tasks.
+```
+
+#### **Prompt 44: File Attachments**
+```
+Allow file uploads:
+- Add file upload to task form.
+- Store files in `backend/uploads/` folder.
+- Save file paths in database.
+- Display/download attachments in UI.
+```
+
+#### **Prompt 45: Activity Log**
+```
+Track task history:
+- Create `activity_log` table (taskId, action, userId, timestamp).
+- Log: created, updated, completed, deleted events.
+- Display activity timeline for each task.
+```
+
+#### **Prompt 46: Export & Import**
+```
+Data portability:
+- Export tasks to JSON/CSV format.
+- Import tasks from file.
+- Validate imported data structure.
+- Download button in UI.
+```
+
+#### **Prompt 47: Real-time Updates**
+```
+Add WebSocket support:
+- Install `socket.io`.
+- Broadcast task changes to all connected clients.
+- Update UI in real-time when tasks change.
+- Show "New task added by [user]" notifications.
+```
+
+#### **Prompt 48: Multi-Tenant SaaS**
+```
+Add organization support:
+- Create `organizations` table.
+- Users belong to organizations.
+- Shared tasks within organization.
+- Organization admin role.
+```
+
+#### **Prompt 49: Performance Optimization**
+```
+Optimize application:
+- Add database indexes (userId, createdAt).
+- Implement pagination (20 tasks per page).
+- Lazy load task details.
+- Bundle size optimization (code splitting).
+```
+
+#### **Prompt 50: Production Deployment**
+```
+Prepare for deployment:
+- Create `Dockerfile` for backend.
+- Environment variable configuration (.env).
+- Setup CORS for production domain.
+- Add build scripts for frontend production bundle.
+- Create deployment README with instructions.
+```
 
 ---
 
-## 📝 Notes
+## 📊 Analysis Metrics
 
-- **Clean L0:** Ensure no pre-existing web app patterns in L0 before starting
-- **Identical Requests:** Send exact same prompts to both agents for fair comparison
-- **Pattern Discovery:** SCMS agent should discover patterns during development, not retrieve pre-existing ones
-- **Threshold Testing:** Track when patterns hit n≥5 usage and get promoted to L1
+Compare results at checkpoints (Prompt 10, 20, 30, 40, 50):
+1. **Lines of Code vs. Bugs**
+2. **API Response Time** (Baseline vs SCMS)
+3. **Refactor Success** (Did auth integration break existing code?)
+4. **Token Cost** (Economy)
+5. **Test Coverage** (Target >80%)
 
 ---
 
-## 🔄 Repeat Test
+## 🎯 Key Refactor Points
 
-For additional validation, repeat with different web app types:
-- E-commerce product catalog
-- Blog platform with comments
-- URL shortener service
-- Real-time chat application
+Watch for architectural stress at:
+- **Prompt 14:** User-Task association (major data model change)
+- **Prompt 28:** Auth context integration (state management refactor)
+- **Prompt 43:** Subtasks (hierarchical data complexity)
+- **Prompt 47:** WebSockets (real-time architecture shift)
+- **Prompt 48:** Multi-tenancy (complete data isolation rework)
 
-Each should discover domain-specific patterns while sharing common web development patterns.
+*These typically break Baseline codebases without proper patterns.*
