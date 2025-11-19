@@ -1,55 +1,79 @@
-# Failure Log - [Short Title]
+# 🚨 Failure Log: [Short Descriptive Title]
 
-**ID**: FAIL-[YYYYMMDD]-[001]
-**Date**: YYYY-MM-DD
-**Phase**: [Greenfield/Refactor/Optimization]
-**Related Prompt**: [Prompt ID/Description]
+**ID:** FAIL-[YYYYMMDD]-[SEQ]  
+**Date:** [YYYY-MM-DD]  
+**Severity:** [Critical/Major/Minor/Cosmetic]  
+**System Component:** [e.g., Dashboard, CheckpointMonitor, Parser]  
+**Impact:** [e.g., Data Loss, Feature Broken, UX Degradation]
 
 ---
 
-## 🚨 Failure Description
-*Describe what went wrong. Be specific.*
-- **Expected Behavior**:
-- **Actual Behavior**:
-- **Error Message/Log**:
+## 📝 Failure Description
+*What happened? Be specific and include context.*
+
+**Context:**
+- **User Action:** [What was the user doing?]
+- **Expected Behavior:** [What should have happened?]
+- **Actual Behavior:** [What actually happened?]
+- **Error Message:** 
+```
+[Paste error log here]
+```
 
 ---
 
 ## 🔍 Root Cause Analysis (5 Whys)
-*Why did this happen?*
-1. Why?
-2. Why?
-3. Why?
-4. Why?
-5. **Root Cause**:
+1. **Why?** [Answer]
+2. **Why?** [Answer]
+3. **Why?** [Answer]
+4. **Why?** [Answer]
+5. **Root Cause:** [The fundamental technical or process flaw]
 
 ---
 
 ## 🛠️ Resolution
 *How was it fixed?*
-- [ ] Quick Fix applied
-- [ ] Architectural Change required
-- [ ] Rollback performed
 
-**Steps Taken**:
-1.
-2.
-3.
+**Immediate Fix:**
+- [ ] Code Change
+- [ ] Config Change
+- [ ] Rollback
+- [ ] Workaround
+
+**Implementation Details:**
+```javascript
+// [Show the fix]
+```
 
 ---
 
-## 🧠 Pattern Recognition (L2)
+## 🧠 Pattern Recognition (L2 Analysis)
 *Is this a recurring anti-pattern?*
-- [ ] One-off incident
-- [ ] Emerging Pattern (2nd occurrence)
-- [ ] Established Anti-Pattern (3+ occurrences) -> **Promote to WORKSPACE_RULES**
 
-**Key Learning**:
-*What rule should we add to avoid this in the future?*
+- [ ] **One-off Incident:** Unique combination of factors
+- [ ] **Emerging Pattern:** Seen 2-3 times (Monitor closely)
+- [ ] **Established Anti-Pattern:** Seen 3+ times -> **Promote to WORKSPACE_RULES**
+
+**Learning:**
+*[What rule or check would prevent this?]*
+
+---
+
+## 🛡️ Prevention Strategy
+*How do we ensure this never happens again?*
+
+- [ ] **L1 Validation Gate:** Add check to `WORKSPACE_RULES.md`
+- [ ] **Automated Test:** Add unit/integration test
+- [ ] **Documentation:** Update SOP or Guide
+- [ ] **Tooling:** Update linter or build script
+
+**Action Items:**
+1. [Action 1]
+2. [Action 2]
 
 ---
 
 ## 🔗 Related Artifacts
-- [Link to Memory]
-- [Link to Commit]
-- [Link to Code]
+- Memory ID: [UUID]
+- Commit Hash: [Hash]
+- Related Docs: [Link]

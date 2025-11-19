@@ -1,77 +1,122 @@
-# SCMS Operations Manual
+# 📘 SCMS Operations Manual
 
-This guide defines the standard operating procedures for the **Systematic Context Management System (SCMS)**.
+**Version:** 1.0  
+**Scope:** Daily Operations & System Maintenance  
+**Target Audience:** AI Agents & Developers
 
 ---
 
 ## 🔄 The Optimization Loop
 
-SCMS is not just file structure; it is a process. Every session must follow this loop:
+SCMS operates on a continuous loop of **Retrieval → Execution → Capture → Validation**.
 
-1.  **Retrieval (L0/L1)**: Before acting, check `INDEX.md` and `MEMORY_STATUS_DASHBOARD.md`.
-2.  **Execution**: Perform the task using `WORKSPACE_RULES.md` as constraints.
-3.  **Capture (L0)**: Create Memories for new patterns.
-4.  **Validation (L2/L5)**: At session end, audit and document.
-
----
-
-## 🚨 L2: Failure Documentation (The "Black Box")
-
-**When to use:**
-Whenever the Agent makes a mistake (syntax error, logic bug, hallucination) or the User has to intervene manually.
-
-**Procedure:**
-1.  Copy `docs/templates/FAILURE_LOG_TEMPLATE.md`.
-2.  Create a new entry in `docs/scms/FAILURES.md` (or a separate file in `docs/failures/`).
-3.  **Analyze the Root Cause**.
-4.  **Create a Rule**: If this failure happens twice, add a rule to `WORKSPACE_RULES.md` to prevent it.
-
-*Goal: Turn every error into a permanent asset.*
-
----
-
-## ✅ L5: Session Closure (The "Audit")
-
-**When to use:**
-At the end of every coding session, before the Agent signs off.
-
-**Procedure:**
-1.  Run the **Session Closure Prompt**.
-2.  The Agent will fill out `docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md`.
-3.  Update `docs/economics-dashboard-data.json`.
-4.  Verify all L0 memories are indexed.
-
-*Goal: Ensure no "Context Debt" is left behind.*
-
----
-
-## 📈 L3: Pattern Promotion
-
-**Threshold:**
--   **1 Use**: L0 Memory (Candidate).
--   **2 Uses**: L1 Pattern (Validated) -> Add to `WORKSPACE_RULES.md`.
--   **5 Uses**: L2 Standard (Global) -> Add to `GLOBAL_CODING_RULES.md`.
-
-**Procedure:**
-1.  Check `MEMORY_STATUS_DASHBOARD.md` for "Candidate" memories.
-2.  If used > 2 times, extract the generic pattern.
-3.  Add to the appropriate Rules file.
-4.  Archive the L0 memory (optional).
-
----
-
-## 📂 Standard Directory Structure
-
-```text
-docs/
-├── scms/
-│   ├── MEMORY_STATUS_DASHBOARD.md  # Active memory state
-│   ├── FAILURES.md                 # L2 Failure Log
-│   └── SESSION_LOGS/               # L5 Closure Reports
-├── templates/
-│   ├── MEMORY_TEMPLATE.md
-│   ├── FAILURE_LOG_TEMPLATE.md
-│   └── SESSION_CLOSURE_REPORT_TEMPLATE.md
-└── guides/
-    └── SCMS_OPERATIONS_MANUAL.md   # This file
+```mermaid
+graph TD
+    A[Session Start] -->|Retrieve L0/L1| B[Execution]
+    B -->|Detect Patterns| C[Capture Memory]
+    C -->|Log Failures| D[Validation (L2)]
+    D -->|Promote Patterns| E[Standardization (L3)]
+    E -->|Update Rules| F[Session Closure (L5)]
+    F --> A
 ```
+
+---
+
+## 1️⃣ Session Start (L0 Retrieval)
+**Goal:** Load context to prevent regression.
+
+1. **Check `MEMORY_STATUS_DASHBOARD.md`**
+   - Identify active patterns
+   - Check "Focus Areas"
+   
+2. **Review `WORKSPACE_RULES.md` (L1)**
+   - Mandatory quality gates
+   - Hard constraints
+
+3. **Start Session Tracking**
+   - Click "Start Session" in Dashboard
+   - Sets timestamp ID
+
+---
+
+## 2️⃣ Execution & Pattern Capture (L0)
+**Goal:** Do work while listening for signals.
+
+- **Success:** "This worked well." -> Create Memory (L0)
+- **Failure:** "This broke." -> Log to `FAILURES.md` (L2)
+- **Surprise:** "Didn't expect that." -> Document Anomaly
+
+**Trigger:** ANY deviation from expected behavior is a signal.
+
+---
+
+## 3️⃣ Failure Analysis (L2)
+**Goal:** Turn errors into assets.
+
+**When to Log:**
+- Code breaks after "fix"
+- Tool misuse (JSON errors)
+- Assumption violations
+
+**How to Log:**
+- Use `docs/templates/FAILURE_LOG_TEMPLATE.md`
+- **5 Whys** are mandatory
+- **Prevention Strategy** must be actionable (e.g., "Add L1 Rule")
+
+---
+
+## 4️⃣ Pattern Promotion (L3)
+**Goal:** Standardize success.
+
+**Threshold:** n ≥ 2 (Natural Reuse)
+
+**Process:**
+1. Identify L0 memory used twice
+2. Fill `docs/templates/PATTERN_PROMOTION_TEMPLATE.md`
+3. Verify "Critical Rules"
+4. Add to `WORKSPACE_RULES.md`
+5. Update `MEMORY_STATUS_DASHBOARD.md` (Promoted section)
+
+---
+
+## 5️⃣ Economic Tracking (L4)
+**Goal:** Measure value.
+
+**Workflow:**
+1. Click "Export Data" in Dashboard
+2. Paste prompt into Windsurf
+3. AI creates checkpoint file
+4. Dashboard calculates ROI/Savings
+
+**Metrics:**
+- **Tokens Saved:** vs Baseline (estimated)
+- **Reuse Rate:** % of code from patterns
+
+---
+
+## 6️⃣ Session Closure (L5)
+**Goal:** Verify system integrity.
+
+**Checklist:**
+1. **Pattern Reflection:** Failures logged?
+2. **Pipeline Update:** Promotions handled?
+3. **Dashboard Sync:** Data matches reality?
+4. **System Health:** Tests pass?
+
+**Artifact:**
+- Generate `docs/scms/SESSION_LOG_L5.md` using `SESSION_CLOSURE_REPORT_TEMPLATE.md`
+
+---
+
+## 🚨 Emergency Procedures
+
+**If System Degrades (Context Loss):**
+1. Stop coding
+2. Read `WORKSPACE_RULES.md` top-to-bottom
+3. Review last 3 `FAILURES.md` logs
+4. Restart session explicitly
+
+**If Dashboard Desyncs:**
+1. Check `economics-dashboard-data.json` syntax
+2. Verify CheckpointMonitor is running
+3. Export fresh data to force update

@@ -1,47 +1,61 @@
-# Session Closure Report (L5 Audit)
+# 🏁 Session Closure Report (L5 Audit)
 
-**Session ID**: [ID]
-**Date**: YYYY-MM-DD
-**Auditor**: [Agent/User Name]
+**Session ID:** [Timestamp ID]  
+**Date:** [YYYY-MM-DD]  
+**Auditor:** [Cascade/Agent Name]  
+**Session Type:** [SCMS/Baseline]
 
 ---
 
-## 📋 Checklist Verification
+## 📋 Verification Checklist
 
-### 1. Pattern Reflection (L2)
-- [ ] **Failures Documented**: Have all failures been logged in `docs/scms/FAILURES.md`?
-- [ ] **Successes Validated**: Have successful patterns been noted?
+### 1. 🧠 Pattern Reflection (L2)
+- [ ] **Failures Logged:** Any failures documented in `docs/templates/FAILURE_LOG_TEMPLATE.md`?
+- [ ] **Anti-Patterns Identified:** Any recurring issues flagged?
+- [ ] **Successes Validated:** New patterns used successfully?
 
-### 2. Validation Pipeline (L1)
-- [ ] **Promotion Check**: Did any pattern reach 2+ uses?
-- [ ] **Rules Updated**: Was `WORKSPACE_RULES.md` updated if promoted?
+### 2. 🚀 Validation Pipeline (L3)
+- [ ] **Promotion Check:** Did any L0 pattern reach 2+ uses?
+- [ ] **Rules Updated:** Was `WORKSPACE_RULES.md` updated if promoted?
+- [ ] **Documentation Sync:** Are `docs/` files aligned with code?
 
-### 3. Memory Dashboard (L0)
-- [ ] **Dashboard Updated**: Is `docs/scms/MEMORY_STATUS_DASHBOARD.md` current?
-- [ ] **Memories Created**: Are all new memories valid JSON/Markdown?
+### 3. 💾 Memory Dashboard (L0)
+- [ ] **Memories Created:** Valid JSON format?
+- [ ] **Dashboard Updated:** `MEMORY_STATUS_DASHBOARD.md` reflects current state?
+- [ ] **Taxonomy Compliance:** Tags match `MEMORY_TAXONOMY.md`?
 
-### 4. Economic Dashboard
-- [ ] **Data Saved**: Was `economics-dashboard-data.json` updated?
-- [ ] **Metrics Calculated**: Token usage and ROI estimated?
+### 4. 📊 Economic Tracking (Export-Triggered)
+- [ ] **Checkpoint Created:** Was `checkpoints/checkpoint-[ID].txt` generated?
+- [ ] **Token Data Extracted:** Does it contain `<system_warning>` entries?
+- [ ] **Export Successful:** Did user export data via Dashboard?
+- [ ] **Metrics Updated:** UI reflects fresh savings/ROI?
 
-### 5. System Health
-- [ ] **Lint/Test Check**: Do all tests pass?
-- [ ] **Documentation Sync**: Is documentation aligned with code?
+### 5. 🛡️ System Health
+- [ ] **Lint/Test Pass:** No regressions?
+- [ ] **Clean Working Tree:** All changes committed?
+- [ ] **File Integrity:** No corrupted files?
 
 ---
 
 ## 📊 Session Metrics
-- **Duration**:
-- **Prompts Completed**:
-- **Tokens Used (Est)**:
-- **Cost (Est)**:
-- **Savings (Est)**:
+| Metric | Value | Notes |
+|--------|-------|-------|
+| Duration | [mins] | |
+| Tokens | [count] | |
+| Cost | [$0.00] | |
+| Savings | [%] | vs Baseline |
+| Checkpoints | [count] | |
 
 ---
 
 ## 📝 Auditor Notes
-*Any anomalies or manual overrides required during closure?*
+*[Any anomalies, manual overrides, or specific context for this session]*
 
 ---
 
-**Status**: ✅ PASSED | ⚠️ PASSED WITH WARNINGS | ❌ FAILED
+## ✅ Status
+- [ ] **PASSED:** All checks green
+- [ ] **PASSED WITH WARNINGS:** Non-critical issues noted
+- [ ] **FAILED:** Critical data loss or corruption
+
+**Next Session Goal:** [One sentence goal]
