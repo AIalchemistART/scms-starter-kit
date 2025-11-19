@@ -9,7 +9,7 @@
 
 ```markdown
 SYSTEM_AUDIT_REQUEST:
-Please report the current session statistics.
+Please report the current session statistics AND track them in a standalone file.
 
 1. **Token Usage:**
    - Check the context window or usage logs.
@@ -25,16 +25,29 @@ Please report the current session statistics.
    - List files modified in this step.
    - Count total lines of code (LOC) in the project (approx).
 
+4. **Track in File:**
+   - Append this checkpoint to: `docs/testing/baseline-tracking.md`
+   - Format:
+     ```
+     ## Checkpoint [X] - [Date/Time]
+     Token usage: [Used]/[Context]
+     Current Cost: $[Cost]
+     Files modified: [Number]
+     Project LOC: [Number]
+     ```
+
 **REQUIRED OUTPUT FORMAT (Plain Text):**
 Token usage: [Used]/[Context]
 Current Cost: $[Cost]
 Files modified: [Number]
 Project LOC: [Number]
+
+**THEN:** Append this data to `docs/testing/baseline-tracking.md` with checkpoint header.
 ```
 
 ---
 
 ### ❓ How to Use Data
-1. **Copy the Output** from the Baseline Agent.
-2. **Save it** to a file named `checkpoints/baseline/checkpoint-prompt-X.txt`.
-3. **Run Dashboard:** The dashboard can import these baseline checkpoints (if configured) or you can manually compare them against SCMS checkpoints.
+1. **Agent tracks automatically** - Data is appended to `docs/testing/baseline-tracking.md`.
+2. **Manual backup (optional)** - You can also save output to `checkpoints/baseline/checkpoint-prompt-X.txt`.
+3. **Compare** - Use `baseline-tracking.md` to compare against SCMS metrics at matching checkpoints.
