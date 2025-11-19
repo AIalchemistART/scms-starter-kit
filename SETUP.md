@@ -156,7 +156,7 @@ rm ~/Downloads/scms.zip
 
 ### Method 3: Start New Project with SCMS (Simplest!)
 
-> **✅ Everything is already set up** - No setup script needed!
+> **✅ Fastest way to test SCMS** - 4 commands and you're running!
 
 #### Unix/Mac/Linux
 
@@ -165,14 +165,15 @@ rm ~/Downloads/scms.zip
 git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project
 cd my-project
 
-# Install dashboard dependencies
+# Configure (2-3 min, detects IDE, sets thresholds)
+./scripts/setup.sh
+
+# Install & launch
 npm install
-
-# Launch dashboard
 npm run dashboard:app
-
-# You're ready! Start coding in src/ or root, SCMS tracks in docs/
 ```
+
+> **💡 What setup does:** Detects your OS/IDE (Windsurf/Cursor), asks about project phase (greenfield/mature), configures promotion thresholds. Takes 2-3 minutes, only needed once.
 
 #### Windows (PowerShell)
 
@@ -181,13 +182,12 @@ npm run dashboard:app
 git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project
 Set-Location my-project
 
-# Install dashboard dependencies
+# Configure (2-3 min, detects IDE, sets thresholds)
+.\scripts\setup.ps1
+
+# Install & launch
 npm install
-
-# Launch dashboard
 npm run dashboard:app
-
-# You're ready! Start coding in src/ or root, SCMS tracks in docs/
 ```
 
 ---

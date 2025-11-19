@@ -275,6 +275,12 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 > - **Adding to existing project?** → Use Option A (Integration)
 > - **Starting a new project?** → Use Option B (Standalone)
 
+**Both options require running the setup script once to configure:**
+- ✅ Promotion thresholds (greenfield/establishing/mature)
+- ✅ IDE detection (Windsurf/Cursor/Generic)
+- ✅ L0 strategy (auto-memory vs manual)
+- ✅ Team size and domain adjustments
+
 **Option A: Integrate into Existing Project**
 - Copies only SCMS templates into your project
 - Your existing code stays separate
@@ -282,14 +288,8 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 
 **Option B: Standalone (Recommended for testing/new projects)**
 - Clone SCMS as your complete project
-- Everything ready to go
-- No setup script needed!
-
-> **🎯 AFTER SETUP**: Launch the SCMS Dashboard App!  
-> ```bash
-> npm install               # First time only (from project root)
-> npm run dashboard:app     # Launch dashboard
-> ```
+- Run setup script to configure
+- Everything ready to go!
 
 ---
 
@@ -345,16 +345,26 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\Downloads\scms-starter-kit"
 
 #### Option B: Standalone Setup (Testing/New Projects)
 
-> **✅ Simplest approach** - Everything is already set up!
+> **✅ Simplest approach** - 4 commands and you're running!
 
-**Clone as your entire project:**
+**Unix/Mac/Linux:**
 ```bash
-# Unix/Mac/Linux
 git clone https://github.com/AIalchemistART/scms-starter-kit.git your-project-name
 cd your-project-name
-npm install
-npm run dashboard:app  # Ready to go! No setup script needed.
+./scripts/setup.sh    # Configure (2-3 min, interactive)
+npm install && npm run dashboard:app
 ```
+
+**Windows (PowerShell):**
+```powershell
+git clone https://github.com/AIalchemistART/scms-starter-kit.git your-project-name
+cd your-project-name
+.\scripts\setup.ps1   # Configure (2-3 min, interactive)
+npm install
+npm run dashboard:app
+```
+
+> **💡 What setup does:** Detects your OS/IDE, asks about project phase (greenfield/mature), configures thresholds. Takes 2-3 minutes, only needed once.
 
 **Or Download ZIP:**
 ```powershell
@@ -364,6 +374,7 @@ Expand-Archive -Path "scms.zip" -DestinationPath "./"
 Rename-Item -Path "scms-starter-kit-master" -NewName "your-project-name"
 cd your-project-name
 Remove-Item "../scms.zip"
+.\scripts\setup.ps1   # Configure
 npm install
 npm run dashboard:app
 ```
@@ -375,6 +386,7 @@ unzip scms.zip
 mv scms-starter-kit-master your-project-name
 cd your-project-name
 rm ../scms.zip
+./scripts/setup.sh    # Configure
 npm install
 npm run dashboard:app
 ```
@@ -389,6 +401,8 @@ Choose your AI assistant:
 - **Other**: See [config/generic/SETUP.md](config/generic/SETUP.md)
 
 ### 3. 📊 Launch SCMS Dashboard - Your Control Center
+
+> **✅ Auto-Validation Built In:** The dashboard automatically checks if setup was run. If not, you'll get clear instructions. No silent failures!
 
 **🎯 THE DASHBOARD IS YOUR GO-TO SOURCE FOR:**
 - ✅ **Session Start Prompt** (v3.0) - Copy-paste ready, updated with latest workflow

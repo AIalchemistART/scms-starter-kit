@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Sparse Contextual Memory Scaffolding - Production-ready starter kit",
   "scripts": {
+    "validate": "node scripts/validate-setup.js",
     "checkpoint:monitor": "node scripts/checkpoint-monitor.js",
     "checkpoint:parse": "node scripts/parse-checkpoints.js",
     "checkpoint:watch": "node scripts/parse-checkpoints.js --watch",
-    "dashboard": "node scripts/launch-dashboard.js",
-    "dashboard:app": "electron electron/dashboard-main.js"
+    "dashboard": "npm run validate && node scripts/launch-dashboard.js",
+    "dashboard:app": "npm run validate && electron electron/dashboard-main.js"
   },
   "dependencies": {
     "clipboardy": "^3.0.0"
