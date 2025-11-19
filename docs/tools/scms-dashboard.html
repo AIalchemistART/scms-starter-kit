@@ -1483,7 +1483,22 @@ cd new-folder && npm run dashboard:app</div>
         
         async function exportData() {
             // Get current session info
-            const currentSession = window.scmsTracker.getCurrentSession();
+            let currentSession = window.scmsTracker.getCurrentSession();
+            
+            // Fallback: If no active session, use the most recently closed session
+            // This handles the case where user clicks "End Session" THEN "Export Data"
+            if (!currentSession) {
+                const sessions = window.scmsTracker.sessions || [];
+                if (sessions.length > 0) {
+                    const lastSession = sessions[sessions.length - 1];
+                    // Only use if it ended reasonably recently (e.g. < 24 hours)
+                    // to avoid prompting for ancient sessions
+                    if (lastSession.endTime) {
+                        currentSession = lastSession;
+                        console.log('[export] Using last closed session for checkpoint prompt');
+                    }
+                }
+            }
             
             // Check if we have an active or recently ended session
             if (currentSession && currentSession.id) {
