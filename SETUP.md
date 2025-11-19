@@ -156,7 +156,7 @@ rm ~/Downloads/scms.zip
 
 ### Method 3: Start New Project with SCMS (Simplest!)
 
-> **✅ Fastest way to test SCMS** - 4 commands and you're running!
+> **✅ Fastest way to test SCMS** - 3 steps and you're running!
 
 #### Unix/Mac/Linux
 
@@ -173,10 +173,9 @@ cd my-project
 ./scripts/setup.sh
 ```
 
-**Step 3:** Install & launch
-```bash
-npm install
-```
+> ✅ **Setup automatically installs dependencies and launches the dashboard!**
+
+**🔄 Relaunch Dashboard Later (if you close it):**
 ```bash
 npm run dashboard:app
 ```
@@ -198,10 +197,9 @@ cd my-project
 .\scripts\setup.ps1
 ```
 
-**Step 3:** Install & launch
-```powershell
-npm install
-```
+> ✅ **Setup automatically installs dependencies and launches the dashboard!**
+
+**🔄 Relaunch Dashboard Later (if you close it):**
 ```powershell
 npm run dashboard:app
 ```
