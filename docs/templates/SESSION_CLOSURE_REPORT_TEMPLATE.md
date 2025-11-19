@@ -35,6 +35,17 @@
 - [ ] **Clean Working Tree:** All changes committed?
 - [ ] **File Integrity:** No corrupted files?
 
+### 6. 🗺️ Index Maintenance (Cross-Reference Updates)
+- [ ] **Topic Tags Added:** Did you add `#tags` to new L0/L2/L3 entries?
+- [ ] **Cross-References Updated:** Does `INDEX.md` link related patterns by topic?
+- [ ] **Semantic Grouping:** Are patterns grouped by theme (e.g., #renderer, #physics, #tooling)?
+- [ ] **Layer Links:** Do all new logs appear under their respective layer sections?
+
+**Instructions:**
+1. Update `docs/scms/INDEX.md` with a "Topic Index" section if it doesn't exist.
+2. Add tags to all new L0 memories, L2 failures, and L3 promotions (format: `#topic #category`).
+3. Cross-reference related patterns (e.g., link "Camera Follow" to "Renderer" under `#rendering` topic).
+
 ---
 
 ## 📊 Session Metrics

@@ -4,7 +4,8 @@
 **Date:** [YYYY-MM-DD]  
 **Severity:** [Critical/Major/Minor/Cosmetic]  
 **System Component:** [e.g., Dashboard, CheckpointMonitor, Parser]  
-**Impact:** [e.g., Data Loss, Feature Broken, UX Degradation]
+**Impact:** [e.g., Data Loss, Feature Broken, UX Degradation]  
+**Tags:** #[topic] #[category] (e.g., #tooling #renderer #physics)
 
 ---
 
