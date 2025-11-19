@@ -1057,17 +1057,24 @@ Before marking ANY task complete, verify:
                 <h3><span class="step-number">1</span> Copy the SCMS Startup Prompt (First Time Only)</h3>
                 <button class="toggle-btn" onclick="toggleStartupPrompt()" id="toggleStartupBtn">▼ Hide Startup Prompt</button>
             </div>
+            
+            <!-- Warning stays visible even when prompt is collapsed -->
+            <p style="margin-top: 12px; padding: 12px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
+                <strong>⚠️ IMPORTANT:</strong> The startup prompt below is a <strong>generic template</strong>. After running <code>.\scripts\setup.ps1</code>, use the customized version from:<br>
+                <code style="background: #fff; padding: 4px 8px; border-radius: 3px; margin-top: 8px; display: inline-block;">docs/scms/SCMS_STARTUP_PROMPT.md</code><br>
+                <span style="font-size: 0.9em; color: #856404;">That file has your project-specific threshold configuration (Greenfield n≥5, Establishing n≥3, or Mature n≥2) with the correct "(Current Target)" marker.</span>
+            </p>
+            
             <div id="startupPromptSection">
                 <p><strong>Purpose:</strong> Configure SCMS for your project on first use</p>
                 <p><strong>Action:</strong> Paste this prompt to your AI assistant <strong>ONCE when starting a new project</strong></p>
-                <p style="margin-top: 12px; padding: 12px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
-                    <strong>⚠️ IMPORTANT:</strong> The startup prompt below is a <strong>generic template</strong>. After running <code>.\scripts\setup.ps1</code>, use the customized version from:<br>
-                    <code style="background: #fff; padding: 4px 8px; border-radius: 3px; margin-top: 8px; display: inline-block;">docs/scms/SCMS_STARTUP_PROMPT.md</code><br>
-                    <span style="font-size: 0.9em; color: #856404;">That file has your project-specific threshold configuration (Greenfield n≥5, Establishing n≥3, or Mature n≥2) with the correct "(Current Target)" marker.</span>
-                </p>
                 <div class="code-block-wrapper">
                     <button class="copy-btn" onclick="copyPrompt(this, 'startupPrompt')">📋 Copy Prompt</button>
-                    <div class="code-block" id="startupPrompt">SCMS STARTUP (First Session Configuration)
+                    <div class="code-block" id="startupPrompt">⚠️ IMPORTANT: This is a GENERIC TEMPLATE. Use the customized version in docs/scms/SCMS_STARTUP_PROMPT.md for your project-specific threshold configuration!
+
+---
+
+SCMS STARTUP (First Session Configuration)
 
 Working on: [project name and brief description]
 
