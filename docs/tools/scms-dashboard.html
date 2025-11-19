@@ -1028,62 +1028,82 @@ Ready to configure SCMS for this project. Let's start by checking existing patte
                 <button class="copy-btn" onclick="copyPrompt(this, 'sessionStartPrompt')">📋 Copy Prompt</button>
                 <div class="code-block" id="sessionStartPrompt">SCMS SESSION START
 
-Working on: [brief task description]
+Working on: [project name and brief description]
 
-Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
+## SCMS Configuration - Sparse Contextual Memory Scaffolding
 
-1. L0/L1 RETRIEVAL FIRST
-   - Check scms/INDEX.md for relevant patterns
-   - Review validation records for similar work
-   - Cite existing patterns before generating new solutions
+**IMPORTANT LOCATION RULE:**
+- All Operational Logs live in: `docs/scms/` (e.g., `FAILURES.md`)
+- All Templates live in: `docs/templates/`
+- Do NOT create SCMS files in root.
 
-2. LAYER STRUCTURE & RETRIEVAL PRIORITY
-   AUTOMATIC RETRIEVAL (hardcoded AI behavior):
-   - L0: Auto-gen memories (Cascade) - retrieved first automatically
-   - L4: Global Rules - checked automatically
-   - L1: Workspace Rules (WORKSPACE_RULES) - loaded automatically
+**Architecture:** Multi-time-scale cognitive framework
+- L0: Auto-memories (Probabilistic retrieval)
+- L1: Validated patterns (Mandatory loading via WORKSPACE_RULES.md)
+- L2: Failure Analysis (5 Whys enforced via Template)
+- L3: Pattern Promotion (Evidence-based validation)
+- L5: Session Audit (Closure verification)
+- Dashboard: Economic & Context tracking
+
+**Promotion Thresholds:**
+- Greenfield (Weeks 1-4): n>5 uses
+- Establishing (Months 2-3): n>3 uses
+- Mature (4+ months): n≥2 uses (Current Target)
+
+## Instructions for AI
+
+### 1. ZERO-STATE INITIALIZATION (Greenfield/Integration)
+**IF `docs/scms/` DOES NOT EXIST:**
+
+**A. Create Directory Structure:**
+1. `docs/scms/` (Operational Logs)
+2. `docs/templates/` (Standardization)
+3. `docs/guides/` (Manuals)
+
+**B. Initialize Templates (The "Gold Standard"):**
+1. Create `docs/templates/FAILURE_LOG_TEMPLATE.md` (Fields: Severity, Impact, 5 Whys, Prevention)
+2. Create `docs/templates/PATTERN_PROMOTION_TEMPLATE.md` (Fields: Use Cases, Impact Score, Rule Draft)
+3. Create `docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md` (Fields: L2/L3/L5 Checklist, Export Verification)
+
+**C. Initialize Operational Files:**
+1. `docs/scms/INDEX.md` (Central Hub skeleton)
+2. `docs/scms/MEMORY_STATUS_DASHBOARD.md` (Greenfield config)
+3. `docs/scms/FAILURES.md` (Empty log)
+4. `docs/scms/WORKSPACE_RULES.md` (Empty L1)
+5. `economics-dashboard-data.json` OR `scms-metrics.json` (Initialize with session: [] array)
+
+### 2. SESSION START CHECKLIST (Before Coding)
+1. **Environment Check**:
+   - Verify `package.json` scripts (`test`, `start`).
+   - **Template Verification**: Do `docs/templates/` exist? If not, regenerate them.
    
-   SELF-DIRECTED RETRIEVAL (prompt-guided, check when relevant):
-   - L2: SOPs (5+ uses) - detailed procedures when L1 references them
-   - L3: Case Studies - complete examples for learning
-   - L5: Overflow - low-frequency patterns (only if no validated retrieval from L2/L3)
+2. **Review L4 Global Rules**:
+   - Check `GLOBAL_CODING_RULES` (Memory or File).
+   - Constraint: "No duplicate code", "No broken builds".
    
-   GENERATION & FINAL VALIDATION:
-   - Generate new solution (only if no retrieval from ALL other layers)
-   - L4: Global Rules final compliance check on all output
+3. **Review Memory Dashboard**:
+   - Check `MEMORY_STATUS_DASHBOARD.md` for Active Patterns.
+
+### 3. DURING DEVELOPMENT (The Workflow)
+1. **CREATE MEMORIES (L0)**: 
+   - Pattern discovered -> Create Cascade memory.
    
-   SESSION CONTEXT:
-   - Dashboard: Current task/objectives (this conversation)
-   - Memory Dashboard: Pattern tracking system (separate)
+2. **FAILURE DOCUMENTATION (L2 - Priority)**:
+   - **Trigger:** Any mock failure, tool error, or regression.
+   - **Action:** Update `docs/scms/FAILURES.md`.
+   - **Constraint:** MUST uses `FAILURE_LOG_TEMPLATE.md` (5 Whys required).
    
-   Actual retrieval flow: 
-   L0 → L4 → L1 → [L2/L3 → L5 if needed] → Generate (if no retrieval) → L4 compliance check
+3. **PATTERN PROMOTION (L3)**:
+   - **Trigger:** L0 Pattern used n≥2 times.
+   - **Action:** Fill `PATTERN_PROMOTION_TEMPLATE.md` to request L1 status.
 
-3. MIND-MAP FRAMEWORK = ORGANIZATIONAL FRAMING
-   - NOT visual diagrams
-   - IS: Tags, cross-references, semantic coherence
-   - Maintain L0/L1/Dashboard boundaries
+### 4. SESSION CLOSURE (L5 - Critical)
+At end of EVERY session, run closure protocol:
+1. **Audit:** Generate `docs/scms/SESSION_LOG_L5.md` using `SESSION_CLOSURE_REPORT_TEMPLATE.md`.
+2. **Export:** Run Dashboard Export to capture `checkpoints/checkpoint-[ID].txt`.
+3. **Update:** `INDEX.md` and Dashboards.
 
-4. ECONOMIC TRACKING
-   - Retrieval ratio matters (currently: 0%, target: 30-50%)
-   - Pattern reuse = cost savings
-   - Session closure updates economics
-
-5. FAILURE DOCUMENTATION PRIORITY
-   - Failures = 3-10× more informative than successes
-   - Bug patterns (L0) - prevent entire bug classes
-   - Anti-patterns (L0) - design principles  
-   - Failed approaches (L0) - avoid wasted effort
-   - Edge cases (L1) - special handling
-   - Document "what NOT to do" first
-
-6. SESSION CLOSURE REMINDER
-   - After work: pattern validation, L0/L1 updates, economic tracking
-   - Target: 10-15 minutes
-   - Update INDEX.md with tags/cross-refs (not visual graphs)
-   - Document failures discovered (higher value than successes)
-
-Let's start by checking for relevant existing patterns, then proceed with the work.</div>
+Ready to configure SCMS. Let's start by initializing the directory structure and templates.</div>
                 </div>
             </div> <!-- End Session Start wrapper -->
             
