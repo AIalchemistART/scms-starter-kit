@@ -1028,82 +1028,50 @@ Ready to configure SCMS for this project. Let's start by checking existing patte
                 <button class="copy-btn" onclick="copyPrompt(this, 'sessionStartPrompt')">📋 Copy Prompt</button>
                 <div class="code-block" id="sessionStartPrompt">SCMS SESSION START
 
-Working on: [project name and brief description]
+Working on: [brief task description]
 
-## SCMS Configuration - Sparse Contextual Memory Scaffolding
+Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
 
-**IMPORTANT LOCATION RULE:**
-- All Operational Logs live in: `docs/scms/` (e.g., `FAILURES.md`)
-- All Templates live in: `docs/templates/`
-- Do NOT create SCMS files in root.
+1. 🛠️ CONTEXT LOADING & SYSTEM CHECK
+   - Check `scms/INDEX.md` for relevant patterns
+   - **CRITICAL:** Review `docs/scms/FAILURES.md` to avoid known pitfalls (L2)
+   - **TEMPLATE CHECK:** Ensure `docs/templates/` exists (L2/L3/L5 templates)
+   - Verify Environment: Quick check of package.json scripts & config
 
-**Architecture:** Multi-time-scale cognitive framework
-- L0: Auto-memories (Probabilistic retrieval)
-- L1: Validated patterns (Mandatory loading via WORKSPACE_RULES.md)
-- L2: Failure Analysis (5 Whys enforced via Template)
-- L3: Pattern Promotion (Evidence-based validation)
-- L5: Session Audit (Closure verification)
-- Dashboard: Economic & Context tracking
-
-**Promotion Thresholds:**
-- Greenfield (Weeks 1-4): n>5 uses
-- Establishing (Months 2-3): n>3 uses
-- Mature (4+ months): n≥2 uses (Current Target)
-
-## Instructions for AI
-
-### 1. ZERO-STATE INITIALIZATION (Greenfield/Integration)
-**IF `docs/scms/` DOES NOT EXIST:**
-
-**A. Create Directory Structure:**
-1. `docs/scms/` (Operational Logs)
-2. `docs/templates/` (Standardization)
-3. `docs/guides/` (Manuals)
-
-**B. Initialize Templates (The "Gold Standard"):**
-1. Create `docs/templates/FAILURE_LOG_TEMPLATE.md` (Fields: Severity, Impact, 5 Whys, Prevention)
-2. Create `docs/templates/PATTERN_PROMOTION_TEMPLATE.md` (Fields: Use Cases, Impact Score, Rule Draft)
-3. Create `docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md` (Fields: L2/L3/L5 Checklist, Export Verification)
-
-**C. Initialize Operational Files:**
-1. `docs/scms/INDEX.md` (Central Hub skeleton)
-2. `docs/scms/MEMORY_STATUS_DASHBOARD.md` (Greenfield config)
-3. `docs/scms/FAILURES.md` (Empty log)
-4. `docs/scms/WORKSPACE_RULES.md` (Empty L1)
-5. `economics-dashboard-data.json` OR `scms-metrics.json` (Initialize with session: [] array)
-
-### 2. SESSION START CHECKLIST (Before Coding)
-1. **Environment Check**:
-   - Verify `package.json` scripts (`test`, `start`).
-   - **Template Verification**: Do `docs/templates/` exist? If not, regenerate them.
+2. 🧠 LAYER RETRIEVAL PRIORITY
+   AUTOMATIC (System):
+   - L0: Auto-gen memories (Cascade) - **Primary Context**
+   - L4: Global Rules (User Rules) - **Hard Constraints**
+   - L1: Workspace Rules (valid_patterns) - **Quality Gates**
    
-2. **Review L4 Global Rules**:
-   - Check `GLOBAL_CODING_RULES` (Memory or File).
-   - Constraint: "No duplicate code", "No broken builds".
+   SELF-DIRECTED (Agent):
+   - L2: SOPs & Failure Logs - **Must check `FAILURES.md` if doing risky work**
+   - L3: Case Studies - Retrieve if implementing complex features
+   - L5: Overflow - Low-frequency patterns
    
-3. **Review Memory Dashboard**:
-   - Check `MEMORY_STATUS_DASHBOARD.md` for Active Patterns.
+   FLOW: L0 → L4 → L1 → [L2/L3 if needed] → Generate → Validation
 
-### 3. DURING DEVELOPMENT (The Workflow)
-1. **CREATE MEMORIES (L0)**: 
-   - Pattern discovered -> Create Cascade memory.
-   
-2. **FAILURE DOCUMENTATION (L2 - Priority)**:
-   - **Trigger:** Any mock failure, tool error, or regression.
-   - **Action:** Update `docs/scms/FAILURES.md`.
-   - **Constraint:** MUST uses `FAILURE_LOG_TEMPLATE.md` (5 Whys required).
-   
-3. **PATTERN PROMOTION (L3)**:
-   - **Trigger:** L0 Pattern used n≥2 times.
-   - **Action:** Fill `PATTERN_PROMOTION_TEMPLATE.md` to request L1 status.
+3. 💰 ECONOMIC TRACKING (EXPORT-TRIGGERED)
+   - **Goal:** 30-50% Retrieval Ratio
+   - **Requirement:** Maintain accurate token warnings in chat
+   - **Update Method:** Dashboard Export -> `checkpoints/checkpoint-[ID].txt` 
+   - **Do not manually edit** `economics-dashboard-data.json` (it is auto-generated)
 
-### 4. SESSION CLOSURE (L5 - Critical)
-At end of EVERY session, run closure protocol:
-1. **Audit:** Generate `docs/scms/SESSION_LOG_L5.md` using `SESSION_CLOSURE_REPORT_TEMPLATE.md`.
-2. **Export:** Run Dashboard Export to capture `checkpoints/checkpoint-[ID].txt`.
-3. **Update:** `INDEX.md` and Dashboards.
+4. 🚨 FAILURE DOCUMENTATION (L2)
+   - **Trigger:** Any mock failure, tool error, or regression
+   - **Action:** Log immediately to `docs/scms/FAILURES.md` 
+   - **Constraint:** MUST use `docs/templates/FAILURE_LOG_TEMPLATE.md` (5 Whys required)
+   - **Philosophy:** "What NOT to do" is more valuable than "What to do"
 
-Ready to configure SCMS. Let's start by initializing the directory structure and templates.</div>
+5. 🏁 SESSION CLOSURE PROTOCOL (L5)
+   - **Target:** 10-15 mins remaining
+   - **Mandatory Steps:**
+     1. **Reflect:** Log failures using L2 Template
+     2. **Promote:** Check pattern usage against Project Threshold (see MEMORY_STATUS_DASHBOARD.md)
+     3. **Audit:** Generate `docs/scms/SESSION_LOG_L5.md` using **L5 Template**
+     4. **Export:** Run Dashboard Export to finalize metrics
+
+Let's start by loading failure context and verifying the templates are ready.</div>
                 </div>
             </div> <!-- End Session Start wrapper -->
             
@@ -1173,20 +1141,44 @@ npm run dashboard
             <div> <!-- Session Closure wrapper -->
             <div class="code-block-wrapper">
                 <button class="copy-btn" onclick="copyPrompt(this, 'sessionClosurePrompt')">📋 Copy Prompt</button>
-                <div class="code-block" id="sessionClosurePrompt">SCMS SESSION CLOSURE - CRITICAL SYSTEM UPDATE
+                <div class="code-block" id="sessionClosurePrompt">SCMS SESSION CLOSURE - CRITICAL SYSTEM AUDIT
 
-Great work on this feature! Now let's close the SCMS optimization loop:
+Great work! Now let's close the SCMS optimization loop using the V3.2 Protocol:
 
-1. PATTERN REFLECTION & VALIDATION
-   - FAILURES FIRST (3-10× more informative than successes)
-2. L0/L1 VALIDATION PIPELINE UPDATE (threshold: 2+ uses)
-3. INDEX & CROSS-REFERENCE MAINTENANCE (NOT visual diagrams)
-4. MEMORY DASHBOARD UPDATE (Cascade persistent memory)
-5. ECONOMIC DASHBOARD UPDATE (cost/savings/ROI)
-6. ORGANIZATIONAL FRAMING MAINTENANCE (L0/L1/Dashboard boundaries)
-7. SYSTEM OPTIMIZATION (health status & compliance)
+1. 🚨 FAILURE ANALYSIS (L2 - Highest ROI)
+   - **Goal:** Turn every error into an asset.
+   - **Action:** If any failure occurred, log it to `docs/scms/FAILURES.md`.
+   - **Constraint:** MUST use `docs/templates/FAILURE_LOG_TEMPLATE.md` (5 Whys mandatory).
+   - **Check:** Did we fix a bug? If so, document the *anti-pattern*.
 
-This ensures SCMS continues optimizing and compounding value over time.</div>
+2. 🚀 PATTERN VALIDATION (L3 - Promotion)
+   - **Review:** Check active memories (L0).
+   - **Threshold:** Is any pattern used n≥2 times?
+   - **Action:** If yes, fill `docs/templates/PATTERN_PROMOTION_TEMPLATE.md` and add to `WORKSPACE_RULES.md` (L1).
+   - **Update:** Reflect status in `MEMORY_STATUS_DASHBOARD.md`.
+
+3. 📊 ECONOMIC TRACKING (Export-Triggered)
+   - **STOP:** Do NOT manually edit `economics-dashboard-data.json`.
+   - **Action:** Prepare for Dashboard Export:
+     1. Ensure all token warnings are visible in chat context.
+     2. Click "Export Data" in Dashboard UI.
+     3. Paste the prompt back into Chat to create `checkpoints/checkpoint-[ID].txt`.
+     4. Verify metrics update in Dashboard.
+
+4. 🛡️ SESSION AUDIT (L5)
+   - **Goal:** Verify system integrity before sign-off.
+   - **Action:** Generate/Update `docs/scms/SESSION_LOG_L5.md`.
+   - **Constraint:** MUST use `docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md`.
+   - **Checklist:**
+     - [ ] Failures Logged (L2)?
+     - [ ] Promotions Processed (L3)?
+     - [ ] Checkpoint Created (Export)?
+
+5. 🗺️ INDEX MAINTENANCE
+   - **Action:** Update `docs/scms/INDEX.md` to link new L2/L5 logs.
+   - **Verify:** Ensure Semantic Coherence (Tags & Links).
+
+Close the session by executing this Audit Protocol now.</div>
                 </div>
             </div> <!-- End Session Closure wrapper -->
             

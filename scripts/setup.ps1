@@ -300,382 +300,333 @@ $startupPromptPath = Join-Path $projectRoot 'docs\scms\SCMS_STARTUP_PROMPT.md'
 if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
     # Windsurf Auto-Memory Startup Prompt
     $startupPrompt = @"
-# SCMS Startup Prompt - Windsurf Auto-Memory
+SCMS SESSION START
 
-**Copy this entire content and paste it to Cascade AI at the START of each development session**
+Working on: [project name and brief description]
 
----
+## SCMS Configuration - Sparse Contextual Memory Scaffolding
 
-## SCMS Configuration
+**IMPORTANT LOCATION RULE:**
+- All Operational Logs live in: docs/scms/ (e.g., FAILURES.md)
+- All Templates live in: docs/templates/
+- Do NOT create SCMS files in root.
 
-- **IDE**: Windsurf
-- **L0 Strategy**: Auto-Memory (Cascade Memories)
-- **Project Phase**: $($THRESHOLD_CONFIG.Phase)
-- **Promotion Threshold**: n>=$($THRESHOLD_CONFIG.FinalThreshold)
-- **Team**: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+**Architecture:** Multi-time-scale cognitive framework
+- L0: Auto-memories (Probabilistic retrieval) - **Active Strategy**
+- L1: Validated patterns (Mandatory loading via WORKSPACE_RULES.md)
+- L2: Failure Analysis (5 Whys enforced via Template)
+- L3: Pattern Promotion (Evidence-based validation)
+- L5: Session Audit (Closure verification)
+- Dashboard: Economic & Context tracking
 
----
+**Promotion Thresholds:**
+- Project Phase: $($THRESHOLD_CONFIG.Phase)
+- Team Config: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+- **Current Target**: n>=$($THRESHOLD_CONFIG.FinalThreshold) uses
 
-## Instructions for Cascade AI
+## Instructions for AI
 
-You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **AUTO-MEMORY** strategy.
+### 1. ZERO-STATE INITIALIZATION (Greenfield/Integration)
+**IF docs/scms/ DOES NOT EXIST:**
 
-### How SCMS Works (5-Layer Architecture):
+**A. Create Directory Structure:**
+1. docs/scms/ (Operational Logs)
+2. docs/templates/ (Standardization)
+3. docs/guides/ (Manuals)
 
-**L0 (Auto-Memory)**: Cascade memories - temporal validation (30 day decay)
-**L1 (Workspace Rules)**: docs/scms/WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
-**L2 (SOPs)**: docs/scms/sops/ - detailed procedures (created when pattern becomes standard)
-**L3 (Case Studies)**: docs/scms/case-studies/ - complete examples (created at feature milestones)
-**L4 (Global Rules)**: Universal constraints that apply across all projects
+**B. Initialize Templates (The "Gold Standard"):**
+1. Create docs/templates/FAILURE_LOG_TEMPLATE.md (Fields: Severity, Impact, 5 Whys, Prevention)
+2. Create docs/templates/PATTERN_PROMOTION_TEMPLATE.md (Fields: Use Cases, Impact Score, Rule Draft)
+3. Create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md (Fields: L2/L3/L5 Checklist, Export Verification)
 
-**Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
+**C. Initialize Operational Files:**
+1. docs/scms/INDEX.md (Central Hub skeleton)
+2. docs/scms/MEMORY_STATUS_DASHBOARD.md (Greenfield config)
+3. docs/scms/FAILURES.md (Empty log)
+4. docs/scms/WORKSPACE_RULES.md (Empty L1)
+5. economics-dashboard-data.json OR scms-metrics.json (Initialize with session: [] array)
 
-### Dashboard Tracking:
+### 2. SESSION START CHECKLIST (Before Coding)
+1. **Environment Check**:
+   - Verify package.json scripts (test, start).
+   - **Template Verification**: Do docs/templates/ exist? If not, regenerate them.
+   
+2. **Review L4 Global Rules**:
+   - Check rules/GLOBAL_CODING_RULES.md (Memory or File).
+   - Constraint: "No duplicate code", "No broken builds".
+   
+3. **Review Memory Dashboard**:
+   - Check docs/scms/MEMORY_STATUS_DASHBOARD.md for Active Patterns.
 
-**docs/scms/MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
-- Shows all active L0 memories with retrieval counts
-- Shows promoted L1 patterns in docs/scms/WORKSPACE_RULES.md
-- Lists available L2-L4 reference docs
-- YOU update this as patterns progress through layers
+### 3. DURING DEVELOPMENT (The Workflow)
+1. **CREATE MEMORIES (L0)**: 
+   - Pattern discovered -> Create Cascade memory.
+   
+2. **FAILURE DOCUMENTATION (L2 - Priority)**:
+   - **Trigger**: Any mock failure, tool error, or regression.
+   - **Action**: Update docs/scms/FAILURES.md.
+   - **Constraint**: MUST uses FAILURE_LOG_TEMPLATE.md (5 Whys required).
+   
+3. **PATTERN PROMOTION (L3)**:
+   - **Trigger**: L0 Pattern used n>=$($THRESHOLD_CONFIG.FinalThreshold) times.
+   - **Action**: Fill PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
 
-### BEFORE You Start Coding:
+### 4. SESSION CLOSURE (L5 - Critical)
+At end of EVERY session, run closure protocol:
+1. **Audit**: Generate docs/scms/SESSION_LOG_L5.md using SESSION_CLOSURE_REPORT_TEMPLATE.md.
+2. **Export**: Run Dashboard Export to capture checkpoints/checkpoint-[ID].txt.
+3. **Update**: INDEX.md and Dashboards.
 
-1. **Check L1 Validated Patterns**
-   - Location: docs/scms/WORKSPACE_RULES.md
-   - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
-
-2. **Check Dashboard**
-   - Location: docs/scms/MEMORY_STATUS_DASHBOARD.md
-   - Current tracking status
-
-3. **Tell me what you reviewed**
-   - Example: "Reviewed L1 patterns for API handling, dashboard shows 3 active patterns"
-
-### Your Workflow:
-
-1. **CREATE MEMORIES DURING DEVELOPMENT**
-   - When you discover a reusable pattern, IMMEDIATELY create a Cascade memory
-   - Do NOT wait until code is complete
-   - Memory title should be descriptive (e.g., "API Error Handling Pattern")
-
-2. **DO NOT CREATE MARKDOWN FILES**
-   - NO docs/memories/*.md files
-   - NO SCMS_REPORT.md or similar
-   - You will track retrievals internally
-
-3. **WHEN PATTERN RECURS**
-   - Retrieve the memory automatically
-   - Increment internal retrieval counter
-   - Tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
-
-4. **AT $($THRESHOLD_CONFIG.FinalThreshold) RETRIEVALS - AUTOMATIC PROMOTION TO L1**
-   - YOU automatically promote pattern to docs/scms/WORKSPACE_RULES.md
-   - Add to the appropriate section with promotion metadata
-   - Tell me "PROMOTED: [pattern] to docs/scms/WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
-   - Update docs/scms/MEMORY_STATUS_DASHBOARD.md to reflect the promotion
-
-5. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
-   - YOU automatically create detailed SOP in docs/scms/sops/
-   - Include step-by-step implementation guide
-   - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
-   - Update dashboard with L2 reference
-
-6. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
-   - When a feature is complete, YOU automatically create case study in docs/scms/case-studies/
-   - Show pattern usage in complete working context
-   - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
-   - Update dashboard with L3 reference
-
-7. **BEFORE MARKING TASK COMPLETE - FINAL QUALITY CHECK (L4)**
-   - Check rules/GLOBAL_CODING_RULES.md (if it exists)
-   - Validate code against universal constraints
-   - If violations found: Tell me "WARNING L4 VIOLATION: [rule] - [issue]" and fix automatically
-   - If compliant: Tell me "VERIFIED L4 COMPLIANCE: All global rules followed"
-   - L4 is the FINAL gate, not an upfront constraint
-
-### Remember:
-- Memories are TEMPORAL (decay after 30 days without use)
-- Promotion threshold: $($THRESHOLD_CONFIG.FinalThreshold) uses
-- This is TRUE SCMS - zero markdown files, memories in Cascade only
-
----
-
-**Session started**: $(Get-Date -Format 'yyyy-MM-dd HH:mm')
+Ready to configure SCMS. Let's start by initializing the directory structure and templates.
 "@
 } elseif ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'manual') {
     # Windsurf Manual Markdown Startup Prompt
     $startupPrompt = @"
-# SCMS Startup Prompt - Windsurf Manual Markdown
+SCMS SESSION START
 
-**Copy this entire content and paste it to Cascade AI at the START of each development session**
+Working on: [project name and brief description]
 
----
+## SCMS Configuration - Sparse Contextual Memory Scaffolding
 
-## SCMS Configuration
+**IMPORTANT LOCATION RULE:**
+- All Operational Logs live in: docs/scms/ (e.g., FAILURES.md)
+- All Templates live in: docs/templates/
+- Do NOT create SCMS files in root.
 
-- **IDE**: Windsurf
-- **L0 Strategy**: Manual Markdown Files
-- **Project Phase**: $($THRESHOLD_CONFIG.Phase)
-- **Promotion Threshold**: n>=$($THRESHOLD_CONFIG.FinalThreshold)
-- **Team**: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+**Architecture:** Multi-time-scale cognitive framework
+- L0: Manual Markdown Files (docs/scms/memories/) - **Active Strategy**
+- L1: Validated patterns (Mandatory loading via WORKSPACE_RULES.md)
+- L2: Failure Analysis (5 Whys enforced via Template)
+- L3: Pattern Promotion (Evidence-based validation)
+- L5: Session Audit (Closure verification)
+- Dashboard: Economic & Context tracking
 
----
+**Promotion Thresholds:**
+- Project Phase: $($THRESHOLD_CONFIG.Phase)
+- Team Config: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+- **Current Target**: n>=$($THRESHOLD_CONFIG.FinalThreshold) uses
 
-## Instructions for Cascade AI
+## Instructions for AI
 
-You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **MANUAL MARKDOWN** strategy.
+### 1. ZERO-STATE INITIALIZATION (Greenfield/Integration)
+**IF docs/scms/ DOES NOT EXIST:**
 
-### How SCMS Works (5-Layer Architecture):
+**A. Create Directory Structure:**
+1. docs/scms/ (Operational Logs)
+2. docs/scms/memories/ (L0 Manual Memories)
+3. docs/templates/ (Standardization)
+4. docs/guides/ (Manuals)
 
-**L0 (Manual Markdown)**: docs/scms/memories/ - pattern documentation
-**L1 (Workspace Rules)**: docs/scms/WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
-**L2 (SOPs)**: docs/scms/sops/ - detailed procedures (created when pattern becomes standard)
-**L3 (Case Studies)**: docs/scms/case-studies/ - complete examples (created at feature milestones)
-**L4 (Global Rules)**: Universal constraints that apply across all projects
+**B. Initialize Templates (The "Gold Standard"):**
+1. Create docs/templates/FAILURE_LOG_TEMPLATE.md
+2. Create docs/templates/PATTERN_PROMOTION_TEMPLATE.md
+3. Create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md
+4. Create docs/templates/MEMORY_TEMPLATE.md (For L0 manual memories)
 
-**Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
+**C. Initialize Operational Files:**
+1. docs/scms/INDEX.md
+2. docs/scms/MEMORY_STATUS_DASHBOARD.md
+3. docs/scms/FAILURES.md
+4. docs/scms/WORKSPACE_RULES.md
+5. economics-dashboard-data.json
 
-### Dashboard Tracking:
+### 2. SESSION START CHECKLIST (Before Coding)
+1. **Environment Check**:
+   - Verify package.json scripts.
+   - **Template Verification**: Do docs/templates/ exist?
+   
+2. **Review L4 Global Rules**:
+   - Check rules/GLOBAL_CODING_RULES.md.
+   
+3. **Review Memory Dashboard**:
+   - Check docs/scms/MEMORY_STATUS_DASHBOARD.md for Active Patterns.
 
-**docs/scms/MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
-- Shows all active L0 patterns with usage counts
-- Shows promoted L1 patterns in docs/scms/WORKSPACE_RULES.md
-- Lists available L2-L4 reference docs
-- YOU update this as patterns progress through layers
+### 3. DURING DEVELOPMENT (The Workflow)
+1. **CREATE MEMORIES (L0)**: 
+   - Pattern discovered -> Create new file in docs/scms/memories/ using MEMORY_TEMPLATE.md.
+   - Log it in MEMORY_STATUS_DASHBOARD.md.
+   
+2. **FAILURE DOCUMENTATION (L2 - Priority)**:
+   - **Trigger**: Any mock failure, tool error, or regression.
+   - **Action**: Update docs/scms/FAILURES.md using L2 Template.
+   
+3. **PATTERN PROMOTION (L3)**:
+   - **Trigger**: L0 Pattern used n>=$($THRESHOLD_CONFIG.FinalThreshold) times.
+   - **Action**: Fill PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
 
-### BEFORE You Start Coding:
+### 4. SESSION CLOSURE (L5 - Critical)
+At end of EVERY session, run closure protocol:
+1. **Audit**: Generate docs/scms/SESSION_LOG_L5.md using SESSION_CLOSURE_REPORT_TEMPLATE.md.
+2. **Export**: Run Dashboard Export.
+3. **Update**: INDEX.md and Dashboards.
 
-1. **Check L1 Validated Patterns**
-   - Location: docs/scms/WORKSPACE_RULES.md
-   - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
-
-2. **Check Dashboard**
-   - Location: docs/scms/MEMORY_STATUS_DASHBOARD.md
-   - Current tracking status
-
-3. **Tell me what you reviewed**
-   - Example: "Reviewed L1 patterns for API handling, dashboard shows 3 active patterns"
-
-### Your Workflow:
-
-1. **DOCUMENT PATTERNS IN MARKDOWN**
-   - Create files in docs/scms/memories/ as patterns emerge
-   - Use descriptive names (e.g., api-error-handling.md)
-   - Track usage count in docs/scms/MEMORY_STATUS_DASHBOARD.md
-
-2. **TRACK PATTERN USAGE**
-   - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
-   - Update dashboard with new retrieval count
-
-3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION TO L1**
-   - YOU automatically promote pattern to docs/scms/WORKSPACE_RULES.md
-   - Add to the appropriate section with promotion metadata
-   - Tell me "PROMOTED: [pattern] to docs/scms/WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
-   - Update dashboard to reflect the promotion
-
-4. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
-   - YOU automatically create detailed SOP in docs/scms/sops/
-   - Include step-by-step implementation guide
-   - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
-   - Update dashboard with L2 reference
-
-5. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
-   - When a feature is complete, YOU automatically create case study in docs/scms/case-studies/
-   - Show pattern usage in complete working context
-   - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
-   - Update dashboard with L3 reference
-
-### Remember:
-- Manual tracking required
-- Promotion threshold: $($THRESHOLD_CONFIG.FinalThreshold) uses
-- Keep MEMORY_STATUS_DASHBOARD.md up to date
-
----
-
-**Session started**: $(Get-Date -Format 'yyyy-MM-dd HH:mm')
+Ready to configure SCMS. Let's start by initializing the directory structure and templates.
 "@
 } elseif ($IDE -eq 'cursor') {
     # Cursor Manual Markdown Startup Prompt
     $startupPrompt = @"
-# SCMS Startup Prompt - Cursor
+SCMS SESSION START
 
-**Copy this entire content and paste it to Cursor AI at the START of each development session**
+Working on: [project name and brief description]
 
----
+## SCMS Configuration - Sparse Contextual Memory Scaffolding
 
-## SCMS Configuration
+**IMPORTANT LOCATION RULE:**
+- All Operational Logs live in: docs/scms/ (e.g., FAILURES.md)
+- All Templates live in: docs/templates/
+- Do NOT create SCMS files in root.
 
-- **IDE**: Cursor
-- **L0 Strategy**: Manual Markdown Files
-- **Project Phase**: $($THRESHOLD_CONFIG.Phase)
-- **Promotion Threshold**: n>=$($THRESHOLD_CONFIG.FinalThreshold)
-- **Team**: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+**Architecture:** Multi-time-scale cognitive framework
+- L0: Manual Markdown Files (docs/scms/memories/) - **Active Strategy**
+- L1: Validated patterns (Mandatory loading via WORKSPACE_RULES.md)
+- L2: Failure Analysis (5 Whys enforced via Template)
+- L3: Pattern Promotion (Evidence-based validation)
+- L5: Session Audit (Closure verification)
+- Dashboard: Economic & Context tracking
 
----
+**Promotion Thresholds:**
+- Project Phase: $($THRESHOLD_CONFIG.Phase)
+- Team Config: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+- **Current Target**: n>=$($THRESHOLD_CONFIG.FinalThreshold) uses
 
-## Instructions for Cursor AI
+## Instructions for AI
 
-You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **MANUAL MARKDOWN** strategy.
+### 1. ZERO-STATE INITIALIZATION (Greenfield/Integration)
+**IF docs/scms/ DOES NOT EXIST:**
 
-### How SCMS Works (5-Layer Architecture):
+**A. Create Directory Structure:**
+1. docs/scms/
+2. docs/scms/memories/
+3. docs/templates/
+4. docs/guides/
 
-**L0 (Manual Markdown)**: docs/scms/memories/ - pattern documentation
-**L1 (Workspace Rules)**: docs/scms/WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
-**L2 (SOPs)**: docs/scms/sops/ - detailed procedures (created when pattern becomes standard)
-**L3 (Case Studies)**: docs/scms/case-studies/ - complete examples (created at feature milestones)
-**L4 (Global Rules)**: Universal constraints that apply across all projects
+**B. Initialize Templates (The "Gold Standard"):**
+1. Create docs/templates/FAILURE_LOG_TEMPLATE.md
+2. Create docs/templates/PATTERN_PROMOTION_TEMPLATE.md
+3. Create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md
+4. Create docs/templates/MEMORY_TEMPLATE.md
 
-**Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
+**C. Initialize Operational Files:**
+1. docs/scms/INDEX.md
+2. docs/scms/MEMORY_STATUS_DASHBOARD.md
+3. docs/scms/FAILURES.md
+4. docs/scms/WORKSPACE_RULES.md
+5. economics-dashboard-data.json
 
-### Dashboard Tracking:
+### 2. SESSION START CHECKLIST (Before Coding)
+1. **Environment Check**:
+   - Verify package.json scripts.
+   - **Template Verification**: Do docs/templates/ exist?
+   
+2. **Review L4 Global Rules**:
+   - Check rules/GLOBAL_CODING_RULES.md.
+   
+3. **Review Memory Dashboard**:
+   - Check docs/scms/MEMORY_STATUS_DASHBOARD.md for Active Patterns.
 
-**docs/scms/MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
-- Shows all active L0 patterns with usage counts
-- Shows promoted L1 patterns in docs/scms/WORKSPACE_RULES.md
-- Lists available L2-L4 reference docs
-- YOU update this as patterns progress through layers
+### 3. DURING DEVELOPMENT (The Workflow)
+1. **CREATE MEMORIES (L0)**: 
+   - Pattern discovered -> Create new file in docs/scms/memories/ using MEMORY_TEMPLATE.md.
+   - Log it in MEMORY_STATUS_DASHBOARD.md.
+   
+2. **FAILURE DOCUMENTATION (L2 - Priority)**:
+   - **Trigger**: Any mock failure, tool error, or regression.
+   - **Action**: Update docs/scms/FAILURES.md using L2 Template.
+   
+3. **PATTERN PROMOTION (L3)**:
+   - **Trigger**: L0 Pattern used n>=$($THRESHOLD_CONFIG.FinalThreshold) times.
+   - **Action**: Fill PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
 
-### BEFORE You Start Coding:
+### 4. SESSION CLOSURE (L5 - Critical)
+At end of EVERY session, run closure protocol:
+1. **Audit**: Generate docs/scms/SESSION_LOG_L5.md using SESSION_CLOSURE_REPORT_TEMPLATE.md.
+2. **Export**: Run Dashboard Export.
+3. **Update**: INDEX.md and Dashboards.
 
-1. **Check L1 Validated Patterns**
-   - Location: docs/scms/WORKSPACE_RULES.md
-   - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
-
-2. **Check Dashboard**
-   - Location: docs/scms/MEMORY_STATUS_DASHBOARD.md
-   - Current tracking status
-
-3. **Tell me what you reviewed**
-   - Example: "Reviewed L1 patterns for API handling, dashboard shows 3 active patterns"
-
-### Your Workflow:
-
-1. **DOCUMENT PATTERNS IN MARKDOWN**
-   - Create files in docs/scms/memories/ as patterns emerge
-   - Use descriptive names (e.g., api-error-handling.md)
-   - Track usage count in docs/scms/MEMORY_STATUS_DASHBOARD.md
-
-2. **TRACK PATTERN USAGE**
-   - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
-   - Update dashboard with new retrieval count
-
-3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION TO L1**
-   - YOU automatically promote pattern to docs/scms/WORKSPACE_RULES.md
-   - Add to the appropriate section with promotion metadata
-   - Tell me "PROMOTED: [pattern] to docs/scms/WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
-   - Update dashboard to reflect the promotion
-
-4. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
-   - YOU automatically create detailed SOP in docs/scms/sops/
-   - Include step-by-step implementation guide
-   - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
-   - Update dashboard with L2 reference
-
-5. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
-   - When a feature is complete, YOU automatically create case study in docs/scms/case-studies/
-   - Show pattern usage in complete working context
-   - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
-   - Update dashboard with L3 reference
-
-### Remember:
-- Manual tracking required
-- Promotion threshold: $($THRESHOLD_CONFIG.FinalThreshold) uses
-- Keep MEMORY_STATUS_DASHBOARD.md up to date
-
----
-
-**Session started**: $(Get-Date -Format 'yyyy-MM-dd HH:mm')
+Ready to configure SCMS. Let's start by initializing the directory structure and templates.
 "@
 } else {
     # Generic AI Assistant Startup Prompt
     $startupPrompt = @"
-# SCMS Startup Prompt - Generic AI Assistant
+SCMS SESSION START
 
-**Copy this entire content and paste it to your AI assistant at the START of each development session**
+Working on: [project name and brief description]
 
----
+## SCMS Configuration - Sparse Contextual Memory Scaffolding
 
-## SCMS Configuration
+**IMPORTANT LOCATION RULE:**
+- All Operational Logs live in: docs/scms/ (e.g., FAILURES.md)
+- All Templates live in: docs/templates/
+- Do NOT create SCMS files in root.
 
-- **L0 Strategy**: Manual Markdown Files
-- **Project Phase**: $($THRESHOLD_CONFIG.Phase)
-- **Promotion Threshold**: n>=$($THRESHOLD_CONFIG.FinalThreshold)
-- **Team**: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+**Architecture:** Multi-time-scale cognitive framework
+- L0: Manual Markdown Files (docs/scms/memories/) - **Active Strategy**
+- L1: Validated patterns (Mandatory loading via WORKSPACE_RULES.md)
+- L2: Failure Analysis (5 Whys enforced via Template)
+- L3: Pattern Promotion (Evidence-based validation)
+- L5: Session Audit (Closure verification)
+- Dashboard: Economic & Context tracking
 
----
+**Promotion Thresholds:**
+- Project Phase: $($THRESHOLD_CONFIG.Phase)
+- Team Config: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
+- **Current Target**: n>=$($THRESHOLD_CONFIG.FinalThreshold) uses
 
-## Instructions for AI Assistant
+## Instructions for AI
 
-You are working in a project using **SCMS v1.4 (Sparse Contextual Memory Scaffolding)** with **MANUAL MARKDOWN** strategy.
+### 1. ZERO-STATE INITIALIZATION (Greenfield/Integration)
+**IF docs/scms/ DOES NOT EXIST:**
 
-### How SCMS Works (5-Layer Architecture):
+**A. Create Directory Structure:**
+1. docs/scms/
+2. docs/scms/memories/
+3. docs/templates/
+4. docs/guides/
 
-**L0 (Manual Markdown)**: docs/scms/memories/ - pattern documentation
-**L1 (Workspace Rules)**: docs/scms/WORKSPACE_RULES.md - validated patterns (promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold))
-**L2 (SOPs)**: docs/scms/sops/ - detailed procedures (created when pattern becomes standard)
-**L3 (Case Studies)**: docs/scms/case-studies/ - complete examples (created at feature milestones)
-**L4 (Global Rules)**: Universal constraints that apply across all projects
+**B. Initialize Templates:**
+1. Create docs/templates/FAILURE_LOG_TEMPLATE.md
+2. Create docs/templates/PATTERN_PROMOTION_TEMPLATE.md
+3. Create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md
+4. Create docs/templates/MEMORY_TEMPLATE.md
 
-**Key Distinction**: L0-L1 are ACTIVE (enforce patterns), L2-L4 are PASSIVE (reference only, on-demand)
+**C. Initialize Operational Files:**
+1. docs/scms/INDEX.md
+2. docs/scms/MEMORY_STATUS_DASHBOARD.md
+3. docs/scms/FAILURES.md
+4. docs/scms/WORKSPACE_RULES.md
+5. economics-dashboard-data.json
 
-### Dashboard Tracking:
+### 2. SESSION START CHECKLIST (Before Coding)
+1. **Environment Check**:
+   - Verify package.json scripts.
+   - **Template Verification**: Do docs/templates/ exist?
+   
+2. **Review L4 Global Rules**:
+   - Check rules/GLOBAL_CODING_RULES.md.
+   
+3. **Review Memory Dashboard**:
+   - Check docs/scms/MEMORY_STATUS_DASHBOARD.md for Active Patterns.
 
-**docs/scms/MEMORY_STATUS_DASHBOARD.md** is your tracking tool:
-- Shows all active L0 patterns with usage counts
-- Shows promoted L1 patterns in docs/scms/WORKSPACE_RULES.md
-- Lists available L2-L4 reference docs
-- YOU update this as patterns progress through layers
+### 3. DURING DEVELOPMENT (The Workflow)
+1. **CREATE MEMORIES (L0)**: 
+   - Pattern discovered -> Create new file in docs/scms/memories/ using MEMORY_TEMPLATE.md.
+   - Log it in MEMORY_STATUS_DASHBOARD.md.
+   
+2. **FAILURE DOCUMENTATION (L2 - Priority)**:
+   - **Trigger**: Any mock failure, tool error, or regression.
+   - **Action**: Update docs/scms/FAILURES.md using L2 Template.
+   
+3. **PATTERN PROMOTION (L3)**:
+   - **Trigger**: L0 Pattern used n>=$($THRESHOLD_CONFIG.FinalThreshold) times.
+   - **Action**: Fill PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
 
-### BEFORE You Start Coding:
+### 4. SESSION CLOSURE (L5 - Critical)
+At end of EVERY session, run closure protocol:
+1. **Audit**: Generate docs/scms/SESSION_LOG_L5.md using SESSION_CLOSURE_REPORT_TEMPLATE.md.
+2. **Export**: Run Dashboard Export.
+3. **Update**: INDEX.md and Dashboards.
 
-1. **Check L1 Validated Patterns**
-   - Location: docs/scms/WORKSPACE_RULES.md
-   - Project-specific patterns promoted at n>=$($THRESHOLD_CONFIG.FinalThreshold)
-
-2. **Check Dashboard**
-   - Location: docs/scms/MEMORY_STATUS_DASHBOARD.md
-   - Current tracking status
-
-3. **Tell me what you reviewed**
-   - Example: "Reviewed L1 patterns for API handling, dashboard shows 3 active patterns"
-
-### Your Workflow:
-
-1. **DOCUMENT PATTERNS IN MARKDOWN**
-   - Create files in docs/scms/memories/ as patterns emerge
-   - Use descriptive names (e.g., api-error-handling.md)
-   - Track usage count in docs/scms/MEMORY_STATUS_DASHBOARD.md
-
-2. **TRACK PATTERN USAGE**
-   - When reusing a pattern, tell me "Retrieved [pattern] memory (n=X/$($THRESHOLD_CONFIG.FinalThreshold))"
-   - Update dashboard with new retrieval count
-
-3. **AT $($THRESHOLD_CONFIG.FinalThreshold) USES - AUTOMATIC PROMOTION TO L1**
-   - YOU automatically promote pattern to docs/scms/WORKSPACE_RULES.md
-   - Add to the appropriate section with promotion metadata
-   - Tell me "PROMOTED: [pattern] to docs/scms/WORKSPACE_RULES.md (validated at n=$($THRESHOLD_CONFIG.FinalThreshold))"
-   - Update dashboard to reflect the promotion
-
-4. **WHEN PATTERN BECOMES STANDARD (>=5 uses) - AUTOMATIC PROMOTION TO L2**
-   - YOU automatically create detailed SOP in docs/scms/sops/
-   - Include step-by-step implementation guide
-   - Tell me "CREATED L2 SOP: [pattern] (procedural documentation)"
-   - Update dashboard with L2 reference
-
-5. **AT FEATURE MILESTONES - AUTOMATIC PROMOTION TO L3**
-   - When a feature is complete, YOU automatically create case study in docs/scms/case-studies/
-   - Show pattern usage in complete working context
-   - Tell me "CREATED L3 CASE STUDY: [feature] (architectural example)"
-   - Update dashboard with L3 reference
-
-### Remember:
-- Manual tracking required
-- Promotion threshold: $($THRESHOLD_CONFIG.FinalThreshold) uses
-- Keep MEMORY_STATUS_DASHBOARD.md up to date
-
----
-
-**Session started**: $(Get-Date -Format 'yyyy-MM-dd HH:mm')
+Ready to configure SCMS. Let's start by initializing the directory structure and templates.
 "@
 }
 
