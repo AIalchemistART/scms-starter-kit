@@ -348,34 +348,54 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\Downloads\scms-starter-kit"
 > **✅ Simplest approach** - 4 commands and you're running!
 
 **Unix/Mac/Linux:**
+
+**Step 1:** Clone the repository
 ```bash
-# Step 1: Clone
 git clone https://github.com/AIalchemistART/scms-starter-kit.git your-project-name
+```
 
-# Step 2: Enter directory
+**Step 2:** Enter directory
+```bash
 cd your-project-name
+```
 
-# Step 3: Configure (2-3 min, interactive)
+**Step 3:** Configure (2-3 min, interactive)
+```bash
 ./scripts/setup.sh
+```
 
-# Step 4: Install & launch
+**Step 4:** Install & launch
+```bash
 npm install
+```
+```bash
 npm run dashboard:app
 ```
 
+---
+
 **Windows (PowerShell):**
+
+**Step 1:** Clone the repository
 ```powershell
-# Step 1: Clone
 git clone https://github.com/AIalchemistART/scms-starter-kit.git your-project-name
+```
 
-# Step 2: Enter directory
+**Step 2:** Enter directory
+```powershell
 cd your-project-name
+```
 
-# Step 3: Configure (2-3 min, interactive)
+**Step 3:** Configure (2-3 min, interactive)
+```powershell
 .\scripts\setup.ps1
+```
 
-# Step 4: Install & launch
+**Step 4:** Install & launch
+```powershell
 npm install
+```
+```powershell
 npm run dashboard:app
 ```
 

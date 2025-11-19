@@ -160,16 +160,24 @@ rm ~/Downloads/scms.zip
 
 #### Unix/Mac/Linux
 
+**Step 1:** Clone as complete project
 ```bash
-# Clone as complete project
 git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project
+```
+```bash
 cd my-project
+```
 
-# Configure (2-3 min, detects IDE, sets thresholds)
+**Step 2:** Configure (2-3 min, detects IDE, sets thresholds)
+```bash
 ./scripts/setup.sh
+```
 
-# Install & launch
+**Step 3:** Install & launch
+```bash
 npm install
+```
+```bash
 npm run dashboard:app
 ```
 
@@ -177,16 +185,24 @@ npm run dashboard:app
 
 #### Windows (PowerShell)
 
+**Step 1:** Clone as complete project
 ```powershell
-# Clone as complete project
 git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project
-Set-Location my-project
+```
+```powershell
+cd my-project
+```
 
-# Configure (2-3 min, detects IDE, sets thresholds)
+**Step 2:** Configure (2-3 min, detects IDE, sets thresholds)
+```powershell
 .\scripts\setup.ps1
+```
 
-# Install & launch
+**Step 3:** Install & launch
+```powershell
 npm install
+```
+```powershell
 npm run dashboard:app
 ```
 
