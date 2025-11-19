@@ -158,11 +158,13 @@ rm ~/Downloads/scms.zip
 
 > **✅ Fastest way to test SCMS** - 2 steps and you're running!
 
+> ⚠️ **Replace `MY-PROJECT-NAME` with your actual project name** (e.g., `star-merchant-2d`, `my-game`, etc.)
+
 #### Unix/Mac/Linux
 
 **Step 1:** Clone and enter directory
 ```bash
-git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project && cd my-project
+git clone https://github.com/AIalchemistART/scms-starter-kit.git MY-PROJECT-NAME && cd MY-PROJECT-NAME
 ```
 
 **Step 2:** Configure (2-3 min, detects IDE, sets thresholds)
@@ -183,7 +185,7 @@ npm run dashboard:app
 
 **Step 1:** Clone and enter directory
 ```powershell
-git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project; cd my-project
+git clone https://github.com/AIalchemistART/scms-starter-kit.git MY-PROJECT-NAME; cd MY-PROJECT-NAME
 ```
 
 **Step 2:** Configure (2-3 min, detects IDE, sets thresholds)
