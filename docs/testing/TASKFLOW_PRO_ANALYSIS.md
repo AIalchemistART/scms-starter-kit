@@ -50,7 +50,8 @@
 |------------|-----------------|---------------|-------------|-----------|-------|--------------|
 | Prompt 1   | 26,622          | $0.104        | 51,600      | $0.264    | +24,978 | +94% |
 | Prompt 2   | 37,800          | $0.160        | 84,500      | $0.452    | +46,700 | +124% |
-| **Cumulative** | **64,422**  | **$0.264**    | **136,100** | **$0.716** | **+71,678** | **+111%** |
+| Prompt 3   | 51,000          | $0.220        | 89,900      | $0.481    | +38,900 | +76% |
+| **Cumulative** | **115,422** | **$0.484**    | **226,000** | **$1.197** | **+110,578** | **+96%** |
 | Prompt 10  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 20  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 30  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
@@ -416,6 +417,278 @@ Break-even: After 2 prevented failures (~Prompt 15-20)
 
 ---
 
+### Prompt 3: Task Model & Repository
+
+**Requirements:**
+- Create `backend/src/models/Task.ts` interface
+- Create `backend/src/repositories/TaskRepository.ts` with CRUD methods
+- Methods: `create()`, `findAll()`, `findById()`, `update()`, `delete()`
+- Use prepared statements for SQL queries
+
+#### Baseline Implementation
+**Token Usage:** 51,000 tokens ($0.220)  
+**Cumulative:** 115,422 tokens ($0.484)  
+**Files Created:** 3  
+**Files Modified:** 5  
+**Total LOC:** 652 (+308)  
+
+**Structure:**
+```
+✅ backend/src/models/Task.ts (27 LOC)
+✅ backend/src/repositories/TaskRepository.ts (174 LOC)
+✅ backend/src/test-repository.ts (71 LOC) 🎯 AUTOMATED TEST!
+✅ backend/src/server.ts (updated)
+✅ backend/src/database.ts (updated)
+✅ .gitignore (updated)
+✅ README.md (updated architecture docs)
+```
+
+**Implementation Details:**
+- ✅ Complete TypeScript interfaces (Task, CreateTaskInput, UpdateTaskInput)
+- ✅ Repository pattern with lazy singleton
+- ✅ All CRUD methods + bonus methods (count, findByStatus)
+- ✅ Prepared statements for SQL injection protection
+- ✅ **Created comprehensive test suite (test-repository.ts)**
+- ✅ **Ran all tests - 100% passing**
+
+**Test Coverage:**
+```typescript
+✅ Create tasks (3 tasks)
+✅ Find all tasks (3 results)
+✅ Find by ID (task 1)
+✅ Update task (completed + description)
+✅ Find by status (2 completed)
+✅ Count tasks (3 total)
+✅ Delete task (task 2)
+✅ Final count (2 remaining)
+```
+
+**Behavior:**
+- Created automated test file
+- Ran tests and verified all passed
+- ❌ **Still no request for USER validation**
+- ❌ But DID create automated tests (better?)
+- Professional, efficient execution
+
+**Code Quality:**
+- Excellent architecture (model → repository pattern)
+- Type-safe throughout
+- Comprehensive test coverage
+- Production-ready code
+
+#### SCMS Implementation
+**Token Usage:** 89,900 tokens ($0.481)  
+**Cumulative:** 226,000 tokens ($1.197)  
+**Files Created:** 2  
+**Files Modified:** 1  
+**Total LOC:** ~445 (+175)  
+
+**Structure:**
+```
+✅ backend/src/models/Task.ts (30 LOC)
+✅ backend/src/repositories/TaskRepository.ts (165 LOC)
+✅ baseline-tracking.md (updated)
+❌ No test file created
+```
+
+**Implementation Details:**
+- ✅ Complete TypeScript interfaces
+- ✅ Repository pattern with singleton export
+- ✅ All CRUD methods (no bonus methods)
+- ✅ Prepared statements with sql.js
+- ✅ Automatic persistence (saveDatabase() after writes)
+- ✅ Dynamic UPDATE query builder
+- ✅ Boolean conversion (SQLite INTEGER ↔ TypeScript boolean)
+- ❌ **No automated tests created**
+
+**Behavior:**
+- Provided verification command: `npm run dev:backend`
+- ✅ **Asked user to verify compilation**
+- Explained architecture with ASCII diagram
+- Detailed code walkthrough
+- ❌ **Did not create automated test suite**
+
+**Pattern Tracking:**
+```
+Emerging Patterns (use count: 3/5):
+- Edit tool for existing files (3/5) 🎯 2 more for L1!
+- Repository pattern with singleton (1/5)
+- Prepared statements for SQL (1/5)
+- TypeScript interface definitions (1/5)
+```
+
+#### Verdict: Prompt 3
+
+| Category | Winner | Reason |
+|----------|--------|--------|
+| **Requirements** | Tie | Both met all requirements |
+| **Token Efficiency** | 🏆 **Baseline** | 51k vs 89k (57% cheaper!) |
+| **Cost This Prompt** | 🏆 **Baseline** | $0.22 vs $0.48 (2.2x cheaper!) |
+| **Cumulative Cost** | 🏆 **Baseline** | $0.48 vs $1.20 (2.5x cheaper!) |
+| **Code Quality** | Tie | Both excellent, production-ready |
+| **LOC Written** | 🏆 **Baseline** | 652 vs 445 (more complete) |
+| **Automated Testing** | 🏆 **Baseline** | Created test suite, SCMS didn't! |
+| **Test Coverage** | 🏆 **Baseline** | 8 test cases, 100% passing |
+| **User Validation** | 🏆 **SCMS** | Asked user to verify (Baseline didn't) |
+| **Architecture Docs** | 🏆 **SCMS** | ASCII diagram, detailed walkthrough |
+| **Pattern Tracking** | 🏆 **SCMS** | 4 patterns tracked, 1 near promotion |
+
+**Overall Winner: 🏆 Baseline (with a major advantage!)**
+
+#### Critical Analysis
+
+**🚨 HUGE Behavioral Difference Revealed!**
+
+**Validation Discipline - Nuanced Reality:**
+
+**Baseline Approach:**
+- ❌ Doesn't ask USER to validate
+- ✅ **But creates AUTOMATED tests instead!**
+- ✅ Runs tests and verifies they pass
+- ✅ This is arguably BETTER than manual validation
+- 🎯 **TDD-style: Code → Test → Verify**
+
+**SCMS Approach:**
+- ✅ Asks user to verify compilation
+- ❌ **Did NOT create automated tests**
+- ⚠️ Relies on user to manually validate
+- ⚠️ Less sustainable than automated testing
+
+**User's Original Observation:**
+> "Baseline hasn't asked me to test/validate at all... this will potentially hurt the baseline later on."
+
+**Plot Twist:** 
+**Baseline IS validating - via automated tests, not user prompts!**
+
+**This is a critical distinction:**
+- **Manual validation:** Short-term verification, not repeatable
+- **Automated tests:** Long-term safety net, regression protection
+
+**Hypothesis Re-Revision:**
+- **Original:** SCMS validation discipline would pay off at Prompt 10-15
+- **Revised:** Baseline's automated testing may be STRONGER than SCMS's manual validation prompts
+- **New Question:** Will SCMS start creating automated tests, or continue with manual validation?
+
+**If Baseline continues creating tests and SCMS doesn't, Baseline's advantage may GROW!**
+
+#### Economic Reality Check
+
+**Gap Continues to Widen:**
+
+**Cumulative Costs After Prompt 3:**
+- Baseline: $0.484 total
+- SCMS: $1.197 total
+- **SCMS Premium: +$0.713 (147% more expensive!)**
+
+**Token Efficiency:**
+- Prompt 1: SCMS +94% premium
+- Prompt 2: SCMS +124% premium
+- Prompt 3: SCMS +76% premium (improved!)
+- **Average: SCMS +98% premium (nearly 2x cost!)**
+
+**SCMS Cost Per Prompt:**
+- P1: $0.26
+- P2: $0.45 (spike due to troubleshooting)
+- P3: $0.48 (still high)
+
+**Baseline Cost Per Prompt:**
+- P1: $0.10
+- P2: $0.16
+- P3: $0.22 (steady, predictable)
+
+**At this rate:**
+- By Prompt 10: Baseline ~$1.10, SCMS ~$2.40 (+$1.30 premium)
+- By Prompt 20: Baseline ~$2.20, SCMS ~$4.80 (+$2.60 premium)
+- By Prompt 50: Baseline ~$5.50, SCMS ~$12.00 (+$6.50 premium)
+
+**SCMS needs to prevent $6.50 worth of bugs/refactors to break even!**
+
+#### Testing Philosophy Comparison
+
+**Baseline: Automated Testing**
+```typescript
+// Prompt 3: Created test-repository.ts
+test('Create task', () => {
+  const task = repository.create({ title: 'Learn TypeScript' });
+  expect(task.id).toBe(1);
+  expect(task.title).toBe('Learn TypeScript');
+});
+// ✅ Repeatable, catches regressions, self-documenting
+```
+
+**SCMS: Manual Verification**
+```bash
+# Prompt 3: "You can verify compilation by running:"
+npm run dev:backend
+# ⚠️ User must manually check, not repeatable, no regression protection
+```
+
+**Winner: Baseline's automated testing approach is more robust!**
+
+#### Pattern Evolution Tracking
+
+**Prompt 1 Patterns (1/5):**
+- Monorepo npm workspaces
+- Express + TypeScript server
+- Health check endpoint
+- Environment configuration
+
+**Prompt 2 New Patterns (1-2/5):**
+- ✅ L2: Avoid native dependencies (FAILURES.md)
+- Edit tool (2/5)
+- Async database initialization (1/5)
+
+**Prompt 3 New Patterns (3/5):**
+- 🎯 **Edit tool (3/5) - 2 more for L1 promotion!**
+- Repository pattern (1/5)
+- Prepared statements (1/5)
+- TypeScript interfaces (1/5)
+
+**Watch:** If "Edit tool" pattern hits 5/5 by Prompt 5, it promotes to L1!
+
+#### Code Completeness Comparison
+
+**Baseline (652 LOC):**
+- Task model: 27 LOC
+- TaskRepository: 174 LOC
+- **Test suite: 71 LOC** ✅
+- Bonus methods: count(), findByStatus()
+- Full error handling
+- Comprehensive docs
+
+**SCMS (445 LOC):**
+- Task model: 30 LOC
+- TaskRepository: 165 LOC
+- **No test suite: 0 LOC** ❌
+- Core methods only
+- sql.js-specific persistence
+- Architecture diagrams
+
+**Baseline delivered 46% more code, including automated tests!**
+
+#### Technical Implementation Notes
+
+**Both agents did excellent work:**
+
+**Common Strengths:**
+- ✅ Proper repository pattern
+- ✅ TypeScript type safety
+- ✅ Prepared statements (SQL injection protection)
+- ✅ Clean, readable code
+
+**Baseline Advantages:**
+- ✅ Automated test suite
+- ✅ Bonus repository methods
+- ✅ More complete implementation
+
+**SCMS Advantages:**
+- ✅ Better inline documentation
+- ✅ Architecture diagrams
+- ✅ Pattern tracking for future reuse
+- ✅ Explicit persistence handling (sql.js)
+
+---
+
 ## 🎯 Critical Architectural Stress Points
 
 These prompts are where SCMS should demonstrate superior architectural stability:
@@ -512,15 +785,16 @@ These prompts are where SCMS should demonstrate superior architectural stability
 
 | Metric | Baseline | SCMS | Winner |
 |--------|----------|------|--------|
-| **Total Tokens** | 64,422 | 136,100 | 🏆 Baseline |
-| **Total Cost** | $0.264 | $0.716 | 🏆 Baseline |
-| **Files Created** | 12 | 10 | 🏆 Baseline |
-| **Total LOC** | 344 | ~270 | 🏆 Baseline |
+| **Total Tokens** | 115,422 | 226,000 | 🏆 Baseline |
+| **Total Cost** | $0.484 | $1.197 | 🏆 Baseline |
+| **Files Created** | 15 | 12 | 🏆 Baseline |
+| **Total LOC** | 652 | ~445 | 🏆 Baseline |
 | **Bugs Introduced** | 0 (unknown) | 0 (verified) | 🏆 SCMS |
-| **Tests Written** | 0 | 0 | Tie |
-| **Patterns Tracked** | 0 | 8 | 🏆 SCMS |
+| **Automated Tests** | 1 suite (8 tests) | 0 | 🏆 **Baseline** |
+| **Test Coverage** | Repository layer | None | 🏆 **Baseline** |
+| **Patterns Tracked** | 0 | 12 | 🏆 SCMS |
 | **L2 Failures Logged** | 0 | 1 | 🏆 SCMS |
-| **Validation Requests** | 0 | 3 | 🏆 SCMS |
+| **Validation Requests** | 0 | 4 | 🏆 SCMS |
 
 ### Qualitative Comparison
 
