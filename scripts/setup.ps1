@@ -300,7 +300,7 @@ $startupPromptPath = Join-Path $projectRoot 'docs\scms\SCMS_STARTUP_PROMPT.md'
 if ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'auto') {
     # Windsurf Auto-Memory Startup Prompt
     $startupPrompt = @"
-SCMS SESSION START
+SCMS STARTUP (First Session Configuration)
 
 Working on: [project name and brief description]
 
@@ -319,10 +319,12 @@ Working on: [project name and brief description]
 - L5: Session Audit (Closure verification)
 - Dashboard: Economic & Context tracking
 
+**Retrieval Workflow:** Windsurf hardcoded (L0 → L4 → L1) → SCMS directed (L2/L3 → L5 if needed) → Generate (if no retrieval) → L4 compliance check
+
 **Promotion Thresholds:**
-- Project Phase: $($THRESHOLD_CONFIG.Phase)
-- Team Config: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
-- **Current Target**: n>=$($THRESHOLD_CONFIG.FinalThreshold) uses
+- Greenfield (Weeks 1-4): n>5 uses $(if ($THRESHOLD_CONFIG.Phase -eq 'Greenfield') { '(Current Target)' } else { '' })
+- Establishing (Months 2-3): n>3 uses $(if ($THRESHOLD_CONFIG.Phase -eq 'Establishing') { '(Current Target)' } else { '' })
+- Mature (4+ months): n>=2 uses $(if ($THRESHOLD_CONFIG.Phase -eq 'Mature') { '(Current Target)' } else { '' })
 
 ## Instructions for AI
 
@@ -335,9 +337,9 @@ Working on: [project name and brief description]
 3. docs/guides/ (Manuals)
 
 **B. Initialize Templates (The "Gold Standard"):**
-1. Create docs/templates/FAILURE_LOG_TEMPLATE.md (Fields: Severity, Impact, 5 Whys, Prevention)
-2. Create docs/templates/PATTERN_PROMOTION_TEMPLATE.md (Fields: Use Cases, Impact Score, Rule Draft)
-3. Create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md (Fields: L2/L3/L5 Checklist, Export Verification)
+1. Create docs/templates/FAILURE_LOG_TEMPLATE.md
+2. Create docs/templates/PATTERN_PROMOTION_TEMPLATE.md
+3. Create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md
 
 **C. Initialize Operational Files:**
 1. docs/scms/INDEX.md (Central Hub skeleton)
@@ -348,12 +350,11 @@ Working on: [project name and brief description]
 
 ### 2. SESSION START CHECKLIST (Before Coding)
 1. **Environment Check**:
-   - Verify package.json scripts (test, start).
-   - **Template Verification**: Do docs/templates/ exist? If not, regenerate them.
+   - Verify package.json scripts.
+   - **Template Verification**: Do docs/templates/ exist?
    
 2. **Review L4 Global Rules**:
-   - Check rules/GLOBAL_CODING_RULES.md (Memory or File).
-   - Constraint: "No duplicate code", "No broken builds".
+   - Check rules/GLOBAL_CODING_RULES.md.
    
 3. **Review Memory Dashboard**:
    - Check docs/scms/MEMORY_STATUS_DASHBOARD.md for Active Patterns.
@@ -365,15 +366,15 @@ Working on: [project name and brief description]
 2. **FAILURE DOCUMENTATION (L2 - Priority)**:
    - **Trigger**: Any mock failure, tool error, or regression.
    - **Action**: Update docs/scms/FAILURES.md.
-   - **Constraint**: MUST uses FAILURE_LOG_TEMPLATE.md (5 Whys required).
+   - **Constraint**: MUST uses docs/templates/FAILURE_LOG_TEMPLATE.md (5 Whys required).
    
 3. **PATTERN PROMOTION (L3)**:
    - **Trigger**: L0 Pattern used n>=$($THRESHOLD_CONFIG.FinalThreshold) times.
-   - **Action**: Fill PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
+   - **Action**: Fill docs/templates/PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
 
 ### 4. SESSION CLOSURE (L5 - Critical)
 At end of EVERY session, run closure protocol:
-1. **Audit**: Generate docs/scms/SESSION_LOG_L5.md using SESSION_CLOSURE_REPORT_TEMPLATE.md.
+1. **Audit**: Generate docs/scms/SESSION_LOG_L5.md using docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md.
 2. **Export**: Run Dashboard Export to capture checkpoints/checkpoint-[ID].txt.
 3. **Update**: INDEX.md and Dashboards.
 
@@ -382,7 +383,7 @@ Ready to configure SCMS. Let's start by initializing the directory structure and
 } elseif ($IDE -eq 'windsurf' -and $L0_STRATEGY -eq 'manual') {
     # Windsurf Manual Markdown Startup Prompt
     $startupPrompt = @"
-SCMS SESSION START
+SCMS STARTUP (First Session Configuration)
 
 Working on: [project name and brief description]
 
@@ -401,10 +402,12 @@ Working on: [project name and brief description]
 - L5: Session Audit (Closure verification)
 - Dashboard: Economic & Context tracking
 
+**Retrieval Workflow:** Windsurf hardcoded (L0 → L4 → L1) → SCMS directed (L2/L3 → L5 if needed) → Generate (if no retrieval) → L4 compliance check
+
 **Promotion Thresholds:**
-- Project Phase: $($THRESHOLD_CONFIG.Phase)
-- Team Config: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
-- **Current Target**: n>=$($THRESHOLD_CONFIG.FinalThreshold) uses
+- Greenfield (Weeks 1-4): n>5 uses $(if ($THRESHOLD_CONFIG.Phase -eq 'Greenfield') { '(Current Target)' } else { '' })
+- Establishing (Months 2-3): n>3 uses $(if ($THRESHOLD_CONFIG.Phase -eq 'Establishing') { '(Current Target)' } else { '' })
+- Mature (4+ months): n>=2 uses $(if ($THRESHOLD_CONFIG.Phase -eq 'Mature') { '(Current Target)' } else { '' })
 
 ## Instructions for AI
 
@@ -424,11 +427,11 @@ Working on: [project name and brief description]
 4. Create docs/templates/MEMORY_TEMPLATE.md (For L0 manual memories)
 
 **C. Initialize Operational Files:**
-1. docs/scms/INDEX.md
-2. docs/scms/MEMORY_STATUS_DASHBOARD.md
-3. docs/scms/FAILURES.md
-4. docs/scms/WORKSPACE_RULES.md
-5. economics-dashboard-data.json
+1. docs/scms/INDEX.md (Central Hub skeleton)
+2. docs/scms/MEMORY_STATUS_DASHBOARD.md (Greenfield config)
+3. docs/scms/FAILURES.md (Empty log)
+4. docs/scms/WORKSPACE_RULES.md (Empty L1)
+5. economics-dashboard-data.json OR scms-metrics.json (Initialize with session: [] array)
 
 ### 2. SESSION START CHECKLIST (Before Coding)
 1. **Environment Check**:
@@ -449,23 +452,24 @@ Working on: [project name and brief description]
 2. **FAILURE DOCUMENTATION (L2 - Priority)**:
    - **Trigger**: Any mock failure, tool error, or regression.
    - **Action**: Update docs/scms/FAILURES.md using L2 Template.
+   - **Constraint**: MUST uses docs/templates/FAILURE_LOG_TEMPLATE.md (5 Whys required).
    
 3. **PATTERN PROMOTION (L3)**:
    - **Trigger**: L0 Pattern used n>=$($THRESHOLD_CONFIG.FinalThreshold) times.
-   - **Action**: Fill PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
+   - **Action**: Fill docs/templates/PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
 
 ### 4. SESSION CLOSURE (L5 - Critical)
 At end of EVERY session, run closure protocol:
-1. **Audit**: Generate docs/scms/SESSION_LOG_L5.md using SESSION_CLOSURE_REPORT_TEMPLATE.md.
-2. **Export**: Run Dashboard Export.
+1. **Audit**: Generate docs/scms/SESSION_LOG_L5.md using docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md.
+2. **Export**: Run Dashboard Export to capture checkpoints/checkpoint-[ID].txt.
 3. **Update**: INDEX.md and Dashboards.
 
 Ready to configure SCMS. Let's start by initializing the directory structure and templates.
 "@
-} elseif ($IDE -eq 'cursor') {
-    # Cursor Manual Markdown Startup Prompt
+} elseif ($IDE -eq 'cursor' -or $IDE -eq 'generic') {
+    # Manual Markdown Startup Prompt (Cursor/Generic)
     $startupPrompt = @"
-SCMS SESSION START
+SCMS STARTUP (First Session Configuration)
 
 Working on: [project name and brief description]
 
@@ -484,10 +488,12 @@ Working on: [project name and brief description]
 - L5: Session Audit (Closure verification)
 - Dashboard: Economic & Context tracking
 
+**Retrieval Workflow:** Windsurf hardcoded (L0 → L4 → L1) → SCMS directed (L2/L3 → L5 if needed) → Generate (if no retrieval) → L4 compliance check
+
 **Promotion Thresholds:**
-- Project Phase: $($THRESHOLD_CONFIG.Phase)
-- Team Config: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
-- **Current Target**: n>=$($THRESHOLD_CONFIG.FinalThreshold) uses
+- Greenfield (Weeks 1-4): n>5 uses $(if ($THRESHOLD_CONFIG.Phase -eq 'Greenfield') { '(Current Target)' } else { '' })
+- Establishing (Months 2-3): n>3 uses $(if ($THRESHOLD_CONFIG.Phase -eq 'Establishing') { '(Current Target)' } else { '' })
+- Mature (4+ months): n>=2 uses $(if ($THRESHOLD_CONFIG.Phase -eq 'Mature') { '(Current Target)' } else { '' })
 
 ## Instructions for AI
 
@@ -495,23 +501,23 @@ Working on: [project name and brief description]
 **IF docs/scms/ DOES NOT EXIST:**
 
 **A. Create Directory Structure:**
-1. docs/scms/
-2. docs/scms/memories/
-3. docs/templates/
-4. docs/guides/
+1. docs/scms/ (Operational Logs)
+2. docs/scms/memories/ (L0 Manual Memories)
+3. docs/templates/ (Standardization)
+4. docs/guides/ (Manuals)
 
 **B. Initialize Templates (The "Gold Standard"):**
 1. Create docs/templates/FAILURE_LOG_TEMPLATE.md
 2. Create docs/templates/PATTERN_PROMOTION_TEMPLATE.md
 3. Create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md
-4. Create docs/templates/MEMORY_TEMPLATE.md
+4. Create docs/templates/MEMORY_TEMPLATE.md (For L0 manual memories)
 
 **C. Initialize Operational Files:**
-1. docs/scms/INDEX.md
-2. docs/scms/MEMORY_STATUS_DASHBOARD.md
-3. docs/scms/FAILURES.md
-4. docs/scms/WORKSPACE_RULES.md
-5. economics-dashboard-data.json
+1. docs/scms/INDEX.md (Central Hub skeleton)
+2. docs/scms/MEMORY_STATUS_DASHBOARD.md (Greenfield config)
+3. docs/scms/FAILURES.md (Empty log)
+4. docs/scms/WORKSPACE_RULES.md (Empty L1)
+5. economics-dashboard-data.json OR scms-metrics.json (Initialize with session: [] array)
 
 ### 2. SESSION START CHECKLIST (Before Coding)
 1. **Environment Check**:
@@ -532,104 +538,21 @@ Working on: [project name and brief description]
 2. **FAILURE DOCUMENTATION (L2 - Priority)**:
    - **Trigger**: Any mock failure, tool error, or regression.
    - **Action**: Update docs/scms/FAILURES.md using L2 Template.
+   - **Constraint**: MUST uses docs/templates/FAILURE_LOG_TEMPLATE.md (5 Whys required).
    
 3. **PATTERN PROMOTION (L3)**:
    - **Trigger**: L0 Pattern used n>=$($THRESHOLD_CONFIG.FinalThreshold) times.
-   - **Action**: Fill PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
+   - **Action**: Fill docs/templates/PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
 
 ### 4. SESSION CLOSURE (L5 - Critical)
 At end of EVERY session, run closure protocol:
-1. **Audit**: Generate docs/scms/SESSION_LOG_L5.md using SESSION_CLOSURE_REPORT_TEMPLATE.md.
-2. **Export**: Run Dashboard Export.
-3. **Update**: INDEX.md and Dashboards.
-
-Ready to configure SCMS. Let's start by initializing the directory structure and templates.
-"@
-} else {
-    # Generic AI Assistant Startup Prompt
-    $startupPrompt = @"
-SCMS SESSION START
-
-Working on: [project name and brief description]
-
-## SCMS Configuration - Sparse Contextual Memory Scaffolding
-
-**IMPORTANT LOCATION RULE:**
-- All Operational Logs live in: docs/scms/ (e.g., FAILURES.md)
-- All Templates live in: docs/templates/
-- Do NOT create SCMS files in root.
-
-**Architecture:** Multi-time-scale cognitive framework
-- L0: Manual Markdown Files (docs/scms/memories/) - **Active Strategy**
-- L1: Validated patterns (Mandatory loading via WORKSPACE_RULES.md)
-- L2: Failure Analysis (5 Whys enforced via Template)
-- L3: Pattern Promotion (Evidence-based validation)
-- L5: Session Audit (Closure verification)
-- Dashboard: Economic & Context tracking
-
-**Promotion Thresholds:**
-- Project Phase: $($THRESHOLD_CONFIG.Phase)
-- Team Config: $($THRESHOLD_CONFIG.Team) (n_unique>=$($THRESHOLD_CONFIG.NUnique))
-- **Current Target**: n>=$($THRESHOLD_CONFIG.FinalThreshold) uses
-
-## Instructions for AI
-
-### 1. ZERO-STATE INITIALIZATION (Greenfield/Integration)
-**IF docs/scms/ DOES NOT EXIST:**
-
-**A. Create Directory Structure:**
-1. docs/scms/
-2. docs/scms/memories/
-3. docs/templates/
-4. docs/guides/
-
-**B. Initialize Templates:**
-1. Create docs/templates/FAILURE_LOG_TEMPLATE.md
-2. Create docs/templates/PATTERN_PROMOTION_TEMPLATE.md
-3. Create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md
-4. Create docs/templates/MEMORY_TEMPLATE.md
-
-**C. Initialize Operational Files:**
-1. docs/scms/INDEX.md
-2. docs/scms/MEMORY_STATUS_DASHBOARD.md
-3. docs/scms/FAILURES.md
-4. docs/scms/WORKSPACE_RULES.md
-5. economics-dashboard-data.json
-
-### 2. SESSION START CHECKLIST (Before Coding)
-1. **Environment Check**:
-   - Verify package.json scripts.
-   - **Template Verification**: Do docs/templates/ exist?
-   
-2. **Review L4 Global Rules**:
-   - Check rules/GLOBAL_CODING_RULES.md.
-   
-3. **Review Memory Dashboard**:
-   - Check docs/scms/MEMORY_STATUS_DASHBOARD.md for Active Patterns.
-
-### 3. DURING DEVELOPMENT (The Workflow)
-1. **CREATE MEMORIES (L0)**: 
-   - Pattern discovered -> Create new file in docs/scms/memories/ using MEMORY_TEMPLATE.md.
-   - Log it in MEMORY_STATUS_DASHBOARD.md.
-   
-2. **FAILURE DOCUMENTATION (L2 - Priority)**:
-   - **Trigger**: Any mock failure, tool error, or regression.
-   - **Action**: Update docs/scms/FAILURES.md using L2 Template.
-   
-3. **PATTERN PROMOTION (L3)**:
-   - **Trigger**: L0 Pattern used n>=$($THRESHOLD_CONFIG.FinalThreshold) times.
-   - **Action**: Fill PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
-
-### 4. SESSION CLOSURE (L5 - Critical)
-At end of EVERY session, run closure protocol:
-1. **Audit**: Generate docs/scms/SESSION_LOG_L5.md using SESSION_CLOSURE_REPORT_TEMPLATE.md.
-2. **Export**: Run Dashboard Export.
+1. **Audit**: Generate docs/scms/SESSION_LOG_L5.md using docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md.
+2. **Export**: Run Dashboard Export to capture checkpoints/checkpoint-[ID].txt.
 3. **Update**: INDEX.md and Dashboards.
 
 Ready to configure SCMS. Let's start by initializing the directory structure and templates.
 "@
 }
-
 Set-Content -Path $startupPromptPath -Value $startupPrompt -Encoding UTF8
 Write-Host 'Startup prompt generated' -ForegroundColor Green
 Write-Host ''
