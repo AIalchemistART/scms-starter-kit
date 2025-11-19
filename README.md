@@ -289,6 +289,14 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 
 ---
 
+### 0. Configure Global AI Rules (Crucial Step)
+
+SCMS requires a set of **Global Rules** in your AI's system memory to enforce protocol compliance (like failure logging and read-before-write safety).
+
+1. Locate your AI's system prompt or global memory file (e.g., `memories/global_rules.md` in Windsurf).
+2. Copy the contents of `docs/templates/GLOBAL_CODING_RULES_TEMPLATE.md` into it.
+3. This ensures your AI follows SCMS protocols **across all projects**.
+
 ### 1. Install SCMS
 
 > ⚠️ **Important**: Commands run from different locations depending on your approach!

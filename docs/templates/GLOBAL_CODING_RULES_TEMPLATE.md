@@ -16,47 +16,61 @@ These are **FINAL QUALITY GATES** checked BEFORE marking tasks complete:
 
 ---
 
+## 🚨 SCMS Core Protocol (Mandatory)
+
+### 1. Log All Failures (L2)
+**Rule**: If a tool fails or a bug is found, STOP and log it in `docs/scms/FAILURES.md` (using Template).
+**Why**: Silent fixes destroy learning opportunities.
+**Check**: Did I encounter an error? Did I log it?
+
+### 2. Read Before Write (Safety)
+**Rule**: Never use `edit_file` or `write_to_file` without first reading the target (or confirming it doesn't exist).
+**Why**: Prevents tool errors and destructive overwrites.
+**Check**: Did I read the file before editing?
+
+### 3. Update Documentation with Code (No Ghost Files)
+**Rule**: When creating/deleting files, immediately update `docs/scms/INDEX.md` or the project README.
+**Why**: Code without context becomes legacy debt instantly.
+**Check**: Is the new file linked in INDEX.md?
+
+### 4. Retrieval-First Development (Economic)
+**Rule**: Check `docs/scms/WORKSPACE_RULES.md` before generating new patterns.
+**Why**: Reduces token cost and ensures architectural consistency.
+**Check**: Did I check L1 rules before coding?
+
+---
+
 ## 🎯 Universal Best Practices
 
-### 1. Avoid Duplicate Code (DRY)
+### 5. Avoid Duplicate Code (DRY)
 **Rule**: Reuse existing functionality wherever possible  
 **Why**: Prevents technical debt and promotes long-term maintainability  
 **Check**: Before completion, scan for duplicated logic
 
-### 2. Write Thorough Tests
+### 6. Write Thorough Tests
 **Rule**: Ensure tests cover all major functionality  
 **Why**: Testing builds confidence and supports AI-assisted workflows  
 **Check**: Tests exist for new/modified code
 
-### 3. Avoid Unnecessary Refactors
+### 7. Avoid Unnecessary Refactors
 **Rule**: Do not change patterns or architecture of working features unless explicitly directed  
 **Why**: Major refactors create risk and regression bugs  
 **Check**: Only refactor if requested or clearly beneficial
 
-### 4. Mock Data Only for Testing
+### 8. Mock Data Only for Testing
 **Rule**: Mock data should NEVER enter dev or production environments  
 **Why**: Protects data integrity and runtime safety  
 **Check**: No test data in non-test code
 
-### 5. Keep the Codebase Clean & Organized
+### 9. Keep the Codebase Clean & Organized
 **Rule**: Essential for readability, collaboration, and AI tool effectiveness  
 **Why**: Clean code is maintainable code  
 **Check**: Follows project conventions, no dead code
 
-### 6. Stay Task-Focused
+### 10. Stay Task-Focused
 **Rule**: Only modify code relevant to the task at hand  
 **Why**: Reduces scope creep and risk  
 **Check**: Changes align with task requirements
-
-### 7. Consider Code Impact
-**Rule**: Always think about how changes affect other areas  
-**Why**: Prevents unintended side effects  
-**Check**: Related systems considered and tested
-
-### 8. Make Only Necessary, Well-Understood Changes
-**Rule**: Think through changes before committing  
-**Why**: Prevents bugs and technical debt  
-**Check**: Can explain why each change is necessary
 
 ---
 
@@ -76,16 +90,15 @@ These are **FINAL QUALITY GATES** checked BEFORE marking tasks complete:
 
 Before marking ANY task complete, verify:
 
+- [ ] **Failure Logged?** (If any errors occurred)
+- [ ] **Index Updated?** (If files created/deleted)
+- [ ] **Read Before Write?** (Verified file state)
 - [ ] No duplicate code introduced
 - [ ] Tests written/updated for changes
 - [ ] No unnecessary refactoring performed
 - [ ] No mock data in non-test code
 - [ ] Code is clean and organized
 - [ ] Changes are task-focused only
-- [ ] Impact on related code considered
-- [ ] All changes are necessary and understood
-- [ ] Environment files not overwritten
-- [ ] Existing solutions used where applicable
 
 ---
 
@@ -105,6 +118,6 @@ Before marking ANY task complete, verify:
 
 ---
 
-**Version**: 1.0  
+**Version**: 1.1 (SCMS Enhanced)  
 **Status**: ✅ Active  
 **Scope**: Universal (applies to all code)
