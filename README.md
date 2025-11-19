@@ -395,9 +395,9 @@ Choose your AI assistant:
 
 ---
 
-**🚀 How to Open the Dashboard:**
+**🚀 How to Launch the Dashboard:**
 
-**Option A: Electron App with Integrated Tracking (Recommended)**
+**Method 1: Electron App with Integrated Tracking (Recommended)**
 ```bash
 npm run dashboard:app
 ```
@@ -406,19 +406,19 @@ npm run dashboard:app
 - ✅ Visual interface with charts
 - ✅ Session controls (start/stop buttons)
 
-**Option B: Browser-Based (Fallback)**
+**Method 2: Browser-Based (Fallback)**
 - Open `docs/tools/scms-dashboard.html` in your browser
 - Use when Electron not available
 - Requires manual monitoring setup
 
-**Option C: Quick CLI Check**
+**Method 3: Quick CLI Check**
 ```bash
 npm run dashboard
 ```
 - Terminal output for quick status checks
 - No real-time tracking
 
-**Option D: Terminal Dashboard (Between Sessions)**
+**Method 4: Terminal Dashboard (Between Sessions)**
 ```bash
 npm run dashboard
 # Quick CLI view of costs, patterns, ROI without opening browser
