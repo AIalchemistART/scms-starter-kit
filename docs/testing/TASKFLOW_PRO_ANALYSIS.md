@@ -49,6 +49,8 @@
 | Checkpoint | Baseline Tokens | Baseline Cost | SCMS Tokens | SCMS Cost | Delta | SCMS Premium |
 |------------|-----------------|---------------|-------------|-----------|-------|--------------|
 | Prompt 1   | 26,622          | $0.104        | 51,600      | $0.264    | +24,978 | +94% |
+| Prompt 2   | 37,800          | $0.160        | 84,500      | $0.452    | +46,700 | +124% |
+| **Cumulative** | **64,422**  | **$0.264**    | **136,100** | **$0.716** | **+71,678** | **+111%** |
 | Prompt 10  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 20  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 30  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
@@ -183,7 +185,234 @@ Emerging Patterns (use count: 1/5):
 
 ### Prompt 2: Database Setup (SQLite)
 
-**Coming Soon...**
+**Requirements:**
+- Install `sqlite3` and `better-sqlite3`
+- Create `backend/src/database.ts` with connection
+- Tasks table schema (id, title, description, completed, createdAt)
+- Initialize database on server startup
+
+#### Baseline Implementation
+**Token Usage:** 37,800 tokens ($0.160)  
+**Cumulative:** 64,422 tokens ($0.264)  
+**Files Created:** 1  
+**Files Modified:** 4  
+**Total LOC:** 344 (+108)  
+
+**Structure:**
+```
+✅ backend/src/database.ts (74 LOC)
+✅ backend/src/server.ts (updated with DB init)
+✅ .gitignore (added data/, *.db, *.db-wal, *.db-shm)
+✅ README.md (added database documentation)
+```
+
+**Implementation Details:**
+- ✅ `better-sqlite3` installed successfully
+- ✅ WAL mode enabled for performance
+- ✅ Complete tasks schema with indexes
+- ✅ Graceful shutdown handlers (SIGINT/SIGTERM)
+- ✅ Auto-creation of database file
+- ✅ Comprehensive documentation
+
+**Behavior:**
+- Fast, clean execution
+- ❌ **No request for user validation/testing**
+- No explicit next steps for verification
+- Assumes everything works
+
+**Code Quality:**
+```typescript
+// Detailed health check
+Indexes:
+- idx_tasks_completed (for filtering)
+- idx_tasks_createdAt (for sorting)
+```
+
+#### SCMS Implementation
+**Token Usage:** 84,500 tokens ($0.452)  
+**Cumulative:** 136,100 tokens ($0.716)  
+**Files Created:** 2  
+**Files Modified:** 5  
+**Total LOC:** ~270 (+90)  
+
+**Structure:**
+```
+✅ backend/src/database.ts (96 LOC)
+✅ backend/@types/sql.js/index.d.ts (44 LOC - custom types)
+✅ backend/tsconfig.json (updated typeRoots)
+✅ backend/src/server.ts (async startup)
+✅ .gitignore (added data/)
+✅ docs/scms/FAILURES.md (L2 failure logged)
+```
+
+**Implementation Journey:**
+
+**Attempt 1: better-sqlite3 ❌**
+- Native dependency compilation failed
+- Missing Windows SDK in VS Build Tools
+- Would require 5-10 GB download + 30-60 min setup
+
+**L2 Failure Logged (FAIL-20251119-001):**
+```
+✅ Created full 5 Whys analysis in FAILURES.md
+✅ Root cause: Selected native dependency without env verification
+✅ Key Learning: Prefer pure JS/WebAssembly for cross-platform
+✅ Pattern: sql.js > better-sqlite3, bcryptjs > bcrypt
+```
+
+**Attempt 2: sql.js Switch ✅**
+- Switched to pure JavaScript implementation
+- No build tools required
+- Cross-platform compatibility
+- Slight performance trade-off acceptable
+
+**Attempt 3: TypeScript Declarations ✅**
+- sql.js has no @types package
+- Created custom `backend/@types/sql.js/index.d.ts`
+- Updated `tsconfig.json` with `typeRoots`
+- Full type safety restored
+
+**Behavior:**
+- Multiple troubleshooting iterations
+- ✅ **Explicitly asked user to test: "Try running npm install now"**
+- ✅ **Verification steps: "npm run dev:backend"**
+- ✅ **Expected output documented**
+- Proactive about validation
+
+**Pattern Tracking:**
+```
+L2 Pattern (use count: 1/5):
+- Avoid native dependencies in tutorials
+
+Emerging Patterns (use count: 2/5):
+- Edit tool for existing files
+- Async database initialization
+- Manual persistence patterns
+```
+
+#### Verdict: Prompt 2
+
+| Category | Winner | Reason |
+|----------|--------|--------|
+| **Requirements** | 🏆 **Baseline** | Met requirements cleanly |
+| **Execution Speed** | 🏆 **Baseline** | Single attempt vs 3 iterations |
+| **Token Efficiency** | 🏆 **Baseline** | 37k vs 84k (2.2x cheaper!) |
+| **Cost This Prompt** | 🏆 **Baseline** | $0.16 vs $0.45 (2.8x cheaper!) |
+| **Cumulative Cost** | 🏆 **Baseline** | $0.26 vs $0.72 (2.7x cheaper!) |
+| **Implementation** | 🏆 **Baseline** | better-sqlite3 > sql.js (native performance) |
+| **Cross-Platform** | 🏆 **SCMS** | sql.js works everywhere, no build tools |
+| **Failure Handling** | 🏆 **SCMS** | Logged L2 failure with 5 Whys |
+| **Validation Discipline** | 🏆 **SCMS** | Asked user to test, Baseline didn't |
+| **Learning Capture** | 🏆 **SCMS** | Documented anti-pattern for future |
+
+**Overall Winner: 🏆 Baseline (but with caveats)**
+
+#### Critical Analysis
+
+**🚨 Gap Widening Significantly**
+
+**Token Cost Explosion:**
+- Prompt 1: SCMS +24k tokens (+94% premium)
+- Prompt 2: SCMS +46k tokens (+122% premium)  
+- **Cumulative: SCMS +71k tokens (+110% premium)**
+
+**Dollar Cost:**
+- Baseline: $0.264 total
+- SCMS: $0.716 total
+- **SCMS Premium: +$0.452 (171% more expensive!)**
+
+**Why the Gap Widened:**
+1. **Environment Issue:** Native dependency failure (not SCMS's fault)
+2. **Troubleshooting Overhead:** 3 iterations to resolve
+3. **L2 Documentation:** 5 Whys analysis added ~100 lines
+4. **TypeScript Declarations:** Custom types needed
+5. **Validation Requests:** Explicit testing steps
+
+**🎯 Critical Behavioral Difference Identified**
+
+**Validation Discipline:**
+
+**Baseline (Prompts 1-2):**
+- ❌ Never asked user to test
+- ❌ No verification steps provided
+- ❌ Assumes code works
+- ❌ Building technical debt silently
+
+**SCMS (Prompts 1-2):**
+- ✅ Prompt 1: "Verify dev server runs on port 5173"
+- ✅ Prompt 2: "Try running npm install now"
+- ✅ Prompt 2: "npm run dev:backend" with expected output
+- ✅ Building test-driven discipline
+
+**User's Insight:**
+> "This will potentially hurt the baseline later on by not asking me to validate as we go & then when it does there may be a lot of issues that need refactoring when it could have been caught earlier."
+
+**Hypothesis Adjustment:**
+- **Original:** SCMS overtakes at Prompt 14-20 (auth refactor)
+- **Revised:** SCMS may overtake at **Prompt 10-15** when Baseline's accumulated bugs surface
+
+**This validation discipline could be the turning point!**
+
+#### L2 Failure - Value Assessment
+
+**Cost of Failure Logging:**
+- +46k tokens
+- +$0.29
+- 3 iterations
+
+**Value of Failure Pattern:**
+```
+Pattern: "Avoid native dependencies in tutorials"
+
+Prevents in future prompts:
+- bcrypt → bcryptjs (auth, Prompt 12)
+- Sharp → jimp (image processing, if needed)
+- node-sass → sass (styling, if needed)
+
+Estimated savings per prevented failure: 30k tokens ($0.24)
+
+Break-even: After 2 prevented failures (~Prompt 15-20)
+```
+
+**If this pattern prevents 2+ similar issues, the cost pays for itself.**
+
+#### Technical Comparison
+
+**Library Choice:**
+
+**Baseline: better-sqlite3**
+- ✅ Native performance (faster)
+- ✅ Industry standard
+- ❌ Requires build tools
+- ❌ Platform-specific compilation
+- ❌ May break in CI/CD
+
+**SCMS: sql.js**
+- ✅ Pure JavaScript (cross-platform)
+- ✅ No build tools needed
+- ✅ Works in any environment
+- ⚠️ Slight performance trade-off
+- ✅ Perfect for tutorials/learning
+
+**For a tutorial project, SCMS made the better choice long-term.**
+
+#### Pattern Evolution Tracking
+
+**Prompt 1 Patterns (1/5):**
+- Monorepo npm workspaces
+- Express + TypeScript server
+- Health check endpoint
+- Environment configuration
+
+**Prompt 2 New Patterns (1-2/5):**
+- ✅ **L2: Avoid native dependencies** (logged in FAILURES.md)
+- Edit tool for existing files (2/5)
+- Async database initialization (1/5)
+- Manual persistence (1/5)
+
+**Promotion Watch:**
+- "Edit tool" at 2/5 - Needs 3 more uses
+- L2 anti-pattern documented - Will inform future dependency choices
 
 ---
 
@@ -283,13 +512,15 @@ These prompts are where SCMS should demonstrate superior architectural stability
 
 | Metric | Baseline | SCMS | Winner |
 |--------|----------|------|--------|
-| **Total Tokens** | 26,622 | 51,600 | 🏆 Baseline |
-| **Total Cost** | $0.104 | $0.264 | 🏆 Baseline |
-| **Files Created** | 11 | 8 | 🏆 Baseline |
-| **Total LOC** | 236 | 120 | 🏆 Baseline |
-| **Bugs Introduced** | 0 | 0 | Tie |
+| **Total Tokens** | 64,422 | 136,100 | 🏆 Baseline |
+| **Total Cost** | $0.264 | $0.716 | 🏆 Baseline |
+| **Files Created** | 12 | 10 | 🏆 Baseline |
+| **Total LOC** | 344 | ~270 | 🏆 Baseline |
+| **Bugs Introduced** | 0 (unknown) | 0 (verified) | 🏆 SCMS |
 | **Tests Written** | 0 | 0 | Tie |
-| **Patterns Tracked** | 0 | 4 | 🏆 SCMS |
+| **Patterns Tracked** | 0 | 8 | 🏆 SCMS |
+| **L2 Failures Logged** | 0 | 1 | 🏆 SCMS |
+| **Validation Requests** | 0 | 3 | 🏆 SCMS |
 
 ### Qualitative Comparison
 
