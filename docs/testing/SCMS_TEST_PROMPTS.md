@@ -15,6 +15,17 @@
 - Pattern reuse instances
 - Quality of final code
 
+## ⚠️ Data Accuracy Disclaimer
+
+**Note on Economic Metrics:**
+Current IDEs (Windsurf, Cursor) do not expose real-time token usage APIs to internal agents. 
+- The **SCMS Dashboard** estimates costs based on log parsing (if available) or heuristic proxies.
+- The **Baseline Metrics** rely on manual reporting or interaction counts.
+
+**These figures are estimates.** They allow relative comparison (Baseline vs SCMS) but should not be used for precise billing reconciliation. 
+
+**Advocacy:** We encourage IDE vendors to adopt standard "Agentic Telemetry APIs" to enable precise economic validation of sparse-context frameworks.
+
 ---
 
 ## 📋 Test Instructions
