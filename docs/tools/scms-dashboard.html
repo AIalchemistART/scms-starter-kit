@@ -928,124 +928,17 @@ Working on: [project name and brief description]
 ## SCMS Configuration - Sparse Contextual Memory Scaffolding
 
 **IMPORTANT LOCATION RULE:**
-- All SCMS files must live under <code>docs/scms/</code> (for example: <code>docs/scms/WORKSPACE_RULES.md</code>, <code>docs/scms/INDEX.md</code>)
-- Do NOT create SCMS files directly in the project root
-
-**Architecture:** Multi-time-scale cognitive framework (Google Research validated)
-- L0 (Foundation): Auto-memories - rare updates, test via probabilistic retrieval
-- L1 (Implementation): Validated patterns - medium updates, enforce via mandatory loading
-- L4 (Global Rules): Universal constraints - rare updates, check automatically
-- L2-L3 (Reference): SOPs & case studies - on-demand retrieval
-- L5 (Overflow): Low-frequency patterns - checked only if no validated retrieval from L2/L3
-- Dashboard: Session context - frequent updates, working memory
-
-**Retrieval Workflow:** Windsurf hardcoded (L0 f L4 f L1) f SCMS directed (L2/L3 f L5 if needed) f Generate (if no retrieval) f L4 compliance check
-
-**Economic Principle:** Retrieval-first bias (30-45% cost reduction validated)
-- Cost asymmetry: Retrieval ($0.018) vs Generation ($0.033) per session
-- Target: >70% retrieval-based responses
-- Pattern ROI: 3+ reuses for break-even
-
-**Validation Pipeline:**
-- L0 (Destructive): Probabilistic retrieval + temporal decay + use-based validation
-- L1 (Stable): Deterministic loading + proven utility (2 uses) + mandatory reference
-
-**Project Context & Promotion Threshold:**
-- Check MEMORY_STATUS_DASHBOARD.md for configured threshold
-- Greenfield (Weeks 1-4): n5 uses for promotion
-- Establishing (Months 2-3): n3 uses
-- Mature (4+ months): n2 uses
-
-## Instructions for AI
-
-### Session Start Checklist (BEFORE coding):
-1. 0 Check L4 Global Rules (if rules/GLOBAL_CODING_RULES.md exists)
-   - Universal constraints applying to ALL code
-   - Examples: "No duplicate code", "Always use X pattern"
-   
-2. 0 Check L1 Validated Patterns (WORKSPACE_RULES.md)
-   - Project-specific validated patterns (promoted at threshold)
-   - These are MANDATORY quality gates, not suggestions
-   
-3. 0 Review Memory Dashboard (MEMORY_STATUS_DASHBOARD.md)
-   - HIGH urgency patterns (validated but fading - use NOW)
-   - Patterns ready for promotion (6threshold uses)
-   - Sprint goals and current progress
-   
-4. 0 Acknowledge what you've reviewed
-   - State: "Reviewed L4 global rules, L1 patterns for [task area]"
-
-### During Development:
-1. **CREATE MEMORIES DURING work** (not after!)
-   - Pattern discovered f Create Cascade memory immediately f Continue
-   - Do NOT wait until implementation complete
-   
-2. **DO NOT CREATE markdown documentation files**
-   - NO docs/memories/*.md (defeats auto-memory purpose)
-   - NO SCMS_REPORT.md or manual tracking files
-   - ONLY update: MEMORY_STATUS_DASHBOARD.md for counts/urgency
-   
-3. **ECONOMIC DECISION TREE** (Retrieval-First):
-   - Search L1 (WORKSPACE_RULES.md) first f Use/adapt if found
-   - Search L0 (Cascade memories) next f Test/refine if found
-   - Generate new ONLY if no retrieval options (>75% different)
-   - Document immediately for future retrieval
-   
-4. **FAILURE DOCUMENTATION PRIORITY**:
-   - Failures = 10-1001 more informative than successes
-   - Bug patterns (L0) > Anti-patterns (L0) > Failed approaches (L0)
-   - Document failures immediately when discovered
-
-### Pattern Promotion:
-**When pattern reaches threshold** (see Project Context above):
-1. Copy full pattern to WORKSPACE_RULES.md (L1)
-2. Include: name, code examples, when to use/avoid, related patterns
-3. Update dashboard: Mark as PROMOTED with date
-
-### Session Closure (CRITICAL):
-At end of EVERY session, run closure prompt to:
-- Document failures first (highest value)
-- Update L0/L1 validation pipeline
-- Maintain INDEX & cross-references (NOT visual diagrams)
-- Update Memory Dashboard (Cascade persistent memory)
-- Track economics (cost/savings/ROI)
-- Maintain organizational framing (L0/L1/Dashboard boundaries)
-
-**Without session closure, SCMS degrades into passive documentation!**
-
-Ready to configure SCMS for this project. Let's start by checking existing patterns.</div>
-                </div>
-            </div> <!-- End startupPromptSection -->
-            
-            <h3><span class="step-number">2</span> Copy the Session Start Prompt (Daily Use)</h3>
-            <p><strong>Location:</strong> <code>docs/scms/SCMS_STARTUP_PROMPT.md</code></p>
-            <p><strong>Action:</strong> Paste this prompt to your AI assistant at the <strong>start of EVERY development session</strong></p>
-            <p style="margin-top: 4px; font-size: 0.9em; color: #555;">
-                <strong>Edit source:</strong> The session prompt is also loaded from <code>SCMS_STARTUP_PROMPT.md</code>, so you can maintain both prompts in one place.
-            </p>
-            <p id="thresholdInfo" style="background: #3498db; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;"><strong>Current Threshold:</strong> Loading...</p>
-            <div class="code-block-wrapper">
-                <button class="copy-btn" onclick="copyPrompt(this, 'sessionStartPrompt')">📋 Copy Prompt</button>
-                <div class="code-block" id="sessionStartPrompt">SCMS STARTUP (First Session Configuration)
-
-Working on: [project name and brief description]
-
-## SCMS Configuration - Sparse Contextual Memory Scaffolding
-
-**IMPORTANT LOCATION RULE:**
 - All Operational Logs live in: `docs/scms/` (e.g., `FAILURES.md`)
 - All Templates live in: `docs/templates/`
 - Do NOT create SCMS files in root.
 
 **Architecture:** Multi-time-scale cognitive framework
-- L0: Auto-memories (Probabilistic retrieval)
+- L0: Auto-memories (Probabilistic retrieval) - **Active Strategy**
 - L1: Validated patterns (Mandatory loading via WORKSPACE_RULES.md)
 - L2: Failure Analysis (5 Whys enforced via Template)
 - L3: Pattern Promotion (Evidence-based validation)
 - L5: Session Audit (Closure verification)
 - Dashboard: Economic & Context tracking
-
-**Retrieval Workflow:** Windsurf hardcoded (L0 → L4 → L1) → SCMS directed (L2/L3 → L5 if needed) → Generate (if no retrieval) → L4 compliance check
 
 **Promotion Thresholds:**
 - Greenfield (Weeks 1-4): n>5 uses
@@ -1106,6 +999,64 @@ At end of EVERY session, run closure protocol:
 3. **Update:** `INDEX.md` and Dashboards.
 
 Ready to configure SCMS. Let's start by initializing the directory structure and templates.</div>
+                </div>
+            </div> <!-- End startupPromptSection -->
+            
+            <h3><span class="step-number">2</span> Copy the Session Start Prompt (Daily Use)</h3>
+            <p><strong>Location:</strong> <code>docs/scms/SCMS_STARTUP_PROMPT.md</code></p>
+            <p><strong>Action:</strong> Paste this prompt to your AI assistant at the <strong>start of EVERY development session</strong></p>
+            <p style="margin-top: 4px; font-size: 0.9em; color: #555;">
+                <strong>Edit source:</strong> The session prompt is also loaded from <code>SCMS_STARTUP_PROMPT.md</code>, so you can maintain both prompts in one place.
+            </p>
+            <p id="thresholdInfo" style="background: #3498db; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;"><strong>Current Threshold:</strong> Loading...</p>
+            <div class="code-block-wrapper">
+                <button class="copy-btn" onclick="copyPrompt(this, 'sessionStartPrompt')">📋 Copy Prompt</button>
+                <div class="code-block" id="sessionStartPrompt">SCMS SESSION START
+
+Working on: [brief task description]
+
+Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
+
+1. 🛠️ CONTEXT LOADING & SYSTEM CHECK
+   - Check `scms/INDEX.md` for relevant patterns
+   - **CRITICAL:** Review `docs/scms/FAILURES.md` to avoid known pitfalls (L2)
+   - **TEMPLATE CHECK:** Ensure `docs/templates/` exists (L2/L3/L5 templates)
+   - Verify Environment: Quick check of package.json scripts & config
+
+2. 🧠 LAYER RETRIEVAL PRIORITY
+   AUTOMATIC (System):
+   - L0: Auto-gen memories (Cascade) - **Primary Context**
+   - L4: Global Rules (User Rules) - **Hard Constraints**
+   - L1: Workspace Rules (valid_patterns) - **Quality Gates**
+   
+   SELF-DIRECTED (Agent):
+   - L2: SOPs & Failure Logs - **Must check `FAILURES.md` if doing risky work**
+   - L3: Case Studies - Retrieve if implementing complex features
+   - L5: Overflow - Low-frequency patterns
+   
+**Retrieval Workflow:** Windsurf hardcoded (L0 → L4 → L1) → SCMS directed (L2/L3 → L5 if needed) → Generate (if no retrieval) → L4 compliance check
+
+3. 💰 ECONOMIC TRACKING (EXPORT-TRIGGERED)
+   - **Goal:** 30-50% Retrieval Ratio
+   - **Requirement:** Maintain accurate token warnings in chat
+   - **Update Method:** Dashboard Export -> `checkpoints/checkpoint-[ID].txt` 
+   - **Do not manually edit** `economics-dashboard-data.json` (it is auto-generated)
+
+4. 🚨 FAILURE DOCUMENTATION (L2)
+   - **Trigger:** Any mock failure, tool error, or regression
+   - **Action:** Log immediately to `docs/scms/FAILURES.md` 
+   - **Constraint:** MUST use `docs/templates/FAILURE_LOG_TEMPLATE.md` (5 Whys required)
+   - **Philosophy:** "What NOT to do" is more valuable than "What to do"
+
+5. 🏁 SESSION CLOSURE PROTOCOL (L5)
+   - **Target:** 10-15 mins remaining
+   - **Mandatory Steps:**
+     1. **Reflect:** Log failures using L2 Template
+     2. **Promote:** Check n≥2 patterns using L3 Template
+     3. **Audit:** Generate `docs/scms/SESSION_LOG_L5.md` using **L5 Template**
+     4. **Export:** Run Dashboard Export to finalize metrics
+
+Let's start by loading failure context and verifying the templates are ready.</div>
                 </div>
             </div> <!-- End Session Start wrapper -->
             
