@@ -843,6 +843,33 @@ cd new-folder && npm run dashboard:app
 
 ---
 
+## 📁 Folder Structure
+
+```
+scms-starter-kit/
+├── docs/
+│   ├── scms/               # 🎯 SCMS operational files (empty templates)
+│   │   ├── INDEX.md        # ✅ Use this for your project
+│   │   ├── FAILURES.md
+│   │   └── ...
+│   ├── templates/          # 📄 Copy these to create new files
+│   ├── guides/             # 📚 How-to documentation
+│   ├── reference/          # 🔬 Whitepapers & research
+│   └── tools/              # 🛠️ Dashboard & utilities
+├── examples/
+│   └── dogfood/            # 💡 Real SCMS files from building this kit
+│       ├── INDEX.md        # Example of mature SCMS project
+│       ├── FAILURES.md
+│       └── README.md       # Don't copy these - use templates!
+├── scripts/
+│   └── setup.ps1           # 🚀 Initializes SCMS for your project
+└── README.md               # You are here
+```
+
+**Important**: `examples/dogfood/` contains real files from developing the starter kit itself (dogfooding). They're examples to show what SCMS looks like in action—**don't copy them directly**. Use `docs/templates/` and run `scripts/setup.ps1` to initialize fresh files for your project.
+
+---
+
 ## Quick Links
 
 - [Setup Guide](SETUP.md) - Detailed installation
