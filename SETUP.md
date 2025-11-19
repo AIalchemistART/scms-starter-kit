@@ -65,113 +65,129 @@ Before starting, ensure you have:
 
 ## Installation Methods
 
+> **🤔 Which method should I use?**
+> - **Testing SCMS?** → Use Method 3 (Standalone)
+> - **Adding to existing project?** → Use Method 1 (Integration)
+> - **Starting a new project?** → Use Method 3 (Standalone)
+
 ### Method 1: Integrate into Existing Project (Recommended)
 
 **This method copies only the SCMS templates into your project, not the entire repo.**
 
+> **⚠️ IMPORTANT**: Open terminal in YOUR project root first, then run these commands.
+
 #### Unix/Mac/Linux
 
 ```bash
-# Step 1: Clone SCMS temporarily (outside your project)
+# Clone SCMS to temp location
 cd ~/Downloads
 git clone https://github.com/AIalchemistART/scms-starter-kit.git
 
-# Step 2: Run setup FROM your project root
-cd /path/to/your/project
+# Return to your project and run setup (works from current directory!)
+cd -
 ~/Downloads/scms-starter-kit/scripts/setup.sh
 
-# Step 3: Delete the cloned repo (optional)
+# Clean up temp files
 rm -rf ~/Downloads/scms-starter-kit
 ```
 
 #### Windows (PowerShell)
 
 ```powershell
-# Step 1: Clone SCMS temporarily (outside your project)
-cd $env:USERPROFILE\Downloads
+# Clone SCMS to temp location
+Set-Location $env:USERPROFILE\Downloads
 git clone https://github.com/AIalchemistART/scms-starter-kit.git
 
-# Step 2: Run setup FROM your project root
-cd C:\path\to\your\project
+# Return to your project and run setup (works from current directory!)
+Pop-Location
 & "$env:USERPROFILE\Downloads\scms-starter-kit\scripts\setup.ps1"
 
-# Step 3: Delete the cloned repo (optional)
-Remove-Item -Recurse "$env:USERPROFILE\Downloads\scms-starter-kit"
+# Clean up temp files
+Remove-Item -Recurse -Force "$env:USERPROFILE\Downloads\scms-starter-kit"
 ```
 
 **What this does:**
-- Creates `docs/scms/`, `docs/templates/`, `rules/` in YOUR project
-- Copies templates (not the entire repo!)
+- Detects your current directory as the project root
+- Creates `docs/scms/`, `docs/templates/`, `rules/` there
+- Copies only templates (not the entire repo!)
 - Initializes INDEX.md, WORKSPACE_RULES.md, etc.
 
 ---
 
 ### Method 2: Download and Extract (No Git Required)
 
+> **⚠️ IMPORTANT**: Open terminal in YOUR project root first, then run these commands.
+
 #### Windows (PowerShell)
 
 ```powershell
-# Step 1: Download to temp location
-cd $env:USERPROFILE\Downloads
+# Download to temp location
+Set-Location $env:USERPROFILE\Downloads
 Invoke-WebRequest -Uri "https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip" -OutFile "scms.zip"
 Expand-Archive -Path "scms.zip" -DestinationPath "./"
 
-# Step 2: Run setup FROM your project root
-cd C:\path\to\your\project
+# Return to your project and run setup (works from current directory!)
+Pop-Location
 & "$env:USERPROFILE\Downloads\scms-starter-kit-master\scripts\setup.ps1"
 
-# Step 3: Clean up
-Remove-Item -Recurse "$env:USERPROFILE\Downloads\scms-starter-kit-master"
+# Clean up
+Remove-Item -Recurse -Force "$env:USERPROFILE\Downloads\scms-starter-kit-master"
 Remove-Item "$env:USERPROFILE\Downloads\scms.zip"
 ```
 
 #### Unix/Mac/Linux
 
 ```bash
-# Step 1: Download to temp location
+# Download to temp location
 cd ~/Downloads
 curl -L https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip -o scms.zip
 unzip scms.zip
 
-# Step 2: Run setup FROM your project root
-cd /path/to/your/project
+# Return to your project and run setup (works from current directory!)
+cd -
 ~/Downloads/scms-starter-kit-master/scripts/setup.sh
 
-# Step 3: Clean up
+# Clean up
 rm -rf ~/Downloads/scms-starter-kit-master
 rm ~/Downloads/scms.zip
 ```
 
 ---
 
-### Method 3: Start New Project with SCMS
+### Method 3: Start New Project with SCMS (Simplest!)
+
+> **✅ Everything is already set up** - No setup script needed!
 
 #### Unix/Mac/Linux
 
 ```bash
-# Clone as base
+# Clone as complete project
 git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project
-
-# Run setup
 cd my-project
-./scripts/setup.sh
 
-# Initialize your code
-# (SCMS lives in docs/, your code goes in src/ or root)
+# Install dashboard dependencies
+npm install
+
+# Launch dashboard
+npm run dashboard:app
+
+# You're ready! Start coding in src/ or root, SCMS tracks in docs/
 ```
 
 #### Windows (PowerShell)
 
 ```powershell
-# Clone as base
+# Clone as complete project
 git clone https://github.com/AIalchemistART/scms-starter-kit.git my-project
+Set-Location my-project
 
-# Run setup
-cd my-project
-.\scripts\setup.ps1
+# Install dashboard dependencies
+npm install
 
-# Initialize your code
-# (SCMS lives in docs/, your code goes in src/ or root)
+# Launch dashboard
+npm run dashboard:app
+
+# You're ready! Start coding in src/ or root, SCMS tracks in docs/
 ```
 
 ---

@@ -270,16 +270,20 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 
 ### 📦 **Choose Your Setup Approach**
 
-**Option A: Integrate into Existing Project (Recommended)**
-- Clone SCMS temporarily
-- Run setup script to copy templates into your project
-- Delete the cloned repo (keep only the copied files)
-- Your project structure remains clean
+> **🤔 Not sure which to choose?**
+> - **Testing SCMS?** → Use Option B (Standalone)
+> - **Adding to existing project?** → Use Option A (Integration)
+> - **Starting a new project?** → Use Option B (Standalone)
+
+**Option A: Integrate into Existing Project**
+- Copies only SCMS templates into your project
+- Your existing code stays separate
+- Run setup script from your project root
 
 **Option B: Standalone (Recommended for testing/new projects)**
-- Clone SCMS as your entire project
-- Use it as your project root
-- All SCMS infrastructure ready to go
+- Clone SCMS as your complete project
+- Everything ready to go
+- No setup script needed!
 
 > **🎯 AFTER SETUP**: Launch the SCMS Dashboard App!  
 > ```bash
@@ -301,44 +305,47 @@ SCMS requires a set of **Global Rules** in your AI's system memory to enforce pr
 
 #### Option A: Integrate into Existing Project
 
-**Step 1: Clone SCMS temporarily (outside your project)**
+> **⚠️ IMPORTANT**: Open terminal in YOUR project root first, then run these commands.
+
+**Unix/Mac/Linux:**
 ```bash
-# Unix/Mac/Linux
-cd ~/Downloads  # Or any temp location
+# Clone SCMS to temp location
+cd ~/Downloads
 git clone https://github.com/AIalchemistART/scms-starter-kit.git
 
-# Windows (PowerShell)
-cd $env:USERPROFILE\Downloads
-git clone https://github.com/AIalchemistART/scms-starter-kit.git
-```
-
-**Step 2: Run setup script FROM YOUR PROJECT ROOT**
-```bash
-# Unix/Mac/Linux
-cd /path/to/your/project
+# Return to your project and run setup (works from current directory!)
+cd -
 ~/Downloads/scms-starter-kit/scripts/setup.sh
 
-# Windows (PowerShell)
-cd C:\path\to\your\project
+# Clean up temp files
+rm -rf ~/Downloads/scms-starter-kit
+```
+
+**Windows (PowerShell):**
+```powershell
+# Clone SCMS to temp location
+Set-Location $env:USERPROFILE\Downloads
+git clone https://github.com/AIalchemistART/scms-starter-kit.git
+
+# Return to your project and run setup (works from current directory!)
+Pop-Location
 & "$env:USERPROFILE\Downloads\scms-starter-kit\scripts\setup.ps1"
+
+# Clean up temp files
+Remove-Item -Recurse -Force "$env:USERPROFILE\Downloads\scms-starter-kit"
 ```
 
-**Step 3: Delete the cloned repo (optional)**
-```bash
-# You only needed it for the setup script
-rm -rf ~/Downloads/scms-starter-kit  # Unix/Mac
-Remove-Item -Recurse ~/Downloads/scms-starter-kit  # Windows
-```
-
-**What the setup script does:**
-- Creates `docs/scms/`, `docs/templates/`, `rules/` in YOUR project
-- Copies templates (not the entire repo!)
+**What this does:**
+- Detects your current directory as the project root
+- Creates `docs/scms/`, `docs/templates/`, `rules/` there
+- Copies only templates (not the entire repo!)
 - Initializes INDEX.md, WORKSPACE_RULES.md, etc.
-- Configures promotion thresholds
 
 ---
 
 #### Option B: Standalone Setup (Testing/New Projects)
+
+> **✅ Simplest approach** - Everything is already set up!
 
 **Clone as your entire project:**
 ```bash
@@ -346,7 +353,7 @@ Remove-Item -Recurse ~/Downloads/scms-starter-kit  # Windows
 git clone https://github.com/AIalchemistART/scms-starter-kit.git your-project-name
 cd your-project-name
 npm install
-npm run dashboard:app  # Ready to go!
+npm run dashboard:app  # Ready to go! No setup script needed.
 ```
 
 **Or Download ZIP:**
