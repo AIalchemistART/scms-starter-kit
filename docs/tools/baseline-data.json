@@ -1,0 +1,35 @@
+{
+  "sessions": [
+    {
+      "id": "baseline-session-1",
+      "date": "2025-11-18",
+      "prompts": 10,
+      "tests_passing": 0,
+      "code_volume": 365,
+      "token_usage": 50000,
+      "cost": 0.04,
+      "prompt_history": [
+        { "id": 1, "tokens": 2000, "loc": 55, "files": ["index.html", "src/main.ts", "src/style.css", "package.json", "tsconfig.json"] },
+        { "id": 2, "tokens": 2500, "loc": 85, "files": ["src/Renderer.ts", "src/main.ts"] },
+        { "id": 3, "tokens": 3000, "loc": 110, "files": ["src/InputManager.ts", "src/main.ts"] },
+        { "id": 4, "tokens": 3500, "loc": 170, "files": ["src/Player.ts", "src/Renderer.ts", "src/main.ts"] },
+        { "id": 5, "tokens": 4000, "loc": 195, "files": ["src/Sprite.ts", "src/Renderer.ts"] },
+        { "id": 6, "tokens": 4500, "loc": 235, "files": ["src/World.ts", "src/Renderer.ts", "src/main.ts"] },
+        { "id": 7, "tokens": 5000, "loc": 265, "files": ["src/Camera.ts", "src/Renderer.ts"] },
+        { "id": 8, "tokens": 5500, "loc": 300, "files": ["src/Entity.ts", "src/Player.ts", "src/Renderer.ts", "src/main.ts"] },
+        { "id": 9, "tokens": 6000, "loc": 350, "files": ["src/Asteroid.ts", "src/World.ts", "src/main.ts"] },
+        { "id": 10, "tokens": 6500, "loc": 365, "files": ["src/Entity.ts", "src/World.ts"] }
+      ]
+    },
+    {
+      "id": "scms-session-1",
+      "date": "2025-11-19",
+      "prompts": 10,
+      "tests_passing": 0,
+      "code_volume": 580,
+      "token_usage": 0, 
+      "cost": 0.00,
+      "prompt_history": []
+    }
+  ]
+}
