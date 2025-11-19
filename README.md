@@ -270,20 +270,20 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 
 ### 📦 **Choose Your Setup Approach**
 
-**Option A: Subdirectory (Recommended for existing projects)**
-- Clone SCMS into `docs/scms` within your project
-- Run dashboard from `docs/scms` folder
-- Your project files stay separate
+**Option A: Integrate into Existing Project (Recommended)**
+- Clone SCMS temporarily
+- Run setup script to copy templates into your project
+- Delete the cloned repo (keep only the copied files)
+- Your project structure remains clean
 
 **Option B: Standalone (Recommended for testing/new projects)**
 - Clone SCMS as your entire project
-- Run dashboard from project root
-- All SCMS files at root level
+- Use it as your project root
+- All SCMS infrastructure ready to go
 
 > **🎯 AFTER SETUP**: Launch the SCMS Dashboard App!  
 > ```bash
-> cd docs/scms              # If using subdirectory approach
-> npm install               # First time only
+> npm install               # First time only (from project root)
 > npm run dashboard:app     # Launch dashboard
 > ```
 
@@ -299,52 +299,50 @@ SCMS requires a set of **Global Rules** in your AI's system memory to enforce pr
 
 ### 1. Install SCMS
 
-> ⚠️ **Important**: Commands run from different locations depending on your approach!
-> - **Subdirectory**: Run setup from your project root, dashboard from `docs/scms`
-> - **Standalone**: Run everything from project root
+#### Option A: Integrate into Existing Project
 
-#### Option A: Subdirectory Setup (Existing Project)
-
-#### Unix/Mac/Linux
-
+**Step 1: Clone SCMS temporarily (outside your project)**
 ```bash
-# Clone SCMS into docs/scms
-git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
+# Unix/Mac/Linux
+cd ~/Downloads  # Or any temp location
+git clone https://github.com/AIalchemistART/scms-starter-kit.git
+
+# Windows (PowerShell)
+cd $env:USERPROFILE\Downloads
+git clone https://github.com/AIalchemistART/scms-starter-kit.git
 ```
 
-#### Windows (PowerShell)
-
-```powershell
-# Clone SCMS into docs/scms
-git clone https://github.com/AIalchemistART/scms-starter-kit.git docs/scms
-```
-
-#### Alternative: Download ZIP (No Git Required)
-
-**Windows**:
-```powershell
-# Download and extract
-Invoke-WebRequest -Uri "https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip" -OutFile "scms.zip"
-Expand-Archive -Path "scms.zip" -DestinationPath "docs/"
-Rename-Item -Path "docs/scms-starter-kit-master" -NewName "scms"
-Remove-Item "scms.zip"
-```
-
-**Unix/Mac**:
+**Step 2: Run setup script FROM YOUR PROJECT ROOT**
 ```bash
-curl -L https://github.com/AIalchemistART/scms-starter-kit/archive/refs/heads/master.zip -o scms.zip
-unzip scms.zip -d docs/
-mv docs/scms-starter-kit-master docs/scms
-rm scms.zip
+# Unix/Mac/Linux
+cd /path/to/your/project
+~/Downloads/scms-starter-kit/scripts/setup.sh
+
+# Windows (PowerShell)
+cd C:\path\to\your\project
+& "$env:USERPROFILE\Downloads\scms-starter-kit\scripts\setup.ps1"
 ```
+
+**Step 3: Delete the cloned repo (optional)**
+```bash
+# You only needed it for the setup script
+rm -rf ~/Downloads/scms-starter-kit  # Unix/Mac
+Remove-Item -Recurse ~/Downloads/scms-starter-kit  # Windows
+```
+
+**What the setup script does:**
+- Creates `docs/scms/`, `docs/templates/`, `rules/` in YOUR project
+- Copies templates (not the entire repo!)
+- Initializes INDEX.md, WORKSPACE_RULES.md, etc.
+- Configures promotion thresholds
 
 ---
 
 #### Option B: Standalone Setup (Testing/New Projects)
 
-**Git Clone:**
+**Clone as your entire project:**
 ```bash
-# Clone as your entire project
+# Unix/Mac/Linux
 git clone https://github.com/AIalchemistART/scms-starter-kit.git your-project-name
 cd your-project-name
 npm install
@@ -376,22 +374,14 @@ npm run dashboard:app
 
 ---
 
-### 2. Run Setup (Subdirectory approach only)
-
-```bash
-cd docs/scms
-./scripts/setup.sh       # Unix/Mac
-.\scripts\setup.ps1      # Windows
-```
-
-### 3. Configure Your IDE
+### 2. Configure Your IDE
 
 Choose your AI assistant:
 - **Windsurf**: See [config/windsurf/SETUP.md](config/windsurf/SETUP.md)
 - **Cursor**: See [config/cursor/SETUP.md](config/cursor/SETUP.md)
 - **Other**: See [config/generic/SETUP.md](config/generic/SETUP.md)
 
-### 4. 📊 Launch SCMS Dashboard - Your Control Center
+### 3. 📊 Launch SCMS Dashboard - Your Control Center
 
 **🎯 THE DASHBOARD IS YOUR GO-TO SOURCE FOR:**
 - ✅ **Session Start Prompt** (v3.0) - Copy-paste ready, updated with latest workflow
