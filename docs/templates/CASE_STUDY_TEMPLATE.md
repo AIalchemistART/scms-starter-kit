@@ -6,7 +6,10 @@
 **Complexity**: Low | Medium | High  
 **Team Size**: [Number of developers]  
 **Duration**: [Time to complete]  
-**Status**: ✅ Complete | 🚧 In Progress
+**Status**: ✅ Complete | 🚧 In Progress  
+**Tags:** #[topic] #[category] (e.g., #fullstack #optimization #refactor)
+
+> **Cross-Reference:** Add this case study to `docs/scms/INDEX.md` under the relevant topic section.
 
 ---
 

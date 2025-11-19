@@ -343,6 +343,11 @@ Before submitting PR/commit:
 
 ## 🔗 Related Documentation
 
+**INDEX.md (Knowledge Graph Hub)**: `docs/scms/INDEX.md` - **Central cross-reference source of truth**
+- Groups patterns by topic tags (e.g., `#rendering`, `#api`, `#testing`)
+- Links related patterns across layers (L0/L1/L2/L3)
+- Updated during session closure (L5 audit)
+
 **L0 Memories**: `docs/memories/` - Active pattern validation candidates
 
 **L2 SOPs**: `docs/sops/` - Detailed implementation procedures
@@ -350,6 +355,29 @@ Before submitting PR/commit:
 **L3 Case Studies**: `docs/case-studies/` - Complete examples
 
 **Global Rules**: `rules/GLOBAL_CODING_RULES.md` - Universal best practices
+
+---
+
+## 🏷️ Tagging System
+
+**All patterns in this file should include topic tags for cross-referencing:**
+
+```markdown
+### [Pattern Name] (Validated Pattern - Use Count: X)
+**Tags:** #[topic] #[category]
+
+[Pattern details...]
+```
+
+**Example Tags:**
+- **Technology**: `#react` `#nodejs` `#postgresql` `#graphql`
+- **Domain**: `#api` `#ui` `#database` `#auth` `#testing`
+- **Type**: `#architecture` `#performance` `#security` `#workflow`
+
+**Why Tags Matter:**
+- Enables fast pattern retrieval in `INDEX.md` by theme
+- Creates semantic connections between related patterns
+- Supports AI retrieval during development
 
 ---
 

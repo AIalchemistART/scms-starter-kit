@@ -6,7 +6,10 @@
 **Status**: ✅ Validated Pattern (Use Count: X) | ⏳ Draft  
 **Complexity**: Low | Medium | High  
 **Est. Implementation Time**: XX-XX minutes  
-**Prerequisites**: [List any required setup or knowledge]
+**Prerequisites**: [List any required setup or knowledge]  
+**Tags:** #[topic] #[category] (e.g., #api #testing #deployment)
+
+> **Cross-Reference:** Add this SOP to `docs/scms/INDEX.md` under the relevant topic section.
 
 ---
 

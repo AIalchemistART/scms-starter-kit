@@ -3,7 +3,10 @@
 **Pattern Name:** [Name]  
 **Current Level:** L0 (Memory) -> L1 (Workspace Rule)  
 **First Discovered:** [YYYY-MM-DD]  
-**Use Count:** [N] (Must be ≥ 2)
+**Use Count:** [N] (Must be ≥ 2)  
+**Tags:** #[topic] #[category] (e.g., #architecture #performance #api)
+
+> **Note:** Add this entry to `docs/scms/INDEX.md` under the relevant topic section after promotion.
 
 ---
 

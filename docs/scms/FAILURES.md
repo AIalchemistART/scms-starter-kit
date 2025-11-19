@@ -1,9 +1,12 @@
 # Failure Log - Session Maintenance (Nov 18, 2025)
 
-**ID**: FAIL-20251118-001
-**Date**: 2025-11-18
-**Phase**: Optimization
-**Related Prompt**: Session Closure & Setup Update
+**ID**: FAIL-20251118-001  
+**Date**: 2025-11-18  
+**Phase**: Optimization  
+**Related Prompt**: Session Closure & Setup Update  
+**Tags:** #tooling #workflow
+
+> **Note:** This entry should appear in `docs/scms/INDEX.md` under `#tooling` and `#workflow` sections.
 
 ---
 
