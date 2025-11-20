@@ -3208,15 +3208,16 @@ Baseline thought: "Build TaskList, simplify App to show it"
 - ✅ Form auto-clears on success
 
 **User Testing:**
-> User created "Buy Groceries" task
-> Task appeared in list with ID: 33
+> User created "Buy Painting Supplies" task
+> Task appeared in list with ID: 35
 > **Backend connectivity CONFIRMED!** ✅
 
 **Visual Result (from screenshot):**
-- Form at top: Title, Description, Completed checkbox
-- "Buy Groceries" task visible in list below
-- ID: 33, Timestamp: Nov 20, 2025, 03:59 AM
-- Database ID proves backend saved it
+- Form with success message tip
+- "Buy Painting Supplies" task visible in list
+- Also shows: "Build REST API" (ID: 33), "Learn TypeScript" (ID: 32)
+- Multiple tasks with IDs 31, 32, 33, 35
+- Database IDs prove backend saved it
 
 **Code Quality:**
 - ✅ Professional form implementation
@@ -3274,18 +3275,17 @@ Baseline thought: "Build TaskList, simplify App to show it"
 - ✅ Form auto-clears on success
 
 **User Testing:**
-> User created "Buy Painting Supplies" task
-> Task appeared in list with ID: 35
+> User created "Buy Groceries" task
+> Task appeared in list with ID: 33
 > **Backend connectivity CONFIRMED!** ✅
 > Also visible: ApiTest panel still available for verification
 
 **Visual Result (from screenshot):**
-- Form with collapsible design
-- Multiple tasks visible: IDs 31, 32, 33, 35
-- "Buy Painting Supplies" (ID: 35)
-- "Build REST API" (ID: 33)
-- "Learn TypeScript" (ID: 32)
-- Database IDs prove backend persistence
+- Form at top: Title, Description, Completed checkbox
+- "Buy Groceries" task visible in list below
+- ID: 33, Timestamp: Nov 20, 2025, 03:59 AM
+- Shows 31 tasks total
+- Database ID proves backend persistence
 - **ApiTest panel still toggleable** (infrastructure preserved!)
 
 **Code Quality:**
@@ -3437,8 +3437,8 @@ User's question:
 
 **Database-Generated IDs:**
 ```
-Baseline: Task ID 33 (SQLite AUTO_INCREMENT)
-SCMS: Task IDs 31, 32, 33, 35 (SQLite AUTO_INCREMENT)
+Baseline: Task ID 35 (SQLite AUTO_INCREMENT)
+SCMS: Task ID 33 (SQLite AUTO_INCREMENT)
 
 Frontend-only would show:
 - No ID, or
@@ -3711,8 +3711,8 @@ SCMS has now paid:
 **Answer:** ✅ **BOTH CONFIRMED BACKEND-CONNECTED!**
 
 **Proof:**
-1. **Database IDs**: Baseline ID 33, SCMS ID 35 (SQLite AUTO_INCREMENT)
-2. **Task Persistence**: SCMS showing 29 tasks total, all with IDs
+1. **Database IDs**: Baseline ID 35, SCMS ID 33 (SQLite AUTO_INCREMENT)
+2. **Task Persistence**: SCMS showing 31 tasks total, all with IDs
 3. **Server Timestamps**: Actual server-generated timestamps visible
 4. **Sequential IDs**: Pattern proves database insertion working
 
@@ -3720,8 +3720,8 @@ SCMS has now paid:
 > "Note that scms successfully created a task for 'buy groceries' which I entered. Baseline also looks to have succeeded!"
 
 **Confirmed!** Both forms work end-to-end:
-- ✅ Baseline: "Buy Groceries" → ID 33
-- ✅ SCMS: "Buy Painting Supplies" → ID 35
+- ✅ Baseline: "Buy Painting Supplies" → ID 35
+- ✅ SCMS: "Buy Groceries" → ID 33
 
 **Additional Note:**
 SCMS still has ApiTest panel available to independently verify API health, giving extra diagnostic capability that Baseline lacks.
