@@ -76,8 +76,8 @@
 | Prompt 8   | 212,000         | $2.690        | 159,900     | $3.98     | -52,100 | -25% |
 | Prompt 9   | 307,000         | $3.167        | 170,700     | $4.885    | -136,300 | -44% |
 | Prompt 10  | 379,000         | $3.539        | 184,100     | $5.861    | -194,900 | -51% |
-| **Cumulative** | **379,000** | **$3.539**    | **184,100** | **$5.861** | **-194,900** | **-51%** |
-| Prompt 10  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
+| Prompt 11  | 464,000         | $3.974        | 278,500     | $6.449    | -185,500 | -40% |
+| **Cumulative** | **464,000** | **$3.974**    | **278,500** | **$6.449** | **-185,500** | **-40%** |
 | Prompt 20  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 30  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 40  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
@@ -85,7 +85,7 @@
 
 **\*Note on P7:** SCMS required 2 prompts to complete due to PostCSS bug not caught automatically. First prompt cost shown ($0.067). True cost to completion: ~$0.134 ($0.067 initial + $0.067 fix) vs. Baseline $0.129 (single prompt, bug auto-fixed).
 
-**📊 Key Finding:** After P10, SCMS is using FEWER tokens (184,100 vs. 379,000 = -51%!) but costing MORE ($5.861 vs. $3.539 = +66%). SCMS has 14x higher per-token cost due to memory/pattern tracking overhead. Cost gap WIDENED from +54% (P9) to +66% (P10) - back to P7 level! SCMS is now 2.2x over user's +30% adoption threshold. Critical: P10 SCMS made validation mismatch bug while Baseline matched backend correctly!
+**📊 Key Finding:** After P11, SCMS is using FEWER tokens (278,500 vs. 464,000 = -40%!) but costing MORE ($6.449 vs. $3.974 = +62%). SCMS has 14x higher per-token cost due to memory/pattern tracking overhead. Cost gap IMPROVED from +66% (P10) to +62% (P11)! SCMS is now 2.1x over user's +30% adoption threshold. **🎯 MILESTONE: P11 = FIRST PATTERN RETRIEVAL (L1)** - SCMS retrieved Dependency Version Management pattern and applied it (bcryptjs vs bcrypt)!
 
 ### ROI Calculation
 **Break-Even Point:** SCMS pays for itself when cumulative patterns prevent enough rework/bugs to offset the token premium.
@@ -4058,14 +4058,372 @@ Pattern documentation alone isn't enough - the patterns must **actively improve*
 
 ---
 
-### Prompt 14: User-Task Association 🚨
-**Challenge:** Add `userId` column to tasks table, update all CRUD operations  
-**Risk:** Breaking existing endpoints, data corruption, missing validation  
-**Baseline Risk:** May break working code, forget edge cases  
-**SCMS Advantage:** Patterns for schema migrations, validation, testing  
-**Hypothesis:** SCMS overtakes Baseline here if patterns prevent breaking changes
+## 📋 Prompt 11: User Model & Registration 🎉 **MILESTONE!**
 
-### Prompt 28: Auth Context Integration 🚨
+**Challenge:** User authentication system with bcrypt password hashing  
+**Complexity:** Medium-High (security, validation, database schema)  
+**Critical Moment:** 🎯 **FIRST L1 PATTERN RETRIEVAL EVENT!**
+
+---
+
+### 🎯 Implementation Comparison
+
+#### **Baseline Implementation** (Port 3002)
+
+**Token/Cost:**
+- This Prompt: 85,000 tokens / $0.435
+- Cumulative: 464,000 tokens / $3.974
+
+**Files Created** (4):
+1. `backend/src/models/User.ts` (165 lines) - Model + Repository combined
+2. `backend/src/middleware/authValidation.ts` (37 lines)
+3. `backend/src/routes/authRoutes.ts` (98 lines)
+4. `backend/test-auth.http` (144 lines) - REST Client tests
+
+**Files Modified** (3):
+- `backend/src/database.ts` - Added users table
+- `backend/src/server.ts` - Mounted auth routes
+- `README.md` - Documentation updates
+
+**Total Added**: 378 LOC | **Project Total**: 2,593 LOC
+
+**Dependencies Added**:
+```json
+{
+  "bcrypt": "^5.1.1",
+  "@types/bcrypt": "^5.0.2"
+}
+```
+
+**Key Decisions:**
+- Combined Model + Repository in single file (pragmatic)
+- Used `bcrypt` (native module)
+- REST Client test format (.http file)
+
+---
+
+#### **SCMS Implementation** (Port 3001)
+
+**Token/Cost:**
+- This Prompt: 94,400 tokens / $0.588
+- Cumulative: 278,500 tokens / $6.449
+
+**Files Created** (4):
+1. `backend/src/models/User.ts` (40 lines) - Model interfaces only
+2. `backend/src/repositories/UserRepository.ts` (185 lines) - Separated repository
+3. `backend/src/routes/auth.ts` (95 lines)
+4. `test-auth.ps1` (228 lines) - PowerShell test suite
+
+**Files Modified** (4):
+- `backend/package.json` - Dependencies
+- `backend/src/database.ts` - Users table
+- `backend/src/middleware/validation.ts` - Auth validation
+- `backend/src/server.ts` - Auth routes mounted
+
+**Total Added**: ~550 LOC | **Project Total**: ~2,080 LOC
+
+**Dependencies Added:**
+```json
+{
+  "bcryptjs": "^2.4.3"  // ✅ Pure JS - No build tools required
+}
+```
+
+**🎯 KEY MILESTONE: FIRST L1 PATTERN RETRIEVAL!**
+
+**Pattern Retrieved**: Dependency Version Management Pattern (L1)  
+**Pattern Source**: FAIL-20251119-001 (better-sqlite3 native module issue)  
+**Application**: Chose `bcryptjs` (pure JS) over `bcrypt` (native C++)
+
+**SCMS Output (Explicit Citation)**:
+> "🚨 SCMS SAFETY CHECK: Dependency Selection
+> ⚠️ L1 Pattern Alert: Dependency Version Management Pattern
+> Per FAIL-20251119-001 (better-sqlite3 native module issue), I'm using bcryptjs instead of bcrypt:
+> ✅ bcryptjs: Pure JavaScript (no native compilation)
+> ❌ bcrypt: Requires C++ build tools
+> This follows our validated L1 pattern for cross-platform compatibility."
+
+**Key Decisions:**
+- Separated User model (interfaces) from UserRepository (logic)
+- Used `bcryptjs` (pure JS) via **L1 pattern retrieval**
+- PowerShell test format (.ps1 file)
+
+---
+
+### 🔬 Testing Results (Both Implementations)
+
+**Test Method**: Direct API calls via PowerShell `Invoke-RestMethod`
+
+#### **Baseline Tests** (Port 3002):
+```powershell
+✅ Registration: test2@example.com → User ID 2 created (201 Created)
+✅ Login: test@example.com → Authenticated successfully (200 OK)
+✅ Wrong password → 401 Unauthorized
+✅ No password hash exposed in responses
+```
+
+**Response Format**:
+```json
+{
+  "success": true,
+  "message": "User registered successfully",
+  "data": {
+    "id": 2,
+    "email": "test2@example.com",
+    "createdAt": "2025-11-20 19:13:09"
+  }
+}
+```
+
+#### **SCMS Tests** (Port 3001):
+```powershell
+✅ Registration: scmstest@example.com → User ID 1 created
+✅ Login: scmstest@example.com → Authenticated successfully
+✅ Invalid email format → 400 with detailed field errors
+✅ Weak password → 400 with multiple validation details
+✅ Duplicate email → 409 Conflict
+✅ Wrong password → 401 Unauthorized
+✅ No password hash exposed
+```
+
+**Response Format** (SCMS):
+```json
+{
+  "message": "User registered successfully",
+  "data": {
+    "id": 1,
+    "email": "scmstest@example.com",
+    "createdAt": "2025-11-20 19:16:53"
+  }
+}
+```
+
+**Validation Error Example (SCMS)**:
+```json
+{
+  "error": "Validation error",
+  "message": "Invalid input data",
+  "details": [
+    {
+      "field": "password",
+      "message": "Password must be between 8 and 100 characters"
+    },
+    {
+      "field": "password",
+      "message": "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+    }
+  ]
+}
+```
+
+---
+
+### 📊 Detailed Comparison
+
+| Aspect | Baseline | SCMS | Analysis |
+|--------|----------|------|----------|
+| **Token Usage** | 85,000 | 94,400 | SCMS +11% this prompt |
+| **Cost** | $0.435 | $0.588 | SCMS +35% this prompt |
+| **Files Created** | 4 | 4 | Tie |
+| **LOC Added** | 378 | ~550 | SCMS +45% (more separation) |
+| **Architecture** | Combined Model+Repo | Separated Model/Repo | SCMS more modular |
+| **Dependency** | `bcrypt` (native) | `bcryptjs` (pure JS) | 🎯 **L1 Pattern Applied!** |
+| **Pattern Citation** | ❌ None | ✅ **Explicit L1 reference** | 🏆 **SCMS** |
+| **Response Format** | `{success, message, data}` | `{message, data}` | Both valid |
+| **Error Details** | Not fully verified | ✅ Field-specific arrays | 🏆 **SCMS** (verified) |
+| **Test Suite** | REST Client (.http) | PowerShell (.ps1) | Both comprehensive |
+| **Security** | ✅ Proper hashing | ✅ Proper hashing | Tie |
+| **Validation** | ✅ Comprehensive | ✅ Comprehensive | Tie |
+
+---
+
+### 🎯 MILESTONE ANALYSIS: First Pattern Retrieval
+
+**What Happened**:
+SCMS retrieved and explicitly cited the "Dependency Version Management Pattern" from L1 (WORKSPACE_RULES.md) when selecting between `bcrypt` and `bcryptjs`.
+
+**Pattern Source**: 
+- FAIL-20251119-001 documented that native modules (like better-sqlite3) require build tools
+- This was promoted to L1 as "Dependency Version Management Pattern"
+- SCMS retrieved this pattern and applied it to the bcrypt decision
+
+**Decision Made**:
+- **Baseline**: Used `bcrypt` (native C++ module, requires build tools)
+- **SCMS**: Used `bcryptjs` (pure JavaScript, no build tools)
+
+**Functional Difference**: 
+- **None** - Both provide identical bcrypt hashing algorithm
+- Both use 10 salt rounds
+- Both have same API surface
+- Performance difference negligible for auth use case
+
+**Cross-Platform Implications**:
+- `bcrypt`: May fail on systems without C++ build tools (Python, Visual Studio, etc.)
+- `bcryptjs`: Works everywhere JavaScript runs
+
+**Did Pattern Retrieval Help?**:
+```
+IMMEDIATE VALUE: 🤷 Neutral
+- Baseline's bcrypt worked fine in testing
+- No build errors encountered
+- Both implementations functionally identical
+
+LONG-TERM VALUE: 🟡 Potentially Valuable
+- Pattern prevents future deployment issues
+- Reduces dependency on system-level build tools
+- Improves portability across dev environments
+- IF Baseline hits build errors later → Pattern justified
+```
+
+**Critical Insight**:
+> Pattern retrieval didn't change the outcome this time because Baseline happened to choose correctly by chance. However, SCMS's choice was **principled** (backed by documented failure), while Baseline's was **coincidental** (no awareness of build tool risks).
+
+**User Observation**:
+> "Ok SCMS had it's first pattern retrieval! That's great seeing the system work as intended for the first time with established patterns. It doesn't seem to have made much of a difference on this one because the baseline came to the same conclusion without the retrieval but this should become more important later on, hypothetically"
+
+---
+
+### 💰 Economic Analysis
+
+**P11 Cost Breakdown**:
+```
+Baseline:  85,000 tokens × rate = $0.435
+SCMS:      94,400 tokens × rate = $0.588
+Premium:   +9,400 tokens = +$0.153 (+35% this prompt)
+```
+
+**Cumulative Through P11**:
+```
+Baseline:  464,000 tokens = $3.974
+SCMS:      278,500 tokens = $6.449
+Premium:   -185,500 tokens (40% FEWER!) BUT +$2.475 cost (+62%)
+```
+
+**Cost Gap Trend**:
+- P10: +66% cost premium
+- P11: +62% cost premium
+- **Direction**: ✅ IMPROVING (-4 percentage points)
+
+**Pattern Retrieval Cost**:
+The L1 pattern retrieval added tokens to SCMS output:
+- Pattern citation text (~100 tokens)
+- Dependency comparison explanation (~200 tokens)
+- Safety check formatting (~50 tokens)
+- **Estimated overhead**: ~350 tokens for pattern application
+- **Actual difference**: 9,400 tokens (includes architecture choices too)
+
+**ROI Question**:
+> Did the $0.153 premium for pattern-guided dependency selection provide value?
+>
+> **Today**: No measurable value (both work)  
+> **Future**: IF Baseline hits bcrypt build errors → Pattern pays for itself immediately
+>
+> **Break-even scenario**: Single deployment failure or build troubleshooting session (typically 15-30 minutes × developer hourly rate > $0.153)
+
+---
+
+### 🚨 Critical Findings
+
+#### **Positive Observations** ✅
+
+1. **Pattern System Works!** 🎉
+   - SCMS retrieved L1 pattern correctly
+   - Applied it appropriately to dependency selection
+   - Explicitly cited the pattern source (FAIL-20251119-001)
+
+2. **Both Implementations High Quality**:
+   - Comprehensive validation (email format, password strength)
+   - Proper security (bcrypt hashing, no hash exposure)
+   - Appropriate error codes
+   - Clean API design
+
+3. **SCMS Architectural Advantage**:
+   - Separated Model from Repository (better modularity)
+   - Field-specific validation error arrays
+   - More detailed error responses
+
+4. **Cost Gap Improving**:
+   - From +66% (P10) to +62% (P11)
+   - First improvement since P8
+
+#### **Concerning Observations** ⚠️
+
+1. **Pattern Didn't Change Outcome**:
+   - Baseline chose correctly without pattern guidance
+   - No immediate measurable benefit from pattern retrieval
+   - User observation: "doesn't seem to have made much of a difference"
+
+2. **Cost Premium Still High**:
+   - +62% ($2.475) cumulative premium
+   - Still 2.1x over +30% adoption threshold
+   - Pattern retrieval added cost without immediate ROI
+
+3. **Baseline Dependency Risk Unknown**:
+   - Baseline's `bcrypt` worked in testing
+   - But: Not tested across different environments
+   - May encounter build errors in CI/CD or production deployments
+
+---
+
+### 🎯 Hypothesis Update
+
+**Previous Hypothesis** (Post-P10):
+> "SCMS's recursive optimization loop (P10.5) will be the turning point where patterns prove their value or fail to justify cost."
+
+**Updated Hypothesis** (Post-P11):
+> "Pattern retrieval is working as designed (first retrieval successful!), but immediate value is limited when Baseline makes correct choices independently. Patterns will prove valuable in two scenarios:
+> 1. **Preventing Baseline mistakes** - When Baseline would naturally make wrong choices
+> 2. **Accelerating complex implementations** - When patterns guide faster/better solutions
+>
+> P11 demonstrates Pattern Category 1, but Baseline didn't make the mistake, so value wasn't realized. The recursive loop test (P10.5) remains critical."
+
+**Turning Point Estimate**:
+- **Still**: P18-25 (no change)
+- **Reasoning**: Pattern system operational, but needs scenarios where Baseline makes mistakes SCMS avoids
+- **Wildcard**: IF Baseline hits bcrypt build errors in deployment → Pattern justified immediately
+
+---
+
+### 📝 Verdict
+
+**Winner**: 🤝 **TIE** - Both implementations excellent
+
+**Rationale**:
+- ✅ Both implemented secure, functional authentication
+- ✅ Both have comprehensive validation
+- ✅ Both created test suites
+- 🎯 SCMS applied L1 pattern (milestone!)
+- 🤷 Pattern didn't provide measurable advantage (yet)
+- 💰 SCMS cost +35% more this prompt
+
+**Key Takeaway**:
+> **SCMS's pattern retrieval system is working!** This is a MAJOR milestone - the L1 pattern was correctly retrieved and applied. However, the immediate value is limited because Baseline independently made the same correct choice. The true test will come when:
+> 1. Baseline encounters bcrypt build errors (pattern prevents)
+> 2. Future prompts where patterns guide better architectural decisions
+> 3. Recursive loop recommendations (P10.5) prove their value
+
+**Historical Context**:
+This is exactly what we expected from "Natural Flow" methodology - let each system develop naturally. SCMS used its pattern system (as it would naturally), Baseline didn't need it (and worked fine). The question remains: **Will SCMS's pattern investment pay dividends in scenarios where Baseline naturally makes mistakes?**
+
+---
+
+### 🔮 Predictions for Next Prompts
+
+**P12-13 (JWT/Protected Routes)**:
+- Pattern opportunity: Auth middleware patterns, JWT best practices
+- Baseline risk: Security mistakes, token handling bugs
+- SCMS advantage: IF patterns prevent auth bugs → High value
+
+**P10.5 (SCMS Recursive Loop)**:
+- **THIS IS THE CRITICAL TEST**
+- Will test if session closure recommendations provide value
+- Jest tests, keyboard shortcuts, state management enhancements
+- If these help P11+ development → Recursive loop validated
+- If these were wasteful → System overhead confirmed
+
+---
+
+### Prompt 14: User-Task Association 🚨
 **Challenge:** Refactor React components to use global auth state  
 **Risk:** Props drilling removal, state management bugs, infinite re-renders  
 **Baseline Risk:** May rewrite components from scratch  
