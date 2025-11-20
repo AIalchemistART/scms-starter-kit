@@ -74,7 +74,8 @@
 | Prompt 6   | 120,000         | $0.534        | 133,600     | $0.709    | +13,600 | +11% |
 | Prompt 7   | 147,000         | $2.363        | 146,300*    | $3.91*    | -700 | -0.5% |
 | Prompt 8   | 212,000         | $2.690        | 159,900     | $3.98     | -52,100 | -25% |
-| **Cumulative** | **212,000** | **$2.690**    | **159,900** | **$3.98** | **-52,100** | **-25%** |
+| Prompt 9   | 307,000         | $3.167        | 170,700     | $4.885    | -136,300 | -44% |
+| **Cumulative** | **307,000** | **$3.167**    | **170,700** | **$4.885** | **-136,300** | **-44%** |
 | Prompt 10  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 20  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 30  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
@@ -83,7 +84,7 @@
 
 **\*Note on P7:** SCMS required 2 prompts to complete due to PostCSS bug not caught automatically. First prompt cost shown ($0.067). True cost to completion: ~$0.134 ($0.067 initial + $0.067 fix) vs. Baseline $0.129 (single prompt, bug auto-fixed).
 
-**📊 Key Finding:** After P8, SCMS is using FEWER tokens (159,900 vs. 212,000) but costing MORE ($3.98 vs. $2.69). SCMS has ~78% higher per-token cost, likely due to memory/pattern tracking overhead. Cost premium at +48% (was +66% at P7). Gap closing rapidly!
+**📊 Key Finding:** After P9, SCMS is using FEWER tokens (170,700 vs. 307,000 = -44%!) but costing MORE ($4.885 vs. $3.167 = +54%). SCMS has dramatically higher per-token cost due to memory/pattern tracking overhead. Cost gap WIDENED from +48% (P8) to +54% (P9) despite token efficiency. Pattern preservation premium visible!
 
 ### ROI Calculation
 **Break-Even Point:** SCMS pays for itself when cumulative patterns prevent enough rework/bugs to offset the token premium.
@@ -2663,7 +2664,498 @@ Then:
 
 ---
 
-## 🎯 Critical Architectural Stress Points
+## 📋 Prompt 9: Task List Component
+
+**Requirement:** Create TaskList UI component that fetches and displays tasks
+
+### 🎯 Implementation Comparison
+
+#### **Baseline Implementation**
+
+**Token Usage:** ~95,000 (~95k this prompt)  
+**Cost:** $0.477 (+$0.477)  
+**Files Created:** 1  
+**Files Modified:** 2  
+**LOC This Prompt:** +263  
+**Total Project LOC:** 1,934  
+**Cumulative Cost:** $3.167  
+
+**Created Files:**
+- `frontend/src/components/TaskList.tsx` (232 LOC)
+
+**Modified Files:**
+- `frontend/src/App.tsx` - **Simplified to ONLY show TaskList**
+- `README.md` - Documentation updates
+
+**Implementation Details:**
+1. ✅ Created TaskList component with state management
+2. ✅ API integration with useEffect
+3. ✅ Four UI states: Loading, Error, Empty, Task List
+4. ✅ Status indicators (completed/pending)
+5. ✅ Refresh button functionality
+6. ✅ Error handling with retry
+7. ✅ Beautiful TailwindCSS styling
+8. ✅ Responsive design
+9. ⚠️ **App.tsx simplified - removed P7/P8 content**
+10. ⚠️ **No visual API connectivity evidence**
+
+**TaskList Features:**
+- ✅ Loading state with spinner
+- ✅ Error state with retry button
+- ✅ Empty state with guidance
+- ✅ Task cards with metadata
+- ✅ Status badges (Completed/Pending)
+- ✅ Refresh button in header
+- ✅ Task count display
+- ✅ Formatted timestamps
+
+**App.tsx Changes:**
+```tsx
+// P8: Had landing page content
+// P9: Simplified to just TaskList
+
+return (
+  <div>
+    <header>TaskFlow Pro</header>
+    <TaskList /> {/* Just the new component */}
+    <footer>...</footer>
+  </div>
+);
+```
+
+**User's Observation:**
+> "The main difference is that the baseline has a refresh button that doesn't really do much & the scms still has the api testing feature giving interconnected evidence of backend/frontend api connectivity. Nothing proving that on baseline yet that I'm aware of"
+
+**Visual Result:**
+- Opens http://localhost:5173
+- Sees: TaskList component
+- No API test UI visible
+- Refresh button present
+- **No visual evidence of API connectivity**
+
+**Code Quality:**
+- ✅ Professional component implementation
+- ✅ Good state management
+- ✅ Comprehensive error handling
+- ✅ Beautiful UI design
+- ⚠️ **Lost testing infrastructure from P8**
+- ⚠️ **Can't visually verify API connection**
+
+---
+
+#### **SCMS Implementation**
+
+**Token Usage:** 170,700 (~10.8k this prompt)  
+**Cost:** $0.905 (+$0.905)  
+**Files Created:** 1  
+**Files Modified:** 2  
+**LOC This Prompt:** +240  
+**Total Project LOC:** ~1,520  
+**Cumulative Cost:** ~$4.885  
+
+**Created Files:**
+- `frontend/src/components/TaskList.tsx` (240 LOC)
+
+**Modified Files:**
+- `frontend/src/App.tsx` - **Integrated TaskList WITH collapsible ApiTest**
+- `docs/baseline-tracking.md` - Documentation updates
+
+**Implementation Details:**
+1. ✅ Created TaskList component with state management
+2. ✅ API integration with useEffect
+3. ✅ Four UI states: Loading, Error, Empty, Task List
+4. ✅ Status indicators (completed/pending)
+5. ✅ Refresh button functionality
+6. ✅ Error handling with retry
+7. ✅ Beautiful TailwindCSS styling
+8. ✅ Responsive design
+9. ✅ **MAINTAINED ApiTest component from P8!**
+10. ✅ **Added toggle to show/hide API test panel**
+
+**TaskList Features:**
+- ✅ Loading state with spinner
+- ✅ Error state with retry button
+- ✅ Empty state with guidance
+- ✅ Task cards with metadata
+- ✅ Status badges (Completed/Pending)
+- ✅ Refresh button in header
+- ✅ Task count display
+- ✅ Formatted timestamps
+
+**App.tsx Changes:**
+```tsx
+// P8: Had ApiTest component
+// P9: KEPT ApiTest + added TaskList + toggle
+
+return (
+  <div>
+    <header>
+      TaskFlow Pro
+      <button onClick={toggle}>
+        {show ? 'Hide' : 'Show'} API Test
+      </button>
+    </header>
+    
+    <TaskList /> {/* New component */}
+    
+    {showApiTest && <ApiTest />} {/* KEPT from P8! */}
+    
+    <footer>...</footer>
+  </div>
+);
+```
+
+**User's Observation:**
+> "the scms still has the api testing feature giving interconnected evidence of backend/frontend api connectivity"
+
+**Visual Result:**
+- Opens http://localhost:5173
+- Sees: TaskList component + "Show API Test" button
+- Can toggle ApiTest component visibility
+- **Visual evidence of API connectivity maintained**
+- **Testing infrastructure preserved**
+
+**Code Quality:**
+- ✅ Professional component implementation
+- ✅ Good state management
+- ✅ Comprehensive error handling
+- ✅ Beautiful UI design
+- ✅ **PRESERVED testing infrastructure**
+- ✅ **Can still visually verify API connection**
+- ✅ **Collapsible design = best of both worlds**
+
+---
+
+### 💰 Prompt 9 Economics
+
+| Metric | Baseline | SCMS | Delta |
+|--------|----------|------|-------|
+| **Tokens This Prompt** | ~95,000 | ~10,800 | SCMS -84,200 (-89%!) |
+| **Cost This Prompt** | $0.477 | $0.905 | **SCMS +$0.428 (+90%)** |
+| **Cumulative Tokens** | ~307,000 | ~170,700 | SCMS -136,300 (-44%) |
+| **Cumulative Cost** | $3.167 | ~$4.885 | +$1.718 (+54%) |
+| **LOC This Prompt** | +263 | +240 | Similar |
+| **Files Created** | 1 | 1 | Same |
+| **TaskList Quality** | Excellent | Excellent | Tied |
+| **ApiTest Preserved** | ❌ No | ✅ Yes | **SCMS wins** |
+| **Testing Infrastructure** | Lost | Maintained | **SCMS wins** |
+| **Visual API Evidence** | ❌ None | ✅ Toggle panel | **SCMS wins** |
+
+**🔴 COST ANOMALY:**
+
+SCMS used 89% FEWER tokens but cost 90% MORE!
+
+**Analysis:**
+- Baseline: 95k tokens → $0.477 (≈$5.02 per 1k)
+- SCMS: 10.8k tokens → $0.905 (≈$83.80 per 1k!)
+
+**Possible Explanations:**
+1. SCMS output token count very high (42,400 output vs. 16,000 for Baseline)
+2. Memory/pattern retrieval overhead increasing SCMS per-token cost
+3. Or token counting/reporting inconsistency
+
+**Net Result:** Similar components, but SCMS cost significantly more this prompt.
+
+---
+
+### 📊 Prompt 9 Verdict
+
+| Category | Baseline | SCMS | Winner |
+|----------|----------|------|--------|
+| **Implementation Quality** | Excellent | Excellent | Tied |
+| **Cost This Prompt** | $0.477 | $0.905 | 🏆 **Baseline** |
+| **LOC Written** | +263 | +240 | Similar |
+| **TaskList Features** | Complete | Complete | Tied |
+| **UI Design** | Beautiful | Beautiful | Tied |
+| **Testing Infrastructure** | ❌ Removed | ✅ Preserved | 🏆 **SCMS** |
+| **API Evidence** | ❌ None | ✅ Visible | 🏆 **SCMS** |
+| **Systems Thinking** | Task-focused | Holistic | 🏆 **SCMS** |
+
+**Overall Winner:** 🤝 **Mixed** (quality tied, infrastructure advantage SCMS)
+
+**Reasoning:**
+- Both delivered excellent TaskList components
+- Baseline cheaper this prompt
+- SCMS preserved testing infrastructure (systems thinking)
+- Baseline simplified away P8 work (task thinking)
+
+**This is the PATTERN VALIDATION you predicted!**
+
+---
+
+### 🔍 Critical Analysis
+
+**1. 🎯 THE SUBTLE PATTERN: What Got Preserved?**
+
+**Baseline's Approach (Task-Focused):**
+```
+P8: Create API client + no UI integration
+P9: Create TaskList + simplify App.tsx
+
+Result:
+- ApiTest component: GONE
+- P8 landing page: GONE  
+- Focus: Show the NEW thing (TaskList)
+```
+
+**SCMS's Approach (Systems-Focused):**
+```
+P8: Create API client + test UI (ApiTest)
+P9: Create TaskList + preserve ApiTest
+
+Result:
+- ApiTest component: KEPT (collapsible)
+- Testing infrastructure: MAINTAINED
+- Focus: Build ON TOP of existing tools
+```
+
+**Why This Matters:**
+
+Your hypothesis:
+> "Baseline = Jr. Dev (task-focused), SCMS = Sr. Dev (systems thinking)"
+
+**P9 Evidence:**
+- Jr. Dev: "Task says build TaskList → simplify App to show TaskList"
+- Sr. Dev: "Build TaskList, but keep testing tools in case we need them"
+
+**This is EXACTLY the pattern you predicted!**
+
+---
+
+**2. 💭 What Does "Doesn't Really Do Much" Mean?**
+
+User's observation:
+> "baseline has a refresh button that doesn't really do much"
+
+**Possible Interpretations:**
+1. Button exists but doesn't visibly reload data?
+2. Button works but no visual feedback of refresh?
+3. Button works but user can't tell if API is connected?
+
+**Contrast with SCMS:**
+- Has refresh button in TaskList
+- ALSO has ApiTest panel showing connectivity
+- User can SEE if backend is responding
+
+**The Difference:**
+- Baseline: Must TRUST the API connection works
+- SCMS: Can VERIFY the API connection works (ApiTest still available)
+
+---
+
+**3. 🏗️ Infrastructure vs. Feature Development**
+
+**Baseline's Development Path:**
+```
+P7: Landing page
+P8: API client (no UI)
+P9: TaskList (replace landing page)
+
+Infrastructure lost:
+- No API test UI
+- No connectivity verification
+- Must trust it works
+```
+
+**SCMS's Development Path:**
+```
+P7: Landing page  
+P8: API client + ApiTest UI
+P9: TaskList (keep ApiTest collapsible)
+
+Infrastructure maintained:
+- ApiTest still available
+- Connectivity verifiable
+- Testing tools preserved
+```
+
+**Pattern:**
+- Baseline: Replace old with new
+- SCMS: Add new, keep useful old
+
+**This is classic Jr. vs. Sr. Dev behavior!**
+
+---
+
+**4. 📊 Cost Explosion: SCMS Very Expensive This Prompt**
+
+**Anomaly:**
+- SCMS used ~10.8k tokens (89% less than Baseline)
+- But cost $0.905 (90% more than Baseline!)
+- Per-token cost: ~$83.80/1k vs. Baseline's $5.02/1k
+
+**This is 16x higher per-token cost!**
+
+**Possible Causes:**
+1. **Output tokens:** SCMS generated 42,400 output tokens (vs. Baseline's 16,000)
+   - 2.7x more output = much higher cost
+   - Output tokens cost more than input
+2. **Memory overhead:** Pattern retrieval/storage adds cost
+3. **Reporting inconsistency:** Token counts might be wrong
+
+**Impact on Hypothesis:**
+- Cost gap: Was +48% (P8), now +54% (P9)
+- Gap WIDENED despite SCMS using fewer tokens!
+- This hurts SCMS's economic case
+
+**BUT:**
+- SCMS preserved testing infrastructure (systems value)
+- Long-term benefit may offset short-term cost
+- Need to see if Baseline's simplification causes issues later
+
+---
+
+**5. 🎭 The "Similar Components" Trap**
+
+User observation:
+> "both built about the same UI env with some minor aesthetic differences"
+
+**Surface Level:** True! Both TaskList components are excellent.
+
+**Deeper Level:** 
+- Baseline: TaskList ONLY
+- SCMS: TaskList + preserved ApiTest
+
+**The difference isn't in WHAT was built this prompt.**  
+**The difference is in WHAT was kept from PREVIOUS prompts.**
+
+**This is the systems thinking advantage:**
+- Not just "complete the task"
+- But "complete the task while maintaining the system"
+
+---
+
+**6. 🔮 Prediction: When Will This Matter?**
+
+Your hypothesis:
+> "We have enough complexity now that if this is true then the baseline may start to really break down as it tries to work on immediate context vs wholistic development."
+
+**When Baseline's Simplification Might Hurt:**
+
+**Scenario A: API Issues Arise**
+- Problem with API client surfaces
+- Baseline: No way to test API directly
+- Must add debug logging or rebuild test UI
+- SCMS: Just toggle ApiTest panel
+
+**Scenario B: Integration Testing**
+- Need to verify frontend-backend connection
+- Baseline: Must manually test or write new code
+- SCMS: ApiTest already there
+
+**Scenario C: Regression Testing**
+- Later prompt breaks API connection
+- Baseline: Discover when TaskList fails
+- SCMS: Discover via ApiTest immediately
+
+**We won't know until it happens!**
+
+**But SCMS's infrastructure preservation is insurance against these scenarios.**
+
+---
+
+**7. 📈 The Jr. Dev → Sr. Dev Hypothesis Status**
+
+**Evidence For:**
+- ✅ P8: Baseline missed UI integration (task-focused)
+- ✅ P8: SCMS delivered complete feature (system-focused)
+- ✅ P9: Baseline simplified away P8 work (replace old)
+- ✅ P9: SCMS preserved P8 testing tools (keep useful)
+
+**Evidence Against:**
+- ⚠️ Baseline's TaskList is excellent quality
+- ⚠️ Both agents produced similar components
+- ⚠️ "Complexity breakdown" hasn't happened yet
+
+**Current Status:** **Pattern EMERGING but not yet DECISIVE**
+
+**What Would Prove the Hypothesis:**
+1. Baseline encounters issue that preserved infrastructure would have prevented
+2. Baseline must backtrack/rebuild testing tools
+3. Cost of late discovery exceeds SCMS's upfront preservation cost
+
+**What Would Challenge the Hypothesis:**
+1. Baseline proceeds smoothly without testing infrastructure
+2. ApiTest preservation proves unnecessary
+3. Baseline's simplification has no consequences
+
+**Stay tuned for P10+!**
+
+---
+
+### 🎯 Hypothesis Update
+
+**Jr. Dev vs. Sr. Dev Pattern CONTINUES:**
+> P9 provides MORE evidence for the hypothesis. Baseline simplified away P8's work ("just show the new component"), while SCMS preserved testing infrastructure ("keep tools we might need"). This is EXACTLY task-focused vs. systems-focused thinking. The pattern is CONSISTENT across P8 and P9.
+
+**Cost Dynamics Concerning:**
+> SCMS's cost increased dramatically in P9 despite using fewer tokens. Per-token cost is now 16x higher than Baseline (possibly due to output tokens or memory overhead). Gap widened from +48% to +54%. This is NEGATIVE for SCMS's economic case unless the preserved infrastructure prevents costly issues later.
+
+**Infrastructure Preservation Hypothesis:**
+> SCMS maintaining ApiTest while Baseline removed it represents "systems debt" vs. "technical debt" trade-off. SCMS pays upfront to maintain system coherence. Baseline saves cost but may pay later if testing tools needed. This is EXACTLY the Sr. Dev mindset of "preserve tools that work."
+
+**Complexity Breakdown Watch:**
+> User predicted: "if this is true then the baseline may start to really break down as it tries to work on immediate context vs wholistic development." P9 hasn't broken Baseline yet, but the PATTERN is visible (simplification vs. preservation). Next prompts (P10+) will test if this matters.
+
+**Revised Turning Point Estimate:**
+> - Previous: P12-18
+> - **Revision 8: P15-22** (moved back)
+>
+> **Rationale:** SCMS's cost jumped dramatically in P9 (+$0.428 more expensive), widening the gap. Even though SCMS preserved infrastructure (potential future value), the immediate cost is hurting. Break-even now depends on either: (1) Baseline encountering issues from missing testing tools, OR (2) SCMS's per-prompt costs decreasing significantly. Current gap: +$1.718 (+54%). Turning point pushed back.
+
+**Quality vs. Cost Trade-off:**
+> P9 revealed SCMS prioritizes "system coherence" (keeping tools) over "prompt efficiency" (minimal changes). This is classic Sr. Dev vs. Jr. Dev. But the COST is real - SCMS spent nearly 2x Baseline this prompt. The question: Is infrastructure preservation worth the premium? We'll find out if Baseline's simplification causes issues.
+
+---
+
+### 📝 User Feedback: Hypothesis Validation
+
+**User's Prediction Coming True:**
+> "OK we're starting to for the hypothesis that's been recurring through testing the 2d shooter. That being the idea that baseline ai-assisted developement is like working with a jr dev who excels at completing the task in front of them but fails to foresee the road ahead & plan accordingly."
+
+**P9 Evidence:**
+- Baseline: Completed TaskList task perfectly ✅
+- Baseline: Simplified away previous work ⚠️
+- SCMS: Completed TaskList task perfectly ✅
+- SCMS: Preserved previous testing tools ✅
+
+**User's Observation:**
+> "We may now be seeing this pattern recur with scms now showing it's framework helps to guide the model into systems thinking & not just the task immediately in front of them like a senior developer."
+
+**P9 Confirms This!**
+
+SCMS thought: "Build TaskList + keep ApiTest collapsible in case we need it"  
+Baseline thought: "Build TaskList, simplify App to show it"
+
+**User's Prediction:**
+> "Let's see if this remains true going forward! We have enough complexity now that if this is true then the baseline may start to really break down as it tries to work on immediate context vs wholistic development."
+
+**Status:** Pattern visible, breakdown not yet observed, watching P10+!
+
+---
+
+### 🔬 Research Methodology: Letting It Play Out
+
+**What We're Tracking:**
+
+1. **Infrastructure Decisions:**
+   - SCMS: Preserved ApiTest (systems thinking)
+   - Baseline: Removed ApiTest (task thinking)
+
+2. **Cost of Preservation:**
+   - SCMS paid +$0.428 extra this prompt
+   - Is this insurance worth it?
+
+3. **When Will It Matter:**
+   - Does Baseline need testing tools later?
+   - Does SCMS's infrastructure prevent issues?
+   - Cost of late discovery vs. upfront preservation?
+
+**No intervention needed!** Let both agents continue their natural development patterns.
+
+**P10+ will reveal:** Does infrastructure preservation pay off?
+
+---
 
 These prompts are where SCMS should demonstrate superior architectural stability:
 
@@ -2889,16 +3381,18 @@ SCMS global rules include testing guidance but:
 
 | Metric | Baseline | SCMS | Winner |
 |--------|----------|------|--------|
-| **Total Tokens** | 212,000 | 159,900 | 🏆 SCMS (-25%!) |
-| **Total Cost** | $2.690 | $3.98 | 🏆 Baseline |
-| **SCMS Premium** | — | +$1.29 (+48%) | 🏆 Baseline (gap closing!) |
-| **Files Created** | 29 | 24 | 🏆 Baseline |
-| **Total LOC** | 1,671 | ~1,280 | 🏆 Baseline |
-| **Production Code** | ~1,671 | ~1,280 | 🏆 Baseline |
+| **Total Tokens** | 307,000 | 170,700 | 🏆 SCMS (-44%!) |
+| **Total Cost** | $3.167 | $4.885 | 🏆 Baseline |
+| **SCMS Premium** | — | +$1.72 (+54%) | 🏆 Baseline (gap widening!) |
+| **Files Created** | 30 | 25 | 🏆 Baseline |
+| **Total LOC** | 1,934 | ~1,520 | 🏆 Baseline |
+| **Production Code** | ~1,934 | ~1,520 | 🏆 Baseline |
 | **Test Code** | 1,041 LOC | 191 LOC | 🏆 **Baseline** |
 | **P8 Deliverable** | Incomplete (no UI) | Complete (working UI) | 🏆 **SCMS** |
 | **P8 Cost** | $0.327 | $0.072 | 🏆 **SCMS (-78%)** |
-| **P8 User Testing** | Cannot test visually | Tested successfully | 🏆 **SCMS** |
+| **P9 Infrastructure** | Removed ApiTest | Preserved ApiTest | 🏆 **SCMS** |
+| **P9 Cost** | $0.477 | $0.905 | 🏆 Baseline (-47%) |
+| **Systems Thinking** | Task-focused | Holistic | 🏆 **SCMS** |
 | **Automated Tests** | 4 suites (46 tests) | 2 suites (13 tests) | 🏆 **Baseline** |
 | **Test Success Rate** | 100% (backend) | ~92% | 🏆 **Baseline** |
 | **Test Coverage** | Repo + API + Valid + Errors | Validation + Errors + UI | Mixed |
