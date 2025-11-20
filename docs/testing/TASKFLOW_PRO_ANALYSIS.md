@@ -71,7 +71,8 @@
 | Prompt 3   | 51,000          | $0.220        | 89,900      | $0.481    | +38,900 | +76% |
 | Prompt 4   | 66,000          | $0.286        | 110,400     | $0.586    | +44,400 | +67% |
 | Prompt 5   | 92,000          | $0.398        | 121,200     | $0.642    | +29,200 | +32% |
-| **Cumulative** | **273,422** | **$1.190**    | **457,600** | **$2.425** | **+184,178** | **+67%** |
+| Prompt 6   | 120,000         | $0.534        | 133,600     | $0.709    | +13,600 | +11% |
+| **Cumulative** | **393,422** | **$1.712**    | **591,200** | **$3.134** | **+197,778** | **+50%** |
 | Prompt 10  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 20  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 30  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
@@ -1361,6 +1362,388 @@ Success Rate: 100.0%
 
 ---
 
+## 📋 Prompt 6: Error Handling Middleware
+
+**Requirement:** Create centralized error handling system with logging and environment-aware responses
+
+### 🎯 Implementation Comparison
+
+#### **Baseline Implementation**
+
+**Token Usage:** 120,000 (~28k this prompt)  
+**Cost:** $0.534 (+$0.136)  
+**Files Created:** 2  
+**Files Modified:** 3  
+**LOC This Prompt:** +442  
+**Total Project LOC:** 1,947  
+
+**⚠️ CRITICAL NOTE: Includes P5 Bug Fixes!**
+Baseline started P6 with **carryover bugs from P5** that weren't caught:
+1. **TypeScript module scope errors** (both test files)
+2. **Validation bug:** `completed` field accepting invalid values
+3. **Test expectation errors** in test scripts
+
+**Work Breakdown:**
+1. ✅ **Fixed P5 TypeScript errors** (~3k tokens)
+   - Added `export {}` to both test files
+   - Resolved "Cannot redeclare block-scoped variable" errors
+2. ✅ **Fixed P5 validation bug** (~5k tokens)
+   - `completed` field was accepting strings, negative numbers, values > 1
+   - Rewrote validation with custom validator
+   - Re-ran tests: 20/20 passed ✅
+3. ✅ **Fixed P5 test expectations** (~2k tokens)
+   - Updated test-api.ts response format expectations
+4. ✅ **Created error handler middleware** (~18k tokens)
+   - `backend/src/middleware/errorHandler.ts` (130 LOC)
+   - `backend/src/test-errors.ts` (227 LOC)
+
+**Created Files:**
+- `backend/src/middleware/errorHandler.ts` (130 LOC)
+- `backend/src/test-errors.ts` (227 LOC)
+
+**Error Handler Implementation:**
+1. ✅ `AppError` class - Custom operational errors
+2. ✅ `errorHandler` - Global error middleware
+3. ✅ `notFoundHandler` - 404 route handler
+4. ✅ `asyncHandler` - Promise wrapper utility
+5. ✅ `logError` - Formatted console logging
+6. ✅ Environment-aware stack traces (dev only)
+7. ✅ Consistent JSON error format
+8. ✅ Timestamp-based logging
+
+**Test Suite: 7 scenarios**
+- ✅ 404 - Invalid route
+- ✅ 400 - Invalid task ID
+- ✅ 404 - Task not found
+- ✅ 400 - Missing required field
+- ✅ 400 - Title too short
+- ✅ Error response structure validation
+- ✅ Timestamp format validation
+
+**Test Results:** 7/7 passed (100%) 🎉
+
+**Code Quality:**
+- ✅ Comprehensive error handling system
+- ✅ Custom error classes
+- ✅ Environment-aware responses
+- ✅ Professional logging format
+- ✅ All P5 bugs fixed before continuing
+
+---
+
+#### **SCMS Implementation**
+
+**Token Usage:** 133,600 (~12.4k this prompt)  
+**Cost:** $0.709 (+$0.067)  
+**Files Created:** 2  
+**Files Modified:** 2  
+**LOC This Prompt:** +115  
+**Total Project LOC:** ~930  
+
+**✅ Clean Start: No Carryover Bugs**
+SCMS didn't have validation bugs from P5 to fix.
+
+**Created Files:**
+- `backend/src/middleware/errorHandler.ts` (116 LOC)
+- `test-errors.ps1` (91 LOC)
+
+**Error Handler Implementation:**
+1. ✅ `AppError` class - Custom error with status codes
+2. ✅ `errorHandler` - Global error middleware
+3. ✅ `notFoundHandler` - 404 route handler
+4. ✅ `asyncHandler` - Promise rejection wrapper
+5. ✅ `logError` - Timestamp-based logger
+6. ✅ Environment-aware stack traces (dev only)
+7. ✅ Consistent JSON error format
+8. ✅ Formatted console logs with separators
+
+**Test Suite: 6 scenarios (PowerShell)**
+- ❌ 404 - Invalid route (**FAILED: Invalid JSON**)
+- ✅ 404 - Non-existent task
+- ✅ 400 - Validation error
+- ✅ 400 - Invalid ID format
+- ✅ 200 - Successful request
+- ✅ 200 - Health endpoint
+
+**Test Results:** 5/6 passed (83%)
+
+**Issue Found:**
+```
+ConvertFrom-Json : Invalid JSON primitive: Error.
+```
+Route `/api/invalid-route` returning non-JSON response (likely HTML or plain text "Error").
+
+**Code Quality:**
+- ✅ Professional error handling
+- ✅ Clean implementation
+- ✅ Good logging format
+- ❌ One test scenario failing
+- ⚠️ Less comprehensive than Baseline (6 vs. 7 tests)
+
+---
+
+### 💰 Prompt 6 Economics
+
+| Metric | Baseline | SCMS | Delta |
+|--------|----------|------|-------|
+| **Tokens This Prompt** | ~28,000 | ~12,400 | SCMS -15,600 (-56%) |
+| **Cost This Prompt** | $0.136 | $0.067 | **SCMS -$0.069 (-51%)** |
+| **Cumulative Tokens** | ~393,000 | ~591,200 | +198,200 (+50%) |
+| **Cumulative Cost** | $1.712 | ~$3.134 | +$1.422 (+83%) |
+| **LOC This Prompt** | +442 | +115 | Baseline +327 more |
+| **Total Project LOC** | 1,947 | 930 | Baseline +1,017 more |
+| **Tests Created** | 7 | 6 | Baseline +1 |
+| **Test Success Rate** | 100% | 83% | Baseline +17% |
+
+**🔴 CRITICAL COST ANALYSIS:**
+
+Baseline's high cost this prompt includes **~10k tokens fixing P5 bugs**!
+
+**Fair Comparison (P6 work only):**
+- Baseline P6 actual work: ~18k tokens ($0.078)
+- SCMS P6 work: ~12.4k tokens ($0.067)
+- **SCMS was cheaper for P6 implementation itself!**
+
+**But:**
+- Baseline caught and fixed bugs immediately (automated tests)
+- SCMS may have latent bugs undiscovered
+- Baseline's testing discipline paid off in bug detection
+
+---
+
+### 🐛 Bugs & Fixes
+
+#### **Baseline Carryover Bugs (from P5)**
+
+**Bug 1: TypeScript Module Scope Errors**
+**Issue:** Both test files declared same constants  
+**Symptom:** "Cannot redeclare block-scoped variable"  
+**Root Cause:** TypeScript treating both as global scripts  
+**Fix:** Added `export {}` to make them proper ES modules  
+**Cost:** ~1,000 tokens  
+**When Found:** Start of P6 (user didn't notice in P5)  
+
+**Bug 2: Validation Logic Error**
+**Issue:** `completed` field accepting invalid values  
+**Symptom:** Test failures - strings, negative numbers, values > 1 accepted  
+**Root Cause:** Simple `isInt()` check insufficient  
+**Fix:** Custom validator with type checking and range validation  
+**Cost:** ~4,000 tokens  
+**Impact:** 3/20 validation tests were failing (85% → 100%)  
+**When Found:** During P6 test run  
+
+**Bug 3: Test Expectation Errors**
+**Issue:** test-api.ts expecting wrong response formats  
+**Symptom:** False failures in test output  
+**Fix:** Updated test assertions  
+**Cost:** ~1,000 tokens  
+
+**Total P5 Bug Fix Cost:** ~10k tokens ($0.043)
+
+#### **SCMS Issues (P6)**
+
+**Issue 1: Test Scenario Failure**
+**Issue:** Invalid route test returning non-JSON  
+**Symptom:** `ConvertFrom-Json : Invalid JSON primitive: Error`  
+**Root Cause:** Route matching issue, Express default handler interfering  
+**Status:** 🟡 Identified but not fixed  
+**Impact:** 1/6 tests failing (83% success rate)  
+
+**Issue 2: Port Collision (Environmental)**
+**Issue:** `EADDRINUSE: address already in use :::3001`  
+**Symptom:** Server won't start  
+**Root Cause:** Previous server process still running  
+**Status:** ⚠️ User action required (kill process)  
+**Impact:** Disrupts testing workflow  
+
+---
+
+### 📊 Prompt 6 Verdict
+
+| Category | Baseline | SCMS | Winner |
+|----------|----------|------|--------|
+| **Implementation Quality** | Excellent | Excellent | 🤝 Tie |
+| **Pure P6 Cost** | ~$0.078 | $0.067 | 🏆 SCMS |
+| **Total Cost (w/ fixes)** | $0.136 | $0.067 | 🏆 SCMS |
+| **Test Coverage** | 7 scenarios | 6 scenarios | 🏆 Baseline |
+| **Test Success Rate** | 100% | 83% | 🏆 Baseline |
+| **Bugs from Previous** | 3 bugs | 0 bugs | 🏆 SCMS |
+| **Bug Detection** | Immediate (tests) | Deferred/missed | 🏆 Baseline |
+| **LOC Written** | +442 | +115 | 🏆 Baseline |
+| **Documentation** | Excellent | Excellent | 🤝 Tie |
+
+**Overall Winner:** 🤝 **TIE** (depends on perspective)
+- **SCMS cheaper** if you count total cost
+- **Baseline better quality** if you count testing rigor
+
+---
+
+### 🔍 Critical Analysis
+
+**1. The Hidden Cost of Bugs 🐛**
+
+Baseline's P6 cost breakdown:
+- Bug fixes from P5: ~10k tokens ($0.043)
+- P6 implementation: ~18k tokens ($0.078)
+- **Total: $0.136**
+
+This reveals:
+- ✅ **Automated tests caught bugs immediately**
+- ✅ **Bugs fixed before user noticed**
+- ❌ **But fixing bugs costs tokens!**
+- 🤔 **Prevention vs. detection tradeoff**
+
+**SCMS perspective:**
+- May not have these bugs (different implementation)
+- OR may have latent bugs not yet discovered
+- No automated test suite to catch them
+- Could hit bugs later when more expensive to fix
+
+**2. Cost Reversal Continues! 💰**
+
+**Second prompt in a row where SCMS is cheaper:**
+- P5: SCMS $0.141 vs. Baseline $0.208
+- P6: SCMS $0.067 vs. Baseline $0.136
+- **Total P5+P6: SCMS $0.208 vs. Baseline $0.344**
+
+**Why?**
+- Baseline writing MORE test code (227 vs. 91 LOC)
+- Baseline fixing bugs immediately
+- SCMS simpler implementations
+- SCMS fewer test scenarios
+
+**But cumulative still favors Baseline:**
+- Baseline: $1.71 total
+- SCMS: $3.13 total
+- Gap: +$1.42 (+83%)
+
+**3. Testing Discipline Gap Narrows 🧪**
+
+| Prompt | Baseline Tests | SCMS Tests | Gap |
+|--------|----------------|------------|-----|
+| P3 | ✅ 8 tests | ❌ None | Large |
+| P4 | ✅ 11 tests | ❌ None | Large |
+| P5 | ✅ 20 tests | ✅ 7 tests | Medium |
+| P6 | ✅ 7 tests | ✅ 6 tests | **Small!** |
+
+**SCMS is catching up in testing consistency!**
+
+**4. Test Quality vs. Quantity 🎯**
+
+**Baseline:**
+- More scenarios (7 vs. 6)
+- TypeScript (automated, integrated)
+- 100% passing
+- Caught validation bugs from P5
+
+**SCMS:**
+- Fewer scenarios (6 vs. 7)
+- PowerShell (manual, platform-specific)
+- 83% passing (1 test failing)
+- No automated validation of previous work
+
+**5. The Bug Detection Paradox 🔄**
+
+> **Baseline's automated tests = More bugs found = Higher token cost**
+
+This creates a perverse incentive:
+- Finding bugs costs tokens to fix
+- Not finding bugs = appears cheaper short-term
+- But tech debt accumulates
+
+**Question:** Is Baseline "better" for finding bugs, or "worse" for having them?
+
+**Answer:** 
+- Baseline's bugs were **detectable** (good testing)
+- SCMS's status is **unknown** (no comprehensive testing)
+- Prevention beats detection, but detection beats ignorance
+
+**6. User Validation Difficulty 🔍**
+
+**User Feedback (repeated this prompt):**
+> "The lack of visual validation is really annoying & command line testing is annoying... It's definitely making the testing process a bit more cloudy because it's harder for me to validate but you're able to parse through the noise at least."
+
+**Impact:**
+- Backend APIs = Hard to validate visually
+- Command-line testing = Technical barrier
+- User can't easily spot bugs
+- Relying on agent's test output
+- **Both agents benefit from this opacity**
+
+**Implication:**
+- Bugs may go unnoticed by user
+- Test suite quality becomes critical
+- Baseline's rigorous testing = safety net
+- SCMS's lighter testing = risk
+
+**7. Implementation Quality: Near-Identical ✅**
+
+Both agents produced:
+- ✅ Same error handler architecture
+- ✅ Same middleware pattern
+- ✅ Same custom error classes
+- ✅ Environment-aware stack traces
+- ✅ Consistent JSON format
+- ✅ Timestamp-based logging
+
+**Difference:** Test coverage and success rate only.
+
+---
+
+### 🎯 Hypothesis Update
+
+**Testing Consistency Improving:**
+> SCMS created tests for 2nd prompt in a row (P5, P6). Testing gap narrowing from "large" to "small". Both agents now have testing as default behavior, though Baseline remains more comprehensive.
+
+**Cost Dynamics Shifting:**
+> SCMS cheaper for 2nd consecutive prompt. Cost advantage compounds: P5+P6 combined, SCMS saved $0.136. If this trend continues, cumulative gap will close. Baseline's testing rigor costs more tokens but provides quality insurance.
+
+**Quality vs. Speed Tradeoff:**
+> Baseline: Slower, more expensive, comprehensive, bug-free  
+> SCMS: Faster, cheaper, lighter, unknown bug status  
+> Neither approach is objectively superior - depends on project phase and risk tolerance.
+
+**Bug Detection Economics:**
+> Finding bugs immediately costs tokens. Baseline paid $0.043 to fix P5 bugs in P6. SCMS may pay later (deferred cost) or may not have bugs (luck). Automated testing = insurance premium.
+
+**Revised Turning Point Estimate:**
+> - Original: P14-20
+> - Revision 4: P14-20 (schema changes)
+> - **Revision 5: P10-15** (cost trends + pattern reuse)
+>
+> **Rationale:** If SCMS maintains per-prompt cost advantage ($0.15 cheaper on average for P5-P6), cumulative gap closes faster. Combined with pattern promotion incoming (edit tool at 4/5), turning point may arrive sooner than expected.
+
+**Break-Even Analysis:**
+> - Current gap: +$1.42 (+83%)
+> - Required savings: ~$11 by P50
+> - SCMS P5-P6 savings: $0.14
+> - If trend continues: Gap closes ~P25-30
+> - Pattern reuse could accelerate further
+>
+> **But:** Quality risk increases if testing remains lighter.
+
+---
+
+### 📝 User Feedback Evolution
+
+**Prompt 6 (continued frustration):**
+> "The lack of visual validation is really annoying & command line testing is annoying but we're getting there. It's definitely making the testing process a bit more cloudy because it's harder for me to validate but you're able to parse through the noise at least."
+
+**Key Observations:**
+1. **"We're getting there"** - Progress despite difficulty
+2. **"More cloudy"** - Harder to assess quality
+3. **"Parse through the noise"** - Trusting agent analysis
+4. **"Annoying"** - Workflow friction
+
+**Implication for Test Design:**
+- Backend APIs create validation barriers
+- User can't easily verify correctness
+- Technical complexity obscures bugs
+- Future tests should use visual domains (games)
+- Makes rigorous automated testing MORE important
+
+---
+
 ## 🎯 Critical Architectural Stress Points
 
 These prompts are where SCMS should demonstrate superior architectural stability:
@@ -1587,16 +1970,18 @@ SCMS global rules include testing guidance but:
 
 | Metric | Baseline | SCMS | Winner |
 |--------|----------|------|--------|
-| **Total Tokens** | 273,422 | 457,600 | 🏆 Baseline |
-| **Total Cost** | $1.190 | $2.425 | 🏆 Baseline |
-| **SCMS Premium** | — | +$1.235 (+104%) | 🏆 **Baseline dominates** |
-| **Files Created** | 20 | 16 | 🏆 Baseline |
-| **Total LOC** | 1,505 | ~815 | 🏆 Baseline |
-| **Production Code** | ~989 | ~715 | 🏆 Baseline |
-| **Test Code** | 516 LOC | 100 LOC | 🏆 **Baseline** |
-| **Bugs Introduced** | 1 (P5 validation) | 2 (P4 critical, P5 encoding) | 🏆 **Baseline** |
-| **Automated Tests** | 3 suites (39 tests) | 1 suite (7 tests) | 🏆 **Baseline** |
-| **Test Coverage** | Repo + API + Validation | Validation only | 🏆 **Baseline** |
+| **Total Tokens** | 393,422 | 591,200 | 🏆 Baseline |
+| **Total Cost** | $1.712 | $3.134 | 🏆 Baseline |
+| **SCMS Premium** | — | +$1.422 (+83%) | 🏆 **Baseline dominates** |
+| **Files Created** | 22 | 18 | 🏆 Baseline |
+| **Total LOC** | 1,947 | ~930 | 🏆 Baseline |
+| **Production Code** | ~1,077 | ~739 | 🏆 Baseline |
+| **Test Code** | 870 LOC | 191 LOC | 🏆 **Baseline** |
+| **Bugs from P5** | 3 (fixed in P6) | 0 | 🏆 SCMS |
+| **P6 Test Failures** | 0 | 1 | 🏆 Baseline |
+| **Automated Tests** | 4 suites (46 tests) | 2 suites (13 tests) | 🏆 **Baseline** |
+| **Test Success Rate** | 100% | ~92% | 🏆 **Baseline** |
+| **Test Coverage** | Repo + API + Valid + Errors | Validation + Errors | 🏆 **Baseline** |
 | **Patterns Tracked** | 0 | 16+ | 🏆 SCMS |
 | **L2 Failures Logged** | 0 | 1 | 🏆 SCMS |
 | **Validation Requests** | 1 (P4) | 5+ | 🏆 SCMS |
