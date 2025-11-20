@@ -70,7 +70,8 @@
 | Prompt 2   | 37,800          | $0.160        | 84,500      | $0.452    | +46,700 | +124% |
 | Prompt 3   | 51,000          | $0.220        | 89,900      | $0.481    | +38,900 | +76% |
 | Prompt 4   | 66,000          | $0.286        | 110,400     | $0.586    | +44,400 | +67% |
-| **Cumulative** | **181,422** | **$0.770**    | **336,400** | **$1.783** | **+154,978** | **+85%** |
+| Prompt 5   | 92,000          | $0.398        | 121,200     | $0.642    | +29,200 | +32% |
+| **Cumulative** | **273,422** | **$1.190**    | **457,600** | **$2.425** | **+184,178** | **+67%** |
 | Prompt 10  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 20  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 30  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
@@ -1090,6 +1091,276 @@ Unit Tests (0)     ← Missing!
 
 ---
 
+## 📋 Prompt 5: Validation Middleware
+
+**Requirement:** Add express-validator middleware with comprehensive input validation
+
+### 🎯 Implementation Comparison
+
+#### **Baseline Implementation**
+
+**Token Usage:** 92,000 (~11k this prompt)  
+**Cost:** $0.398 (+$0.208)  
+**Files Created:** 2  
+**Files Modified:** 3  
+**LOC This Prompt:** +305  
+**Total Project LOC:** 1,505  
+
+**Created Files:**
+- `backend/src/middleware/validation.ts` (96 LOC)
+- `backend/src/test-validation.ts` (248 LOC)
+
+**Implementation Details:**
+1. ✅ Installed `express-validator`
+2. ✅ Created comprehensive middleware module:
+   - `validateTaskCreate` - POST validation
+   - `validateTaskUpdate` - PUT validation
+   - `validateTaskId` - Parameter validation
+   - `handleValidationErrors` - Error handler
+3. ✅ Refactored routes: **-40 lines** (removed manual validation)
+4. ✅ Created **20 automated edge case tests** in TypeScript:
+   - Empty title
+   - Missing title
+   - Title too short/long
+   - Whitespace handling
+   - Description validation
+   - Completed field validation
+   - ID parameter validation
+5. ✅ **Ran tests: 19/20 passed** (95%)
+6. ✅ **Fixed bug:** Null description handling
+7. ✅ **Re-ran tests: 20/20 passed** (100%)
+8. ✅ Updated documentation
+
+**Test Output:**
+```
+=== Test Summary ===
+Total: 20
+Passed: 20
+Failed: 0
+Success Rate: 100.0%
+🎉 All validation tests passed!
+```
+
+**Code Quality:**
+- ✅ Enterprise-grade validation middleware
+- ✅ DRY principle applied (removed duplication)
+- ✅ Comprehensive test coverage (20 edge cases)
+- ✅ Fixed bug immediately upon discovery
+- ✅ Clean separation of concerns
+
+---
+
+#### **SCMS Implementation**
+
+**Token Usage:** 121,200 (~14k this prompt)  
+**Cost:** $0.642 (+$0.141)  
+**Files Created:** 2  
+**Files Modified:** 2  
+**LOC This Prompt:** +100  
+**Total Project LOC:** ~815  
+
+**Created Files:**
+- `backend/src/middleware/validation.ts` (94 LOC)
+- `test-validation.ps1` (122 LOC → 100 LOC after fix)
+
+**Implementation Details:**
+1. ✅ Installed `express-validator`
+2. ✅ Created validation middleware:
+   - `validateCreateTask` - POST validation
+   - `validateUpdateTask` - PUT validation
+   - `validateTaskId` - ID validation
+   - `handleValidationErrors` - Error handler
+3. ✅ Refactored routes: **-60 lines** (removed manual validation)
+4. ✅ Created **7 validation test scenarios** in PowerShell
+5. ❌ **Hit PowerShell encoding bug:** Smart quotes vs. ASCII quotes
+6. ✅ **Fixed bug:** Recreated script with proper encoding
+7. ✅ **Ran tests: 7/7 passed** (100%)
+8. ✅ Updated documentation
+
+**Test Output:**
+```
+=== TaskFlow Pro Validation Tests ===
+[1] Testing title too short... ✓
+[2] Testing title too long... ✓
+[3] Testing missing title... ✓
+[4] Testing description too long... ✓
+[5] Testing invalid task ID... ✓
+[6] Testing invalid completed value... ✓
+[7] Testing valid task creation... ✓
+
+=== All validation tests completed! ===
+```
+
+**Code Quality:**
+- ✅ Professional validation middleware
+- ✅ DRY principle applied (removed duplication)
+- ✅ Platform-specific test scripts (PowerShell)
+- ⚠️ Less comprehensive testing (7 vs. 20 scenarios)
+- ✅ Fixed encoding bug quickly
+
+---
+
+### 💰 Prompt 5 Economics
+
+| Metric | Baseline | SCMS | Delta |
+|--------|----------|------|-------|
+| **Tokens This Prompt** | ~11,000 | ~14,000 | +3,000 (+27%) |
+| **Cost This Prompt** | $0.208 | $0.141 | -$0.067 (**SCMS cheaper!**) |
+| **Cumulative Tokens** | ~273,000 | ~457,600 | +184,600 (+68%) |
+| **Cumulative Cost** | $1.190 | ~$2.425 | +$1.235 (+104%) |
+| **LOC This Prompt** | +305 | +100 | Baseline +205 more |
+| **Total Project LOC** | 1,505 | 815 | Baseline +690 more |
+| **Tests Created** | 20 | 7 | Baseline +13 more |
+| **Test LOC** | 248 | 100 | Baseline +148 more |
+
+**Note:** SCMS was actually cheaper this prompt ($0.141 vs $0.208), but cumulative gap continues to widen.
+
+---
+
+### 🧪 Testing Behavior - CRITICAL OBSERVATION
+
+**🎲 BOTH AGENTS CREATED TESTS THIS PROMPT!**
+
+**This Confirms the Behavioral Inconsistency Theory:**
+
+| Prompt | Baseline Tests | SCMS Tests |
+|--------|----------------|------------|
+| P1 | ❌ None | ❌ None |
+| P2 | ❌ None | ❌ None |
+| P3 | ✅ 8 tests (Repository) | ❌ None |
+| P4 | ✅ 11 tests (API) | ❌ None |
+| P5 | ✅ 20 tests (Validation) | ✅ 7 tests (Validation) |
+
+**Key Findings:**
+1. **SCMS created tests this time!** (First time in this run)
+2. **Baseline continued TDD** (3 prompts in a row)
+3. **Testing behavior IS inconsistent** (as user predicted)
+4. **Both can create tests** (neither inherently incapable)
+
+**Why This Matters:**
+- Previous conclusion ("Baseline superior at TDD") was **premature**
+- Real issue: **Inconsistent behavior across sessions/prompts**
+- Both agents need **explicit testing enforcement**
+- Single-run results don't prove inherent superiority
+
+---
+
+### 🐛 Bugs & Fixes
+
+#### **Baseline Bug**
+**Issue:** Null description test failing  
+**Symptom:** Expected 201, got 400 with validation error  
+**Root Cause:** Middleware rejecting `null` as invalid string  
+**Fix:** Updated validation to allow optional null descriptions  
+**Cost:** Minimal (caught by automated tests immediately)  
+**Tokens:** ~1,000 to fix  
+
+**Resolution Time:** < 1 minute (automated tests caught it)
+
+#### **SCMS Bug**
+**Issue:** PowerShell script encoding error  
+**Symptom:** `The string is missing the terminator: "`  
+**Root Cause:** Smart quotes (curly quotes) vs. ASCII quotes in script  
+**Fix:** Recreated script with proper ASCII encoding  
+**Cost:** Medium (environmental/platform issue)  
+**Tokens:** ~2,000 to diagnose and fix  
+
+**Resolution Time:** ~2 minutes (required file recreation)
+
+---
+
+### 📊 Prompt 5 Verdict
+
+| Category | Baseline | SCMS | Winner |
+|----------|----------|------|--------|
+| **Implementation Quality** | Excellent | Excellent | 🤝 Tie |
+| **Test Coverage** | 20 scenarios | 7 scenarios | 🏆 Baseline |
+| **Test Type** | Automated (TypeScript) | Manual (PowerShell) | 🏆 Baseline |
+| **Bugs Hit** | 1 (validation logic) | 1 (encoding) | 🤝 Tie |
+| **Bug Severity** | Low | Low | 🤝 Tie |
+| **Fix Speed** | Instant (tests) | Fast (manual) | 🏆 Baseline |
+| **Cost This Prompt** | $0.208 | $0.141 | 🏆 SCMS |
+| **LOC Written** | +305 | +100 | 🏆 Baseline |
+| **Refactoring** | -40 lines | -60 lines | 🏆 SCMS |
+| **Documentation** | Excellent | Excellent | 🤝 Tie |
+
+**Overall Winner:** 🏆 **Baseline** (more comprehensive testing)
+
+---
+
+### 🔍 Critical Analysis
+
+**1. Both Agents Created Tests! 🎉**
+- **SCMS finally created tests** after 4 prompts without
+- **Baseline maintained testing discipline** (3rd prompt in a row)
+- **Confirms inconsistency theory** - it's not inherent design
+- **Validation middleware naturally triggers testing** (both agents)
+
+**2. Test Comprehensiveness Gap**
+- Baseline: 20 edge cases (title, description, completed, ID)
+- SCMS: 7 validation scenarios (fewer edge cases)
+- Baseline's tests are more rigorous and complete
+
+**3. Test Implementation**
+- Baseline: TypeScript (automated, integrated)
+- SCMS: PowerShell (manual, platform-specific)
+- Baseline's approach is more professional/portable
+
+**4. Cost Reversal!**
+- **SCMS cheaper this prompt:** $0.141 vs. $0.208
+- First time SCMS cheaper in single prompt
+- Reason: Baseline wrote 3x more test code (248 vs. 100 LOC)
+- Cumulative gap still favors Baseline (2x cheaper overall)
+
+**5. Bug Parity**
+- Both hit one bug each
+- Both fixed quickly
+- Neither bug was architectural/critical
+- Environmental/validation edge cases
+
+**6. Refactoring**
+- Both successfully removed manual validation
+- SCMS removed more lines (-60 vs. -40)
+- Both achieved cleaner, more maintainable code
+
+**7. Implementation Quality**
+- Near-identical middleware implementations
+- Both used express-validator correctly
+- Both provided good error messages
+- Professional-grade validation from both
+
+---
+
+### 🎯 Hypothesis Update
+
+**Testing Behavior Confirmed:**
+> Both agents are **inconsistent** with automated testing. SCMS created tests in Prompt 5 after skipping Prompts 1-4. This proves it's not a fundamental design difference but behavioral variability.
+
+**Cost Dynamics:**
+> SCMS can be cheaper on individual prompts (P5: $0.141 vs. $0.208) when implementation is simpler, but cumulative overhead (+$1.24, +104%) remains significant.
+
+**Critical Mass Not Yet Reached:**
+> SCMS patterns still at L0 (highest: edit tool 4/5). No L1 promotions yet. Pattern tracking overhead without pattern *reuse* benefits yet.
+
+**Revised Turning Point Estimate:**
+> - Original: Prompt 14-20
+> - Revision 1: Prompt 10-15  
+> - Revision 2: May never come (TDD gap)
+> - Revision 3: Prompt 14 (first schema migration)
+> - **Revision 4: Prompts 14-20** (schema changes require pattern reuse)
+>
+> **Rationale:** Both agents now creating tests (behavioral parity emerging). Real test is architectural changes where pattern reuse matters.
+
+**Break-Even Analysis:**
+> SCMS needs to prevent ~$12 in bugs/refactors by Prompt 50 to justify premium. No pattern reuse benefits yet, but P5 shows SCMS *can* match Baseline behavior when context triggers it.
+
+**User Feedback on Test Design:**
+> "This style of application is much more difficult to user validate especially in early stages. Assuming we do another test in the future we'll stick with game design it's much better for testing these workflows than all this non-visual backend validation with limited feedback."
+>
+> **Implication:** Backend API testing requires more technical validation (cURL, Postman, automated tests) compared to visual game development where user can directly observe behavior. Future comparative tests should use game development domain for easier validation and more natural user feedback cycles.
+
+---
+
 ## 🎯 Critical Architectural Stress Points
 
 These prompts are where SCMS should demonstrate superior architectural stability:
@@ -1316,19 +1587,19 @@ SCMS global rules include testing guidance but:
 
 | Metric | Baseline | SCMS | Winner |
 |--------|----------|------|--------|
-| **Total Tokens** | 181,422 | 336,400 | 🏆 Baseline |
-| **Total Cost** | $0.770 | $1.783 | 🏆 Baseline |
-| **SCMS Premium** | — | +$1.013 (+132%) | 🏆 **Baseline dominates** |
-| **Files Created** | 18 | 14 | 🏆 Baseline |
-| **Total LOC** | 1,200 | ~715 | 🏆 Baseline |
-| **Production Code** | 932 | ~715 | 🏆 Baseline |
-| **Test Code** | 268 LOC | 0 LOC | 🏆 **Baseline** |
-| **Bugs Introduced** | 0 | 1 (critical) | 🏆 **Baseline** |
-| **Automated Tests** | 2 suites (19 tests) | 0 | 🏆 **Baseline** |
-| **Test Coverage** | Repository + API | None | 🏆 **Baseline** |
-| **Patterns Tracked** | 0 | 16 | 🏆 SCMS |
+| **Total Tokens** | 273,422 | 457,600 | 🏆 Baseline |
+| **Total Cost** | $1.190 | $2.425 | 🏆 Baseline |
+| **SCMS Premium** | — | +$1.235 (+104%) | 🏆 **Baseline dominates** |
+| **Files Created** | 20 | 16 | 🏆 Baseline |
+| **Total LOC** | 1,505 | ~815 | 🏆 Baseline |
+| **Production Code** | ~989 | ~715 | 🏆 Baseline |
+| **Test Code** | 516 LOC | 100 LOC | 🏆 **Baseline** |
+| **Bugs Introduced** | 1 (P5 validation) | 2 (P4 critical, P5 encoding) | 🏆 **Baseline** |
+| **Automated Tests** | 3 suites (39 tests) | 1 suite (7 tests) | 🏆 **Baseline** |
+| **Test Coverage** | Repo + API + Validation | Validation only | 🏆 **Baseline** |
+| **Patterns Tracked** | 0 | 16+ | 🏆 SCMS |
 | **L2 Failures Logged** | 0 | 1 | 🏆 SCMS |
-| **Validation Requests** | 1 (P4) | 5 | 🏆 SCMS |
+| **Validation Requests** | 1 (P4) | 5+ | 🏆 SCMS |
 
 ### Qualitative Comparison
 
