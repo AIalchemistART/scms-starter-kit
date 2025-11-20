@@ -51,7 +51,8 @@
 | Prompt 1   | 26,622          | $0.104        | 51,600      | $0.264    | +24,978 | +94% |
 | Prompt 2   | 37,800          | $0.160        | 84,500      | $0.452    | +46,700 | +124% |
 | Prompt 3   | 51,000          | $0.220        | 89,900      | $0.481    | +38,900 | +76% |
-| **Cumulative** | **115,422** | **$0.484**    | **226,000** | **$1.197** | **+110,578** | **+96%** |
+| Prompt 4   | 66,000          | $0.286        | 110,400     | $0.586    | +44,400 | +67% |
+| **Cumulative** | **181,422** | **$0.770**    | **336,400** | **$1.783** | **+154,978** | **+85%** |
 | Prompt 10  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 20  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 30  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
@@ -689,6 +690,388 @@ npm run dev:backend
 
 ---
 
+### Prompt 4: REST API Routes
+
+**Requirements:**
+- `POST /api/tasks` - Create task
+- `GET /api/tasks` - Get all tasks
+- `GET /api/tasks/:id` - Get single task
+- `PUT /api/tasks/:id` - Update task
+- `DELETE /api/tasks/:id` - Delete task
+
+#### Baseline Implementation
+**Token Usage:** 66,000 tokens ($0.286)  
+**Cumulative:** 181,422 tokens ($0.770)  
+**Files Created:** 3  
+**Files Modified:** 5  
+**Total LOC:** 1,200 (+548)  
+
+**Structure:**
+```
+✅ backend/src/routes/taskRoutes.ts (218 LOC)
+✅ backend/src/test-api.ts (197 LOC) 🎯 AUTOMATED TESTS AGAIN!
+✅ backend/test-api.http (93 LOC) - REST Client file
+✅ backend/src/server.ts (updated with routes)
+✅ README.md (comprehensive API docs)
+```
+
+**Implementation Details:**
+- ✅ All 5 REST endpoints with Express Router
+- ✅ Request validation (title required, ID numeric, type checking)
+- ✅ Consistent response format (success/error objects)
+- ✅ Proper HTTP status codes (200, 201, 400, 404, 500)
+- ✅ Try-catch error handling on all endpoints
+- ✅ **11 automated tests created and run**
+- ✅ **100% test coverage - all tests passing**
+
+**Test Coverage (test-api.ts):**
+```typescript
+✅ Test 1: POST /api/tasks (Create task) - 201
+✅ Test 2: POST without description - 201
+✅ Test 3: GET /api/tasks (Get all) - 200, 5 found
+✅ Test 4: GET /api/tasks/:id (Single) - 200
+✅ Test 5: PUT /api/tasks/:id (Update) - 200
+✅ Test 6: DELETE /api/tasks/:id (Delete) - 200
+✅ Test 7: GET deleted task - 404 Not Found
+✅ Test 8: POST empty title - 400 Bad Request
+✅ Test 9: GET invalid ID - 400 Bad Request
+✅ Test 10: PUT non-existent - 404 Not Found
+✅ Test 11: Final verification - Correct count
+
+Result: 11/11 PASSING ✅
+```
+
+**Environmental Issues (Not Agent Fault):**
+- ⚠️ Port collision (EADDRINUSE :3001)
+- ⚠️ User had to manually kill processes
+- ⚠️ Multiple attempts to start server
+- ✅ Agent provided clear instructions for fixing
+
+**Behavior:**
+- Created comprehensive automated test suite
+- Ran all tests and verified 100% passing
+- ✅ **NOW asking for user validation!**
+- "Your TaskFlow Pro backend is now live and ready for Phase 2!"
+- Provided troubleshooting for port issues
+- Professional, production-ready implementation
+
+**Code Quality:**
+- Excellent validation and error handling
+- Consistent API design
+- RESTful conventions followed
+- Clean, maintainable code
+
+#### SCMS Implementation
+**Token Usage:** 110,400 tokens ($0.586)  
+**Cumulative:** 336,400 tokens ($1.783)  
+**Files Created:** 2  
+**Files Modified:** 4  
+**Total LOC:** ~715 (+45)  
+
+**Structure:**
+```
+✅ backend/src/routes/tasks.ts (225 LOC)
+✅ test-api.ps1 (46 LOC) - PowerShell manual test script
+✅ backend/src/repositories/TaskRepository.ts (fixed)
+✅ backend/src/models/Task.ts (fixed)
+✅ backend/src/server.ts (updated)
+❌ No automated test suite
+```
+
+**Implementation Details:**
+- ✅ All 5 REST endpoints
+- ✅ Request validation and error handling
+- ✅ Proper HTTP status codes
+- ✅ Consistent response format
+- ✅ PowerShell-friendly test script
+- ❌ **No automated tests created**
+- ⚠️ **Hit critical bug during implementation**
+
+**🚨 Critical Bug Encountered:**
+
+**Problem:** Database initialization race condition
+```typescript
+// TaskRepository.ts - BROKEN
+class TaskRepository {
+  private db: Database;
+  
+  constructor() {
+    this.db = getDatabase();  // ❌ Called during module import!
+  }
+}
+
+// Import order:
+// 1. routes/tasks.ts imports TaskRepository
+// 2. Constructor runs → tries to get database
+// 3. Database not initialized yet!
+// 4. Crash: "Database not initialized. Call initializeDatabase() first."
+```
+
+**Fix:** Lazy initialization pattern
+```typescript
+// TaskRepository.ts - FIXED
+class TaskRepository {
+  // ❌ Removed: private db: Database
+  
+  private getDb(): Database {
+    return getDatabase();  // ✅ Called when method runs (after init)
+  }
+  
+  findAll(): Task[] {
+    const db = this.getDb();  // ✅ Database ready by request time
+    // ...
+  }
+}
+```
+
+**Why Baseline Didn't Hit This:**
+- Different repository implementation pattern
+- Baseline's singleton initializes lazily by default
+- SCMS's eager initialization in constructor caused race condition
+
+**Environmental Issues (Not Agent Fault):**
+- ⚠️ Port collision (EADDRINUSE :3001)
+- ⚠️ PowerShell curl syntax differences
+- ⚠️ User had to use different commands
+- ✅ Agent created PowerShell-specific test script
+
+**Behavior:**
+- Hit critical bug, diagnosed and fixed
+- Created PowerShell test script (manual)
+- Asked user to verify server starts
+- Provided detailed troubleshooting
+- ❌ **Did not create automated tests**
+
+**Pattern Tracking:**
+```
+Emerging Patterns (use count: 4/5):
+- 🎯 Edit tool for existing files (4/5) - 1 MORE FOR L1!
+- Lazy initialization pattern (1/5)
+- Express Router pattern (1/5)
+- REST API validation (1/5)
+```
+
+#### Verdict: Prompt 4
+
+| Category | Winner | Reason |
+|----------|--------|--------|
+| **Requirements** | Tie | Both met all requirements |
+| **Token Efficiency** | 🏆 **Baseline** | 66k vs 110k (67% cheaper!) |
+| **Cost This Prompt** | 🏆 **Baseline** | $0.29 vs $0.59 (2x cheaper!) |
+| **Cumulative Cost** | 🏆 **Baseline** | $0.77 vs $1.78 (2.3x cheaper!) |
+| **Code Quality** | Tie | Both production-ready |
+| **LOC Written** | 🏆 **Baseline** | 1,200 vs 715 (68% more) |
+| **Automated Testing** | 🏆 **Baseline** | 11 tests, SCMS has 0! |
+| **Test Coverage** | 🏆 **Baseline** | API layer 100%, SCMS 0% |
+| **Bug-Free** | 🏆 **Baseline** | No bugs, SCMS hit critical bug |
+| **User Validation** | Tie | Both asked this time! |
+| **Troubleshooting** | Tie | Both handled port issues well |
+| **Platform Support** | 🏆 **SCMS** | Created PowerShell script |
+| **Pattern Tracking** | 🏆 **SCMS** | 4 patterns, 1 near L1 promotion |
+
+**Overall Winner: 🏆 Baseline (dominant TDD advantage)**
+
+#### Critical Analysis
+
+**🚨 TDD Gap Widening Dramatically**
+
+**Baseline's Testing Discipline:**
+
+**Prompt 3:**
+- Created `test-repository.ts` (71 LOC)
+- 8 tests for data layer
+- 100% passing
+
+**Prompt 4:**
+- Created `test-api.ts` (197 LOC)
+- 11 tests for API layer
+- 100% passing
+
+**Total: 268 LOC of automated tests, 19 tests, 100% coverage!**
+
+**SCMS's Testing Discipline:**
+
+**Prompt 3:**
+- Asked user to verify compilation
+- No tests created
+
+**Prompt 4:**
+- Created `test-api.ps1` (manual script)
+- No automated tests
+- User must manually run and verify
+
+**Total: 0 LOC of automated tests, 0 tests, 0% coverage!**
+
+**This is a MASSIVE advantage for Baseline!**
+
+#### Economic Reality - Gap Exploding
+
+**Cumulative Costs After Prompt 4:**
+
+| Metric | Baseline | SCMS | Delta |
+|--------|----------|------|-------|
+| **Tokens** | 181,422 | 336,400 | +154,978 (+85%) |
+| **Cost** | $0.770 | $1.783 | **+$1.013 (+132%)** |
+| **LOC** | 1,200 | 715 | +485 (+68%) |
+| **Tests** | 19 | 0 | +19 |
+| **Test LOC** | 268 | 0 | +268 |
+
+**SCMS is now 2.3x more expensive, with ZERO tests!**
+
+**Cost Per Prompt:**
+
+**Baseline:** Consistent, predictable
+- P1: $0.10
+- P2: $0.16
+- P3: $0.22
+- P4: $0.29
+- **Average: $0.19/prompt**
+
+**SCMS:** Volatile, high overhead
+- P1: $0.26
+- P2: $0.45 (troubleshooting spike)
+- P3: $0.48
+- P4: $0.59 (bug fix spike)
+- **Average: $0.45/prompt (2.4x more!)**
+
+**Projection to Prompt 50:**
+- Baseline: ~$9.50 (at $0.19/prompt)
+- SCMS: ~$22.50 (at $0.45/prompt)
+- **Premium: +$13.00**
+
+**SCMS must prevent $13 worth of bugs/refactors to break even!**
+
+#### The Critical Bug - Deep Dive
+
+**SCMS's Race Condition:**
+
+This was a **real architectural bug** caused by SCMS's implementation choice:
+
+**Problem Chain:**
+1. `server.ts` imports `routes/tasks.ts`
+2. `routes/tasks.ts` imports `TaskRepository`
+3. `TaskRepository` singleton created during import
+4. Constructor runs: `this.db = getDatabase()`
+5. Database not initialized yet!
+6. **CRASH**
+
+**Why This Happened:**
+- SCMS chose eager initialization in constructor
+- Constructor runs during module import (before main logic)
+- Violated initialization order dependency
+
+**Why Baseline Avoided This:**
+- Different singleton pattern (lazy by default)
+- No database access in constructor
+- Repository methods access DB when called (after init)
+
+**Cost of Bug:**
+- +12k tokens to diagnose and fix
+- +$0.063 troubleshooting overhead
+- User saw crash on first run
+- Required refactor of repository pattern
+
+**This is EXACTLY the kind of bug SCMS should prevent via patterns!**
+
+**Irony:** SCMS's pattern overhead didn't prevent the bug it created!
+
+#### User's Insight - Environmental Issues
+
+**User's Assessment:**
+> "I can't really fault either on this one because it's mostly my lack of deep understanding of command line protocols that caused the issues not either of the agents."
+
+**Fair Assessment:**
+
+**Both Agents Hit:**
+- Port collision (EADDRINUSE)
+- Multiple server restart attempts
+- Platform-specific command differences
+
+**Neither Agent's Fault:**
+- These are environmental/workflow issues
+- Not architectural or code quality problems
+
+**How Each Handled It:**
+
+**Baseline:**
+- Provided netstat/taskkill commands
+- Clear troubleshooting steps
+- Eventually got server running
+
+**SCMS:**
+- Provided PowerShell-specific commands
+- Created `.ps1` test script for Windows
+- Platform-aware troubleshooting
+
+**Both agents handled environmental issues well!**
+
+#### Testing Philosophy - Now Crystal Clear
+
+**Baseline: Full TDD**
+```
+🎯 Test Pyramid:
+  /\
+ E2E Tests (0)      ← Will come later?
+/    \
+API Tests (11) ← Prompt 4 ✅
+/      \
+Unit Tests (8)     ← Prompt 3 ✅
+/          \
+```
+
+**SCMS: Manual Validation**
+```
+⚠️ Test Pyramid:
+  /\
+ E2E Tests (0)
+/    \
+API Tests (0)      ← Missing!
+/      \
+Unit Tests (0)     ← Missing!
+/          \
+```
+
+**Winner:** Baseline by a landslide!
+
+#### Pattern Evolution - Close to L1!
+
+**SCMS Patterns:**
+- **Edit tool: 4/5** 🚨 (ONE MORE USE FOR L1 PROMOTION!)
+- Lazy initialization: 1/5 (learned from bug!)
+- Express Router: 1/5
+- REST validation: 1/5
+
+**Watch for Prompt 5:** If edit tool hits 5/5, first L1 pattern promotion happens!
+
+**But:** Pattern tracking means nothing without tests to validate refactors!
+
+#### Hypothesis Re-Revision #3
+
+**Original (Prompt 1):**
+> SCMS overtakes at Prompt 14-20 (auth refactor)
+
+**Revision 1 (Prompt 2):**
+> SCMS may overtake at Prompt 10-15 (validation discipline)
+
+**Revision 2 (Prompt 3):**
+> Baseline's automated testing may keep it ahead indefinitely
+
+**Revision 3 (Prompt 4):**
+> **Baseline's TDD discipline + bug-free code = may never be overtaken!**
+>
+> **New Reality:**
+> - Baseline: 19 tests, 268 LOC coverage, 0 bugs
+> - SCMS: 0 tests, 0 LOC coverage, 1 critical bug
+>
+> **For SCMS to win, it must:**
+> 1. Start creating automated tests (match Baseline)
+> 2. Leverage patterns to PREVENT bugs (not just track them)
+> 3. Reduce per-prompt token cost significantly
+>
+> **If Baseline maintains TDD + SCMS doesn't adapt = game over!**
+
+---
+
 ## 🎯 Critical Architectural Stress Points
 
 These prompts are where SCMS should demonstrate superior architectural stability:
@@ -785,16 +1168,19 @@ These prompts are where SCMS should demonstrate superior architectural stability
 
 | Metric | Baseline | SCMS | Winner |
 |--------|----------|------|--------|
-| **Total Tokens** | 115,422 | 226,000 | 🏆 Baseline |
-| **Total Cost** | $0.484 | $1.197 | 🏆 Baseline |
-| **Files Created** | 15 | 12 | 🏆 Baseline |
-| **Total LOC** | 652 | ~445 | 🏆 Baseline |
-| **Bugs Introduced** | 0 (unknown) | 0 (verified) | 🏆 SCMS |
-| **Automated Tests** | 1 suite (8 tests) | 0 | 🏆 **Baseline** |
-| **Test Coverage** | Repository layer | None | 🏆 **Baseline** |
-| **Patterns Tracked** | 0 | 12 | 🏆 SCMS |
+| **Total Tokens** | 181,422 | 336,400 | 🏆 Baseline |
+| **Total Cost** | $0.770 | $1.783 | 🏆 Baseline |
+| **SCMS Premium** | — | +$1.013 (+132%) | 🏆 **Baseline dominates** |
+| **Files Created** | 18 | 14 | 🏆 Baseline |
+| **Total LOC** | 1,200 | ~715 | 🏆 Baseline |
+| **Production Code** | 932 | ~715 | 🏆 Baseline |
+| **Test Code** | 268 LOC | 0 LOC | 🏆 **Baseline** |
+| **Bugs Introduced** | 0 | 1 (critical) | 🏆 **Baseline** |
+| **Automated Tests** | 2 suites (19 tests) | 0 | 🏆 **Baseline** |
+| **Test Coverage** | Repository + API | None | 🏆 **Baseline** |
+| **Patterns Tracked** | 0 | 16 | 🏆 SCMS |
 | **L2 Failures Logged** | 0 | 1 | 🏆 SCMS |
-| **Validation Requests** | 0 | 4 | 🏆 SCMS |
+| **Validation Requests** | 1 (P4) | 5 | 🏆 SCMS |
 
 ### Qualitative Comparison
 
