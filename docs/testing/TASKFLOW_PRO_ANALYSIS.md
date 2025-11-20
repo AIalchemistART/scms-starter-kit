@@ -80,7 +80,8 @@
 | Prompt 12  | 559,000         | $4.463        | 348,136     | $7.190    | -210,864 | -38% |
 | Prompt 13  | 559,000         | $4.463        | 348,136     | $7.190    | -210,864 | -38% |
 | Prompt 14  | 669,000         | $5.033        | 348,136     | $7.190    | -320,864 | -48% |
-| **Cumulative** | **669,000** | **$5.033**    | **348,136** | **$7.190** | **-320,864** | **-48%** |
+| Prompt 15  | 701,000         | $5.213        | 424,000     | $7.670    | -277,000 | -40% |
+| **Cumulative** | **701,000** | **$5.213**    | **424,000** | **$7.670** | **-277,000** | **-40%** |
 | Prompt 20  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 30  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 40  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
@@ -88,7 +89,7 @@
 
 **\*Note on P7:** SCMS required 2 prompts to complete due to PostCSS bug not caught automatically. First prompt cost shown ($0.067). True cost to completion: ~$0.134 ($0.067 initial + $0.067 fix) vs. Baseline $0.129 (single prompt, bug auto-fixed).
 
-**📊 Key Finding:** After P14, SCMS is using FEWER tokens (348,136 vs. 669,000 = -48%!) but costing MORE ($7.190 vs. $5.033 = +43%). SCMS has 14x higher per-token cost due to memory/pattern tracking overhead. Cost gap IMPROVED dramatically from +61% (P12) to +43% (P14)! SCMS is now 1.43x over user's +30% adoption threshold (down from 2.0x). **🎯 MILESTONE: P11 = FIRST PATTERN RETRIEVAL (L1)** - SCMS retrieved Dependency Version Management pattern. **🚨 P12 = FIRST DECISIVE WIN** - SCMS delivered complete security integration, Baseline has CRITICAL vulnerabilities. **💰 P13-14 = ZERO-COST PROMPTS** - SCMS already done (P12), Baseline catching up ($0.57 cost)!
+**📊 Key Finding:** After P15, SCMS is using FEWER tokens (424,000 vs. 701,000 = -40%!) but costing MORE ($7.670 vs. $5.213 = +47%). SCMS has ~2.4x higher per-token cost due to memory/pattern tracking overhead. Cost gap REGRESSED from +43% (P14) to +47% (P15)! SCMS is now 1.57x over user's +30% adoption threshold (worse than P14's 1.43x). **🎯 MILESTONE: P11 = FIRST PATTERN RETRIEVAL (L1)** - SCMS retrieved Dependency Version Management pattern. **🚨 P12 = FIRST DECISIVE WIN** - SCMS delivered complete security integration, Baseline had CRITICAL vulnerabilities. **💰 P13-14 = ZERO-COST PROMPTS** - SCMS already done (P12), Baseline catching up ($0.57 cost). **⚠️ P15 = FIRST SCMS LOSS** - Baseline won with smoother workflow, lower cost, no issues. SCMS had workflow friction + possible L0 contamination (wrong port)!
 
 ### ROI Calculation
 **Break-Even Point:** SCMS pays for itself when cumulative patterns prevent enough rework/bugs to offset the token premium.
@@ -5496,7 +5497,479 @@ SCMS's claim:
 
 ---
 
-### Prompt 15: Frontend Integration 🎨
+## 🎨 Prompt 15: Login Form Component - Both Complete, SCMS Workflow Hiccup ⚠️
+
+**Status**: ✅ **Both agents successfully implemented login UI with registration/logout**  
+**Concern**: 🚨 **SCMS needed extra prompting + possible L0 contamination**
+
+---
+
+### 📋 Implementation Summary
+
+#### **Baseline Implementation**
+
+**Token Usage**: ~32,000 tokens (P15 only)  
+**Cost**: ~$0.180  
+**Files Created**: 4
+- `frontend/src/components/LoginForm.tsx` (310 LOC)
+- `frontend/src/types/auth.ts` (73 LOC)
+- `frontend/src/utils/auth.ts` (120 LOC)
+- `backend/register-test-user.js` (72 LOC)
+
+**Files Modified**: 2
+- `frontend/src/services/api.ts` (added auth endpoints)
+- `frontend/src/App.tsx` (auth routing)
+
+**Workflow**:
+1. Created auth type definitions
+2. Built comprehensive LoginForm component
+3. Added token storage utilities
+4. Integrated into App.tsx
+5. Tested login flow successfully
+6. Documentation updated
+
+**Port**: 5173 (Vite default) → No issues
+
+---
+
+#### **SCMS Implementation**
+
+**Token Usage**: ~76,363 tokens (P15 + integration + port fix)  
+**Cost**: ~$0.48  
+**Files Created**: 3
+- `frontend/src/types/auth.ts` (42 LOC)
+- `frontend/src/components/LoginForm.tsx` (254 LOC)
+- `frontend/src/components/RegisterForm.tsx` (286 LOC - BONUS)
+
+**Files Modified**: 3
+- `frontend/src/services/api.ts` (+92 LOC)
+- `frontend/src/App.tsx` (complete rewrite)
+- `frontend/vite.config.ts` (port change)
+
+**Workflow**:
+1. Created auth type definitions
+2. Built LoginForm component
+3. Built RegisterForm component (bonus)
+4. Updated API service with JWT management
+5. ⚠️ **USER HAD TO PROMPT**: "integrate into app.tsx then test login flow"
+6. Started on port 5173 (same as Baseline!)
+7. ⚠️ **USER HAD TO PROMPT**: "Please go back to frontend port 5175"
+8. Fixed port configuration
+9. Tested successfully
+
+**Port Issue**: Started on 5173 → User requested 5175 → Fixed
+
+---
+
+### 🚨 THE WORKFLOW HICCUP
+
+#### **What Happened with SCMS**
+
+**Issue #1: Didn't Auto-Integrate**
+
+After building LoginForm, SCMS stopped and said:
+> "What would you like to do next?  
+> 1. Integrate these components into App.tsx?  
+> 2. Test the login flow?  
+> 3. Add logout functionality?"
+
+**User Had to Prompt**: "integrate into app.tsx then test login flow"
+
+**Baseline's Approach**: Just did it automatically without asking.
+
+---
+
+**Issue #2: Used Wrong Port**
+
+SCMS started frontend on port **5173** (Baseline's port!)  
+SCMS was supposed to use port **5175** (established in earlier sessions)
+
+**User Had to Prompt**: "Please go back to frontend port 5175"
+
+**User's Hypothesis**: "maybe L0 bleed?"
+
+---
+
+### 🔍 Analysis: What Went Wrong?
+
+#### **Possible L0 Memory Contamination** 🚨
+
+**Evidence**:
+1. SCMS started on port 5173 (Baseline's port)
+2. SCMS's previous sessions used port 5175
+3. User suspects "L0 bleed" - L0 memories picking up Baseline context
+
+**How This Could Happen**:
+- L0 auto-generated memories include port numbers from Baseline sessions
+- SCMS retrieves these L0 memories automatically (hardcoded, user has no control)
+- SCMS sees "port 5173" in L0 context and uses it
+- Creates cross-contamination between test subjects!
+
+**Implications**:
+- 🚨 **METHODOLOGY CONCERN**: If L0 memories are bleeding between agents, test validity compromised
+- Need to verify L0 memories aren't cross-contaminating
+- May need isolation strategy for comparative testing
+
+---
+
+#### **Why SCMS Didn't Auto-Integrate**
+
+**Hypothesis 1: Over-Cautious Pattern Retrieval**
+- SCMS may have pattern for "ask before major integration"
+- But P15 explicitly says "integrate" in prompt
+- Asking user adds friction
+
+**Hypothesis 2: Context Confusion**
+- Building multiple components (LoginForm + RegisterForm)
+- May have lost track of "what's next"
+- Defaulted to asking rather than inferring
+
+**Hypothesis 3: Token Budget Awareness**
+- SCMS may be aware of token usage
+- Stopped to ask before committing more tokens
+- But this adds user friction
+
+**Baseline's Approach**: Just followed P15 requirements end-to-end
+
+---
+
+### 🎯 Implementation Comparison
+
+| Feature | Baseline | SCMS | Winner |
+|---------|----------|------|--------|
+| **LoginForm Component** | ✅ 310 LOC | ✅ 254 LOC | Tie |
+| **RegisterForm** | ❌ Not implemented | ✅ 286 LOC (bonus) | 🏆 **SCMS** |
+| **Auth Types** | ✅ 73 LOC | ✅ 42 LOC | Tie |
+| **Token Storage Utils** | ✅ 120 LOC | ✅ Integrated in api.ts | Tie |
+| **API Integration** | ✅ Modified api.ts | ✅ Modified api.ts | Tie |
+| **App Integration** | ✅ Automatic | ⚠️ Needed prompting | 🏆 **Baseline** |
+| **Port Configuration** | ✅ 5173 (correct) | ⚠️ 5173 → 5175 (wrong → fixed) | 🏆 **Baseline** |
+| **Testing** | ✅ Complete | ✅ Complete | Tie |
+| **Token Usage** | ~32,000 | ~76,363 | 🏆 **Baseline** (-58% fewer) |
+| **Cost** | ~$0.180 | ~$0.48 | 🏆 **Baseline** (-62% cheaper) |
+| **Workflow Smoothness** | ✅ Seamless | ⚠️ Required 2 user interventions | 🏆 **Baseline** |
+
+**Overall**: 🏆 **BASELINE WINS P15** (smoother workflow, lower cost)
+
+---
+
+### 💰 Economic Impact
+
+**Baseline P15**:
+- Token usage: ~32,000
+- Cost: ~$0.180
+- User interventions: 0
+- Workflow: Seamless
+
+**SCMS P15**:
+- Token usage: ~76,363 (includes extra prompting + port fix)
+- Cost: ~$0.48
+- User interventions: 2 (integration + port)
+- Workflow: Interrupted
+
+**Cost Difference**: SCMS +$0.30 (+167% more expensive!)
+
+**Updated Cumulative**:
+```
+Baseline Total: ~$5.213 (669k + 32k = 701k tokens)
+SCMS Total:     ~$7.670 (348k + 76k = 424k tokens)
+Gap:            +$2.457 (+47% premium)
+```
+
+**Trend Analysis**:
+- P14: SCMS had +43% premium (improving!)
+- P15: SCMS has +47% premium (got WORSE!)
+- Threshold: User's +30% adoption limit
+- Current: 1.57x over threshold (regressed from 1.43x)
+
+🚨 **SCMS's cost efficiency REGRESSED in P15!**
+
+---
+
+### 🔬 Quality Assessment
+
+#### **Baseline P15 Quality**: ⭐️⭐️⭐️⭐️⭐️ (5/5)
+
+**Strengths**:
+- ✅ Complete implementation
+- ✅ Comprehensive LoginForm with validation
+- ✅ Auth utilities well-organized
+- ✅ Token storage properly implemented
+- ✅ Seamless workflow (no user intervention)
+- ✅ Correct port configuration
+- ✅ Documentation updated
+- ✅ Test user registration script
+
+**Bonus Features**:
+- Password strength validation
+- Loading states
+- Error handling
+- Accessible forms
+
+---
+
+#### **SCMS P15 Quality**: ⭐️⭐️⭐️⭐️ (4/5)
+
+**Strengths**:
+- ✅ Complete implementation
+- ✅ LoginForm with validation
+- ✅ 🏆 **BONUS: RegisterForm component** (Baseline didn't build this)
+- ✅ Token storage in api.ts
+- ✅ Eventually tested successfully
+
+**Weaknesses**:
+- ⚠️ Didn't auto-integrate (required user prompt)
+- ⚠️ Wrong port initially (required user correction)
+- ⚠️ Higher token usage (~2.4x more than Baseline)
+- ⚠️ Workflow friction (2 user interventions)
+
+**L0 Contamination Concern**: 🚨 Possible cross-agent memory bleed
+
+---
+
+### 🎭 User Observations
+
+> "Ok both versions successfully implemented login UI that includes a registration & logout feature. Both continue to work with creating tasks as well!"
+
+✅ **Confirms**: Both agents delivered working solutions
+
+> "I did have to prompt scms move forward with UI integration & to move back to port 5175 so that added an unnecessary extra step"
+
+⚠️ **Identifies**: SCMS workflow friction
+
+> "not sure why it jumped over to the same frontend port as baseline maybe L0 bleed?"
+
+🚨 **Critical Hypothesis**: L0 memory contamination between agents!
+
+---
+
+### 📊 Updated Running Score
+
+**Prompt-by-Prompt**:
+
+| Prompt | Winner | Reason |
+|--------|--------|--------|
+| P1-P10 | 🔄 Mixed | Token efficiency vs quality trade-offs |
+| P11 | 🏆 **SCMS** | First pattern retrieval (L1) |
+| P12 | 🏆 **SCMS** | Complete security integration |
+| P13 | 🏆 **SCMS** | Already done in P12 ($0 cost) |
+| P14 | 🏆 **SCMS** | Already done in P12 ($0 cost) |
+| P15 | 🏆 **BASELINE** | Smoother workflow, lower cost, no issues |
+
+**Current Score**:
+- **SCMS Wins**: 4 (P11, P12, P13, P14)
+- **Baseline Wins**: 1 (P15)
+- **Ties/Mixed**: P1-P10
+
+---
+
+### 🔥 Why This Matters
+
+**P15 is SCMS's First Clear Loss Since P10**
+
+**What Changed?**
+
+1. **P12-P14: SCMS Dominated**
+   - System thinking from P10.5 review
+   - Complete integration upfront
+   - Foresight advantages
+   - Cost efficiency improving
+
+2. **P15: Baseline Wins**
+   - Seamless workflow
+   - Lower token usage
+   - Correct configuration
+   - No user intervention needed
+
+3. **SCMS Regression**
+   - Workflow friction
+   - Possible L0 contamination
+   - Cost efficiency got worse
+   - Needed hand-holding
+
+---
+
+### 🧠 Hypotheses
+
+#### **H1: L0 Memory Contamination** 🚨
+
+**Evidence**:
+- SCMS used Baseline's port (5173 instead of 5175)
+- L0 memories auto-retrieved (user has no control)
+- Comparative testing may be contaminating memories
+
+**Test**: Check L0 memories for cross-agent references
+
+**Implications**: If true, **test methodology needs isolation**
+
+---
+
+#### **H2: Frontend Work = SCMS Weakness**
+
+**Evidence**:
+- SCMS excelled at backend (P12-P14)
+- SCMS struggled with frontend (P15)
+- May have fewer frontend patterns in memory
+
+**Test**: Continue monitoring frontend prompts
+
+**Implications**: SCMS advantage may be backend-specific
+
+---
+
+#### **H3: P10.5 Advantage Fading**
+
+**Evidence**:
+- P12-P14 showed strong P10.5 impact
+- P15 shows SCMS needing more guidance
+- Recursive review context may be wearing off
+
+**Test**: Continue tracking workflow smoothness
+
+**Implications**: P10.5 benefits may be temporal, not permanent
+
+---
+
+#### **H4: Baseline Learning from Mistakes**
+
+**Evidence**:
+- Baseline had P12 security gaps
+- Baseline cleaned up in P14
+- Baseline smooth execution in P15
+- May be "learning" from iterative fixes
+
+**Test**: Track Baseline's quality trajectory
+
+**Implications**: Iterative approach may converge to quality over time
+
+---
+
+### 🎯 Key Findings
+
+**1. Both Delivered Working Solutions** ✅
+- LoginForm with validation
+- Token storage
+- App integration
+- Registration + logout
+- Tasks still work
+
+**2. SCMS Bonus Feature: RegisterForm** 🏆
+- Baseline only built LoginForm (per P15)
+- SCMS also built RegisterForm (extra)
+- Shows initiative/foresight
+
+**3. SCMS Workflow Friction** ⚠️
+- Needed prompting to integrate
+- Needed correction on port
+- Added user burden
+- Higher token cost
+
+**4. Possible L0 Contamination** 🚨
+- Port confusion suggests memory bleed
+- Critical methodology concern
+- Need isolation verification
+
+**5. Cost Efficiency Regressed** 📉
+- P14: +43% premium (improving)
+- P15: +47% premium (regressed)
+- Moving away from +30% threshold
+
+---
+
+### 📋 Verdict on P15
+
+**Winner**: 🏆 **BASELINE**
+
+**Scoring**:
+- **Functionality**: Tie (both work)
+- **Bonus Features**: SCMS (RegisterForm)
+- **Workflow**: Baseline (seamless vs friction)
+- **Cost**: Baseline (62% cheaper)
+- **Correctness**: Baseline (right port first time)
+- **User Experience**: Baseline (no interventions needed)
+
+**Bottom Line**:
+- SCMS delivered more features (RegisterForm bonus)
+- But: Higher cost, workflow friction, configuration issues
+- Baseline: Smooth, correct, efficient
+
+**P15 goes to Baseline for execution quality over feature quantity.**
+
+---
+
+### 🔬 Testing Status
+
+**Baseline P15**:
+- ✅ Backend running (port 3002)
+- ✅ Frontend running (port 5173)
+- ✅ Login UI working
+- ✅ Registration working
+- ✅ Logout working
+- ✅ Task creation working
+- ✅ Token storage validated
+- 📸 Screenshot shows: test@taskflow.com logged in, User ID: 3
+
+**SCMS P15**:
+- ✅ Backend running (port 3001)
+- ✅ Frontend running (port 5175 - after fix)
+- ✅ Login UI working
+- ✅ Registration working
+- ✅ Logout working
+- ✅ Task creation working
+- ✅ Token storage validated
+- 📸 Screenshot shows: Different UI styling, 1 task visible
+
+**Both Functional**: ✅✅
+
+---
+
+### 📈 Updated Economic Tracking
+
+**After P15**:
+```
+Baseline:  701,000 tokens  |  $5.213  |  Cumulative
+SCMS:      424,000 tokens  |  $7.670  |  Cumulative
+Delta:     -277,000 tokens |  +$2.457 |  +47% premium
+```
+
+**Per-Token Cost**:
+- Baseline: $0.00744 per 1000 tokens
+- SCMS:     $0.01809 per 1000 tokens
+- SCMS is **2.43x more expensive per token**
+
+**Cost Gap Trend**:
+```
+P12:  +61% premium
+P13:  +61% premium (SCMS free prompt)
+P14:  +43% premium (SCMS free prompt)
+P15:  +47% premium (REGRESSED!)
+```
+
+🚨 **SCMS cost efficiency is NOT improving consistently!**
+
+---
+
+### 🧑‍🔬 Next Steps
+
+**Immediate**:
+1. 🔍 Investigate L0 memory contamination
+2. 📋 Document isolation strategy for comparative testing
+3. 📊 Continue tracking frontend vs backend performance
+
+**Next Prompts**:
+- P16: Token refresh mechanism
+- P17: Error handling improvements
+- P18: Testing suite
+
+**Watch For**:
+- Does SCMS continue to have frontend friction?
+- Does L0 contamination appear again?
+- Does Baseline maintain smooth execution?
+- Does cost gap continue to widen?
+
+---
+
+### Prompt 16: Token Refresh Mechanism 🔄
 **Challenge:** Refactor React components to use global auth state  
 **Risk:** Props drilling removal, state management bugs, infinite re-renders  
 **Baseline Risk:** May rewrite components from scratch  
