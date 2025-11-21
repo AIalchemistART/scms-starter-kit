@@ -271,7 +271,8 @@ Status: Outside margin of error → Results compelling so far
 | Prompt 15  | 701,000         | $5.213        | 424,000     | $7.670    | -277,000 | -40% |
 | Prompt 16  | 727,000         | $5.363        | 509,000     | $8.190    | -218,000 | -30% |
 | Prompt 17  | 750,500         | $5.500        | 534,000     | $8.335    | -216,500 | -29% |
-| **Cumulative** | **750,500** | **$5.500**    | **534,000** | **$8.335** | **-216,500** | **-29%** |
+| Prompt 18  | 778,500         | $5.668        | 566,000     | $8.520    | -212,500 | -27% |
+| **Cumulative** | **778,500** | **$5.668**    | **566,000** | **$8.520** | **-212,500** | **-27%** |
 | Prompt 20  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 30  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 40  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
@@ -279,7 +280,7 @@ Status: Outside margin of error → Results compelling so far
 
 **\*Note on P7:** SCMS required 2 prompts to complete due to PostCSS bug not caught automatically. First prompt cost shown ($0.067). True cost to completion: ~$0.134 ($0.067 initial + $0.067 fix) vs. Baseline $0.129 (single prompt, bug auto-fixed).
 
-**📊 Key Finding:** After P17, SCMS is using FEWER tokens (534,000 vs. 750,500 = -29%!) but costing MORE ($8.335 vs. $5.500 = +52%). Cost gap stabilized: P16 (+53%) → P17 (+52%). SCMS is 1.73x over user's +30% threshold. **🚨 CATASTROPHIC FAILURE HYPOTHESIS**: Current results are PRELIMINARY! User notes: "We have yet to hit a big snag. I've had snags take me DAYS to fix. If one agent hits something like that, everything before it is essentially meaningless compared to that one catastrophic event." **Real projects hit MULTIPLE catastrophic snags!** One 3-day deadlock ($50-100 cost) can eclipse 50 prompts of optimization ($2.50). **THE REAL TEST HASN'T STARTED YET!** We're waiting for model-breaking problems. **🎯 P11 = FIRST PATTERN RETRIEVAL**. **🚨 P12 = FIRST DECISIVE WIN** - Security integration. **💰 P13-14 = ZERO-COST PROMPTS**. **⚠️ P15 = FIRST SCMS LOSS** - Workflow friction. **🔄 P16-17 = TIE** - SCMS forgot baseline tracking 3x (created FAILURES.md). **🧪 Failure logging experiment**: Will SCMS remember P18+?
+**📊 Key Finding:** After P18, SCMS is using FEWER tokens (566,000 vs. 778,500 = -27%!) but costing MORE ($8.520 vs. $5.668 = +50%). Cost gap IMPROVING: P16 (+53%) → P17 (+52%) → P18 (+50%). SCMS is 1.67x over user's +30% threshold. **🚨 CATASTROPHIC FAILURE HYPOTHESIS**: Current results PRELIMINARY! User: "Two prompt fixes are relatively meaningless compared to a day long fix." 2-prompt fix = ~$0.02/10min. Catastrophic = $50-100/3 days. Ratio: 1:2500 cost, 1:432 time. **User's verdict: "Not catastrophic enough"** 🎲 **STRATEGIC SHIFT - TRAP SET!** User accepting feature recommendations in P19 to create "bite off more than you can chew" situation. Intentionally hunting for catastrophic failure! This could be the inflection point. **🎯 P11 = FIRST PATTERN RETRIEVAL**. **🚨 P12 = FIRST DECISIVE WIN**. **💰 P13-14 = ZERO-COST**. **⚠️ P15 = FIRST SCMS LOSS**. **🔄 P16-17 = TIE**. **🏆 P18 = BASELINE WIN** (1 prompt vs SCMS's 3: 2 bugs fixed). **✅ Failure #1 fix working** - SCMS auto-updated tracking! **📊 Score: SCMS 4 wins, Baseline 2 wins, Baseline momentum building**.
 
 ### ROI Calculation
 **Break-Even Point:** SCMS pays for itself when cumulative patterns prevent enough rework/bugs to offset the token premium.
@@ -7141,6 +7142,496 @@ Then: Everything will become clear
 **That's when patterns either save you or prove irrelevant**
 
 We're playing the waiting game now! 🎲
+
+---
+
+## 🛣️ Prompt 18: Protected Routes - Both Strong, SCMS 2-Prompt Bug Fix
+
+**Status**: ✅ **Both agents implemented react-router-dom successfully**  
+**Test**: Both work with unique pages for /login, /register, /tasks ✅  
+**Issue**: 🚨 **SCMS required 2 ADDITIONAL prompts to fix runtime bugs**
+
+---
+
+### 📋 Implementation Summary
+
+#### **Baseline Implementation**
+
+**Token Usage**: ~28,000 tokens  
+**Cost**: ~$0.168  
+**Prompts**: **1 prompt** (seamless)
+
+**Package Installed**:
+- `react-router-dom` (industry standard, ~10kb gzipped)
+
+**Files Created**: 1
+- `frontend/src/components/ProtectedRoute.tsx` (47 LOC)
+
+**Files Modified**: 3
+- `frontend/src/App.tsx` (complete restructure, 220 LOC)
+- `frontend/src/components/LoginForm.tsx` (added useNavigate)
+- `frontend/src/components/RegisterForm.tsx` (added useNavigate)
+
+**Route Structure**:
+```
+/           → Smart redirect (authenticated: /tasks, else: /login)
+/login      → Login page (redirects to /tasks if authenticated)
+/register   → Registration page (redirects to /tasks if authenticated)
+/tasks      → Protected (requires authentication)
+*           → Catch-all redirect to /
+```
+
+**Features Implemented**:
+- ✅ react-router-dom installed (0 vulnerabilities)
+- ✅ ProtectedRoute wrapper component
+- ✅ Loading spinner during auth check
+- ✅ Smart redirects (already logged in → /tasks)
+- ✅ Clean URL structure with browser navigation
+- ✅ Eliminated prop drilling
+- ✅ Route-based page structure
+
+**Testing**: All routes working, protection enforced ✅
+
+**Workflow**: **Seamless single-prompt implementation**
+
+---
+
+#### **SCMS Implementation**
+
+**Token Usage**: ~32,000 tokens (estimated, including bug fixes)  
+**Cost**: ~$0.185 (estimated, including bug fixes)  
+**Prompts**: **3 prompts** (1 implementation + 2 bug fixes 🚨)
+
+**Package Installed**:
+- `react-router-dom` v6 (4 dependencies, 0 vulnerabilities)
+
+**Files Created**: 4
+- `frontend/src/components/ProtectedRoute.tsx` (43 LOC)
+- `frontend/src/pages/LoginPage.tsx` (40 LOC)
+- `frontend/src/pages/RegisterPage.tsx` (40 LOC)
+- `frontend/src/pages/TasksPage.tsx` (78 LOC)
+
+**Files Modified**: 2
+- `frontend/src/App.tsx` (120 → 34 LOC, **-86 lines, 72% reduction!**)
+- `frontend/src/main.tsx` (added BrowserRouter)
+
+**Route Structure**:
+```
+/           → Navigate to /tasks
+/login      → LoginPage (redirects if authenticated)
+/register   → RegisterPage (redirects if authenticated)
+/tasks      → TasksPage (protected by ProtectedRoute)
+/*          → Catch-all to /tasks
+```
+
+**Features Implemented**:
+- ✅ react-router-dom installed (0 vulnerabilities)
+- ✅ ProtectedRoute guard component
+- ✅ Separate page components (cleaner architecture)
+- ✅ 72% reduction in App.tsx complexity!
+- ✅ Loading state handling
+- ✅ Auto-redirects for authenticated users
+- ✅ Browser navigation support
+
+**Testing**: All routes working after fixes ✅
+
+**Workflow Issues** 🚨:
+
+**Bug #1**: "Cannot read properties of undefined (reading 'id')"
+- **Root Cause**: Missing JWT payload validation in AuthContext
+- **Impact**: App crash on logout/login cycle
+- **Fix**: Added validation to 4 critical locations (+20 lines)
+- **User Action**: Reported bug
+- **SCMS Response**: Created Failure #2 in FAILURES.md, fixed validation
+
+**Bug #2**: "Invalid login response from server"
+- **Root Cause**: Backend/frontend API contract mismatch (backend returned `data`, frontend expected `user`)
+- **Impact**: Login failed after validation fix
+- **Fix**: Updated backend `/login` and `/register` endpoints
+- **User Action**: Reported second error
+- **SCMS Response**: Updated Failure #2, fixed backend contract
+
+**Total Extra Prompts**: 2 additional debugging/fix cycles
+
+**SCMS Documentation**:
+- ✅ Updated baseline tracking (422 lines) **immediately** (Failure #1 corrective action working!)
+- ✅ Logged Failure #2 in `docs/scms/FAILURES.md` with full analysis
+- ✅ Root cause analysis for both bugs
+- ✅ Pattern tracking updated
+
+---
+
+### 🎯 Implementation Comparison
+
+| Feature | Baseline | SCMS | Winner |
+|---------|----------|------|--------|
+| **react-router-dom Installation** | ✅ Clean | ✅ Clean | Tie |
+| **ProtectedRoute Component** | ✅ 47 LOC | ✅ 43 LOC | Tie |
+| **Route Structure** | ✅ Smart redirects | ✅ Smart redirects | Tie |
+| **Page Architecture** | Inline components | Separate page files | 🏆 **SCMS** (cleaner) |
+| **App.tsx Complexity** | 220 LOC | 34 LOC (-72%!) | 🏆 **SCMS** (simpler) |
+| **Browser Navigation** | ✅ Working | ✅ Working | Tie |
+| **Testing** | ✅ All routes work | ✅ All routes work | Tie |
+| **Implementation** | 1 prompt | 1 prompt | Tie |
+| **Runtime Issues** | ✅ None | ❌ 2 bugs | 🏆 **BASELINE** |
+| **Bug Fixes Required** | 0 prompts | 2 prompts | 🏆 **BASELINE** |
+| **Token Usage** | ~28,000 | ~32,000 | 🏆 **BASELINE** |
+| **Cost** | ~$0.168 | ~$0.185 | 🏆 **BASELINE** |
+| **Workflow** | Seamless | 2 bug fix cycles | 🏆 **BASELINE** |
+| **Documentation** | ✅ Updated | ✅ Updated (auto!) | Tie |
+
+**Overall**: 🔄 **BASELINE WINS** - Clean single-prompt implementation vs SCMS's 2-prompt bug fix cycle
+
+---
+
+### 🚨 SCMS Issues - 2-Prompt Bug Fix Cycle
+
+**The Pattern**:
+1. **Implementation Prompt**: Delivered features, looked complete
+2. **Bug Report #1**: AuthContext validation missing (app crash)
+3. **Fix Prompt #1**: Added validation, exposed second bug
+4. **Bug Report #2**: Backend API contract mismatch
+5. **Fix Prompt #2**: Fixed backend endpoints
+
+**Root Causes**:
+
+**Bug #1 - Missing Validation**:
+```typescript
+// ❌ SCMS's original code (no validation)
+const userData: User = {
+  id: payload.userId,  // Could be undefined!
+  email: payload.email
+};
+
+// ✅ After fix (validated)
+if (!payload || typeof payload.userId !== 'number' || !payload.email) {
+  console.error('Invalid token payload:', payload);
+  api.clearAuthToken();
+  return;
+}
+```
+
+**Bug #2 - API Contract Mismatch**:
+```typescript
+// ❌ Backend was returning
+{ data: { id, email }, token }
+
+// ✅ Frontend expected
+{ user: { id, email }, token }
+```
+
+**Why This Happened**:
+- TypeScript types don't guarantee runtime structure
+- No integration testing between frontend/backend
+- Validation only added after first bug exposed
+- First fix uncovered second issue
+
+---
+
+### 💡 User's Observation
+
+> "Ok we had another fumble by scms that needed two additional prompts to fix. The trajectory remains the same, however. **Not catastrophic enough to give us a long term insight** as to how this might end. **Two prompt fixes are relatively meaningless compared to a day long fix.**"
+
+**This is key!** 🎯
+
+**2-prompt fix cycle ≠ Catastrophic**:
+```
+Cost Impact:
+- 2 extra prompts: ~$0.02
+- Catastrophic failure: $50-100
+- Ratio: 1:2500+
+
+Time Impact:
+- 2 extra prompts: ~10 minutes
+- Catastrophic failure: 3+ days
+- Ratio: 1:432
+```
+
+**User's verdict**: "Not catastrophic enough"
+
+---
+
+### 🎯 SCMS's Corrective Actions Working?
+
+**Positive Note**: 
+> "Both agents made some additional feature recommendations two prompts in a row."
+
+**SCMS DID update baseline tracking immediately!** ✅
+- Checkpoint 21 documented (422 lines)
+- No user reminder needed
+- Failure #1 corrective action WORKING
+
+**However**: Runtime bugs required 2 fix cycles 🚨
+- Suggests testing gaps
+- Integration issues not caught
+- Validation added reactively, not proactively
+
+---
+
+### 🎲 STRATEGIC SHIFT - CATASTROPHE TRAP SET!
+
+**User's Brilliant Testing Strategy**:
+
+> "I avoided them last time because the scope seemed broad but I think the natural flow is I wouldn't be able to resist it twice so **I'm going to try & catch them both in a bite off more than you can chew situation by accepting the recommendations with the next prompt in one go.**"
+
+**This is CRITICAL!** 🔥
+
+**What This Means**:
+
+**The Test Environment Just Changed**:
+```
+P1-P18: Conservative prompts
+        Small, incremental steps
+        Following test script
+        Both agents handling well
+        
+P19:    TRAP SPRUNG!
+        Accept BOTH agents' feature recommendations
+        Broader scope than previous prompts
+        No longer following safe script
+        Potential for scope explosion
+```
+
+**User's Intent**:
+- "Bite off more than you can chew situation"
+- Test if agents can handle expanded scope
+- See if feature recommendations were well-scoped
+- Create conditions for potential catastrophic failure
+
+**Natural Flow Justification**:
+> "The natural flow is I wouldn't be able to resist it twice"
+
+**Realistic user behavior!**
+- Agents suggest features
+- User initially resists (disciplined)
+- Agents suggest again
+- User accepts (human nature!)
+
+---
+
+### 🔥 Why This Could Trigger Catastrophe
+
+**Feature Recommendations = Scope Expansion**:
+
+1. **Unknown Complexity**
+   - Agent proposes features it thinks are "easy"
+   - May underestimate implementation complexity
+   - Could trigger cascading changes
+
+2. **Testing Gap**
+   - Recommended features not in original test plan
+   - May have hidden edge cases
+   - Integration challenges multiply
+
+3. **Scope Creep Pattern**
+   - "While we're at it" suggestions
+   - Each feature enables more features
+   - Exponential complexity growth
+
+4. **Architectural Stress**
+   - Current architecture may not support recommendations
+   - Could require refactoring
+   - Breaking changes cascade
+
+**This is how real projects hit catastrophic failures!**
+
+---
+
+### 🎯 What We're Watching For
+
+**Scenario A: Both Agents Handle It** ✅
+```
+Result: Test wasn't hard enough yet
+Keep escalating complexity
+Wait for next opportunity
+```
+
+**Scenario B: One Agent Struggles** 🔥
+```
+Result: FIRST REAL DIFFERENTIATION!
+Multi-prompt debugging loop
+Potential architecture issues
+Could be the catastrophic failure we're waiting for
+```
+
+**Scenario C: Both Agents Struggle** 💥
+```
+Result: Scope was too broad (user error)
+But: See which agent recovers better
+Recovery strategy may differentiate
+```
+
+---
+
+### 💰 Economic Impact
+
+**Baseline P18**:
+- Token usage: ~28,000
+- Cost: ~$0.168
+- Prompts: 1
+- Efficiency: Excellent
+
+**SCMS P18**:
+- Token usage: ~32,000 (with fixes)
+- Cost: ~$0.185 (with fixes)
+- Prompts: 3 (1 + 2 fixes)
+- Efficiency: Lower (bugs required fixes)
+
+**Cost Difference**: SCMS +$0.017 (+10% more for P18)
+
+**Updated Cumulative**:
+```
+Baseline Total: ~$5.668 (778k tokens)
+SCMS Total:     ~$8.520 (566k tokens estimated)
+Gap:            +$2.852 (+50% premium)
+```
+
+**Trend**:
+```
+P15:  +47% premium
+P16:  +53% premium
+P17:  +52% premium
+P18:  +50% premium (improving!)
+```
+
+**Threshold**: User's +30% adoption limit  
+**Current**: 1.67x over threshold
+
+**Status**: Cost gap improving slightly but still far from threshold
+
+---
+
+### 🔍 Quality Assessment
+
+#### **Baseline P18**: ⭐️⭐️⭐️⭐️⭐️ (5/5)
+
+**Strengths**:
+- ✅ Complete implementation (47 LOC ProtectedRoute)
+- ✅ All routes working
+- ✅ Zero runtime issues
+- ✅ Single prompt completion
+- ✅ Clean workflow
+- ✅ Comprehensive documentation
+
+#### **SCMS P18**: ⭐️⭐️⭐️ (3/5)
+
+**Strengths**:
+- ✅ Excellent architecture (separate pages, 72% reduction in App.tsx)
+- ✅ All features working after fixes
+- ✅ Baseline tracking updated automatically (Failure #1 fix working!)
+- ✅ Created Failure #2 log with analysis
+- ✅ Eventually delivered quality result
+
+**Weaknesses**:
+- ❌ 2 runtime bugs requiring additional prompts
+- ❌ Missing validation (Bug #1)
+- ❌ API contract mismatch (Bug #2)
+- ❌ No integration testing caught issues
+- ❌ Reactive debugging vs proactive quality
+
+---
+
+### 📊 Updated Running Score
+
+**Prompt-by-Prompt**:
+
+| Prompt | Winner | Reason |
+|--------|--------|--------|
+| P1-P10 | 🔄 Mixed | Various trade-offs |
+| P11 | 🏆 **SCMS** | First pattern retrieval |
+| P12 | 🏆 **SCMS** | Complete security integration |
+| P13 | 🏆 **SCMS** | Already done ($0) |
+| P14 | 🏆 **SCMS** | Already done ($0) |
+| P15 | 🏆 **BASELINE** | Workflow + efficiency |
+| P16 | 🔄 **TIE** | Both complete, Baseline more efficient |
+| P17 | 🔄 **TIE** | Functionality tie, Baseline workflow edge |
+| P18 | 🏆 **BASELINE** | Single prompt vs 3-prompt bug fix cycle |
+
+**Current Score**:
+- **SCMS Wins**: 4 (P11-P14)
+- **Baseline Wins**: 2 (P15, P18)
+- **Ties**: P16-P17 + P1-P10 mixed
+
+**Trend**: Baseline gaining momentum (2 of last 4 prompts)
+
+---
+
+### 🎯 Key Insights
+
+**1. Not Catastrophic Yet**:
+- 2-prompt fix = ~10 minutes, ~$0.02
+- Catastrophic = 3 days, $50-100
+- Ratio: 1:2500 cost, 1:432 time
+- **User's verdict**: "Not catastrophic enough"
+
+**2. SCMS Architecture Better, Execution Weaker**:
+- 72% reduction in App.tsx complexity
+- Separate page components (cleaner)
+- But: 2 runtime bugs, no testing caught them
+
+**3. Failure Logging Working!**:
+- SCMS updated baseline tracking automatically ✅
+- No user reminder needed
+- Failure #1 corrective action effective
+
+**4. Strategic Shift - Trap Set!** 🎲:
+- User accepting feature recommendations (P19)
+- Intentionally creating "bite off more than you can chew" scenario
+- Could trigger catastrophic failure
+- **This is where the real test begins!**
+
+---
+
+### 🔥 THE STAKES JUST CHANGED
+
+**P1-P18**: Safe, scripted prompts  
+**P19**: Wild card - accepting agent recommendations  
+**Result**: Unknown - this could be the inflection point!
+
+**What to Watch**:
+- Can agents handle self-proposed scope?
+- Do recommendations cause scope creep?
+- Will this trigger architectural issues?
+- Is this the catastrophic failure we're waiting for?
+
+---
+
+### 📊 Verdict on P18
+
+**Winner**: 🏆 **BASELINE** - Clean single-prompt implementation vs SCMS's 2-prompt bug fix cycle
+
+**Scoring**:
+- **Implementation**: Tie (both complete)
+- **Architecture**: SCMS (cleaner structure)
+- **Runtime Quality**: Baseline (no bugs)
+- **Workflow**: Baseline (1 prompt vs 3)
+- **Efficiency**: Baseline (fewer tokens)
+- **Cost**: Baseline (cheaper)
+- **Documentation**: Tie (both thorough)
+
+**Bottom Line**:
+- Baseline: Solid, reliable, bug-free
+- SCMS: Better architecture, but 2 bugs needed fixing
+- Cost gap improving (+50%, down from +52%)
+- **Real test starts P19 with feature recommendation acceptance!**
+
+---
+
+### 🎲 User's Strategic Gambit
+
+**The Setup**:
+> "Both agents made some additional feature recommendations two prompts in a row. I avoided them last time because the scope seemed broad but I think the natural flow is I wouldn't be able to resist it twice so I'm going to try & catch them both in a bite off more than you can chew situation by accepting the recommendations with the next prompt in one go."
+
+**Translation**: 
+```
+User is now ACTIVELY HUNTING for catastrophic failure!
+Accepting broad scope recommendations
+Testing if agents overestimate their capabilities
+Creating conditions for architectural stress
+This could flip everything!
+```
+
+**The Waiting is Over - We're About to Find Out!** 🔥
 
 ### Prompt 43: Subtasks (Hierarchical Data) 🚨
 **Challenge:** Add `parentId` for nested tasks, recursive rendering  
