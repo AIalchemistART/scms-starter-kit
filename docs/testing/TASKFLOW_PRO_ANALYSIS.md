@@ -269,7 +269,8 @@ Status: Outside margin of error → Results compelling so far
 | Prompt 13  | 559,000         | $4.463        | 348,136     | $7.190    | -210,864 | -38% |
 | Prompt 14  | 669,000         | $5.033        | 348,136     | $7.190    | -320,864 | -48% |
 | Prompt 15  | 701,000         | $5.213        | 424,000     | $7.670    | -277,000 | -40% |
-| **Cumulative** | **701,000** | **$5.213**    | **424,000** | **$7.670** | **-277,000** | **-40%** |
+| Prompt 16  | 727,000         | $5.363        | 509,000     | $8.190    | -218,000 | -30% |
+| **Cumulative** | **727,000** | **$5.363**    | **509,000** | **$8.190** | **-218,000** | **-30%** |
 | Prompt 20  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 30  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 40  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
@@ -277,7 +278,7 @@ Status: Outside margin of error → Results compelling so far
 
 **\*Note on P7:** SCMS required 2 prompts to complete due to PostCSS bug not caught automatically. First prompt cost shown ($0.067). True cost to completion: ~$0.134 ($0.067 initial + $0.067 fix) vs. Baseline $0.129 (single prompt, bug auto-fixed).
 
-**📊 Key Finding:** After P15, SCMS is using FEWER tokens (424,000 vs. 701,000 = -40%!) but costing MORE ($7.670 vs. $5.213 = +47%). SCMS has ~2.4x higher per-token cost due to memory/pattern tracking overhead. Cost gap REGRESSED from +43% (P14) to +47% (P15)! SCMS is now 1.57x over user's +30% adoption threshold (worse than P14's 1.43x). **🎯 MILESTONE: P11 = FIRST PATTERN RETRIEVAL (L1)** - SCMS retrieved Dependency Version Management pattern. **🚨 P12 = FIRST DECISIVE WIN** - SCMS delivered complete security integration, Baseline had CRITICAL vulnerabilities. **💰 P13-14 = ZERO-COST PROMPTS** - SCMS already done (P12), Baseline catching up ($0.57 cost). **⚠️ P15 = FIRST SCMS LOSS** - Baseline won with smoother workflow, lower cost, no issues. SCMS had workflow friction + possible L0 contamination (wrong port)!
+**📊 Key Finding:** After P16, SCMS is using FEWER tokens (509,000 vs. 727,000 = -30%!) but costing MORE ($8.190 vs. $5.363 = +53%). SCMS has ~2.4x higher per-token cost due to memory/pattern tracking overhead. Cost gap CONTINUES TO WORSEN: P14 (+43%) → P15 (+47%) → P16 (+53%)! SCMS is now 1.77x over user's +30% adoption threshold. **🚨 CRITICAL**: Results need 50%+ advantage to overcome token estimate uncertainty + L0 contamination. Current test may not expose SCMS strengths (prompts too small, no repetitive workflows). **🎯 MILESTONE: P11 = FIRST PATTERN RETRIEVAL (L1)**. **🚨 P12 = FIRST DECISIVE WIN** - Complete security integration. **💰 P13-14 = ZERO-COST PROMPTS** - Already done. **⚠️ P15 = FIRST SCMS LOSS** - Workflow friction + L0 contamination. **🔄 P16 = TIE** - Both excellent, SCMS 3.3x more tokens. **⚠️ TEST DESIGN CONCERN**: Current prompts too granular for SOTA models. Labyrinth Protocol showed 10-20x advantage with mature codebase + repetitive workflows!
 
 ### ROI Calculation
 **Break-Even Point:** SCMS pays for itself when cumulative patterns prevent enough rework/bugs to offset the token premium.
@@ -6163,12 +6164,477 @@ P15:  +47% premium (REGRESSED!)
 
 ---
 
-### Prompt 16: Token Refresh Mechanism 🔄
-**Challenge:** Refactor React components to use global auth state  
-**Risk:** Props drilling removal, state management bugs, infinite re-renders  
-**Baseline Risk:** May rewrite components from scratch  
-**SCMS Advantage:** Context patterns, state management best practices  
-**Hypothesis:** SCMS pulls ahead with reusable React patterns
+## 🔒 Prompt 16: Register Form Component - Both Strong, SCMS Higher Tokens ⚠️
+
+**Status**: ✅ **Both agents implemented registration successfully**  
+**Notable**: SCMS had system mostly in place, Baseline built from scratch  
+**Concern**: 🚨 **SCMS used considerably more tokens despite head start**
+
+---
+
+### 📋 Implementation Summary
+
+#### **Baseline Implementation**
+
+**Token Usage**: ~26,000 tokens  
+**Cost**: ~$0.150  
+**Approach**: Built new RegisterForm from scratch
+
+**Files Created**: 1
+- `frontend/src/components/RegisterForm.tsx` (520 LOC)
+
+**Files Modified**: 3
+- `frontend/src/utils/auth.ts` (password validation updates)
+- `frontend/src/App.tsx` (navigation logic)
+- `frontend/src/components/LoginForm.tsx` (register link)
+
+**Features Implemented**:
+- ✅ Email, password, confirm password fields
+- ✅ Real-time password strength indicator (5 levels)
+- ✅ Color-coded strength bars (red → green)
+- ✅ Requirements checklist with checkmarks
+- ✅ Special character validation (@$!%*?&#)
+- ✅ Confirm password validation
+- ✅ Auto-redirect to login after success
+- ✅ Loading/error/success states
+- ✅ Mobile-responsive design
+
+**Workflow**: Seamless, no issues
+
+---
+
+#### **SCMS Implementation**
+
+**Token Usage**: ~85,000 total (context suggests higher usage)  
+**Cost**: ~$0.52 (cumulative tracking shows increase)  
+**Approach**: Enhanced existing RegisterForm (created in P15)
+
+**Files Created**: 0 (already existed from P15)
+
+**Files Modified**: 2
+- `frontend/src/components/RegisterForm.tsx` (special char updates)
+- `backend/src/middleware/validation.ts` (backend alignment)
+
+**What Happened**:
+1. SCMS noted: "RegisterForm was already created during Prompt 15!"
+2. But: Missing special character requirement from P16
+3. Updated frontend validation regex
+4. Updated backend validation to match
+5. Restarted backend to apply changes
+6. Extensive documentation of before/after
+
+**Features Already in Place** (from P15):
+- ✅ Email, password, confirm password fields
+- ✅ Password validation (except special chars)
+- ✅ Navigation to login
+- ✅ Loading/error/success states
+
+**Added in P16**:
+- ✅ Special character validation
+- ✅ Backend validation alignment
+- ✅ Security impact analysis
+- ✅ Breaking change documentation
+
+**Workflow**: Clean, recognized existing work
+
+---
+
+### 🎯 Implementation Comparison
+
+| Feature | Baseline | SCMS | Winner |
+|---------|----------|------|--------|
+| **RegisterForm Component** | ✅ 520 LOC (new) | ✅ 286 LOC (P15) + updates | Tie (both complete) |
+| **Password Strength Indicator** | ✅ 5-level visual | ✅ (from P15) | Tie |
+| **Requirements Checklist** | ✅ Visual feedback | ✅ (from P15) | Tie |
+| **Special Character Validation** | ✅ Built-in | ✅ Added in P16 | Baseline (first-time complete) |
+| **Backend Alignment** | ✅ Mentioned | ✅ Explicitly updated | SCMS (thorough) |
+| **Security Analysis** | ❌ Not documented | ✅ Entropy calculations | 🏆 **SCMS** |
+| **Breaking Change Docs** | ❌ Not mentioned | ✅ Test impact analysis | 🏆 **SCMS** |
+| **Token Usage** | ~26,000 | ~85,000 | 🏆 **Baseline** (-69% fewer!) |
+| **Cost** | ~$0.150 | ~$0.52 | 🏆 **Baseline** (-71% cheaper!) |
+| **Workflow** | Seamless | Clean | Tie |
+
+**Overall**: 🔄 **TIE on functionality, Baseline wins on efficiency**
+
+---
+
+### 💡 Why Did SCMS Use More Tokens?
+
+**SCMS's Advantage Backfired**:
+- Had 90% of RegisterForm from P15
+- Only needed to add special character validation
+- Should have been quick update
+
+**But Instead**:
+- Explained entire existing implementation
+- Showed before/after code
+- Documented security impact analysis
+- Analyzed breaking changes
+- Calculated password entropy improvements
+- Updated comprehensive project tracking
+
+**Baseline's Simplicity**:
+- Built RegisterForm from scratch
+- No explanation of "what already exists"
+- Just implemented requirements
+- Clean, focused execution
+
+**Pattern**: SCMS's documentation thoroughness adds token overhead!
+
+---
+
+### 💰 Economic Impact
+
+**Baseline P16**:
+- Token usage: ~26,000
+- Cost: ~$0.150
+- Efficiency: High (new implementation)
+
+**SCMS P16**:
+- Token usage: ~85,000 (estimated from cumulative)
+- Cost: ~$0.52
+- Efficiency: Lower (heavy documentation overhead)
+
+**Cost Difference**: SCMS +$0.37 (+247% more expensive!)
+
+**Updated Cumulative**:
+```
+Baseline Total: ~$5.363 (727k tokens)
+SCMS Total:     ~$8.190 (509k tokens estimated)
+Gap:            +$2.827 (+53% premium)
+```
+
+**Trend - GETTING WORSE**:
+```
+P14:  +43% premium (improving!)
+P15:  +47% premium (regressed)
+P16:  +53% premium (WORSE AGAIN!)
+```
+
+**Threshold**: User's +30% adoption limit  
+**Current**: 1.77x over threshold (was 1.57x in P15)
+
+🚨 **SCMS cost efficiency continues to regress!**
+
+---
+
+### 🔍 Quality Assessment
+
+#### **Baseline P16**: ⭐️⭐️⭐️⭐️⭐️ (5/5)
+
+**Strengths**:
+- ✅ Complete RegisterForm with all features
+- ✅ Real-time password strength indicator
+- ✅ Visual requirements checklist
+- ✅ Special character validation
+- ✅ Beautiful TailwindCSS design
+- ✅ Efficient token usage
+- ✅ Seamless workflow
+
+#### **SCMS P16**: ⭐️⭐️⭐️⭐️ (4/5)
+
+**Strengths**:
+- ✅ Recognized existing work (90% done)
+- ✅ Clean update to add special chars
+- ✅ Backend alignment verified
+- ✅ 🏆 Security impact analysis (entropy calculations)
+- ✅ 🏆 Breaking change documentation
+
+**Weaknesses**:
+- ⚠️ Used 3.3x more tokens than Baseline
+- ⚠️ Heavy documentation overhead
+- ⚠️ Cost efficiency regression continues
+
+---
+
+### 📊 Updated Running Score
+
+**Prompt-by-Prompt**:
+
+| Prompt | Winner | Reason |
+|--------|--------|--------|
+| P1-P10 | 🔄 Mixed | Various trade-offs |
+| P11 | 🏆 **SCMS** | First pattern retrieval |
+| P12 | 🏆 **SCMS** | Complete security integration |
+| P13 | 🏆 **SCMS** | Already done ($0) |
+| P14 | 🏆 **SCMS** | Already done ($0) |
+| P15 | 🏆 **BASELINE** | Workflow + efficiency |
+| P16 | 🔄 **TIE** | Both complete, Baseline more efficient |
+
+**Current Score**:
+- **SCMS Wins**: 4 (P11-P14)
+- **Baseline Wins**: 1 (P15)
+- **Ties**: P16 + P1-P10 mixed
+
+---
+
+### 🎯 Key Findings
+
+**1. Both Delivered Excellent Solutions** ✅
+- Complete registration forms
+- Password strength validation
+- Special character requirements
+- Beautiful UI/UX
+
+**2. SCMS's Foresight from P15** 🏆
+- Already built RegisterForm in P15
+- Only needed minor updates in P16
+- Shows forward-thinking
+
+**3. SCMS's Documentation Overhead** ⚠️
+- Explained existing implementation
+- Security analysis
+- Breaking change docs
+- 3.3x more tokens than Baseline
+
+**4. Cost Gap Widening** 📉
+```
+P14: +43% (improving!)
+P15: +47% (regressed)
+P16: +53% (worse!)
+
+Threshold: +30%
+Current: 1.77x over
+Trend: Moving AWAY from viability
+```
+
+---
+
+## 🚨 CRITICAL TEST DESIGN INSIGHTS
+
+### **User's Meta-Analysis - Methodology Concerns**
+
+Your observations reveal **fundamental test design issues** that affect interpretation:
+
+---
+
+### 📊 **Issue #1: Token Estimates vs Absolute Counts**
+
+**The Problem**:
+> "We're working with agent estimates & not absolute token counts due to the lack of cascade api access end users have available to them."
+
+**Reality**:
+- All token counts are **estimates** from agents
+- No API access to verify actual usage
+- Cascade doesn't expose token metrics to end users
+- Creates uncertainty in economic analysis
+
+**Implications**:
+- Token estimates may favor one agent over another
+- Cost calculations have unknown error margins
+- Economic comparisons are approximate, not precise
+
+**User's Threshold for Validity**:
+> "If SCMS dominates there could be some exaggerative effects of token estimations that work in it's favor so the dominant results have to be high enough to make even some skew in token estimates still not fully dismissable due to the overwhelming victory. We're talking 50% plus agent effectiveness & cost reduction."
+
+**Decision Framework**:
+```
+For compelling results need:
+✅ 50%+ effectiveness advantage (quality/features)
+OR
+✅ 50%+ cost reduction
+
+Otherwise:
+Token estimate uncertainty + L0 contamination = INCONCLUSIVE
+```
+
+---
+
+### 📊 **Issue #2: Prompt Granularity Too Small**
+
+**The Problem**:
+> "The other thing I've been wondering is if the current prompt structure uses too small of incremental steps to really know for sure because current models like claude 4.5 thinking are very capable out of the box at the incremental steps we're throwing at them."
+
+**Reality**:
+- Current prompts are small, incremental tasks
+- Modern SOTA models (Claude 4.5, etc.) handle these easily
+- Not testing model limits
+- Not exposing "systems thinking" advantages
+
+**Examples of Current Granularity**:
+- P15: "Create LoginForm component"
+- P16: "Add RegisterForm component"
+- P12: "Add JWT authentication"
+
+**These are well within SOTA capabilities!**
+
+**Recommendation**:
+> "Later testing environments should explore much larger leaps for each prompt to really test base model limits & better expose the potential benefits of the 'systems thinking' scms hypothesis."
+
+**What "Larger Leaps" Means**:
+- Instead of: "Add login form" (P15) + "Add register form" (P16)
+- Try: "Implement complete authentication system with login, register, password reset, email verification, 2FA, and admin panel"
+
+**Purpose**: Test where base models break down and SCMS's patterns provide advantage
+
+---
+
+### 🎮 **Issue #3: Labyrinth Protocol Context - The Compelling Case**
+
+**Why Labyrinth Protocol Testing Was Compelling**:
+> "What makes the Labyrinth Protocol testing most compelling is that the game was in a mature dev state & was at the stage of using a very complicated but repetitive workflow over & over again & in that specific environment SCMS seems to dominate."
+
+**Labyrinth Protocol Characteristics**:
+1. **Mature codebase** (not greenfield)
+2. **Complicated workflows** (video clip integration, QTE timing, rendering)
+3. **Repetitive patterns** (Win/Fail states, pause menu handling)
+4. **SCMS Performance**: ~90% in one prompt (30-60 min)
+5. **Without SCMS**: Hours to 2 full days per workflow
+
+**This is a ~10-20x productivity multiplier!**
+
+---
+
+### 📊 **What Current Test Environment LACKS**:
+
+**Missing Elements**:
+> "What this environment doesn't yet have is not only big task steps but also mature & repetitive workflow. We're not using the same continual patterns here (yet) and the task steps are pretty small relative to SOTA capabilities."
+
+**Comparison**:
+
+| Factor | Labyrinth Protocol | TaskFlow Pro (Current) | Impact |
+|--------|-------------------|----------------------|--------|
+| **Codebase Maturity** | Mature | Greenfield | SCMS advantage hidden |
+| **Task Complexity** | Very high | Moderate | SOTA handles easily |
+| **Workflow Repetition** | High | Low (building, not repeating) | Pattern reuse limited |
+| **Prompt Size** | Large workflows | Small incremental | Base model sufficient |
+| **SCMS Advantage** | 10-20x productivity | Marginal improvements | Not compelling |
+
+---
+
+### 🎯 **Recommendation for Future Testing**
+
+**Phase 1: Build Functional Base** (Current approach is fine)
+- Small incremental prompts
+- Get to feature-complete application
+
+**Phase 2: Repetitive Workflow Testing** (Where SCMS shines)
+- Mature codebase established
+- Complicated, repetitive workflow
+- Large task steps that test SOTA limits
+
+**Example Future Test Design**:
+```
+Instead of:
+- P15: Login form
+- P16: Register form  
+- P17: Password reset
+- P18: Email verification
+
+Try:
+- P1: "Implement complete multi-tenant SaaS with:
+  - User auth (login, register, reset, verification, 2FA)
+  - Organization management (create, invite, RBAC)
+  - Billing integration (Stripe, plans, invoices)
+  - Admin dashboard (user management, analytics)
+  - API rate limiting and usage tracking"
+
+Then test REPETITIVE workflows:
+- P2-P10: Add 8 more feature modules with same patterns
+- Each should reuse: auth patterns, RBAC, billing hooks, admin views
+- Test if SCMS's pattern retrieval provides 10x advantage
+```
+
+---
+
+### 📊 **Updated Test Validity Framework**
+
+**For Results to be Compelling**:
+
+1. **✅ SCMS Dominates Decisively**
+   ```
+   Requirements:
+   - 50%+ effectiveness advantage (quality/speed)
+   OR
+   - 50%+ cost reduction
+   
+   Why: Overcomes token estimate uncertainty + L0 contamination
+   Result: VALID and COMPELLING
+   ```
+
+2. **✅ Baseline Dominates Decisively**
+   ```
+   Requirements:
+   - Clear quality advantage
+   OR  
+   - Significant cost advantage
+   
+   Result: VALID (L0 help wasn't enough)
+   Conclusion: SCMS not worth complexity
+   ```
+
+3. **⚠️ Results Within Margin** (<50% difference)
+   ```
+   Issues:
+   - Token estimate uncertainty
+   - L0 contamination
+   - Prompt granularity too small
+   
+   Result: INCONCLUSIVE
+   Conclusion: Not compelling for adoption
+   ```
+
+**Current Status** (P16):
+```
+SCMS Premium: +53%
+Threshold: +30% for adoption
+Margin: 1.77x over threshold
+Trend: Worsening
+
+Status: Outside 50% dominance threshold
+        Results NOT yet compelling
+        Need SCMS to turn around significantly
+```
+
+---
+
+### 🎯 **Key Insights**
+
+**1. Test Design Matters** 🚨
+- Current test optimized for incremental building
+- Not optimized for exposing SCMS's "systems thinking" advantage
+- SOTA models handle small tasks easily
+
+**2. Labyrinth Protocol Shows Real Advantage** 🏼6
+- Mature codebase
+- Repetitive complex workflows  
+- 10-20x productivity multiplier
+- THIS is where SCMS shines!
+
+**3. Current Test Limitations** ⚠️
+- Greenfield build (not mature codebase)
+- Small incremental steps (not complex workflows)
+- No pattern repetition yet
+- Token estimates (not absolute counts)
+- L0 contamination (benefits Baseline)
+
+**4. For Compelling Results Need** 🎯
+- 50%+ advantage to overcome uncertainties
+- OR test design that exposes SCMS strengths better
+- Repetitive workflows in mature codebase
+
+---
+
+### 📋 Verdict on P16
+
+**Winner**: 🔄 **TIE** (functionality), **BASELINE** (efficiency)
+
+**Scoring**:
+- **Functionality**: Tie (both excellent)
+- **Foresight**: SCMS (built RegisterForm in P15)
+- **Documentation**: SCMS (security analysis, breaking changes)
+- **Efficiency**: Baseline (69% fewer tokens)
+- **Cost**: Baseline (71% cheaper)
+
+**Bottom Line**:
+- Both delivered complete solutions
+- SCMS's documentation thoroughness adds cost
+- Cost gap widening (now +53% premium)
+- Outside compelling advantage threshold
+
+---
+
+### Prompt 17: TBD
 
 ### Prompt 43: Subtasks (Hierarchical Data) 🚨
 **Challenge:** Add `parentId` for nested tasks, recursive rendering  
