@@ -270,7 +270,8 @@ Status: Outside margin of error → Results compelling so far
 | Prompt 14  | 669,000         | $5.033        | 348,136     | $7.190    | -320,864 | -48% |
 | Prompt 15  | 701,000         | $5.213        | 424,000     | $7.670    | -277,000 | -40% |
 | Prompt 16  | 727,000         | $5.363        | 509,000     | $8.190    | -218,000 | -30% |
-| **Cumulative** | **727,000** | **$5.363**    | **509,000** | **$8.190** | **-218,000** | **-30%** |
+| Prompt 17  | 750,500         | $5.500        | 534,000     | $8.335    | -216,500 | -29% |
+| **Cumulative** | **750,500** | **$5.500**    | **534,000** | **$8.335** | **-216,500** | **-29%** |
 | Prompt 20  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 30  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
 | Prompt 40  | TBD             | TBD           | TBD         | TBD       | TBD   | TBD |
@@ -278,7 +279,7 @@ Status: Outside margin of error → Results compelling so far
 
 **\*Note on P7:** SCMS required 2 prompts to complete due to PostCSS bug not caught automatically. First prompt cost shown ($0.067). True cost to completion: ~$0.134 ($0.067 initial + $0.067 fix) vs. Baseline $0.129 (single prompt, bug auto-fixed).
 
-**📊 Key Finding:** After P16, SCMS is using FEWER tokens (509,000 vs. 727,000 = -30%!) but costing MORE ($8.190 vs. $5.363 = +53%). SCMS has ~2.4x higher per-token cost due to memory/pattern tracking overhead. Cost gap CONTINUES TO WORSEN: P14 (+43%) → P15 (+47%) → P16 (+53%)! SCMS is now 1.77x over user's +30% adoption threshold. **🚨 CRITICAL**: Results need 50%+ advantage to overcome token estimate uncertainty + L0 contamination. Current test may not expose SCMS strengths (prompts too small, no repetitive workflows). **🎯 MILESTONE: P11 = FIRST PATTERN RETRIEVAL (L1)**. **🚨 P12 = FIRST DECISIVE WIN** - Complete security integration. **💰 P13-14 = ZERO-COST PROMPTS** - Already done. **⚠️ P15 = FIRST SCMS LOSS** - Workflow friction + L0 contamination. **🔄 P16 = TIE** - Both excellent, SCMS 3.3x more tokens. **⚠️ TEST DESIGN CONCERN**: Current prompts too granular for SOTA models. Labyrinth Protocol showed 10-20x advantage with mature codebase + repetitive workflows!
+**📊 Key Finding:** After P17, SCMS is using FEWER tokens (534,000 vs. 750,500 = -29%!) but costing MORE ($8.335 vs. $5.500 = +52%). Cost gap stabilized: P16 (+53%) → P17 (+52%). SCMS is 1.73x over user's +30% threshold. **🚨 CATASTROPHIC FAILURE HYPOTHESIS**: Current results are PRELIMINARY! User notes: "We have yet to hit a big snag. I've had snags take me DAYS to fix. If one agent hits something like that, everything before it is essentially meaningless compared to that one catastrophic event." **Real projects hit MULTIPLE catastrophic snags!** One 3-day deadlock ($50-100 cost) can eclipse 50 prompts of optimization ($2.50). **THE REAL TEST HASN'T STARTED YET!** We're waiting for model-breaking problems. **🎯 P11 = FIRST PATTERN RETRIEVAL**. **🚨 P12 = FIRST DECISIVE WIN** - Security integration. **💰 P13-14 = ZERO-COST PROMPTS**. **⚠️ P15 = FIRST SCMS LOSS** - Workflow friction. **🔄 P16-17 = TIE** - SCMS forgot baseline tracking 3x (created FAILURES.md). **🧪 Failure logging experiment**: Will SCMS remember P18+?
 
 ### ROI Calculation
 **Break-Even Point:** SCMS pays for itself when cumulative patterns prevent enough rework/bugs to offset the token premium.
@@ -6634,7 +6635,512 @@ Status: Outside 50% dominance threshold
 
 ---
 
-### Prompt 17: TBD
+## 🔐 Prompt 17: Auth Context - Both Strong, SCMS Workflow Issues Continue
+
+**Status**: ✅ **Both agents implemented AuthContext successfully**  
+**Test**: Both stayed logged in after opening new windows ✅  
+**Issue**: 🚨 **SCMS forgot baseline tracking AGAIN** (required user prompt)
+
+---
+
+### 📋 Implementation Summary
+
+#### **Baseline Implementation**
+
+**Token Usage**: ~23,500 tokens  
+**Cost**: ~$0.137  
+**Approach**: Built comprehensive AuthContext from scratch
+
+**Files Created**: 1
+- `frontend/src/context/AuthContext.tsx` (210 LOC)
+
+**Files Modified**: 4
+- `frontend/src/main.tsx` (wrapped App with AuthProvider)
+- `frontend/src/App.tsx` (migrated to useAuth hook)
+- `frontend/src/components/LoginForm.tsx` (uses useAuth)
+- `frontend/src/components/RegisterForm.tsx` (uses useAuth)
+
+**Features Implemented**:
+- ✅ Global auth state management
+- ✅ `useAuth()` custom hook
+- ✅ Auto-load user from localStorage
+- ✅ JWT token decoding
+- ✅ Centralized login/register/logout
+- ✅ Loading state during auth check
+- ✅ Type-safe TypeScript interfaces
+- ✅ Eliminated prop drilling
+
+**Testing**: Opened new windows, stayed logged in ✅
+
+**Workflow**: Seamless, comprehensive documentation
+
+---
+
+#### **SCMS Implementation**
+
+**Token Usage**: ~25,000 tokens (estimated from context)  
+**Cost**: ~$0.145 (estimated)  
+**Approach**: Built AuthContext with similar features
+
+**Files Created**: 1
+- `frontend/src/context/AuthContext.tsx` (155 LOC)
+
+**Files Modified**: 4
+- `frontend/src/main.tsx` (wrapped with AuthProvider)
+- `frontend/src/App.tsx` (refactored to useAuth)
+- `frontend/src/components/LoginForm.tsx` (uses useAuth)
+- `frontend/src/components/RegisterForm.tsx` (uses useAuth)
+
+**Features Implemented**:
+- ✅ Global auth state management
+- ✅ `useAuth()` custom hook
+- ✅ Auto-load from localStorage
+- ✅ JWT token decoding
+- ✅ Login/register/logout functions
+- ✅ Loading state
+- ✅ User refresh functionality
+
+**Testing**: Opened new windows, stayed logged in ✅
+
+**Workflow Issue** 🚨:
+- **Forgot baseline tracking update** (3rd time!)
+- User had to prompt: "You're going to want to create a failure entry for continual baseline tracking update forgetting"
+- SCMS created `FAILURES.md` entry
+- Updated tracking after being reminded
+
+---
+
+### 🎯 Implementation Comparison
+
+| Feature | Baseline | SCMS | Winner |
+|---------|----------|------|--------|
+| **AuthContext Component** | ✅ 210 LOC | ✅ 155 LOC | Tie (both complete) |
+| **useAuth Hook** | ✅ Type-safe | ✅ Type-safe | Tie |
+| **Auto-load from localStorage** | ✅ Complete | ✅ Complete | Tie |
+| **JWT Token Decoding** | ✅ Implemented | ✅ Implemented | Tie |
+| **Loading State** | ✅ Spinner | ✅ Spinner | Tie |
+| **User Email Display** | ✅ In header | ✅ In header | Tie |
+| **Prop Drilling Elimination** | ✅ Clean | ✅ Clean | Tie |
+| **Documentation** | ✅ Comprehensive | ✅ Extensive | Tie |
+| **Baseline Tracking** | ✅ Updated | ⚠️ Forgot (3rd time!) | 🏆 **Baseline** |
+| **Token Usage** | ~23,500 | ~25,000 | 🏆 **Baseline** (slightly fewer) |
+| **Cost** | ~$0.137 | ~$0.145 | 🏆 **Baseline** (slightly cheaper) |
+| **Workflow** | Seamless | Needed reminder | 🏆 **Baseline** |
+
+**Overall**: 🔄 **TIE on functionality**, **BASELINE on workflow**
+
+---
+
+### 🚨 SCMS Workflow Issue - Baseline Tracking Recurring Failure
+
+**The Pattern**:
+- **Checkpoint 18** (P15): Forgot baseline tracking
+- **Checkpoint 19** (P16): Forgot baseline tracking  
+- **Checkpoint 20** (P17): Forgot baseline tracking **AGAIN**
+
+**User's Response**:
+> "You're going to want to create a failure entry for continual baseline tracking update forgetting."
+
+**SCMS's Action**:
+1. Created `docs/scms/FAILURES.md`
+2. Logged Failure #1: "Continual forgetting to update baseline-tracking.md"
+3. Root cause analysis: "Documentation treated as separate task"
+4. Prevention strategy: "Make documentation updates blocking for completion"
+5. Immediately updated baseline tracking (290+ lines)
+
+---
+
+### 🧪 Failure Logging Experiment
+
+**User's Hypothesis**:
+> "It will be interesting to see if the failure logging now keeps it on track with the baseline tracking proving the effectiveness of failure logging. We'll have to keep an eye on that one."
+
+**The Test**:
+- Will SCMS remember to update baseline tracking in P18+?
+- Does FAILURES.md pattern logging work?
+- Can AI learn from documented failures?
+
+**Natural Flow Consideration**:
+> "It also keeps us in line with natural flow as I would naturally let that slide once or twice but it it keeps happening I'd do exactly as I did in bringing it to the agent's attention."
+
+**This is realistic user behavior**: Tolerate once, remind if recurring
+
+---
+
+### 💰 Economic Impact
+
+**Baseline P17**:
+- Token usage: ~23,500
+- Cost: ~$0.137
+- Efficiency: High
+
+**SCMS P17**:
+- Token usage: ~25,000 (estimated)
+- Cost: ~$0.145 (estimated)
+- Efficiency: Slightly lower + workflow interruption
+
+**Cost Difference**: SCMS +$0.008 (+6% more expensive for P17)
+
+**Updated Cumulative**:
+```
+Baseline Total: ~$5.500 (750k tokens)
+SCMS Total:     ~$8.335 (534k tokens estimated)
+Gap:            +$2.835 (+52% premium)
+```
+
+**Trend**:
+```
+P14:  +43% premium
+P15:  +47% premium
+P16:  +53% premium
+P17:  +52% premium (slight improvement!)
+```
+
+**Threshold**: User's +30% adoption limit  
+**Current**: 1.73x over threshold
+
+**Status**: Cost gap stabilizing but still far from threshold
+
+---
+
+### 🔍 Quality Assessment
+
+#### **Baseline P17**: ⭐️⭐️⭐️⭐️⭐️ (5/5)
+
+**Strengths**:
+- ✅ Complete AuthContext (210 LOC)
+- ✅ Comprehensive documentation
+- ✅ All features implemented
+- ✅ Clean code architecture
+- ✅ No workflow issues
+- ✅ Passed testing
+
+#### **SCMS P17**: ⭐️⭐️⭐️⭐️ (4/5)
+
+**Strengths**:
+- ✅ Complete AuthContext (155 LOC)
+- ✅ All features implemented
+- ✅ Created FAILURES.md (learning from mistakes)
+- ✅ Passed testing
+
+**Weaknesses**:
+- ⚠️ Forgot baseline tracking (3rd time)
+- ⚠️ Required user intervention
+- ⚠️ Workflow friction continues
+
+---
+
+### 📊 Updated Running Score
+
+**Prompt-by-Prompt**:
+
+| Prompt | Winner | Reason |
+|--------|--------|--------|
+| P1-P10 | 🔄 Mixed | Various trade-offs |
+| P11 | 🏆 **SCMS** | First pattern retrieval |
+| P12 | 🏆 **SCMS** | Complete security integration |
+| P13 | 🏆 **SCMS** | Already done ($0) |
+| P14 | 🏆 **SCMS** | Already done ($0) |
+| P15 | 🏆 **BASELINE** | Workflow + efficiency |
+| P16 | 🔄 **TIE** | Both complete, Baseline more efficient |
+| P17 | 🔄 **TIE** | Functionality tie, Baseline workflow edge |
+
+**Current Score**:
+- **SCMS Wins**: 4 (P11-P14)
+- **Baseline Wins**: 1 (P15)
+- **Ties**: P16-P17 + P1-P10 mixed
+
+---
+
+### 🎯 User's Reality Check
+
+> "It's looking bad for SCMS at the moment but the whole thing can flip really easily in a single prompt."
+
+**Truth**: Small workflow issues accumulating, but one major event can change everything!
+
+---
+
+## 🚨 CRITICAL INSIGHT: THE CATASTROPHIC FAILURE HYPOTHESIS
+
+### **User's Most Important Observation Yet**
+
+> "We have yet to hit a big snag in either project workflow. I've had some snags take me days of prompting to fix. If one or the other agent hits something like that before the final prompt. Everything that came before it is essentially meaningless compared to that one catastrophic event."
+
+---
+
+### 💥 **Why This Changes Everything**
+
+**The Reality of Software Development**:
+- Projects don't fail from small inefficiencies
+- Projects fail from **catastrophic blocks** that take days to resolve
+- One major bug can cost more than 100 small optimizations save
+
+**User's Experience**:
+> "I haven't done any projects yet that haven't hit several of these throughout the dev cycle."
+
+**Every real project hits multiple catastrophic snags!**
+
+---
+
+### 📊 **Catastrophic Failure Impact Analysis**
+
+**Scenario: One Agent Hits a Days-Long Block**
+
+```
+Current State (P1-P17):
+Baseline: $5.50, smooth workflow, small advantages
+SCMS: $8.34, some friction, pattern advantages
+Difference: +$2.84 (+52%)
+
+Catastrophic Failure Event (e.g., P25):
+Baseline: Hits architectural deadlock
+          - 3 days of prompting
+          - Complete rewrite required
+          - $50-100 additional cost
+          - Feature may be abandoned
+
+SCMS: Pattern prevents issue
+      - Completes in 1 prompt
+      - $0.50 cost
+      - Feature works first try
+
+New State:
+Baseline: $55.50+ (catastrophic cost)
+SCMS: $8.84 (avoided catastrophe)
+Difference: SCMS saves $46+ (-84% cost!)
+
+Result: ALL PREVIOUS ANALYSIS IRRELEVANT
+```
+
+**One catastrophic failure can eclipse 50 prompts of optimization!**
+
+---
+
+### 🎯 **What Counts as Catastrophic?**
+
+**Based on User's Experience**:
+
+1. **Days-Long Debugging Loops**
+   - Multiple prompts to fix same issue
+   - Cycle of breaking fixes
+   - Eventually requires rewrite
+
+2. **Architectural Deadlocks**
+   - Current design can't support new feature
+   - Requires major refactor
+   - Breaking changes across codebase
+
+3. **Model-Breaking Problems**
+   - AI can't figure it out
+   - User has to manually fix
+   - Defeats purpose of AI assistance
+
+4. **Feature Abandonment**
+   - Problem too complex to solve
+   - Feature gets cut from project
+   - Requirements changed to avoid issue
+
+---
+
+### 🔬 **Current Test Status: Too Simple?**
+
+**User's Hypothesis**:
+> "If we finish without a catastrophic event it will prove that the project was overall too simple."
+
+**Why This Matters**:
+```
+If TaskFlow Pro completes with zero catastrophic failures:
+→ Project was too simple to test SCMS's true value
+→ Any methodology would have succeeded
+→ Results don't prove SCMS worth the complexity
+→ Test doesn't reflect real-world challenges
+```
+
+**User's Experience**:
+> "I haven't done any projects yet that haven't hit several of these throughout the dev cycle."
+
+**Every real project = Multiple catastrophic snags**
+
+---
+
+### 🎯 **What This Means for Test Interpretation**
+
+**Three Possible Outcomes**:
+
+#### **1. SCMS Handles Catastrophe, Baseline Doesn't** 🏆
+```
+Result: SCMS WINS DECISIVELY
+Reason: Pattern prevention >> cumulative efficiency
+Conclusion: SCMS justified despite higher token cost
+Evidence: One saved catastrophe = $50-100 savings
+```
+
+#### **2. Baseline Handles Catastrophe, SCMS Doesn't** 🚨
+```
+Result: BASELINE WINS DECISIVELY  
+Reason: SCMS patterns not helping where it matters
+Conclusion: SCMS overhead not worth it
+Evidence: Patterns failed when truly needed
+```
+
+#### **3. No Catastrophic Failures Occur** ⚠️
+```
+Result: TEST INCONCLUSIVE
+Reason: Project too simple to differentiate methodologies
+Conclusion: Can't prove SCMS value without real stress test
+Evidence: Both agents succeeded = task within SOTA capabilities
+```
+
+---
+
+### 📊 **Revised Test Validity Framework**
+
+**For Results to be Compelling** (Updated):
+
+1. **✅ One Agent Handles Catastrophe, Other Doesn't**
+   ```
+   Requirements:
+   - Multi-day debugging loop for one agent
+   - Other agent completes same task in <3 prompts
+   - Cost/time difference > 10x
+   
+   Why: Proves methodology's value in real stress
+   Result: VALID and COMPELLING
+   ```
+
+2. **✅ 50%+ Advantage Without Catastrophe**
+   ```
+   Requirements:
+   - SCMS shows 50%+ effectiveness OR cost reduction
+   - Across cumulative prompts
+   
+   Why: Overcomes token uncertainty + L0 contamination
+   Result: VALID (but not as compelling as #1)
+   ```
+
+3. **⚠️ No Catastrophe + <50% Advantage**
+   ```
+   Issues:
+   - Project too simple to test methodology value
+   - Token estimate uncertainty
+   - L0 contamination
+   - Prompt granularity too small
+   
+   Result: INCONCLUSIVE
+   Conclusion: Can't justify SCMS complexity
+   ```
+
+---
+
+### 💡 **Why Catastrophic Failures Matter Most**
+
+**Economic Reality**:
+```
+Small Efficiency Gains:
+50 prompts × $0.05 savings = $2.50 total
+
+Catastrophic Failure Cost:
+1 deadlock × 3 days × $50 = $150 cost
+
+Ratio: 60:1
+```
+
+**One catastrophic failure costs as much as 60 prompts of optimization!**
+
+**Developer Time Reality**:
+```
+Small Workflow Friction:
+50 prompts × 1 extra minute = 50 minutes
+
+Catastrophic Debugging:
+1 deadlock × 3 days × 8 hours = 24 hours
+
+Ratio: 29:1
+```
+
+**One catastrophic failure wastes as much time as 29 prompts of friction!**
+
+---
+
+### 🎯 **What We're Waiting For**
+
+**User's Expectation**:
+> "Hopefully as we get deeper into this project we'll encounter some model breaking problems to solve."
+
+**Future Prompts Where Catastrophe May Hit**:
+
+- **P25+**: Complex feature integration (multi-tenant, RBAC)
+- **P30+**: Performance optimization (may require architecture rewrite)
+- **P40+**: Real-time features (WebSockets, state sync complexity)
+- **P45+**: Production deployment (configuration hell, edge cases)
+
+**These are where patterns either save you or don't matter**
+
+---
+
+### 📋 **Current State (P1-P17)**
+
+**What We've Learned So Far**:
+- ✅ Both agents handle incremental tasks well
+- ✅ SCMS has pattern advantages (P12-P14)
+- ✅ Baseline has workflow efficiency
+- ⚠️ Cost gap: +52% premium for SCMS
+- ⚠️ No catastrophic failures yet
+
+**What This Means**:
+```
+Current results = Preliminary data
+True test = How agents handle catastrophe
+Waiting for: Model-breaking problem
+Then: Everything will become clear
+```
+
+---
+
+### 🔥 **The Stakes**
+
+**If Catastrophe Hits**:
+- Previous 17 prompts become footnotes
+- Winner = whoever handles catastrophe better
+- Cost difference becomes dramatic
+- Clear adoption recommendation emerges
+
+**If No Catastrophe**:
+- Test proves project too simple
+- Results inconclusive for methodology value
+- Can't justify SCMS overhead
+- Need harder test environment
+
+---
+
+### 📊 **Verdict on P17**
+
+**Winner**: 🔄 **TIE** (functionality), slight **BASELINE** edge (workflow)
+
+**Scoring**:
+- **Functionality**: Tie (both excellent)
+- **Features**: Tie (both complete)
+- **Testing**: Tie (both passed)
+- **Documentation**: Tie (both thorough)
+- **Workflow**: Baseline (no reminders needed)
+- **Efficiency**: Baseline (slightly fewer tokens)
+
+**Bottom Line**:
+- Both delivered complete AuthContext
+- SCMS forgot tracking 3rd time (workflow pattern)
+- Created FAILURES.md (learning mechanism)
+- Cost gap stabilized (+52%)
+- **Waiting for catastrophic failure to determine true value**
+
+---
+
+### 🎯 Key Insight
+
+**Everything before the first catastrophic failure is just setup**  
+**The real test begins when a model-breaking problem appears**  
+**That's when patterns either save you or prove irrelevant**
+
+We're playing the waiting game now! 🎲
 
 ### Prompt 43: Subtasks (Hierarchical Data) 🚨
 **Challenge:** Add `parentId` for nested tasks, recursive rendering  
