@@ -37,6 +37,52 @@
 
 ## 📊 Analysis Patterns
 
+### **Full Project Scope Analysis Pattern** (Promoted: 2025-11-21)
+
+**Context**: Analyzing project-level documentation or file systems  
+**Use Count**: Failure prevention pattern (from FAIL-20251121-001)
+
+**Anti-Pattern Observed**:
+```
+❌ Narrow scope assumption without validation
+❌ Bottom-up analysis (folder by folder)
+❌ Assuming "SCMS docs" = only docs/scms/ folder
+Result: 15x magnitude error (68 KB reported vs 1,043 KB reality!)
+```
+
+**Correct Pattern**:
+```markdown
+WHEN user references:
+- "File system"
+- "Project structure"
+- "Both projects"
+- "Documentation ecosystem"
+
+THEN:
+1. Assume FULL PROJECT SCOPE first
+2. Scan entire directory tree (exclude node_modules)
+   Example: Get-ChildItem -Recurse -Filter "*.md" | Where {$_ -notlike "*node_modules*"}
+3. Report comprehensive findings (total count + total size)
+4. Break down by major directories
+5. THEN provide detailed analysis
+6. Validate scope interpretation if ambiguous
+
+Rule: Start broad, narrow down - NOT start narrow, expand up!
+```
+
+**Key Insight**:
+> In SCMS context, "documentation" ≠ just runtime docs (docs/scms/). It includes the entire taskflow-pro system: whitepapers, guides, templates, tools (dashboard), workflows, rules - everything that constitutes the SCMS methodology ecosystem.
+
+**When to Apply**:
+- Any project-level comparison or analysis request
+- User references "file system," "project," or similar broad scope
+- Documentation inventory or gap analysis
+- Before making claims about documentation coverage
+
+**Related Failures**: FAIL-20251121-001 (15x undercount of documentation gap)
+
+---
+
 ### **Comparative Economic Tracking Pattern** (Promoted: 2025-11-19)
 
 **Context**: Tracking token usage and cost differences between AI agent implementations  

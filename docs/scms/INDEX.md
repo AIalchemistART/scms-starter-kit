@@ -44,7 +44,43 @@
 ### #economic_analysis
 - See L1 Patterns: Break-Even and ROI Tracking Pattern
 - See L1 Patterns: Comparative Economic Tracking Pattern
-- Related: TaskFlow Pro comparison study (+66% cost premium tracking)
+- Related: TaskFlow Pro comparison study (+48% cost premium stable through P20)
+
+### #scope_definition
+- See L1 Patterns: Full Project Scope Analysis Pattern
+- See L2 Failures: Analysis scope error (FAIL-20251121-001)
+- Prevention: Start broad (full project scan), narrow down
+
+### #measurement
+- See L2 Failures: 15x undercount error (documentation gap)
+- Prevention: Full Project Scope Analysis Pattern (L1)
+
+### #test_validity
+- See SESSION_LOG_L5.md: Methodological refinement (P20 confounding variable)
+- See TASKFLOW_PRO_ANALYSIS.md: Test validity improvement (internal + external)
+
+### #fairness
+- See TASKFLOW_PRO_ANALYSIS.md: WEB_APP_TEST_PROMPTS.md correction
+- Topic: Confounding variables, test environment parity
+
+### #signal_to_noise
+- See TASKFLOW_PRO_ANALYSIS.md: Documentation density hypothesis
+- Topic: Retrieval efficiency (7.9% vs 1.2% context ratios)
+- Hypothesis: P21+ testing
+
+### #documentation_density
+- See L1 Patterns: Full Project Scope Analysis Pattern
+- Topic: Optimal documentation balance (signal vs noise)
+- Data: SCMS 106 files (1.2% signal), Baseline 6 files (7.9% signal)
+
+### #scientific_rigor
+- See SESSION_LOG_L5.md: User's methodological corrections
+- Examples: Confounding variable identification, test validity improvement
+
+### #confounding_variables
+- See TASKFLOW_PRO_ANALYSIS.md: WEB_APP_TEST_PROMPTS.md file in SCMS but not Baseline (P1-P20)
+- Impact: P19-P20 "think-ahead" results confounded
+- Resolution: File added to Baseline for P21+ (fair comparison restored)
 
 ---
 
@@ -91,28 +127,45 @@
 **Related**: #methodology, #testing_philosophy
 **Impact**: HIGH POSITIVE (user correction led to better scientific approach)
 
+### **FAIL-20251121-001**: Analysis scope error (documentation gap 15x undercount)
+**Prevention**: Full Project Scope Analysis Pattern (L1)
+**Pattern**: When user references "file system" or "project structure," assume FULL PROJECT SCOPE first, then narrow down
+**Rule**: Start broad (full scan), narrow down - NOT start narrow, expand up
+**Key Insight**: In SCMS, "documentation" = entire taskflow-pro ecosystem (whitepapers, guides, templates, tools, workflows, rules), not just docs/scms/
+**Related**: #scope_definition, #measurement, #data_accuracy, #analysis
+**Impact**: Major - 15x magnitude error (reported 68 KB, reality 1,043 KB), quickly corrected
+**Cross-Ref**: TASKFLOW_PRO_ANALYSIS.md (Post-P20 Documentation Gap section, corrected analysis)
+
 ---
 
 ## 📊 Knowledge Base Statistics
 
-**Last Updated**: 2025-11-19
+**Last Updated**: 2025-11-21
 
 ### **By Layer**:
 - L0 Memories: Multiple (see dashboard)
-- L1 Patterns: 8 validated patterns
-- L2 Failures: 3 documented failures
+- L1 Patterns: 9 validated patterns (+1 from FAIL-20251121-001)
+- L2 Failures: 4 documented failures (+1 this session)
 - L3 Case Studies: 0 (pending)
 - L4 Global Rules: 1 (coding rules)
-- L5 Session Logs: 2 sessions
+- L5 Session Logs: 3 sessions (+1 this session)
 
 ### **By Topic**:
 - #tooling: 2 failures
 - #workflow: 1 failure, 2 patterns
-- #analysis: 3 patterns, 1 failure
+- #analysis: 4 patterns, 2 failures (+1 pattern, +1 failure)
 - #methodology: 2 patterns, 1 failure
 - #testing_philosophy: 1 pattern, 2 decision points
 - #data_verification: 1 pattern, 1 failure
 - #economic_analysis: 2 patterns
+- #scope_definition: 1 pattern, 1 failure (NEW)
+- #measurement: 1 failure (NEW)
+- #test_validity: 1 methodological refinement (NEW)
+- #fairness: 1 test correction (NEW)
+- #signal_to_noise: 1 hypothesis (NEW)
+- #documentation_density: 1 pattern (NEW)
+- #scientific_rigor: Multiple examples (NEW)
+- #confounding_variables: 1 identified + corrected (NEW)
 - #rendering: Multiple memories
 - #physics: Multiple memories
 - #architecture: Multiple memories
@@ -120,6 +173,9 @@
 ### **Growth Trajectory**:
 - Session 1 (2025-11-18): 1 failure, setup updates
 - Session 2 (2025-11-19): 2 failures, 8 patterns promoted, 1 core principle established
+- Session 3 (2025-11-21): 1 failure, 1 pattern promoted, P20 analysis + methodological refinement, test validity improved
+
+**Total Knowledge Artifacts**: 13 (4 failures + 9 patterns)
 
 ---
 
