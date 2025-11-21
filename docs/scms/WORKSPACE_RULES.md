@@ -1,6 +1,6 @@
 # Workspace Rules (L1) - TaskFlow Pro Comparative Analysis
 
-**Last Updated**: 2025-11-19  
+**Last Updated**: 2025-11-21  
 **Project**: TaskFlow Pro (SCMS vs Baseline Comparison Study)  
 **Purpose**: Document validated patterns and principles for comparative AI agent analysis
 
@@ -80,6 +80,90 @@ Rule: Start broad, narrow down - NOT start narrow, expand up!
 - Before making claims about documentation coverage
 
 **Related Failures**: FAIL-20251121-001 (15x undercount of documentation gap)
+
+---
+
+### **Preliminary Status Framing for Mid-Experiment Analysis** (Promoted: 2025-11-21)
+
+**Context**: Maintaining scientific rigor during mid-experiment analysis  
+**Use Count**: 5+ (P26-P30 analysis corrections)  
+**Tags**: #scientific-rigor #experiment-analysis #documentation #methodology
+
+**Problem**:  
+Mid-experiment analysis often overclaims results, using definitive language like "VALIDATED" before sufficient evidence. This damages scientific credibility and prevents graceful pivots.
+
+**Solution - Status Labels**:
+```markdown
+❌ DON'T USE (mid-experiment):
+- "VALIDATED", "CONFIRMED", "PROVEN", "DEFINITIVELY"
+
+✅ USE INSTEAD:
+- "PROMISING BUT PRELIMINARY"
+- "PATTERN EMERGING"  
+- "PRELIMINARY EVIDENCE"
+- "SUGGESTIVE BUT INCOMPLETE"
+```
+
+**Context Required**:
+```markdown
+Always include:
+✅ Progress fraction: "(X/Y prompts complete)" or "(60% done)"
+✅ Remaining work: "20 prompts remaining" or "Phase N pending"
+✅ Uncertainty: "Pattern could flip" or "One bad result could change this"
+✅ Critical test: "Phase N is critical test"
+✅ User quotes: Include cautionary expectations
+```
+
+**Implementation Example**:
+```markdown
+❌ WRONG at 60% complete:
+**Status**: ✅ VALIDATED
+
+✅ CORRECT at 60% complete:
+**Status**: ⚠️ PROMISING BUT PRELIMINARY (30/50 prompts)
+
+What We're Seeing:
+- [Evidence from completed prompts]
+
+What We DON'T Know Yet:
+- Will pattern hold through remaining prompts?
+- Could flip with one bad implementation
+- Phase N ahead is critical test
+
+Scientific Caution: Too early to conclude definitively
+```
+
+**Critical Rules**:
+1. Never claim "VALIDATED" until experiment 100% complete
+2. Always show progress fraction (X/Y) with status
+3. List uncertainties in "What We DON'T Know Yet" sections
+4. Include user's cautionary quotes when expressed
+5. Frame next phase as "critical test" - never as "confirmation"
+6. Use warning emoji ⚠️ for preliminary (not checkmark ✅)
+
+**When to Graduate from Preliminary**:
+Only when ALL criteria met:
+- ✅ 100% of planned tests complete
+- ✅ Pattern held consistently across all phases
+- ✅ No major contradictory evidence
+- ✅ User confirms experiment completion
+- ✅ Final critical tests passed
+
+**Applicability**:
+- ✅ ANY experiment with multiple phases
+- ✅ ANY analysis before completion threshold
+- ✅ Research papers, experiment logs, analysis documents
+- ✅ ANY pattern that could be disconfirmed by future data
+
+**User Correction That Triggered This**:
+> "I think we're starting to really see the difference between approaches but it's still 
+> preliminary & could flip with one bad implementation. I expect the scms system to outperform 
+> from here but baseline could still surprise & the SCMS system could still disappoint by the 
+> end of prompt 50."
+
+**Value**: Prevents credibility damage, enables graceful pivots, maintains user trust
+
+**Related**: PATTERN_PROMOTION_PRELIMINARY_STATUS.md for full documentation
 
 ---
 
@@ -346,9 +430,10 @@ Testing philosophy must be **internally consistent** even if it creates asymmetr
 
 ## 🎯 Summary
 
-**Total Patterns**: 8 validated patterns  
-**Total Failures Documented**: 2 (this session)  
-**Core Principle**: Natural Flow > Absolute Uniformity
+**Total Patterns**: 9 validated patterns  
+**Total Failures Documented**: 2 (documented)  
+**Core Principle**: Natural Flow > Absolute Uniformity  
+**Latest Addition**: Preliminary Status Framing (scientific rigor)
 
 **Next Session Reminders**:
 1. Apply Natural Flow principle consistently
@@ -356,8 +441,10 @@ Testing philosophy must be **internally consistent** even if it creates asymmetr
 3. Track economic metrics with break-even analysis
 4. Welcome hypothesis contradictions
 5. Document failures immediately (highest ROI!)
+6. **NEW: Maintain preliminary framing until experiments complete (100%)**
 
 ---
 
 **Pattern Promotion Log**:
 - 2025-11-19: Initial 8 patterns promoted from comparative analysis session
+- 2025-11-21: Pattern #9 promoted - Preliminary Status Framing (P26-P30 analysis)
