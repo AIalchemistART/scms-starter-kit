@@ -727,6 +727,48 @@
             background: #5568d3;
             transform: translateY(-1px);
         }
+        
+        /* Development Overlay */
+        .metrics-container {
+            position: relative;
+        }
+        
+        .dev-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(3px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            border-radius: 12px;
+            pointer-events: none;
+        }
+        
+        .dev-badge {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 12px;
+            font-size: 1.4em;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(243, 156, 18, 0.3);
+            letter-spacing: 2px;
+            transform: rotate(-2deg);
+        }
+        
+        .dev-badge-subtitle {
+            font-size: 0.5em;
+            margin-top: 8px;
+            opacity: 0.9;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -765,41 +807,49 @@
             <p id="sessionDetails">Start a session to begin algorithmic cost tracking</p>
         </div>
         
-        <div class="metrics-grid">
-            <div class="metric-card savings">
-                <div class="metric-title">Conservative Savings</div>
-                <div class="metric-value" id="savingsPercent">--</div>
-                <div class="metric-subtitle">30-45% target range</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="savingsProgress" style="width: 0%"></div>
+        <div class="metrics-container">
+            <div class="metrics-grid">
+                <div class="metric-card savings">
+                    <div class="metric-title">Conservative Savings</div>
+                    <div class="metric-value" id="savingsPercent">--</div>
+                    <div class="metric-subtitle">30-45% target range</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="savingsProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-card efficiency">
+                    <div class="metric-title">Retrieval Efficiency</div>
+                    <div class="metric-value" id="retrievalRatio">--</div>
+                    <div class="metric-subtitle">Target: >70% retrieval</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="efficiencyProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="metric-card patterns">
+                    <div class="metric-title">Pattern ROI</div>
+                    <div class="metric-value" id="patternROI">--</div>
+                    <div class="metric-subtitle">Validated patterns</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-title">Session Cost</div>
+                    <div class="metric-value" id="sessionCost">$0.00</div>
+                    <div class="metric-subtitle">Current session total</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-title">Sessions Tracked</div>
+                    <div class="metric-value" id="sessionCount">--</div>
+                    <div class="metric-subtitle" id="sessionBreakdown">-- SCMS • -- Baseline</div>
                 </div>
             </div>
-            
-            <div class="metric-card efficiency">
-                <div class="metric-title">Retrieval Efficiency</div>
-                <div class="metric-value" id="retrievalRatio">--</div>
-                <div class="metric-subtitle">Target: >70% retrieval</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="efficiencyProgress" style="width: 0%"></div>
+            <div class="dev-overlay">
+                <div class="dev-badge">
+                    🚧 TOOLS IN DEVELOPMENT
+                    <div class="dev-badge-subtitle">Prototype available for reference • Full tracking coming soon</div>
                 </div>
-            </div>
-            
-            <div class="metric-card patterns">
-                <div class="metric-title">Pattern ROI</div>
-                <div class="metric-value" id="patternROI">--</div>
-                <div class="metric-subtitle">Validated patterns</div>
-            </div>
-            
-            <div class="metric-card">
-                <div class="metric-title">Session Cost</div>
-                <div class="metric-value" id="sessionCost">$0.00</div>
-                <div class="metric-subtitle">Current session total</div>
-            </div>
-            
-            <div class="metric-card">
-                <div class="metric-title">Sessions Tracked</div>
-                <div class="metric-value" id="sessionCount">--</div>
-                <div class="metric-subtitle" id="sessionBreakdown">-- SCMS • -- Baseline</div>
             </div>
         </div>
         
@@ -1415,70 +1465,78 @@ cd new-folder && npm run dashboard:app</div>
                     </div>
                 </div>
                 
-                <div class="health-metrics">
-                    <!-- Retrieval Performance -->
-                    <div class="health-metric green" id="retrievalMetric">
-                        <div class="health-metric-title">⚡ Retrieval Performance</div>
-                        <div class="health-metric-value green" id="retrievalTime">2.3s</div>
-                        <div class="health-metric-details">
-                            <div>Max: <span id="maxRetrievalTime">5.1s</span></div>
-                            <div>Retrievals: <span id="retrievalCount">12</span> this session</div>
-                            <div class="health-metric-trend" id="retrievalTrend">Stable →</div>
+                <div class="metrics-container">
+                    <div class="health-metrics">
+                        <!-- Retrieval Performance -->
+                        <div class="health-metric green" id="retrievalMetric">
+                            <div class="health-metric-title">⚡ Retrieval Performance</div>
+                            <div class="health-metric-value green" id="retrievalTime">2.3s</div>
+                            <div class="health-metric-details">
+                                <div>Max: <span id="maxRetrievalTime">5.1s</span></div>
+                                <div>Retrievals: <span id="retrievalCount">12</span> this session</div>
+                                <div class="health-metric-trend" id="retrievalTrend">Stable →</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pattern Success Rate -->
+                        <div class="health-metric green" id="successMetric">
+                            <div class="health-metric-title">✅ Pattern Success Rate</div>
+                            <div class="health-metric-value green" id="successRate">80%</div>
+                            <div class="health-metric-details">
+                                <div>Success: <span id="successCount">12</span> / <span id="totalAttempts">15</span></div>
+                                <div>New patterns: <span id="newPatternsCount">3</span></div>
+                                <div class="health-metric-trend improving" id="successTrend">+5% vs baseline</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Scan Efficiency -->
+                        <div class="health-metric green" id="scanMetric">
+                            <div class="health-metric-title">🔍 Scan Efficiency</div>
+                            <div class="health-metric-value" id="scanEfficiency">14%</div>
+                            <div class="health-metric-details">
+                                <div>Relevant: <span id="patternsUsed">4</span> / <span id="memoriesScanned">28</span></div>
+                                <div>Noise: <span id="irrelevantPatterns">24</span> patterns skipped</div>
+                                <div class="health-metric-trend" id="scanTrend">Optimal range</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Temporal Health -->
+                        <div class="health-metric green" id="temporalMetric">
+                            <div class="health-metric-title">📉 Temporal Health</div>
+                            <div class="health-metric-value green" id="temporalHealth">5</div>
+                            <div class="health-metric-details">
+                                <div>Unused 30d: <span id="unused30d">5</span> patterns</div>
+                                <div>Avg age: <span id="avgAge">12</span> days</div>
+                                <div class="health-metric-trend" id="temporalTrend">🟢 Healthy</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Economic Efficiency -->
+                        <div class="health-metric green" id="economicMetric">
+                            <div class="health-metric-title">💰 Economic Efficiency</div>
+                            <div class="health-metric-value green" id="economicEfficiencyValue">23%</div>
+                            <div class="health-metric-details">
+                                <div>Savings: <span id="currentSavings">45%</span></div>
+                                <div>Retrieved: <span id="patternsRetrieved">3</span> patterns</div>
+                                <div class="health-metric-trend improving" id="economicTrend">+5% vs baseline</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Memory Capacity -->
+                        <div class="health-metric green" id="capacityMetric">
+                            <div class="health-metric-title">🧠 Memory Capacity</div>
+                            <div class="health-metric-value green" id="memoryCapacity">28</div>
+                            <div class="health-metric-details">
+                                <div>Zone: <span id="capacityZone">Green (0-35)</span></div>
+                                <div>Headroom: <span id="headroom">7</span> memories</div>
+                                <div class="health-metric-trend" id="capacityTrend">No degradation</div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <!-- Pattern Success Rate -->
-                    <div class="health-metric green" id="successMetric">
-                        <div class="health-metric-title">✅ Pattern Success Rate</div>
-                        <div class="health-metric-value green" id="successRate">80%</div>
-                        <div class="health-metric-details">
-                            <div>Success: <span id="successCount">12</span> / <span id="totalAttempts">15</span></div>
-                            <div>New patterns: <span id="newPatternsCount">3</span></div>
-                            <div class="health-metric-trend improving" id="successTrend">+5% vs baseline</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Scan Efficiency -->
-                    <div class="health-metric green" id="scanMetric">
-                        <div class="health-metric-title">🔍 Scan Efficiency</div>
-                        <div class="health-metric-value" id="scanEfficiency">14%</div>
-                        <div class="health-metric-details">
-                            <div>Relevant: <span id="patternsUsed">4</span> / <span id="memoriesScanned">28</span></div>
-                            <div>Noise: <span id="irrelevantPatterns">24</span> patterns skipped</div>
-                            <div class="health-metric-trend" id="scanTrend">Optimal range</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Temporal Health -->
-                    <div class="health-metric green" id="temporalMetric">
-                        <div class="health-metric-title">📉 Temporal Health</div>
-                        <div class="health-metric-value green" id="temporalHealth">5</div>
-                        <div class="health-metric-details">
-                            <div>Unused 30d: <span id="unused30d">5</span> patterns</div>
-                            <div>Avg age: <span id="avgAge">12</span> days</div>
-                            <div class="health-metric-trend" id="temporalTrend">🟢 Healthy</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Economic Efficiency -->
-                    <div class="health-metric green" id="economicMetric">
-                        <div class="health-metric-title">💰 Economic Efficiency</div>
-                        <div class="health-metric-value green" id="economicEfficiencyValue">23%</div>
-                        <div class="health-metric-details">
-                            <div>Savings: <span id="currentSavings">45%</span></div>
-                            <div>Retrieved: <span id="patternsRetrieved">3</span> patterns</div>
-                            <div class="health-metric-trend improving" id="economicTrend">+5% vs baseline</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Memory Capacity -->
-                    <div class="health-metric green" id="capacityMetric">
-                        <div class="health-metric-title">🧠 Memory Capacity</div>
-                        <div class="health-metric-value green" id="memoryCapacity">28</div>
-                        <div class="health-metric-details">
-                            <div>Zone: <span id="capacityZone">Green (0-35)</span></div>
-                            <div>Headroom: <span id="headroom">7</span> memories</div>
-                            <div class="health-metric-trend" id="capacityTrend">No degradation</div>
+                    <div class="dev-overlay">
+                        <div class="dev-badge">
+                            🚧 TOOLS IN DEVELOPMENT
+                            <div class="dev-badge-subtitle">Prototype available for reference • Full tracking coming soon</div>
                         </div>
                     </div>
                 </div>
