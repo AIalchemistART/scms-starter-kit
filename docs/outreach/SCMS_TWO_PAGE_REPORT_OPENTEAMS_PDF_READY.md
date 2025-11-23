@@ -69,7 +69,7 @@ Since our initial contact, I've completed the **greenfield cycle** (35 prompts) 
 
 ---
 
-# Critical Finding #2: Project Abandonment = Highest Cost ⭐
+# Critical Finding #2: Project Abandonment = Highest Cost
 
 ## The Motivation Preservation Thesis
 
@@ -146,6 +146,4 @@ Refinement cycle (P36-P50) starts next week. Happy to share findings as they eme
 
 ---
 
-\begin{center}
-\textit{"Perhaps the most important validation test of all." — On discovering that project abandonment is the highest cost in AI-assisted development}
-\end{center}
+<p align="center"><em>"Perhaps the most important validation test of all." — On discovering that project abandonment is the highest cost in AI-assisted development</em></p>
