@@ -2,7 +2,7 @@
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 1.6 (Updated November 17, 2025 - Added David Shapiro 2023 validation, Dual-Inevitability Theorem, embodied robotics applications)
+**Version**: 2.0 (Updated November 25, 2025 - Added Ilya Sutskever validation, HUMANE companion paper reference, corrected cross-domain claims)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -27,6 +27,11 @@ Through mathematical analysis and empirical validation from SCMS deployment, we 
 - **Google Research (2025)**: "Nested Learning" (Behrouz et al., NeurIPS 2025), published ~10 days after this work, independently discovered the same sparse hierarchical principles at the model architecture level with "Continuum Memory System" and multi-time-scale updates
 
 The convergence on identical sparse, nested, multi-scale patterns from three independent sources (Shapiro 2023, SCMS/MoM 2024-2025, Google 2025) provides compelling evidence that these are **universal structural requirements** for continual learning—not implementation details. The impossibility theorems we prove here now have empirical confirmation from S-tier research: dense alternatives demonstrably fail at scale, while sparse nested systems succeed.
+
+**Additional Validation (November 2025)**:
+- **Ilya Sutskever**: In a Dwarkesh Podcast interview, described the "bug oscillation" problem (A→B→A→B) that sparse memory systems directly address—confirming the severity gap in current AI systems that MoM routing mechanisms help prevent.
+
+**Companion Paper**: See [HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding](WHITEPAPER_HUMANE.md) for extension of MoM principles to AI alignment.
 
 **Keywords**: mixture of experts, sparse activation, memory routing, continual learning, cross-level analysis, universal patterns, structural isomorphism
 

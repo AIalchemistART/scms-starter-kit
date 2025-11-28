@@ -2,7 +2,7 @@
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 1.6 (Updated November 17, 2025 - Added David Shapiro 2023 validation, complementary multi-layer framing)
+**Version**: 2.0 (Updated November 25, 2025 - Added HUMANE companion paper reference, corrected cross-domain claims)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -29,7 +29,9 @@ This dual architecture produces: 91% reduction in pattern re-discovery time, 94%
 
 This convergence confirms the paradigm shift represents **universal architectural patterns for continual learning**, not domain-specific heuristics. The paradigm shift from passive storage to active validation infrastructure is fundamental, validated by multiple independent researchers.
 
-Through 4-month longitudinal deployment and multi-domain validation (scientific research, content creation, data analysis, education), we show this paradigm shift produces:
+**Companion Paper**: See [HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding](WHITEPAPER_HUMANE.md) for how the paradigm shift extends to AI alignment through severity-aware failure memory.
+
+Through 4-month longitudinal deployment and proposed cross-domain applications (scientific research, content creation, data analysis, education), we show this paradigm shift produces:
 - **91% reduction** in pattern re-discovery time
 - **94% knowledge retention** (vs 37% baseline)
 - **98% reduction** in documentation lag

@@ -2,7 +2,7 @@
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 1.1 (Updated November 17, 2025 - Added David Shapiro 2023 validation, Dual-Inevitability Theorem references)
+**Version**: 1.3 (Updated November 25, 2025 - Added Ilya Sutskever validation, HUMANE companion paper reference)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -47,6 +47,9 @@ Artificial Intelligence assistance has become integral to software development, 
 - **David Shapiro (2023)**: Asymptotic knowledge growth with sparse memory economics
 - **SCMS (2024-2025)**: Empirical validation with algorithmic cost tracking
 - **Google Research (2025)**: Multi-time-scale architectural efficiency
+- **Ilya Sutskever (2025)**: In a Dwarkesh Podcast interview (November 2025), described the "bug oscillation" problem that causes repeated rework costs—exactly what SCMS failure documentation prevents
+
+**Companion Paper**: See [HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding](WHITEPAPER_HUMANE.md) for economic implications of alignment cost reduction through severity-aware failure memory.
 
 **Economic Transformation**:
 
