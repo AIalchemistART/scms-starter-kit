@@ -1,450 +1,93 @@
-# Workspace Rules (L1) - TaskFlow Pro Comparative Analysis
+# Workspace Rules (L1) - [Project Name]
 
-**Last Updated**: 2025-11-21  
-**Project**: TaskFlow Pro (SCMS vs Baseline Comparison Study)  
-**Purpose**: Document validated patterns and principles for comparative AI agent analysis
+**Last Updated**: [Date]  
+**Project**: [Project Name and Description]  
+**Tech Stack**: [Primary Language/Framework]  
+**SCMS Role**: **L1 Stable Validation** (deterministic enforcement layer)
 
 ---
 
-## 🎯 Core Testing Principles
+## 🎯 Project Configuration
 
-### **"Natural Flow > Absolute Uniformity"** (Promoted: 2025-11-19)
+### Tech Stack
+- **Frontend**: [e.g., React, Next.js, Vue]
+- **Backend**: [e.g., Node.js, Python, Go]
+- **Database**: [e.g., PostgreSQL, SQLite, MongoDB]
+- **Other**: [e.g., APIs, services, tools]
 
-**Context**: Comparative testing methodology for AI agent capabilities  
-**Use Count**: 2 (P8, P11 decision points)
+### Naming Conventions
+- **Variables/Functions**: [e.g., camelCase]
+- **Components/Classes**: [e.g., PascalCase]
+- **Files**: [e.g., kebab-case]
+- **Constants**: [e.g., UPPER_SNAKE_CASE]
+
+### Architecture Notes
+[Document key architectural decisions and patterns for this project]
+
+---
+
+## 📝 L1 Validated Patterns
+
+> ⚠️ **GREENFIELD PROJECTS:** This section should be EMPTY at project start!  
+> Patterns are discovered and promoted DURING development, not pre-populated.  
+> **Promotion Threshold:** See MEMORY_STATUS_DASHBOARD.md for current threshold
+
+*This section auto-populates as patterns reach the promotion threshold through natural reuse*
+
+---
+
+### Pattern Template (Copy when adding validated patterns)
+
+```markdown
+### [Pattern Name] (Validated - Use Count: X)
+
+**Context**: [When this pattern applies]
+**Tags**: #[topic] #[category]
 
 **Pattern**:
-> Let each system develop according to its natural capabilities and workflow. Observe emergent differences without artificial intervention or equalization. Asymmetric inputs are valid when they reflect real-world usage patterns.
-
-**Application**:
-- P8: Baseline naturally didn't build API test UI → We didn't prompt them to add it
-- P11: SCMS naturally generates session recommendations → We follow them ALL, Baseline gets nothing
-
-**Rationale**:
-1. "Fair" doesn't mean "equal inputs" - it means "natural behavior without artificial intervention"
-2. Asymmetric capabilities lead to asymmetric inputs - this is VALID
-3. All outcomes (positive, neutral, negative) provide valuable data
-4. Artificial equalization hides valuable data about system differences
+```language
+// Code example from actual implementations
+```
 
 **When to Apply**:
-- Comparative testing scenarios where systems have different capabilities
-- Any decision point where "should I equalize inputs?" question arises
-- Methodology design for system behavior observation
+- [Situation 1]
+- [Situation 2]
 
-**Related Failures**: FAIL-20251119-002 (methodology mistake corrected by this principle)
+**Known Edge Cases**:
+- [List discovered during validation]
+
+**Related Failures**: [FAIL-ID if applicable]
+```
 
 ---
 
-## 📊 Analysis Patterns
+## ⚠️ Common Pitfalls
 
-### **Full Project Scope Analysis Pattern** (Promoted: 2025-11-21)
-
-**Context**: Analyzing project-level documentation or file systems  
-**Use Count**: Failure prevention pattern (from FAIL-20251121-001)
-
-**Anti-Pattern Observed**:
-```
-❌ Narrow scope assumption without validation
-❌ Bottom-up analysis (folder by folder)
-❌ Assuming "SCMS docs" = only docs/scms/ folder
-Result: 15x magnitude error (68 KB reported vs 1,043 KB reality!)
-```
-
-**Correct Pattern**:
-```markdown
-WHEN user references:
-- "File system"
-- "Project structure"
-- "Both projects"
-- "Documentation ecosystem"
-
-THEN:
-1. Assume FULL PROJECT SCOPE first
-2. Scan entire directory tree (exclude node_modules)
-   Example: Get-ChildItem -Recurse -Filter "*.md" | Where {$_ -notlike "*node_modules*"}
-3. Report comprehensive findings (total count + total size)
-4. Break down by major directories
-5. THEN provide detailed analysis
-6. Validate scope interpretation if ambiguous
-
-Rule: Start broad, narrow down - NOT start narrow, expand up!
-```
-
-**Key Insight**:
-> In SCMS context, "documentation" ≠ just runtime docs (docs/scms/). It includes the entire taskflow-pro system: whitepapers, guides, templates, tools (dashboard), workflows, rules - everything that constitutes the SCMS methodology ecosystem.
-
-**When to Apply**:
-- Any project-level comparison or analysis request
-- User references "file system," "project," or similar broad scope
-- Documentation inventory or gap analysis
-- Before making claims about documentation coverage
-
-**Related Failures**: FAIL-20251121-001 (15x undercount of documentation gap)
+*This section populated as issues are discovered*
 
 ---
 
-### **Preliminary Status Framing for Mid-Experiment Analysis** (Promoted: 2025-11-21)
-
-**Context**: Maintaining scientific rigor during mid-experiment analysis  
-**Use Count**: 5+ (P26-P30 analysis corrections)  
-**Tags**: #scientific-rigor #experiment-analysis #documentation #methodology
-
-**Problem**:  
-Mid-experiment analysis often overclaims results, using definitive language like "VALIDATED" before sufficient evidence. This damages scientific credibility and prevents graceful pivots.
-
-**Solution - Status Labels**:
-```markdown
-❌ DON'T USE (mid-experiment):
-- "VALIDATED", "CONFIRMED", "PROVEN", "DEFINITIVELY"
-
-✅ USE INSTEAD:
-- "PROMISING BUT PRELIMINARY"
-- "PATTERN EMERGING"  
-- "PRELIMINARY EVIDENCE"
-- "SUGGESTIVE BUT INCOMPLETE"
-```
-
-**Context Required**:
-```markdown
-Always include:
-✅ Progress fraction: "(X/Y prompts complete)" or "(60% done)"
-✅ Remaining work: "20 prompts remaining" or "Phase N pending"
-✅ Uncertainty: "Pattern could flip" or "One bad result could change this"
-✅ Critical test: "Phase N is critical test"
-✅ User quotes: Include cautionary expectations
-```
-
-**Implementation Example**:
-```markdown
-❌ WRONG at 60% complete:
-**Status**: ✅ VALIDATED
-
-✅ CORRECT at 60% complete:
-**Status**: ⚠️ PROMISING BUT PRELIMINARY (30/50 prompts)
-
-What We're Seeing:
-- [Evidence from completed prompts]
-
-What We DON'T Know Yet:
-- Will pattern hold through remaining prompts?
-- Could flip with one bad implementation
-- Phase N ahead is critical test
-
-Scientific Caution: Too early to conclude definitively
-```
-
-**Critical Rules**:
-1. Never claim "VALIDATED" until experiment 100% complete
-2. Always show progress fraction (X/Y) with status
-3. List uncertainties in "What We DON'T Know Yet" sections
-4. Include user's cautionary quotes when expressed
-5. Frame next phase as "critical test" - never as "confirmation"
-6. Use warning emoji ⚠️ for preliminary (not checkmark ✅)
-
-**When to Graduate from Preliminary**:
-Only when ALL criteria met:
-- ✅ 100% of planned tests complete
-- ✅ Pattern held consistently across all phases
-- ✅ No major contradictory evidence
-- ✅ User confirms experiment completion
-- ✅ Final critical tests passed
-
-**Applicability**:
-- ✅ ANY experiment with multiple phases
-- ✅ ANY analysis before completion threshold
-- ✅ Research papers, experiment logs, analysis documents
-- ✅ ANY pattern that could be disconfirmed by future data
-
-**User Correction That Triggered This**:
-> "I think we're starting to really see the difference between approaches but it's still 
-> preliminary & could flip with one bad implementation. I expect the scms system to outperform 
-> from here but baseline could still surprise & the SCMS system could still disappoint by the 
-> end of prompt 50."
-
-**Value**: Prevents credibility damage, enables graceful pivots, maintains user trust
-
-**Related**: PATTERN_PROMOTION_PRELIMINARY_STATUS.md for full documentation
-
----
-
-### **Comparative Economic Tracking Pattern** (Promoted: 2025-11-19)
-
-**Context**: Tracking token usage and cost differences between AI agent implementations  
-**Use Count**: 10+ (used throughout P1-P10 analysis)
-
-**Pattern**:
-```markdown
-| Metric | Agent A | Agent B | Delta | % Diff |
-|--------|---------|---------|-------|--------|
-| Tokens This Prompt | X | Y | Y-X | (Y-X)/X% |
-| Cost This Prompt | $X | $Y | $Y-$X | (Y-X)/X% |
-| Cumulative Tokens | X_total | Y_total | Delta | % |
-| Cumulative Cost | $X_total | $Y_total | Delta | % |
-```
-
-**Tracking Metrics**:
-- Per-prompt token usage (input + output breakdown when available)
-- Per-prompt cost
-- Cumulative totals
-- Cost premium calculation
-- User-defined adoption threshold tracking
-
-**Key Insights**:
-- Track both absolute cost AND per-token cost (reveals overhead)
-- Monitor trend direction (gap widening vs closing)
-- Compare against adoption threshold continually
-- Include user observations and quality assessments alongside economic data
-
-**Tools**:
-- Economic tracking table in analysis documents
-- Metrics dashboard section
-- Hypothesis updates based on economic trends
-
----
-
-### **Multi-Dimensional Quality Assessment Pattern** (Promoted: 2025-11-19)
-
-**Context**: Evaluating implementation quality beyond just "working" vs "broken"  
-**Use Count**: 10 (used in each prompt analysis)
-
-**Pattern**:
-```markdown
-| Category | Agent A | Agent B | Winner |
-|----------|---------|---------|--------|
-| Implementation Quality | Details | Details | Analysis |
-| Cost | $X | $Y | Lower cost |
-| Feature Completeness | % | % | More complete |
-| Code Quality | Assessment | Assessment | Better quality |
-| User Experience | Observations | Observations | Better UX |
-| Technical Accuracy | Validation | Validation | More accurate |
-```
-
-**Assessment Dimensions**:
-1. **Economic**: Cost, token efficiency
-2. **Functional**: Works, features complete, UI states
-3. **Technical**: Code quality, validation accuracy, type safety
-4. **Architectural**: Infrastructure decisions, pattern usage
-5. **User**: Observations, friction points, testing experience
-
-**Anti-Pattern to Avoid**:
-- Don't declare "tied" too quickly - look for subtle differences
-- Don't assume working code is equal quality
-- Don't ignore user experience differences
-
-**Example from P10**:
-- Both implemented TaskForm ✅
-- But SCMS validation didn't match backend (subtle bug) ❌
-- Baseline matched backend exactly ✅
-- Overall: Baseline won on quality despite both "working"
-
----
-
-### **Hypothesis Refinement Pattern** (Promoted: 2025-11-19)
-
-**Context**: Iteratively refining comparative hypotheses based on emerging evidence  
-**Use Count**: 10+ (every prompt analysis)
-
-**Pattern**:
-```markdown
-### 🎯 Hypothesis Update
-
-**[Specific Finding]:**
-> Evidence from current prompt...
-
-**[Pattern Evolution]:**
-> How this changes our understanding...
-
-**[Revised Prediction]:**
-> Updated turning point estimate / cost threshold / quality expectations
-
-**[Rationale]:**
-> Why the update is warranted...
-```
-
-**Key Principles**:
-1. Don't force evidence into preconceived hypothesis
-2. Welcome contradictory evidence (e.g., P10 validation bug challenged "SCMS = Sr Dev")
-3. Update turning point estimates as new data arrives
-4. Track confidence level in predictions
-5. Note when patterns are SOLID vs EMERGING vs UNCERTAIN
-
-**Example Evolution**:
-- P1-6: "SCMS more expensive, unclear why"
-- P7: "Turning point estimated P12-18"
-- P8: "SCMS first major win, gap closing"
-- P9: "Infrastructure preservation pattern CONSISTENT"
-- P10: "Validation bug complicates hypothesis, gap widening"
-- P11: "Turning point pushed to P18-25, testing recursive loop value"
-
----
-
-## 🔍 Data Verification Patterns
-
-### **Cross-Reference Visual and Textual Data Pattern** (Promoted: 2025-11-19)
-
-**Context**: Analyzing screenshots and user-provided visual data  
-**Use Count**: Multiple (Failed once → now a pattern to prevent recurrence)
-
-**Pattern**:
-```
-BEFORE assigning data from images:
-1. Read user's textual description carefully
-2. Identify explicit agent assignments ("SCMS did X", "Baseline did Y")
-3. Match visual data to textual data
-4. If ambiguous, ASK for clarification
-5. Document data sources for traceability
-```
-
-**What This Prevents**:
-- Screenshot misassignment (FAIL-20251119-001)
-- Data accuracy errors
-- Agent capability misattribution
-
-**When to Apply**:
-- User provides multiple screenshots
-- Visual data without explicit labels
-- Any data that requires agent assignment
-
-**Verification Checklist**:
-- [ ] User statement explicitly mentions which agent?
-- [ ] Visual data features match user description?
-- [ ] Data points (IDs, names, counts) cross-referenced?
-- [ ] If unsure, asked for clarification?
-
----
-
-## 🎭 Testing Methodology Principles
-
-### **Consistent Principle Application Pattern** (Promoted: 2025-11-19)
-
-**Context**: Maintaining methodological consistency across decision points  
-**Use Count**: 2 (P8, P11)
-
-**Pattern**:
-```
-WHEN making testing/methodology decisions:
-1. Review established principles from previous decisions
-2. Check for consistency with past methodology choices  
-3. Consider: "Does this test natural system behavior?"
-4. Ask: "Would artificial equalization hide valuable data?"
-5. Remember: Negative outcomes are valid findings, not failures to prevent
-6. Principle > Ad-hoc "fairness" heuristics
-```
-
-**Key Insight**:
-Testing philosophy must be **internally consistent** even if it creates asymmetric scenarios. The principle matters more than surface-level "fairness."
-
-**Example**:
-- P8: Don't artificially add features Baseline didn't build
-- P11: Don't artificially give recommendations Baseline didn't generate
-- **Consistent Principle**: Natural Flow in both cases
-
-**What This Prevents**:
-- Methodology drift
-- Inconsistent scientific approach
-- Reduced data validity
-- Hidden system differences
-
----
-
-## 📈 Economic Analysis Patterns
-
-### **Break-Even and ROI Tracking Pattern** (Promoted: 2025-11-19)
-
-**Context**: Determining if additional cost is justified by value  
-**Use Count**: Throughout analysis
-
-**Pattern**:
-```
-1. Track cumulative cost premium (SCMS - Baseline)
-2. Define user adoption threshold (e.g., +30%)
-3. Calculate current % over/under threshold
-4. Project scenarios for break-even:
-   - Must prevent bugs worth $X to justify
-   - OR must enable speed gains worth $X
-   - OR must prevent technical debt worth $X
-5. Update estimates as evidence emerges
-```
-
-**Key Metrics**:
-- Cumulative cost premium: +$X.XX (+Y%)
-- Adoption threshold: +30% (or user-defined)
-- Gap status: Over/under threshold
-- Turning point estimate: When break-even might occur
-
-**Example**:
-- P10: +$2.32 premium (+66%, 2.2x over threshold)
-- To break even: SCMS must prevent >$2.32 of Baseline problems
-- Current: No major Baseline breakdown yet
-- Verdict: Premium not yet justified
-
----
-
-## 🔄 Documentation Standards
-
-### **Comprehensive Session Documentation Pattern** (Promoted: 2025-11-19)
-
-**Structure**:
-```markdown
-## 📋 Prompt N: [Feature Name]
-
-### 🎯 Implementation Comparison
-- Token/Cost data
-- Files created/modified
-- Implementation details
-- User testing results
-
-### 🚨 Critical Findings
-- Bugs, quality issues, differences
-- Technical analysis
-
-### 💰 Economics
-- Cost comparison table
-- Trend analysis
-
-### 📊 Verdict
-- Winner determination
-- Reasoning
-
-### 🔍 Critical Analysis
-- Deep dive into implications
-- Pattern recognition
-- Future predictions
-
-### 🎯 Hypothesis Update
-- How this changes understanding
-
-### 📝 User Feedback
-- User observations
-- Questions answered
-```
-
-**Principles**:
-- Front-load critical findings (failures first!)
-- Provide evidence for all claims
-- Cross-reference related sections
-- Update running totals
-- Maintain consistent structure for comparability
+## 🔗 Related Documentation
+
+- **INDEX.md**: Central cross-reference hub
+- **FAILURES.md**: L2 failure documentation with 5-Whys
+- **MEMORY_STATUS_DASHBOARD.md**: Pattern status and thresholds (READ-ONLY)
+- **docs/templates/**: All templates for SCMS documentation
 
 ---
 
 ## 🎯 Summary
 
-**Total Patterns**: 9 validated patterns  
-**Total Failures Documented**: 2 (documented)  
-**Core Principle**: Natural Flow > Absolute Uniformity  
-**Latest Addition**: Preliminary Status Framing (scientific rigor)
+**Total L1 Patterns**: 0 (greenfield)  
+**Promotion Threshold**: See MEMORY_STATUS_DASHBOARD.md
 
 **Next Session Reminders**:
-1. Apply Natural Flow principle consistently
-2. Cross-reference visual and textual data
-3. Track economic metrics with break-even analysis
-4. Welcome hypothesis contradictions
-5. Document failures immediately (highest ROI!)
-6. **NEW: Maintain preliminary framing until experiments complete (100%)**
+1. Apply any discovered patterns from L0 memories
+2. Document failures immediately (highest ROI!)
+3. Promote patterns that reach threshold
 
 ---
 
-**Pattern Promotion Log**:
-- 2025-11-19: Initial 8 patterns promoted from comparative analysis session
-- 2025-11-21: Pattern #9 promoted - Preliminary Status Framing (P26-P30 analysis)
+**Last Updated**: [Date]  
+**Version**: 1.0  
+**Status**: ✅ Active (Greenfield)
