@@ -2,13 +2,28 @@
 
 **Purpose**: Central hub for cross-referencing SCMS layers.  
 **Maintenance**: Updated automatically during session closure.  
-**Project**: [Project Name]
+**Project**: SCMS Starter Kit
 
 ---
 
 ## 🏷️ Topic Index (Cross-Reference by Theme)
 
 *Tags are added as patterns emerge during development*
+
+### #project-isolation
+- See L1 Patterns: Template Repository Isolation
+- See L2 Failures: FAIL-20251128-001 (TaskFlow Pro contamination)
+- Prevention: Clone starter kit to separate directory for project work
+
+### #contamination-prevention
+- See L1 Patterns: Template Repository Isolation
+- Related: #project-isolation, #repository-hygiene
+
+### #repository-hygiene
+- See L1 Patterns: Template Repository Isolation
+- Related: #project-isolation, #contamination-prevention
+
+---
 
 ### Example Tag Structure
 
@@ -54,6 +69,13 @@
 
 *Populated when failures are documented and prevention patterns emerge*
 
+### **FAIL-20251128-001**: TaskFlow Pro Contamination
+**Prevention**: Template Repository Isolation (L1)
+**Pattern**: Clone to separate directory for project work
+**Category**: #project-isolation #contamination-prevention
+
+---
+
 ### Template:
 
 ```markdown
@@ -69,7 +91,7 @@
 
 | Date | L0 Active | L1 Patterns | L2 Failures | L3 Cases |
 |------|-----------|-------------|-------------|----------|
-| [Start Date] | 0 | 0 | 0 | 0 |
+| 2025-11-28 | 0 | 1 | 1 | 0 |
 
 *Updated during session closure*
 
@@ -92,4 +114,4 @@
 - Failure documented (add to Semantic Connections)
 - Session closes (update Growth Trajectory)
 
-**Last Updated**: [Date]
+**Last Updated**: 2025-11-28

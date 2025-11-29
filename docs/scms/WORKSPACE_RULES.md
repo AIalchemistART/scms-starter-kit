@@ -1,7 +1,7 @@
 # Workspace Rules (L1) - [Project Name]
 
-**Last Updated**: [Date]  
-**Project**: [Project Name and Description]  
+**Last Updated**: 2025-11-28  
+**Project**: SCMS Starter Kit - Template Distribution Repository  
 **Tech Stack**: [Primary Language/Framework]  
 **SCMS Role**: **L1 Stable Validation** (deterministic enforcement layer)
 
@@ -33,6 +33,30 @@
 > **Promotion Threshold:** See MEMORY_STATUS_DASHBOARD.md for current threshold
 
 *This section auto-populates as patterns reach the promotion threshold through natural reuse*
+
+---
+
+### Template Repository Isolation (Validated - Use Count: 2)
+
+**Context**: Maintaining clean template repositories  
+**Tags**: #project-isolation #contamination-prevention #repository-hygiene
+
+**Pattern**:
+```
+Template/starter kit repositories must NEVER be used as working project instances.
+Clone to a separate location for actual project work.
+```
+
+**When to Apply**:
+- Setting up SCMS for a new project
+- Testing SCMS features with real work
+- Any scenario where project-specific content would be generated
+
+**Known Edge Cases**:
+- `examples/dogfood/` is the designated location for example content within the starter kit
+- Test projects should live in entirely separate directories
+
+**Related Failures**: FAIL-20251128-001 (TaskFlow Pro contamination)
 
 ---
 
@@ -78,7 +102,7 @@
 
 ## 🎯 Summary
 
-**Total L1 Patterns**: 0 (greenfield)  
+**Total L1 Patterns**: 1  
 **Promotion Threshold**: See MEMORY_STATUS_DASHBOARD.md
 
 **Next Session Reminders**:
@@ -88,6 +112,6 @@
 
 ---
 
-**Last Updated**: [Date]  
-**Version**: 1.0  
-**Status**: ✅ Active (Greenfield)
+**Last Updated**: 2025-11-28  
+**Version**: 1.1  
+**Status**: ✅ Active

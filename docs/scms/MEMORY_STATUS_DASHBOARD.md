@@ -1,7 +1,7 @@
 # Memory Status Dashboard
 
-**Last Updated**: [Date]  
-**Project**: [Project Name]
+**Last Updated**: 2025-11-28  
+**Project**: SCMS Starter Kit
 
 ---
 
@@ -9,8 +9,8 @@
 
 ### Promotion Threshold
 
-**Current Phase**: [Greenfield / Establishing / Mature]  
-**Threshold**: n≥[2/3/5] uses
+**Current Phase**: Mature  
+**Threshold**: n≥2 uses
 
 | Phase | Timeline | Threshold | Rationale |
 |-------|----------|-----------|-----------|
@@ -26,9 +26,9 @@
 
 | Pattern | Date Promoted | Use Count | Status |
 |---------|---------------|-----------|--------|
-| *None yet - greenfield project* | - | - | - |
+| Template Repository Isolation | 2025-11-28 | 2 | ✅ Active |
 
-**Total L1 Patterns**: 0
+**Total L1 Patterns**: 1
 
 ---
 
@@ -36,26 +36,26 @@
 
 | Failure ID | Date | Severity | Status | Prevention Pattern |
 |------------|------|----------|--------|--------------------|
-| *None yet - greenfield project* | - | - | - | - |
+| FAIL-20251128-001 | 2025-11-28 | Major | ✅ Resolved | Template Repository Isolation |
 
-**Total Failures Logged**: 0  
-**Patterns Promoted from Failures**: 0
+**Total Failures Logged**: 1  
+**Patterns Promoted from Failures**: 1
 
 ---
 
 ## 🗺️ Cross-References
 
 ### Failures → Patterns
-*Populated when failures lead to pattern promotions*
+- FAIL-20251128-001 → Template Repository Isolation (L1)
 
 ### Sessions → Documentation
-*Populated during session closures*
+- 2025-11-28: Template Cleanup + Mneme AI Evaluation
 
 ---
 
 ## 📈 Session Metrics
 
-**Current Session**:
-- Failures Logged: 0
-- Patterns Promoted: 0
-- Status: Greenfield initialization
+**Latest Session (2025-11-28)**:
+- Failures Logged: 1
+- Patterns Promoted: 1
+- Status: Template cleanup complete
