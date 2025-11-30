@@ -2,7 +2,7 @@
 
 **Purpose**: Document failures with root cause analysis for pattern extraction.  
 **Project**: SCMS Starter Kit  
-**Last Updated**: 2025-11-28
+**Last Updated**: 2025-11-29
 
 ---
 
@@ -10,7 +10,7 @@
 
 | Total Failures | Resolved | Patterns Promoted |
 |----------------|----------|-------------------|
-| 1 | 1 | 1 |
+| 2 | 2 | 2 |
 
 ---
 
@@ -21,6 +21,68 @@
 ---
 
 ## ✅ Resolved Failures
+
+---
+
+## 🚨 FAIL-20251129-001: D3 Tree Layout Syntax + Multi-Root Assumption
+
+**ID**: FAIL-20251129-001  
+**Date**: 2025-11-29  
+**Severity**: Major  
+**Status**: ✅ Resolved  
+**Tags**: #d3-visualization #graph-layout #syntax-error #edge-case
+
+---
+
+### What Happened
+The D3.js tree layout in Mneme AI's graph visualization failed to render. Two compounding issues:
+1. Incorrect syntax: `if (!simulation!)` instead of `if (!simulation)`
+2. D3's `stratify()` assumed single root, but memory graphs can have multiple disconnected roots
+
+### Expected vs Actual
+- **Expected**: Tree layout renders hierarchical memory relationships
+- **Actual**: Layout failed silently, nodes displayed without proper positioning
+
+### 5 Whys Analysis
+
+1. **Why did the tree layout fail to render?**
+   → The simulation variable was never assigned on the success path
+
+2. **Why was simulation never assigned?**
+   → The `if (!simulation!)` check had incorrect syntax (double `!`)
+
+3. **Why did this syntax exist?**
+   → Likely a typo or autocomplete error during rapid development
+
+4. **Why wasn't this caught earlier?**
+   → The force layout (default) worked fine, tree layout less frequently tested
+
+5. **Why did the multi-root case also fail?**
+   → **ROOT CAUSE**: D3's `stratify()` requires single root; memory graphs are disconnected forests
+
+### Prevention Pattern
+
+**Pattern Name**: Edge Case Handling for D3 Hierarchies
+
+**Rule**:
+> When using D3 tree/hierarchy layouts with user-generated data:
+> 1. Always handle multi-root (forest) scenarios with virtual root nodes
+> 2. Wrap `stratify()` in try-catch with fallback to force layout
+> 3. Verify simulation assignment on ALL code paths
+
+**When to Apply**:
+- Any D3 hierarchical visualization
+- User-generated graph data (unpredictable structure)
+- Layout mode switching
+
+### Resolution
+
+- **Fix Applied**: 
+  1. Changed `if (!simulation!)` to `if (!simulation)` with clarifying comment
+  2. Added virtual root connection for orphan nodes
+  3. Added try-catch fallback to force layout
+- **Files**: `app/graph/page.tsx` line 344
+- **Pattern Promoted**: Yes - "Edge Case Handling for D3 Hierarchies" to L1
 
 ---
 
@@ -156,10 +218,10 @@ When documenting a failure, use this structure (or copy from `docs/templates/FAI
 | Severity | Count | % of Total |
 |----------|-------|------------|
 | Critical | 0 | 0% |
-| Major | 1 | 100% |
+| Major | 2 | 100% |
 | Minor | 0 | 0% |
 
-**Patterns Promoted from Failures**: 1
+**Patterns Promoted from Failures**: 2
 
 ---
 

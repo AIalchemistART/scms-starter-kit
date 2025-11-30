@@ -23,6 +23,25 @@
 - See L1 Patterns: Template Repository Isolation
 - Related: #project-isolation, #contamination-prevention
 
+### #d3-visualization
+- See L1 Patterns: Edge Case Handling for D3 Hierarchies
+- See L2 Failures: FAIL-20251129-001 (Tree Layout Syntax + Multi-Root)
+- Prevention: Virtual root for forests, try-catch fallback, verify all code paths
+
+### #graph-layout
+- See L1 Patterns: Edge Case Handling for D3 Hierarchies
+- Related: #d3-visualization, #edge-case-handling
+
+### #edge-case-handling
+- See L2 Failures: FAIL-20251129-001 (D3 stratify assumptions)
+- Prevention: Always handle disconnected/forest graphs with virtual roots
+- Related: #d3-visualization, #graph-layout
+
+### #mneme-ai-development
+- See [MNEME_ENHANCEMENT_ROADMAP.md](MNEME_ENHANCEMENT_ROADMAP.md) for full roadmap
+- Phases 1-5: ✅ Complete | Phase 6 (MCP): 🔜 Next Session
+- Related: #scms-implementation, #memory-lifecycle
+
 ---
 
 ### Example Tag Structure
@@ -69,6 +88,11 @@
 
 *Populated when failures are documented and prevention patterns emerge*
 
+### **FAIL-20251129-001**: D3 Tree Layout Syntax + Multi-Root Assumption
+**Prevention**: Edge Case Handling for D3 Hierarchies (L1)
+**Pattern**: Virtual root for forests, try-catch fallback, verify all code paths
+**Category**: #d3-visualization #graph-layout #edge-case-handling
+
 ### **FAIL-20251128-001**: TaskFlow Pro Contamination
 **Prevention**: Template Repository Isolation (L1)
 **Pattern**: Clone to separate directory for project work
@@ -91,6 +115,7 @@
 
 | Date | L0 Active | L1 Patterns | L2 Failures | L3 Cases |
 |------|-----------|-------------|-------------|----------|
+| 2025-11-29 | 0 | 2 | 2 | 0 |
 | 2025-11-28 | 0 | 1 | 1 | 0 |
 
 *Updated during session closure*
@@ -103,6 +128,7 @@
 - **Hit a bug?** → Document in L2 (FAILURES.md)
 - **Want examples?** → Browse L3 (case-studies/)
 - **Session ending?** → Run L5 closure protocol
+- **Mneme AI Development?** → See [MNEME_ENHANCEMENT_ROADMAP.md](MNEME_ENHANCEMENT_ROADMAP.md)
 
 ---
 
@@ -114,4 +140,4 @@
 - Failure documented (add to Semantic Connections)
 - Session closes (update Growth Trajectory)
 
-**Last Updated**: 2025-11-28
+**Last Updated**: 2025-11-29
