@@ -1,4 +1,4 @@
-﻿SCMS STARTUP (First Session Configuration)
+﻿SCMS STARTUP (First Session Configuration) v3.3
 
 Working on: [project name and brief description]
 
@@ -12,10 +12,14 @@ Working on: [project name and brief description]
 **Architecture:** Multi-time-scale cognitive framework
 - L0: Auto-memories (Probabilistic retrieval) - **Active Strategy**
 - L1: Validated patterns (Mandatory loading via WORKSPACE_RULES.md)
+- L1: Protected definitions (INTEGRITY_CLUSTER.md) - **Terminology Guardian**
 - L2: Failure Analysis (5 Whys enforced via Template)
 - L3: Pattern Promotion (Evidence-based validation)
 - L5: Session Audit (Closure verification)
 - Dashboard: Economic & Context tracking
+
+**Self-Healing Cognition Loop:**
+- L2 (Detect) → Integrity Cluster (Stabilize) → Self-Healing (Align) → Evolve
 
 **Retrieval Workflow:** Windsurf hardcoded (L0 â†’ L4 â†’ L1) â†’ SCMS directed (L2/L3 â†’ L5 if needed) â†’ Generate (if no retrieval) â†’ L4 compliance check
 
@@ -36,15 +40,17 @@ Working on: [project name and brief description]
 
 **B. Initialize Templates (The "Gold Standard"):**
 1. Create docs/templates/FAILURE_LOG_TEMPLATE.md
-2. Create docs/templates/PATTERN_PROMOTION_TEMPLATE.md
-3. Create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md
+2. Create docs/templates/TERMINOLOGY_CORRECTION_TEMPLATE.md (for definition fixes)
+3. Create docs/templates/PATTERN_PROMOTION_TEMPLATE.md
+4. Create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md
 
 **C. Initialize Operational Files:**
 1. docs/scms/INDEX.md (Central Hub skeleton)
 2. docs/scms/MEMORY_STATUS_DASHBOARD.md (Greenfield config)
 3. docs/scms/FAILURES.md (Empty log)
-4. docs/scms/WORKSPACE_RULES.md (Empty L1)
-5. economics-dashboard-data.json OR scms-metrics.json (Initialize with session: [] array)
+4. docs/scms/WORKSPACE_RULES.md (Empty L1 - behavioral patterns)
+5. docs/scms/INTEGRITY_CLUSTER.md (Protected definitions - terminology guardian)
+6. economics-dashboard-data.json OR scms-metrics.json (Initialize with session: [] array)
 
 ### 2. SESSION START CHECKLIST (Before Coding)
 1. **Environment Check**:
@@ -57,6 +63,10 @@ Working on: [project name and brief description]
 3. **Review Memory Dashboard**:
    - Check docs/scms/MEMORY_STATUS_DASHBOARD.md for Active Patterns.
 
+4. **Review Integrity Cluster**:
+   - Check docs/scms/INTEGRITY_CLUSTER.md for protected definitions.
+   - **Key Definition**: SCMS = Sparse Contextual Memory **Scaffolding** (not System)
+
 ### 3. DURING DEVELOPMENT (The Workflow)
 1. **CREATE MEMORIES (L0)**: 
    - Pattern discovered -> Create Cascade memory.
@@ -64,9 +74,16 @@ Working on: [project name and brief description]
 2. **FAILURE DOCUMENTATION (L2 - Priority)**:
    - **Trigger**: Any mock failure, tool error, or regression.
    - **Action**: Update docs/scms/FAILURES.md.
-   - **Constraint**: MUST uses docs/templates/FAILURE_LOG_TEMPLATE.md (5 Whys required).
+   - **Template Choice**:
+     - Implementation failures → FAILURE_LOG_TEMPLATE.md (5 Whys required)
+     - Terminology/definition errors → TERMINOLOGY_CORRECTION_TEMPLATE.md (lightweight)
    
-3. **PATTERN PROMOTION (L3)**:
+3. **INTEGRITY CLUSTER UPDATES**:
+   - **Trigger**: Any terminology correction in L2.
+   - **Action**: Update docs/scms/INTEGRITY_CLUSTER.md with corrected definition.
+   - **Purpose**: Completes the Self-Healing Cognition loop.
+   
+4. **PATTERN PROMOTION (L3)**:
    - **Trigger**: L0 Pattern used n>=5 times.
    - **Action**: Fill docs/templates/PATTERN_PROMOTION_TEMPLATE.md to request L1 status.
 

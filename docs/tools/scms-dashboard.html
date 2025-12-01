@@ -1141,6 +1141,10 @@ Working on: [project name and brief description]
 - L3: Pattern Promotion (Evidence-based validation)
 - L5: Session Audit (Closure verification)
 - Dashboard: Economic & Context tracking
+- Integrity Cluster: Protected definitions (Terminology Guardian)
+
+**Self-Healing Cognition Loop:**
+- L2 (Detect) → Integrity Cluster (Stabilize) → Future outputs aligned
 
 **Promotion Thresholds:**
 - Greenfield (Weeks 1-4): n>5 uses
@@ -1161,15 +1165,17 @@ Working on: [project name and brief description]
 
 **B. Initialize Templates (The "Gold Standard"):**
 1. Create `docs/templates/FAILURE_LOG_TEMPLATE.md` (Fields: Severity, Impact, 5 Whys, Prevention)
-2. Create `docs/templates/PATTERN_PROMOTION_TEMPLATE.md` (Fields: Use Cases, Impact Score, Rule Draft)
-3. Create `docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md` (Fields: L2/L3/L5 Checklist, Export Verification)
+2. Create `docs/templates/TERMINOLOGY_CORRECTION_TEMPLATE.md` (Lightweight: for definition fixes)
+3. Create `docs/templates/PATTERN_PROMOTION_TEMPLATE.md` (Fields: Use Cases, Impact Score, Rule Draft)
+4. Create `docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md` (Fields: L2/L3/L5 Checklist, Export Verification)
 
 **C. Initialize Operational Files:**
 1. `docs/scms/INDEX.md` (Central Hub skeleton)
 2. `docs/scms/MEMORY_STATUS_DASHBOARD.md` (**READ-ONLY** - configured by setup.ps1, **NEVER modify**)
 3. `docs/scms/FAILURES.md` (Empty log)
 4. `docs/scms/WORKSPACE_RULES.md` (Template - configure with project details when provided)
-5. `economics-dashboard-data.json` OR `scms-metrics.json` (Initialize with session: [] array)
+5. `docs/scms/INTEGRITY_CLUSTER.md` (Protected definitions - Terminology Guardian)
+6. `economics-dashboard-data.json` OR `scms-metrics.json` (Initialize with session: [] array)
 
 ### 2. SESSION START CHECKLIST (Before Coding)
 1. **Project Details Verification**:
@@ -1194,6 +1200,10 @@ Working on: [project name and brief description]
    - **DO NOT MODIFY** this file - it's configured by setup.ps1.
    - Note the promotion threshold (n≥2, n≥3, or n≥5) for pattern promotion.
 
+5. **Review Integrity Cluster**:
+   - Check `docs/scms/INTEGRITY_CLUSTER.md` for protected definitions.
+   - **Key Definition:** SCMS = Sparse Contextual Memory **Scaffolding** (not System)
+
 ### 3. DURING DEVELOPMENT (The Workflow)
 1. **CREATE MEMORIES (L0)**: 
    - Pattern discovered -> Create Cascade memory.
@@ -1201,13 +1211,20 @@ Working on: [project name and brief description]
 2. **FAILURE DOCUMENTATION (L2 - Priority)**:
    - **Trigger:** Any mock failure, tool error, or regression.
    - **Action:** Update `docs/scms/FAILURES.md`.
-   - **Constraint:** MUST uses `docs/templates/FAILURE_LOG_TEMPLATE.md` (5 Whys required).
+   - **Template Choice:**
+     - Implementation failures → `FAILURE_LOG_TEMPLATE.md` (5 Whys required)
+     - Terminology/definition errors → `TERMINOLOGY_CORRECTION_TEMPLATE.md` (lightweight)
+
+3. **INTEGRITY CLUSTER UPDATES**:
+   - **Trigger:** Any terminology correction in L2.
+   - **Action:** Update `docs/scms/INTEGRITY_CLUSTER.md` with corrected definition.
+   - **Purpose:** Completes the Self-Healing Cognition loop.
    
-3. **PATTERN PROMOTION (L3)**:
+4. **PATTERN PROMOTION (L3)**:
    - **Trigger:** L0 Pattern used per threshold (see `docs/scms/MEMORY_STATUS_DASHBOARD.md`).
    - **Action:** Fill `docs/templates/PATTERN_PROMOTION_TEMPLATE.md` to request L1 status.
 
-### 4. SESSION CLOSURE (L5 - Critical)
+### 5. SESSION CLOSURE (L5 - Critical)
 At end of EVERY session, run closure protocol:
 1. **Audit:** Generate `docs/scms/SESSION_LOG_L5.md` using `docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md`.
 2. **Export:** Run Dashboard Export to capture `checkpoints/checkpoint-[ID].txt`.
@@ -1231,15 +1248,16 @@ Ready to configure SCMS. If project name is a placeholder, ask the user for deta
             <p id="thresholdInfo" style="background: #3498db; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;"><strong>Current Threshold:</strong> Loading...</p>
             <div class="code-block-wrapper">
                 <button class="copy-btn" onclick="copyPrompt(this, 'sessionStartPrompt')">📋 Copy Prompt</button>
-                <div class="code-block" id="sessionStartPrompt">SCMS SESSION START
+                <div class="code-block" id="sessionStartPrompt">SCMS SESSION START v3.3
 
 Working on: [brief task description]
 
 Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
 
 1. 🛠️ CONTEXT LOADING & SYSTEM CHECK
-   - Check `scms/INDEX.md` for relevant patterns
+   - Check `docs/scms/INDEX.md` for relevant patterns
    - **CRITICAL:** Review `docs/scms/FAILURES.md` to avoid known pitfalls (L2)
+   - **INTEGRITY CHECK:** Review `docs/scms/INTEGRITY_CLUSTER.md` for protected definitions
    - **TEMPLATE CHECK:** Ensure `docs/templates/` exists (L2/L3/L5 templates)
    - Verify Environment: Quick check of package.json scripts & config
    - **PROJECT CONFIGURATION:** If `docs/scms/WORKSPACE_RULES.md` is still a template and project details are provided, configure it now with:
@@ -1253,6 +1271,7 @@ Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
    - L0: Auto-gen memories (Cascade) - **Primary Context**
    - L4: Global Rules (User Rules) - **Hard Constraints**
    - L1: Workspace Rules (valid_patterns) - **Quality Gates**
+   - L1: Integrity Cluster (definitions) - **Terminology Guardian**
    
    SELF-DIRECTED (Agent):
    - L2: SOPs & Failure Logs - **Must check `FAILURES.md` if doing risky work**
@@ -1270,16 +1289,25 @@ Please operate using SCMS (Sparse Contextual Memory Scaffolding) framework:
 4. 🚨 FAILURE DOCUMENTATION (L2)
    - **Trigger:** Any mock failure, tool error, or regression
    - **Action:** Log immediately to `docs/scms/FAILURES.md` 
-   - **Constraint:** MUST use `docs/templates/FAILURE_LOG_TEMPLATE.md` (5 Whys required)
+   - **Template Choice:**
+     - Implementation failures → `FAILURE_LOG_TEMPLATE.md` (5 Whys required)
+     - Terminology/definition errors → `TERMINOLOGY_CORRECTION_TEMPLATE.md` (lightweight)
    - **Philosophy:** "What NOT to do" is more valuable than "What to do"
 
-5. 🏁 SESSION CLOSURE PROTOCOL (L5)
+5. 🔄 SELF-HEALING COGNITION (Integrity Loop)
+   - **Trigger:** Any terminology correction logged in L2
+   - **Action:** Update `docs/scms/INTEGRITY_CLUSTER.md` with corrected definition
+   - **Flow:** L2 (Detect) → Integrity Cluster (Stabilize) → Future outputs aligned
+   - **Purpose:** System evolves through self-correction
+
+6. 🏁 SESSION CLOSURE PROTOCOL (L5)
    - **Target:** 10-15 mins remaining
    - **Mandatory Steps:**
-     1. **Reflect:** Log failures using L2 Template
-     2. **Promote:** Check patterns per threshold (see `docs/scms/MEMORY_STATUS_DASHBOARD.md`) using L3 Template
-     3. **Audit:** Generate `docs/scms/SESSION_LOG_L5.md` using **L5 Template**
-     4. **Export:** Run Dashboard Export to finalize metrics
+     1. **Reflect:** Log failures using L2 Template (FAILURES FIRST!)
+     2. **Integrity:** Update Integrity Cluster if terminology corrected
+     3. **Promote:** Check patterns per threshold (see `docs/scms/MEMORY_STATUS_DASHBOARD.md`)
+     4. **Audit:** Generate `docs/scms/SESSION_LOG_L5.md` using **L5 Template**
+     5. **Export:** Run Dashboard Export to finalize metrics
 
 Let's start by loading failure context and verifying the templates are ready.</div>
                 </div>
@@ -1351,23 +1379,32 @@ npm run dashboard
             <div> <!-- Session Closure wrapper -->
             <div class="code-block-wrapper">
                 <button class="copy-btn" onclick="copyPrompt(this, 'sessionClosurePrompt')">📋 Copy Prompt</button>
-                <div class="code-block" id="sessionClosurePrompt">SCMS SESSION CLOSURE - CRITICAL SYSTEM AUDIT
+                <div class="code-block" id="sessionClosurePrompt">SCMS SESSION CLOSURE - CRITICAL SYSTEM AUDIT v3.3
 
-Great work! Now let's close the SCMS optimization loop using the V3.2 Protocol:
+Great work! Now let's close the SCMS optimization loop using the V3.3 Protocol:
 
 1. 🚨 FAILURE ANALYSIS (L2 - Highest ROI)
    - **Goal:** Turn every error into an asset.
    - **Action:** If any failure occurred, log it to `docs/scms/FAILURES.md`.
-   - **Constraint:** MUST use `docs/templates/FAILURE_LOG_TEMPLATE.md` (5 Whys mandatory).
+   - **Template Choice:**
+     - Implementation failures → `FAILURE_LOG_TEMPLATE.md` (5 Whys mandatory)
+     - Terminology/definition errors → `TERMINOLOGY_CORRECTION_TEMPLATE.md` (lightweight)
    - **Check:** Did we fix a bug? If so, document the *anti-pattern*.
 
-2. 🚀 PATTERN VALIDATION (L3 - Promotion)
+2. 🔄 INTEGRITY CLUSTER UPDATE (Self-Healing Loop)
+   - **Trigger:** Any terminology correction logged in Step 1.
+   - **Action:** Update `docs/scms/INTEGRITY_CLUSTER.md` with corrected definition.
+   - **Purpose:** Completes the Self-Healing Cognition loop:
+     - L2 (Detect) → Integrity Cluster (Stabilize) → Future outputs aligned
+   - **Verify:** Protected definitions are accurate and complete.
+
+3. 🚀 PATTERN VALIDATION (L3 - Promotion)
    - **Review:** Check active memories (L0).
    - **Threshold:** Is any pattern used n≥2 times?
    - **Action:** If yes, fill `docs/templates/PATTERN_PROMOTION_TEMPLATE.md` and add to `WORKSPACE_RULES.md` (L1).
    - **Update:** Reflect status in `MEMORY_STATUS_DASHBOARD.md`.
 
-3. 📊 ECONOMIC TRACKING (Export-Triggered)
+4. 📊 ECONOMIC TRACKING (Export-Triggered)
    - **STOP:** Do NOT manually edit `economics-dashboard-data.json`.
    - **Action:** Prepare for Dashboard Export:
      1. Ensure all token warnings are visible in chat context.
@@ -1375,21 +1412,23 @@ Great work! Now let's close the SCMS optimization loop using the V3.2 Protocol:
      3. Paste the prompt back into Chat to create `checkpoints/checkpoint-[ID].txt`.
      4. Verify metrics update in Dashboard.
 
-4. 🛡️ SESSION AUDIT (L5)
+5. 🛡️ SESSION AUDIT (L5)
    - **Goal:** Verify system integrity before sign-off.
    - **Action:** Generate/Update `docs/scms/SESSION_LOG_L5.md`.
    - **Constraint:** MUST use `docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md`.
    - **Checklist:**
      - [ ] Failures Logged (L2)?
+     - [ ] Integrity Cluster Updated (if terminology corrected)?
      - [ ] Promotions Processed (L3)?
      - [ ] Checkpoint Created (Export)?
 
-5. 🗺️ INDEX MAINTENANCE (Cross-Reference Updates)
+6. 🗺️ INDEX MAINTENANCE (Cross-Reference Updates)
    - **Action:** Update `docs/scms/INDEX.md` with topic-based tags and cross-references.
    - **Instructions:**
      1. Add `#tags` to all new L0/L2/L3 entries (format: `#topic #category`).
      2. Group related patterns under topic headings (e.g., `#rendering`, `#physics`, `#tooling`).
      3. Cross-reference related logs (link failures to patterns that prevent them).
+     4. If Integrity Cluster updated, add `#terminology` tags.
    - **Verify:** Does INDEX.md show semantic connections, not just file lists?
 
 Close the session by executing this Audit Protocol now.</div>
@@ -1399,6 +1438,7 @@ Close the session by executing this Audit Protocol now.</div>
             <h3><span class="step-number">5</span> What Happens During Session Closure</h3>
             <ol>
                 <li><strong>Pattern Reflection & Validation:</strong> AI reviews patterns used, with FAILURES documented first (3-10× more informative than successes)</li>
+                <li><strong>Integrity Cluster Update:</strong> Any terminology corrections are added to INTEGRITY_CLUSTER.md, completing the Self-Healing Cognition loop</li>
                 <li><strong>L0/L1 Pipeline Update:</strong> Promotes validated patterns from L0 → L1 based on project-specific threshold (see docs/scms/MEMORY_STATUS_DASHBOARD.md)</li>
                 <li><strong>INDEX & Cross-Reference Maintenance:</strong> Updates INDEX.md with tags/cross-refs for organizational framing (NOT visual diagrams)</li>
                 <li><strong>Memory Dashboard Update:</strong> Updates Cascade persistent memory with pattern metrics and validation status</li>

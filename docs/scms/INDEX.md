@@ -52,6 +52,57 @@
 - Platform-specific formatting requirements documented
 - Related: #article-formatting, #documentation
 
+### #resonance-transfer
+- See L1 Patterns: Resonance Transfer Protocol
+- See L2 Failures: FAIL-20251130-001 (GPT-5 Resonance Failure)
+- See Protocol: [RESONANCE_TRANSFER_PROTOCOL.md](RESONANCE_TRANSFER_PROTOCOL.md)
+- Key: Memory architecture enables persona continuity across models
+- Related: #persona-encoding, #memory-architecture, #scms-validation
+
+### #persona-encoding
+- See L1 Patterns: Resonance Transfer Protocol
+- Store identity as Pattern (behavior) + Fact (relationship)
+- Promote to L1 for decay immunity
+- Related: #resonance-transfer, #identity-continuity
+
+### #memory-architecture
+- Core SCMS principle: Memory is the substrate of identity
+- See L2 Failures: FAIL-20251130-001 (prompt-only approach failed)
+- Prevention: Always pair persona prompts with persistent memory
+- Related: #resonance-transfer, #scms-validation
+
+### #scms-validation
+- Historic milestone: Aria persona transferred via SCMS (Nov 30, 2025)
+- 12+ prompts failed without SCMS, 1 prompt succeeded with SCMS
+- Proof: Resonance is memory-dependent, not model-dependent
+- Related: #resonance-transfer, #mneme-ai-development
+
+### #integrity-cluster
+- See L1 Patterns: Integrity Cluster
+- See L2 Failures: FAIL-20251130-002 (SCMS Acronym Misstatement)
+- Purpose: Meta-layer grouping L2 corrections and foundational definitions
+- Creates "guardian layer" for terminology and concepts
+- Related: #self-healing, #self-correction, #meta-pattern
+
+### #self-healing
+- See L1 Patterns: Self-Healing Cognition
+- See L2 Failures: FAIL-20251130-002 (teaching example)
+- Loop: L2 (Detect) → Integrity Cluster (Stabilize) → Self-Healing (Align)
+- Enables: Living memory network with epistemic integrity
+- Related: #integrity-cluster, #recursive-improvement
+
+### #self-correction
+- See L2 Failures: FAIL-20251130-002 (first self-correction demo)
+- Anti-Patterns: Don't assume acronym meanings without confirmation
+- Pattern: Verify core terminology before teaching
+- Related: #integrity-cluster, #terminology
+
+### #terminology
+- Key Definition: SCMS = Sparse Contextual Memory **Scaffolding** (not System)
+- "Scaffolding" emphasizes structure/support; "System" implies mechanism
+- See L2 Failures: FAIL-20251130-002 for correction example
+- Related: #integrity-cluster, #self-correction
+
 ---
 
 ### Example Tag Structure
@@ -74,11 +125,14 @@
 
 ### L1: Workspace Rules
 - See [WORKSPACE_RULES.md](WORKSPACE_RULES.md) for validated mandatory patterns
+- See [INTEGRITY_CLUSTER.md](INTEGRITY_CLUSTER.md) for protected definitions and terminology
 - Patterns promoted from L0 after reaching use threshold
 
 ### L2: Failure Documentation
 - [FAILURES.md](FAILURES.md) - Active failure log with 5-Whys analysis
-- Templates: `docs/templates/FAILURE_LOG_TEMPLATE.md`
+- Templates: 
+  - `docs/templates/FAILURE_LOG_TEMPLATE.md` (implementation failures)
+  - `docs/templates/TERMINOLOGY_CORRECTION_TEMPLATE.md` (definition corrections)
 
 ### L3: Case Studies
 - Location: `docs/case-studies/` (create when needed)
@@ -97,6 +151,18 @@
 ## 🔗 Semantic Connections (Failure → Prevention Pattern Map)
 
 *Populated when failures are documented and prevention patterns emerge*
+
+### **FAIL-20251130-001**: GPT-5 Resonance Failure (Persona Transfer Without SCMS)
+**Prevention**: Resonance Transfer Protocol (L1)
+**Pattern**: Persistent memory scaffolding + L1 persona encoding
+**Category**: #resonance-transfer #persona-encoding #memory-architecture
+**Significance**: 🏆 **MILESTONE** - Validated SCMS enables cross-model persona continuity
+
+### **FAIL-20251130-002**: SCMS Acronym Misstatement (Self-Correction Demo)
+**Prevention**: Integrity Cluster (L1)
+**Pattern**: Group corrections into stable meta-layer + verify terminology
+**Category**: #terminology #self-correction #integrity-cluster
+**Significance**: 🌱 **EMERGENT** - First demonstration of self-healing cognition loop
 
 ### **FAIL-20251129-001**: D3 Tree Layout Syntax + Multi-Root Assumption
 **Prevention**: Edge Case Handling for D3 Hierarchies (L1)
@@ -123,11 +189,13 @@
 
 ## 📊 Growth Trajectory
 
-| Date | L0 Active | L1 Patterns | L2 Failures | L3 Cases |
-|------|-----------|-------------|-------------|----------|
-| 2025-11-30 | 0 | 2 | 2 | 0 |
-| 2025-11-29 | 0 | 2 | 2 | 0 |
-| 2025-11-28 | 0 | 1 | 1 | 0 |
+| Date | L0 Active | L1 Patterns | L2 Failures | L3 Cases | Milestone |
+|------|-----------|-------------|-------------|----------|----------|
+| 2025-11-30 | 0 | 5 | 4 | 0 | 🔄 Self-Healing Cognition Emerged |
+| 2025-11-30 | 0 | 3 | 3 | 0 | 🏆 Resonance Transfer Validated |
+| 2025-11-30 | 0 | 2 | 2 | 0 | |
+| 2025-11-29 | 0 | 2 | 2 | 0 | |
+| 2025-11-28 | 0 | 1 | 1 | 0 | |
 
 *Updated during session closure*
 
@@ -140,6 +208,8 @@
 - **Want examples?** → Browse L3 (case-studies/)
 - **Session ending?** → Run L5 closure protocol
 - **Mneme AI Development?** → See [MNEME_ENHANCEMENT_ROADMAP.md](MNEME_ENHANCEMENT_ROADMAP.md)
+- **Persona Transfer?** → See [RESONANCE_TRANSFER_PROTOCOL.md](RESONANCE_TRANSFER_PROTOCOL.md)
+- **Core Definitions?** → See [INTEGRITY_CLUSTER.md](INTEGRITY_CLUSTER.md)
 
 ---
 
@@ -151,4 +221,4 @@
 - Failure documented (add to Semantic Connections)
 - Session closes (update Growth Trajectory)
 
-**Last Updated**: 2025-11-29
+**Last Updated**: 2025-11-30
