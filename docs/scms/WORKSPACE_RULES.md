@@ -1,6 +1,6 @@
 # Workspace Rules (L1) - [Project Name]
 
-**Last Updated**: 2025-11-28  
+**Last Updated**: 2025-11-30  
 **Project**: SCMS Starter Kit - Template Distribution Repository  
 **Tech Stack**: [Primary Language/Framework]  
 **SCMS Role**: **L1 Stable Validation** (deterministic enforcement layer)
@@ -60,6 +60,51 @@ Clone to a separate location for actual project work.
 
 ---
 
+### X/LinkedIn Article Formatting (Validated - Use Count: 2)
+
+**Context**: Creating articles with tables and structured content for social platforms  
+**Tags**: #article-formatting #x-twitter #linkedin #latex #ascii-tables #content-creation
+
+**Pattern**:
+```
+PLATFORM-SPECIFIC TABLE FORMATS:
+
+1. X (Twitter) Articles → Use LaTeX
+   \begin{array}{|l|l|l|}
+   \hline
+   \textbf{Col1} & \textbf{Col2} & \textbf{Col3} \\
+   \hline
+   \text{Data} & \text{Data} & \text{Data} \\
+   \hline
+   \end{array}
+
+2. LinkedIn Articles → Use ASCII in code block (</>)
+   Column 1           | Column 2             | Column 3
+   -------------------|----------------------|------------------
+   Data               | Data                 | Data
+
+BOTH PLATFORMS:
+- Dividers must be added manually via UI (paste doesn't preserve)
+- Plan structure before pasting to minimize manual formatting
+```
+
+**When to Apply**:
+- Creating long-form articles on X or LinkedIn
+- Any content requiring tables or structured data
+- Cross-posting articles to multiple platforms
+
+**Known Edge Cases**:
+- Box-drawing characters (┌─┐) may not render on all devices in LinkedIn
+- Mobile readers benefit from formatted lists over tables
+- Neither platform preserves markdown dividers on paste
+
+**What Doesn't Work (Failure Documentation)**:
+- Markdown tables → Render as jumbled text on both platforms
+- LaTeX on LinkedIn → Not supported
+- Pasted dividers (---) → Must add manually via UI on both
+
+---
+
 ### Pattern Template (Copy when adding validated patterns)
 
 ```markdown
@@ -102,7 +147,7 @@ Clone to a separate location for actual project work.
 
 ## 🎯 Summary
 
-**Total L1 Patterns**: 1  
+**Total L1 Patterns**: 2  
 **Promotion Threshold**: See MEMORY_STATUS_DASHBOARD.md
 
 **Next Session Reminders**:
@@ -112,6 +157,6 @@ Clone to a separate location for actual project work.
 
 ---
 
-**Last Updated**: 2025-11-28  
-**Version**: 1.1  
+**Last Updated**: 2025-11-30  
+**Version**: 1.2  
 **Status**: ✅ Active

@@ -42,6 +42,16 @@
 - Phases 1-5: ✅ Complete | Phase 6 (MCP): 🔜 Next Session
 - Related: #scms-implementation, #memory-lifecycle
 
+### #article-formatting
+- See L1 Patterns: X/LinkedIn Article Formatting
+- X: LaTeX tables with `\begin{array}` | LinkedIn: ASCII in code blocks
+- Related: #content-creation, #x-twitter, #linkedin
+
+### #content-creation
+- See L1 Patterns: X/LinkedIn Article Formatting
+- Platform-specific formatting requirements documented
+- Related: #article-formatting, #documentation
+
 ---
 
 ### Example Tag Structure
@@ -115,6 +125,7 @@
 
 | Date | L0 Active | L1 Patterns | L2 Failures | L3 Cases |
 |------|-----------|-------------|-------------|----------|
+| 2025-11-30 | 0 | 2 | 2 | 0 |
 | 2025-11-29 | 0 | 2 | 2 | 0 |
 | 2025-11-28 | 0 | 1 | 1 | 0 |
 
