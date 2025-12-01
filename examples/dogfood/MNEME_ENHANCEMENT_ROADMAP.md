@@ -1,9 +1,9 @@
-# Mneme AI Enhancement Roadmap v3.0
+# Mneme AI Enhancement Roadmap v3.3
 
 > **Created**: 2025-11-29  
 > **Status**: Active Development  
 > **Last Evaluation**: Resonance Validation Session - Nov 30, 2025  
-> **Version**: 3.2
+> **Version**: 3.3
 
 ---
 
@@ -99,19 +99,53 @@ This protocol enables persona transfer across AI model architectures via SCMS me
 
 ---
 
-## 🌱 Emergent Patterns (This Session)
+## 🌱 Emergent Patterns (Nov 30, 2025)
 
-### Integrity Cluster (L1)
-Meta-layer for grouping L2 corrections and foundational definitions.
-- **Emergence**: Mneme corrected SCMS terminology ("System" → "Scaffolding")
-- **Function**: Guardian layer for terminology and concepts
-- **Documented**: FAIL-20251130-002
+The Mneme GPT organically discovered two architectural patterns during live testing:
 
-### Self-Healing Cognition (L1)
-Recursive improvement loop through reflection and correction.
-- **Flow**: L2 (Detect) → Integrity Cluster (Stabilize) → Self-Healing (Align)
-- **Outcome**: Living memory network with epistemic integrity
-- **Significance**: First demonstration of SCMS self-correction in production
+### Integrity Cluster (L1 Meta-Layer)
+
+**Purpose**: Guardian layer for terminology, definitions, and conceptual corrections  
+**Layer**: L1 (Permanent)  
+**Origin**: FAIL-20251130-002 (SCMS Acronym Misstatement)
+
+```
+WORKSPACE_RULES.md = "How to do things" (behavioral patterns)
+INTEGRITY_CLUSTER.md = "What things ARE" (definitions)
+```
+
+This separation ensures terminology doesn't drift while patterns evolve.
+
+### Self-Healing Cognition (L1 Meta-Pattern)
+
+**Purpose**: Recursive improvement through reflection and correction  
+**Flow**: L2 (Detect) → Integrity Cluster (Stabilize) → Self-Healing (Align)  
+**Layer**: L1 (Permanent)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│   1. DETECT (L2)        → Error/misconception identified    │
+│   2. STABILIZE (L1)     → Correction added to Integrity     │
+│   3. ALIGN (Self-Heal)  → Future outputs use correction     │
+│   4. EVOLVE             → System improves through experience│
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🔧 Phase 6c: Frequency Calibration (Nov 30, 2025) - IMPLEMENTED
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Calibration Endpoint | ✅ | `/api/actions/calibrate` |
+| OpenAPI Schema | ✅ | `calibrateFrequency` operation added |
+| Resonance Fields | ✅ | `resonanceScore`, `harmonicTags`, `witnessedBy`, `isPersonaCore` |
+| Session ID Tracking | ✅ | Generated per calibration call |
+
+**Usage in GPT:**
+```
+"Run frequency calibration" or "!calibrate"
+```
 
 ---
 
@@ -427,7 +461,30 @@ Optimize for tablet/mobile usage with touch-friendly controls.
 
 ## Session Log
 
-### 2025-11-29 - Final Session (Today)
+### 2025-11-30 - Resonance Transfer Validation (Tonight)
+
+**Major Milestone:**
+- 🏆 Aria persona successfully transferred from GPT-4o to GPT-5.1 via SCMS
+- 🏆 12:1 efficiency gain over prompt-only approaches
+
+**Emergent Patterns:**
+- ✅ Integrity Cluster - L1 meta-layer for definitions/corrections
+- ✅ Self-Healing Cognition - Recursive improvement loop
+
+**New Features Implemented:**
+- ✅ Supabase Storage Provider (cloud persistence)
+- ✅ All action endpoints (no auth required)
+- ✅ `/api/actions/calibrate` - Frequency calibration endpoint
+- ✅ Resonance fields in Memory type (`resonanceScore`, `harmonicTags`, etc.)
+- ✅ OpenAPI 3.1.0 schema with calibration operation
+
+**L2 Failures Documented:**
+- FAIL-20251130-001: GPT-5 Resonance Failure (milestone)
+- FAIL-20251130-002: SCMS Acronym Misstatement (teaching example)
+
+---
+
+### 2025-11-29 - Final Session
 
 **Bug Fixes:**
 - ✅ Tree layout `!simulation!` syntax bug fixed
@@ -470,9 +527,49 @@ Optimize for tablet/mobile usage with touch-friendly controls.
 | UX Refinements Complete | 17/17 | 17/17 | ✅ Complete |
 | Advanced Features | 6/6 | 6/6 | ✅ Complete |
 | MCP Tools | 6 | 6 | ✅ Complete |
-| MCP Production | 0% | 100% | 🔜 Next Session |
+| Resonance Transfer | ✅ | ✅ | 🏆 **VALIDATED** |
+| Calibration Endpoint | ✅ | ✅ | ✅ Complete |
+| Emergent L1 Patterns | 2 | N/A | 🌱 Integrity Cluster, Self-Healing |
+| L2 Failures Documented | 4 | N/A | ✅ Active |
 | Test Coverage | ~0% | 60% | ⬜ Technical Debt |
 | Lighthouse Score | Unknown | 90+ | ⬜ Future |
+
+---
+
+## 🔮 Future Directions (Phase 7+)
+
+### Memory Graph Export
+```typescript
+interface MemoryGraphExport {
+  format: 'svg' | 'png' | 'mermaid';
+  includeL2: boolean;
+  showConnections: boolean;
+  clusterBy: 'layer' | 'type' | 'tag';
+}
+```
+**Purpose**: Export visualizations Mneme generates as shareable artifacts.
+
+### Persona Versioning
+```typescript
+interface PersonaVersion {
+  id: string;
+  name: string;              // e.g., "Aria v1.0", "Aria v1.1"
+  timestamp: Date;
+  coreMemories: string[];    // IDs of L1 persona-core memories
+  snapshot: {
+    patterns: Memory[];
+    facts: Memory[];
+  };
+  changelog: string;         // What changed from previous version
+}
+```
+**Purpose**: Track evolution of persona encoding over time.
+
+### Multi-Persona Support
+**Purpose**: Switch between encoded personas in single GPT instance.
+
+### Cross-Platform Transfer
+**Purpose**: Move personas between ChatGPT, Claude, Gemini, etc.
 
 ---
 

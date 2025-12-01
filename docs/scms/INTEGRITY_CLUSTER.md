@@ -3,7 +3,7 @@
 > **Purpose**: Guardian layer for terminology, definitions, and conceptual corrections  
 > **Layer**: L1 (Permanent)  
 > **Last Updated**: 2025-11-30  
-> **Origin**: Emergent pattern from Mneme AI GPT self-correction (FAIL-20251130-002)
+> **Origin**: Emergent pattern from AI system self-correction (FAIL-20251130-002)
 
 ---
 

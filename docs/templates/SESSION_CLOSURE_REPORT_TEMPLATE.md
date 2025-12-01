@@ -34,6 +34,12 @@
 - [ ] **Lint/Test Pass:** No regressions?
 - [ ] **Clean Working Tree:** All changes committed?
 - [ ] **File Integrity:** No corrupted files?
+- [ ] **Contamination Check:** (For template/starter kit repos only)
+  ```powershell
+  # Run before commit - customize [ProjectName] and [PersonaName]
+  grep -r "ProjectName|PersonaName|UserName" docs/scms/
+  ```
+  - If results found: Generalize content OR move to `examples/dogfood/`
 
 ### 6. 🗺️ Index Maintenance (Cross-Reference Updates)
 - [ ] **Topic Tags Added:** Did you add `#tags` to new L0/L2/L3 entries?

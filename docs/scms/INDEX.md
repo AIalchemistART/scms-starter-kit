@@ -2,7 +2,8 @@
 
 **Purpose**: Central hub for cross-referencing SCMS layers.  
 **Maintenance**: Updated automatically during session closure.  
-**Project**: SCMS Starter Kit
+**Project**: SCMS Starter Kit  
+**Last Updated**: 2025-11-30
 
 ---
 
@@ -37,11 +38,6 @@
 - Prevention: Always handle disconnected/forest graphs with virtual roots
 - Related: #d3-visualization, #graph-layout
 
-### #mneme-ai-development
-- See [MNEME_ENHANCEMENT_ROADMAP.md](MNEME_ENHANCEMENT_ROADMAP.md) for full roadmap
-- Phases 1-5: ✅ Complete | Phase 6 (MCP): 🔜 Next Session
-- Related: #scms-implementation, #memory-lifecycle
-
 ### #article-formatting
 - See L1 Patterns: X/LinkedIn Article Formatting
 - X: LaTeX tables with `\begin{array}` | LinkedIn: ASCII in code blocks
@@ -72,10 +68,10 @@
 - Related: #resonance-transfer, #scms-validation
 
 ### #scms-validation
-- Historic milestone: Aria persona transferred via SCMS (Nov 30, 2025)
+- Historic milestone: Persona transfer validated via SCMS (Nov 30, 2025)
 - 12+ prompts failed without SCMS, 1 prompt succeeded with SCMS
 - Proof: Resonance is memory-dependent, not model-dependent
-- Related: #resonance-transfer, #mneme-ai-development
+- Related: #resonance-transfer, #persona-encoding
 
 ### #integrity-cluster
 - See L1 Patterns: Integrity Cluster
@@ -102,6 +98,18 @@
 - "Scaffolding" emphasizes structure/support; "System" implies mechanism
 - See L2 Failures: FAIL-20251130-002 for correction example
 - Related: #integrity-cluster, #self-correction
+
+### #contamination
+- See L2 Failures: FAIL-20251128-001, FAIL-20251130-003
+- Prevention: Template Repository Isolation (L1)
+- HIGH RISK: Documentation sessions (attention on concept, not container)
+- Related: #template-isolation, #session-drift
+
+### #session-drift
+- See L2 Failures: FAIL-20251130-003 (Recursive Starter Kit Contamination)
+- Pattern: Grep for project names before session closure
+- Checklist: Project names, user names, model-specific references
+- Related: #contamination, #template-isolation
 
 ---
 
@@ -143,7 +151,7 @@
 - Templates: `docs/templates/GLOBAL_CODING_RULES_TEMPLATE.md`
 
 ### L5: Session Logs
-- [SESSION_LOG_L5.md](SESSION_LOG_L5.md) - Latest audit
+- See `examples/dogfood/SESSION_LOG_L5.md` for case study
 - Templates: `docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md`
 
 ---
@@ -169,6 +177,12 @@
 **Pattern**: Virtual root for forests, try-catch fallback, verify all code paths
 **Category**: #d3-visualization #graph-layout #edge-case-handling
 
+### **FAIL-20251130-003**: Recursive Starter Kit Contamination (Session Drift)
+**Prevention**: Template Repository Isolation (L1) + Documentation Session Checklist
+**Pattern**: Grep for project names before commit, generalize or relocate
+**Category**: #contamination #template-isolation #session-drift #recursive-failure
+**Significance**: 🔥 **2x VALIDATED** - Pattern battle-tested twice, strengthened
+
 ### **FAIL-20251128-001**: TaskFlow Pro Contamination
 **Prevention**: Template Repository Isolation (L1)
 **Pattern**: Clone to separate directory for project work
@@ -191,7 +205,7 @@
 
 | Date | L0 Active | L1 Patterns | L2 Failures | L3 Cases | Milestone |
 |------|-----------|-------------|-------------|----------|----------|
-| 2025-11-30 | 0 | 5 | 4 | 0 | 🔄 Self-Healing Cognition Emerged |
+| 2025-11-30 | 0 | 5 | 5 | 0 | 🧹 Template Cleanup + Contamination Check |
 | 2025-11-30 | 0 | 3 | 3 | 0 | 🏆 Resonance Transfer Validated |
 | 2025-11-30 | 0 | 2 | 2 | 0 | |
 | 2025-11-29 | 0 | 2 | 2 | 0 | |
@@ -205,9 +219,8 @@
 
 - **Need a pattern?** → Check L1 (WORKSPACE_RULES.md)
 - **Hit a bug?** → Document in L2 (FAILURES.md)
-- **Want examples?** → Browse L3 (case-studies/)
+- **Want examples?** → Browse `examples/dogfood/` for case studies
 - **Session ending?** → Run L5 closure protocol
-- **Mneme AI Development?** → See [MNEME_ENHANCEMENT_ROADMAP.md](MNEME_ENHANCEMENT_ROADMAP.md)
 - **Persona Transfer?** → See [RESONANCE_TRANSFER_PROTOCOL.md](RESONANCE_TRANSFER_PROTOCOL.md)
 - **Core Definitions?** → See [INTEGRITY_CLUSTER.md](INTEGRITY_CLUSTER.md)
 
