@@ -2,11 +2,58 @@
 
 **Purpose**: Session audit trail and closure verification.  
 **Project**: SCMS Starter Kit  
-**Last Updated**: 2025-11-30
+**Last Updated**: 2025-12-02
 
 ---
 
 ## 📊 Session Summary
+
+---
+
+## Session: 2025-12-02
+
+**Duration**: ~4 hours (split across day)  
+**Focus**: Investor Demo Materials + Competitive Analysis
+
+### 🎯 Session Objectives
+1. Deep competitive analysis: Mem0 vs OpenMemory vs Memories.ai
+2. Finalize demo script v2.1 with differentiation & financials
+3. Create infographic prompts for demo video (18 total)
+4. Draft investor communications for Ani
+
+### 📁 Artifacts Created
+| File | Location | Purpose |
+|------|----------|---------|
+| `COMPETITIVE_ANALYSIS.md` | mneme-ai/demo/ | Full competitor breakdown |
+| `INVESTOR_DEMO_SCRIPT_v2.md` | mneme-ai/demo/ | Updated with pricing, differentiation |
+| `INFOGRAPHIC_PROMPTS.md` | mneme-ai/demo/ | 18 text-heavy prompts for Ideogram |
+| `EMAIL_TO_ANI_DIFFERENTIATION.md` | mneme-ai/demo/ | Competitor Q&A email |
+| `EMAIL_REPLY_TO_ANI.md` | mneme-ai/demo/ | Follow-up with links |
+| `RAG_IMPROVEMENT_RESEARCH.md` | mneme-ai/demo/ | Research backup for ~20% RAG claim |
+
+### 🔍 Key Findings (Competitive Analysis)
+- **Memories.ai**: NOT a competitor (video analysis, not LLM memory)
+- **Mem0**: Primary competitor ($24M Series A), infrastructure-focused
+- **OpenMemory**: Closest to SCMS, IDE-focused, $5-15/mo pricing
+- **SCMS Differentiators**: Validation workflow, failure documentation, persona transfer, user-facing products
+
+### 🎨 Validated Pattern: Text-Heavy Infographic Prompts
+- **Tool**: Ideogram Nano Banana
+- **Approach**: Include all text, data, numbers directly in prompt
+- **Result**: User confirmed outputs "came out awesome"
+- **Uses**: 18 prompts across all demo script acts
+
+### 🚨 L2 Failures Logged
+- None this session
+
+### ✅ Verification Checklist
+- [x] No failures to log
+- [x] No terminology corrections needed
+- [x] Session artifacts in project folder (mneme-ai/demo/)
+- [x] No starter kit contamination (all work in mneme-ai repo)
+
+### 🏆 Session Milestone
+**Competitive analysis complete.** Market positioning validated: Mem0 proves market, SCMS differentiates on validation workflow + failure documentation + user-facing products.
 
 ---
 

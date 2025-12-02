@@ -49,7 +49,7 @@
 - FAIL-20251128-001 → Template Repository Isolation (L1)
 
 ### Sessions → Documentation
-- 2025-11-28: Template Cleanup + Mneme AI Evaluation
+- 2025-11-28: Template Cleanup + Memory System Evaluation
 
 ---
 

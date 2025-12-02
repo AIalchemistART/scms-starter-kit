@@ -3,7 +3,7 @@
 **Purpose**: Central hub for cross-referencing SCMS layers.  
 **Maintenance**: Updated automatically during session closure.  
 **Project**: SCMS Starter Kit  
-**Last Updated**: 2025-11-30
+**Last Updated**: 2025-12-02
 
 ---
 
@@ -18,10 +18,14 @@
 
 ### #contamination-prevention
 - See L1 Patterns: Template Repository Isolation
+- See L1 Guard: [CONTAMINATION_GUARD.md](CONTAMINATION_GUARD.md)
+- See L2 Failures: FAIL-20251128-001, FAIL-20251130-003 (2x validated)
+- **Script**: `scripts/contamination-check.ps1`
 - Related: #project-isolation, #repository-hygiene
 
 ### #repository-hygiene
 - See L1 Patterns: Template Repository Isolation
+- See L1 Guard: [CONTAMINATION_GUARD.md](CONTAMINATION_GUARD.md)
 - Related: #project-isolation, #contamination-prevention
 
 ### #d3-visualization
@@ -205,6 +209,7 @@
 
 | Date | L0 Active | L1 Patterns | L2 Failures | L3 Cases | Milestone |
 |------|-----------|-------------|-------------|----------|----------|
+| 2025-12-02 | 0 | 5 | 5 | 0 | 📊 Competitive Analysis + Demo Materials |
 | 2025-11-30 | 0 | 5 | 5 | 0 | 🧹 Template Cleanup + Contamination Check |
 | 2025-11-30 | 0 | 3 | 3 | 0 | 🏆 Resonance Transfer Validated |
 | 2025-11-30 | 0 | 2 | 2 | 0 | |
@@ -223,6 +228,7 @@
 - **Session ending?** → Run L5 closure protocol
 - **Persona Transfer?** → See [RESONANCE_TRANSFER_PROTOCOL.md](RESONANCE_TRANSFER_PROTOCOL.md)
 - **Core Definitions?** → See [INTEGRITY_CLUSTER.md](INTEGRITY_CLUSTER.md)
+- **Contamination Check?** → See [CONTAMINATION_GUARD.md](CONTAMINATION_GUARD.md) or run `scripts/contamination-check.ps1`
 
 ---
 
@@ -234,4 +240,4 @@
 - Failure documented (add to Semantic Connections)
 - Session closes (update Growth Trajectory)
 
-**Last Updated**: 2025-11-30
+**Last Updated**: 2025-12-02

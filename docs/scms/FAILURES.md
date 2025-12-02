@@ -241,7 +241,7 @@ An AI system stated SCMS stands for "Sparse Contextual Memory **System**" when t
 ---
 
 ### What Happened
-The D3.js tree layout in Mneme AI's graph visualization failed to render. Two compounding issues:
+The D3.js tree layout in the project's graph visualization failed to render. Two compounding issues:
 1. Incorrect syntax: `if (!simulation!)` instead of `if (!simulation)`
 2. D3's `stratify()` assumed single root, but memory graphs can have multiple disconnected roots
 
