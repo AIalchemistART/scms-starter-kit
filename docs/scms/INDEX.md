@@ -3,7 +3,7 @@
 **Purpose**: Central hub for cross-referencing SCMS layers.  
 **Maintenance**: Updated automatically during session closure.  
 **Project**: SCMS Starter Kit  
-**Last Updated**: 2025-12-02
+**Last Updated**: 2025-12-03
 
 ---
 
@@ -96,6 +96,30 @@
 - Anti-Patterns: Don't assume acronym meanings without confirmation
 - Pattern: Verify core terminology before teaching
 - Related: #integrity-cluster, #terminology
+
+### #l2-reporting
+- **Rule**: L2 is WHY documentation attached to memories, NOT a separate count
+- **Report as**: Coverage (X/Y memories have WHY docs)
+- **Never say**: "L2 entries: N" or "L2 count: N"
+- See L2 Failures: FAIL-20251202-001 (L2 reported as count)
+- Related: #scms-principles, #memory-architecture
+
+### #slash-commands
+- Mneme Standalone: `/health`, `/stats`, `/memories`, `/failures`, `/principles`, `/help`
+- Enables quick access to system state without natural language
+- See Pattern: Slash Command Interface (v3.3+)
+- Related: #user-experience, #tooling
+
+### #scms-principles
+- 6 Core Principles enforced in every session:
+  1. Terminology: SCMS = Scaffolding (NOT System)
+  2. Failures First: 3-10× more valuable than success
+  3. L2 WHY Required: Every memory needs documentation
+  4. Anti-Patterns First-Class: What NOT to do matters
+  5. L2 Coverage Reporting: X/Y format, never count
+  6. Self-Healing: Correct through reflection
+- See: `/principles` command in Mneme
+- Related: #terminology, #l2-reporting, #self-healing
 
 ### #terminology
 - Key Definition: SCMS = Sparse Contextual Memory **Scaffolding** (not System)
