@@ -100,12 +100,12 @@ What Happened: Project-specific content (Aria, Manny, Mneme GPT) was written...
 
 ### Check for contamination (verbose)
 ```powershell
-.\scripts\contamination-check.ps1 -ProjectNames "Mneme","YourProject" -PersonaNames "Aria","Manny" -Verbose
+.\scripts\contamination-check.ps1 -ProjectNames "YourProject","YourApp" -PersonaNames "YourPersona" -UserNames "YourName" -Verbose
 ```
 
 ### Check specific file
 ```powershell
-Select-String -Path "docs/scms/WORKSPACE_RULES.md" -Pattern "Mneme|Aria|Manny|YourProject"
+Select-String -Path "docs/scms/WORKSPACE_RULES.md" -Pattern "YourProject|YourPersona|YourName"
 ```
 
 ### Batch rename/replace (careful!)

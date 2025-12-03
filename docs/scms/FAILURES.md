@@ -73,9 +73,9 @@ During the session documenting Resonance Transfer Protocol and Integrity Cluster
 **Enhanced L1 Rule** (extends Template Repository Isolation):
 ```
 DOCUMENTATION SESSION CHECKLIST:
-☐ Are there any project-specific names? (Mneme, Aria, [Your Project])
-☐ Are there any user-specific names? (Manny, [Your Name])
-☐ Are there any model-specific references? (GPT-5.1, [Specific Model])
+☐ Are there any project-specific names? ([Your Project], [Your App])
+☐ Are there any user-specific names? ([Your Name], [Your Username])
+☐ Are there any model-specific references? ([Specific Model])
 ☐ Would a new user understand this without context?
 ☐ Should this be in examples/dogfood/ instead?
 ```
