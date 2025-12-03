@@ -39,10 +39,14 @@ Working on: [project name and brief description]
 3. docs/guides/ (Manuals)
 
 **B. Initialize Templates (The "Gold Standard"):**
-1. Create docs/templates/FAILURE_LOG_TEMPLATE.md
-2. Create docs/templates/TERMINOLOGY_CORRECTION_TEMPLATE.md (for definition fixes)
-3. Create docs/templates/PATTERN_PROMOTION_TEMPLATE.md
-4. Create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md
+> ⚠️ **IMPORTANT**: Copy templates from SCMS Starter Kit if available. Do NOT generate from memory - starter kit versions are authoritative and more comprehensive.
+
+1. Copy or create docs/templates/FAILURE_LOG_TEMPLATE.md
+2. Copy or create docs/templates/TERMINOLOGY_CORRECTION_TEMPLATE.md (for definition fixes)
+3. Copy or create docs/templates/PATTERN_PROMOTION_TEMPLATE.md
+4. Copy or create docs/templates/SESSION_CLOSURE_REPORT_TEMPLATE.md
+5. Copy or create docs/templates/SOP_TEMPLATE.md (optional, for SOPs)
+6. Copy or create docs/templates/CASE_STUDY_TEMPLATE.md (optional, for L3 case studies)
 
 **C. Initialize Operational Files:**
 1. docs/scms/INDEX.md (Central Hub skeleton)

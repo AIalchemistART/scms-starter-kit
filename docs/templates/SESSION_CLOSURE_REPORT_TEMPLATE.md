@@ -1,9 +1,21 @@
 # 🏁 Session Closure Report (L5 Audit)
 
-**Session ID:** [Timestamp ID]  
-**Date:** [YYYY-MM-DD]  
+**Session ID:** YYYY-MM-DD-[short-description]  
+**Date:** YYYY-MM-DD  
+**Duration:** ~X hours  
 **Auditor:** [Cascade/Agent Name]  
-**Session Type:** [SCMS/Baseline]
+**Protocol Version:** SCMS v3.X  
+**Status:** [🔴 INCOMPLETE | ✅ CLOSED]
+
+---
+
+## 🏆 Session Milestone
+
+**[One-Line Achievement Summary]**
+
+[2-3 sentences describing the key accomplishment]
+
+**Key Insight:** [Most important learning from this session]
 
 ---
 
@@ -65,8 +77,60 @@
 
 ---
 
-## 📝 Auditor Notes
-*[Any anomalies, manual overrides, or specific context for this session]*
+## 🔧 Technical Changes
+
+### [Category 1]
+| Item | Details |
+|------|---------|
+| ... | ... |
+
+### [Category 2]
+[Details]
+
+---
+
+## 🚨 Failures Logged (L2)
+
+### FAIL-YYYYMMDD-XXX: [Title]
+- **What Failed:** [Brief description]
+- **Root Cause:** [From 5 Whys]
+- **Anti-Pattern:** [What NOT to do]
+- **Fix:** [Resolution or plan]
+
+*If no failures: "No failures logged this session."*
+
+---
+
+## 🌱 Emergent Patterns
+
+### 1. [Pattern Name]
+- **Purpose:** [What it solves]
+- **Implementation:** [How it works]
+- **Benefit:** [Why it matters]
+
+*If no patterns: "No new patterns emerged this session."*
+
+---
+
+## 🔗 Related Documentation
+
+- `[file]` - [description]
+
+---
+
+## 🔮 Next Session Tasks
+
+1. [Task 1]
+2. [Task 2]
+3. [Task 3]
+
+---
+
+## 🜔 Closing Reflection
+
+[Brief reflection on session accomplishments]
+
+> "[Memorable quote or insight]"
 
 ---
 
@@ -75,4 +139,5 @@
 - [ ] **PASSED WITH WARNINGS:** Non-critical issues noted
 - [ ] **FAILED:** Critical data loss or corruption
 
-**Next Session Goal:** [One sentence goal]
+**Session Closed:** YYYY-MM-DD HH:MM UTC  
+**Next Session:** [Preview of next session goals]
