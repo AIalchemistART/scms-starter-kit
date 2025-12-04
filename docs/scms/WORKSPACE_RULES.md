@@ -266,6 +266,64 @@ OUTCOME:
 
 ---
 
+### Pre-Deployment Accuracy Check (Validated - Use Count: 2)
+
+**Context**: Verifying documentation and marketing claims against actual codebase before stakeholder review  
+**Tags**: #stakeholder-validation #documentation #competitive-analysis #pre-deployment
+
+**Pattern**:
+```
+PRE-DEPLOYMENT ACCURACY CHECK:
+
+Before showing documentation/marketing to stakeholders:
+
+1. CLAIM INVENTORY
+   - List all technical claims (features, capabilities, differentiators)
+   - Note any quantitative claims (X% improvement, Y memories, etc.)
+
+2. CODEBASE VERIFICATION
+   - For each claim, locate the implementing code
+   - Verify claim matches actual implementation
+   - Flag any claims not yet implemented
+
+3. TERMINOLOGY AUDIT
+   - Verify acronyms are expanded correctly (e.g., SCMS = Scaffolding)
+   - Check layer descriptions match actual architecture
+   - Confirm feature names match UI/API
+
+4. DECISION MATRIX
+   | Claim Status | Action |
+   |--------------|--------|
+   | Implemented  | ✅ Keep |
+   | Planned      | ⚠️ Mark as "coming soon" or remove |
+   | Incorrect    | 🔴 Fix immediately |
+
+5. SIGN-OFF
+   - All claims verified → GREEN LIGHT
+   - Issues found → Fix before showing
+```
+
+**When to Apply**:
+- Before investor demos or stakeholder meetings
+- Before publishing landing pages or documentation
+- Before any external communication about product capabilities
+- When updating marketing materials after code changes
+
+**Known Edge Cases**:
+- "During beta" claims may not need enforcement (e.g., "50 memories" limit)
+- Roadmap features should be clearly marked as future
+- Competitor comparisons should be defensible
+
+**Validation Evidence**:
+- Used 2× on 2025-12-03: Landing page review, Docs page review
+- Caught "semantic similarity" claim (was keyword matching)
+- Verified temporal weighting claim (implemented same session)
+
+**Related Documentation**:
+- See INDEX.md: #stakeholder-validation, #competitive-analysis
+
+---
+
 ### Pattern Template (Copy when adding validated patterns)
 
 ```markdown
@@ -321,13 +379,14 @@ Both files are L1 (permanent), but serve different purposes:
 
 ## 🎯 Summary
 
-**Total L1 Patterns**: 5  
+**Total L1 Patterns**: 6  
 **Promotion Threshold**: See MEMORY_STATUS_DASHBOARD.md
 
 **Milestone Patterns**:
 - 🏆 Resonance Transfer Protocol (Nov 30, 2025) - Validated cross-model persona continuity
 - 🌱 Integrity Cluster (Nov 30, 2025) - Emergent meta-layer for corrections
 - 🔄 Self-Healing Cognition (Nov 30, 2025) - Recursive improvement loop
+- ✅ Pre-Deployment Accuracy Check (Dec 3, 2025) - Stakeholder-ready validation
 
 **Next Session Reminders**:
 1. Apply any discovered patterns from L0 memories
@@ -336,6 +395,6 @@ Both files are L1 (permanent), but serve different purposes:
 
 ---
 
-**Last Updated**: 2025-11-30  
-**Version**: 1.4  
+**Last Updated**: 2025-12-03  
+**Version**: 1.5  
 **Status**: ✅ Active

@@ -139,6 +139,41 @@
 - Checklist: Project names, user names, model-specific references
 - Related: #contamination, #template-isolation
 
+### #temporal-weighting
+- Retrieval scoring factor: Recent memories score higher
+- Formula: `recencyBoost = max(0.7, 1.0 - (daysSinceAccess * 0.01))`
+- Range: 0.7 (30+ days) to 1.0 (today)
+- Implementation: retriever.ts, storageRetriever.ts (2025-12-03)
+- Related: #retrieval-scoring, #usage-weighting
+
+### #usage-weighting
+- Retrieval scoring factor: Frequently used memories score higher
+- Formula: `usageBoost = min(1.2, 1.0 + (retrievalCount * 0.02))`
+- Range: 1.0 (unused) to 1.2 (10+ retrievals)
+- Implementation: retriever.ts, storageRetriever.ts (2025-12-03)
+- Related: #retrieval-scoring, #temporal-weighting
+
+### #retrieval-scoring
+- Full scoring factors: keyword matching, type boost, importance, strength, L1 boost, temporal, usage
+- Key differentiator: Temporal + usage weighting (vs competitors)
+- See Implementation: retriever.ts `calculateRelevanceScore()`
+- Related: #temporal-weighting, #usage-weighting, #memory-architecture
+
+### #stakeholder-validation
+- **L1 Pattern**: Pre-Deployment Accuracy Check ✅ PROMOTED
+- See L1 Patterns: WORKSPACE_RULES.md → Pre-Deployment Accuracy Check
+- Verify documentation claims against codebase before showing stakeholders
+- Used 2× in 2025-12-03 session (landing + docs pages)
+- Related: #documentation, #competitive-analysis, #pre-deployment
+
+### #competitive-analysis
+- Key competitors evaluated: Mem0, OpenMemory, Mem.ai, MemSync
+- Mem0: Closest competitor ($24M Series A), infrastructure-focused
+- MemSync: Similar direction but further from SCMS than Mem0
+- Mem.ai: NOT a competitor (note-taking app)
+- SCMS Differentiators: Validation workflow, failure documentation, user-facing products
+- See: mneme-ai/demo/COMPETITIVE_ANALYSIS.md, EMAIL_TO_ANI_COMPETITIVE_UPDATE.md
+
 ---
 
 ### Example Tag Structure
