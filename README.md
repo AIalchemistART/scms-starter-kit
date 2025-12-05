@@ -740,14 +740,14 @@ SCMS is based on published research from the **Labyrinth Protocol** project:
 
 ### Core Research Papers
 
-**📄 [SCMS (Empirical)](docs/reference/WHITEPAPER.md)** - v1.9  
+**📄 [SCMS (Empirical)](docs/reference/WHITEPAPER.md)** - v2.0  
 *Sparse Contextual Memory Scaffolding: A User-Facing Architecture for Continual Learning in AI-Assisted Development Workflows*
 
 🔗 **SSRN Pre-print**: [papers.ssrn.com/abstract=5656271](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5656271)
 
 Introduces the **dual validation pipeline architecture** where Layer 0 (destructive validation) tests patterns through natural selection and Layer 1 (stable validation) enforces proven patterns through deterministic loading. This transforms AI memory from passive storage into active quality control infrastructure.
 
-**v1.9 Additions**: Ilya Sutskever validation (Nov 2025), HUMANE companion paper reference, scope boundaries showing differentiated benefits (85-96% for stale context, 60-80% for established codebases, 30-50% for greenfield).
+**v2.0 Additions**: Google Titans/MIRAS validation (Dec 2025) - Three-layer memory architecture and forgetting mechanisms validated as essential. Competitors using flat vector databases now architecturally deficient per Google's research.
 
 **Key Results**:
 - 91% reduction in pattern re-discovery time
@@ -756,30 +756,30 @@ Introduces the **dual validation pipeline architecture** where Layer 0 (destruct
 - Documentation lag: 11.5 days → 4 hours
 - Validated over 4 months, 127 implementation cycles
 
-**📄 [Paradigm Shift (Design)](docs/reference/WHITEPAPER_PARADIGM_SHIFT.md)** - v2.0  
+**📄 [Paradigm Shift (Design)](docs/reference/WHITEPAPER_PARADIGM_SHIFT.md)** - v2.1  
 *Paradigm Shift in AI Memory: From Preference Storage to Continual Learning*
 
 Documents the emergent paradigm shift from AI memories as "digital filing cabinets" to **dual validation infrastructure** (L0 test + L1 enforce). Fewer than 1% of users have discovered this pattern. 
 
-**v2.0 Additions**: HUMANE companion paper reference, corrected cross-domain claims. Addresses the <1% adoption crisis through **mandatory UX patterns** that encourage validation-oriented behavior.
+**v2.1 Additions**: Google Titans/MIRAS validation (Dec 2025) - Validates paradigm shift from "save everything" to layered validation is architecturally necessary.
 
 Includes comparative analysis across six dimensions, five design principles for validation-oriented systems, and multi-domain validation (research, content creation, data analysis, education).
 
-**📄 [Mixture of Memories (Theory)](docs/reference/WHITEPAPER_MIXTURE_OF_MEMORIES.md)** - v2.0  
+**📄 [Mixture of Memories (Theory)](docs/reference/WHITEPAPER_MIXTURE_OF_MEMORIES.md)** - v2.1  
 *Mixture of Memories: A Unified Framework for Sparse Activation Across Abstraction Levels*
 
 Proves that sparse selective activation is not merely an optimization but a **structural necessity** for continual learning at scale. 
 
-**v2.0 Additions**: Ilya Sutskever validation, HUMANE companion paper reference. Economic implications showing sparse activation is economically optimal (4× cost advantage). Mathematical cost analysis demonstrates O(log² K) sparse systems outperform O(K) dense systems.
+**v2.1 Additions**: Google Titans/MIRAS validation (Dec 2025) - Titans validates MoM's isomorphism between memory routing and MoE gating. MIRAS confirms impossibility theorems for dense alternatives.
 
 Establishes formal mathematical framework proving structural isomorphism between SCMS dual validation pipeline (L0+L1) and Mixture of Experts architectures. Demonstrates sparse selective activation as a universal pattern from biological neurons to organizational systems.
 
-**📄 [Economics of Continual Learning](docs/reference/WHITEPAPER_ECONOMICS.md)** - v1.3  
+**📄 [Economics of Continual Learning](docs/reference/WHITEPAPER_ECONOMICS.md)** - v1.4  
 *The Economics of Continual Learning: How SCMS Transforms AI Development Costs*
 
 Demonstrates that SCMS creates **30-45% cost reduction** in AI interactions through retrieval-over-generation optimization. Using real-world development data (127 cycles), shows SCMS transforms heavy users from sustainable customers.
 
-**v1.3 Additions**: Ilya Sutskever validation on "bug oscillation" rework costs, HUMANE companion paper reference.
+**v1.4 Additions**: Google Titans/MIRAS validation (Dec 2025) - Deep memory more efficient at scale; forgetting mechanisms prevent memory overflow.
 
 **Key Economic Findings**:
 - Individual developers: $200-400 annual savings (conservative)
@@ -787,10 +787,12 @@ Demonstrates that SCMS creates **30-45% cost reduction** in AI interactions thro
 - Response efficiency: 2-3× faster through retrieval vs generation
 - Quality improvement: Validated patterns eliminate hallucination
 
-**📄 [HUMANE (Alignment)](docs/reference/WHITEPAPER_HUMANE.md)** - v1.0 **NEW**  
+**📄 [HUMANE (Alignment)](docs/reference/WHITEPAPER_HUMANE.md)** - v1.1  
 *HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding*
 
 Extends SCMS principles to **AI alignment** through severity-aware failure memory. Introduces the dual function of emotional processing (reward signal AND retrieval trigger) and the objective/subjective verification distinction that explains AI's "jagged" performance.
+
+**v1.1 Additions**: Google Titans/MIRAS validation (Dec 2025) - "Surprise metric" mirrors severity encoding; retention gates validate severity-based retention.
 
 **Key Contributions**:
 - Theoretical reframing: Emotions as retrieval triggers, not just value functions
@@ -798,7 +800,7 @@ Extends SCMS principles to **AI alignment** through severity-aware failure memor
 - Four-layer HUMANE implementation stack with compounding benefits
 - SCMS as proof-of-concept showing 2.8× completion rate improvement
 
-Validated by Ilya Sutskever's analysis of the "bug oscillation" problem (Dwarkesh Podcast, Nov 2025).
+Validated by Ilya Sutskever (Nov 2025) and Google Titans/MIRAS (Dec 2025).
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
