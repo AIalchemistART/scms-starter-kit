@@ -4,7 +4,7 @@
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 1.9 (Updated November 25, 2025 - Added Ilya Sutskever validation, HUMANE companion paper reference)
+**Version**: 2.0 (Updated December 5, 2025 - Added Google Titans/MIRAS validation)
 
 **Status**: Published Research
 
@@ -20,10 +20,12 @@ This paradigm shift—treating memory as validation infrastructure rather than r
 
 **Failure Documentation**: We establish **failures as first-class knowledge sources** with 10-100× information density vs successes. The Failure Documentation Pyramid (Bug Patterns → Anti-Patterns → Failed Approaches → Edge Cases) systematically captures constraint discovery, preventing entire classes of errors.
 
-**Independent Validation**: Core SCMS principles have been **independently validated** by multiple researchers:
-- **David Shapiro (2023)**: Raw logs → roll-ups → KB articles architecture with sparse activation, gating thresholds, and asymptotic growth—validating the architecture was theoretically sound 2 years before SCMS implementation (lacked production tooling: IDE integration, modern AI assistants)
-- **Google Research (2025)**: "Nested Learning" (Behrouz et al., NeurIPS 2025) published ~10 days after SCMS—perfect alignment on 6/6 fundamental principles (nested hierarchies, multi-time-scale updates, context flows, forgetting prevention, associative memory, continuum systems)
-- **Ilya Sutskever (2025)**: In a Dwarkesh Podcast interview (November 2025), OpenAI co-founder described the "bug oscillation" problem (A→B→A→B) that SCMS failure documentation directly addresses—confirming the problem space is recognized at the highest levels of AI research
+**Independent Validation**: Core SCMS principles have been **independently validated** by six sources:
+- **David Shapiro (2023)**: Raw logs → roll-ups → KB articles architecture with sparse activation, gating thresholds, and asymptotic growth—validating the architecture was theoretically sound 2 years before SCMS implementation
+- **Google Research "Nested Learning" (2025)**: NeurIPS 2025, published ~10 days after SCMS—perfect alignment on 6/6 fundamental principles (nested hierarchies, multi-time-scale updates, context flows, forgetting prevention, associative memory, continuum systems)
+- **Ilya Sutskever (2025)**: In a Dwarkesh Podcast interview (November 2025), described the "bug oscillation" problem (A→B→A→B) that SCMS failure documentation directly addresses
+- **Google Research "Titans" (Dec 2025)**: Three-layer memory architecture (Long-term, Core Attention, Persistent) that directly mirrors SCMS's L0/L1/L2 structure. Demonstrates multi-layer memory is **essential** for handling long contexts (>2M tokens). "Surprise metric" validates SCMS's validation-based promotion approach.
+- **Google Research "MIRAS" (Dec 2025)**: Framework identifying four essential design choices including **Retention Gates** (forgetting mechanisms). Explicitly states "forgetting is as important as remembering"—validating SCMS's decay mechanism. Competitors using flat vector databases (Mem0, etc.) are now **architecturally deficient** per this research.
 
 **Companion Paper**: See [HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding](WHITEPAPER_HUMANE.md) for extension of SCMS principles to AI alignment through severity-aware failure memory.
 

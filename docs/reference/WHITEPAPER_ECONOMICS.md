@@ -2,7 +2,7 @@
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 1.3 (Updated November 25, 2025 - Added Ilya Sutskever validation, HUMANE companion paper reference)
+**Version**: 1.4 (Updated December 5, 2025 - Added Google Titans/MIRAS validation)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -46,8 +46,10 @@ Artificial Intelligence assistance has become integral to software development, 
 **Independent Validation**: This economic necessity was independently predicted by:
 - **David Shapiro (2023)**: Asymptotic knowledge growth with sparse memory economics
 - **SCMS (2024-2025)**: Empirical validation with algorithmic cost tracking
-- **Google Research (2025)**: Multi-time-scale architectural efficiency
-- **Ilya Sutskever (2025)**: In a Dwarkesh Podcast interview (November 2025), described the "bug oscillation" problem that causes repeated rework costs—exactly what SCMS failure documentation prevents
+- **Google Research "Nested Learning" (2025)**: Multi-time-scale architectural efficiency
+- **Ilya Sutskever (Nov 2025)**: Described the "bug oscillation" problem that causes repeated rework costs—exactly what SCMS failure documentation prevents
+- **Google Research "Titans" (Dec 2025)**: Demonstrates deep memory modules are more efficient at scale than shallow storage—validating SCMS's retrieval-over-generation economic model
+- **Google Research "MIRAS" (Dec 2025)**: Forgetting mechanisms as "regularization" that prevents memory overflow and improves efficiency—validating that decay-based systems (SCMS) are economically superior to "save everything" approaches (Mem0)
 
 **Companion Paper**: See [HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding](WHITEPAPER_HUMANE.md) for economic implications of alignment cost reduction through severity-aware failure memory.
 

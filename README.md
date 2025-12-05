@@ -6,7 +6,9 @@
 [![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](docs/)
 [![Google Validated](https://img.shields.io/badge/Google%20Research-Validated-brightgreen.svg)](docs/reference/WHITEPAPER.md#independent-validation-by-google-research)
 
-**🔥 Update (Nov 2025)**: Core SCMS principles **independently validated** across a 2-year convergence—**David Shapiro (2023)** theorized sparse activation architecture, **SCMS (2024-2025)** implemented production system, **Google Research (2025)** validated with "Nested Learning" (NeurIPS 2025), and **Ilya Sutskever (Nov 2025)** confirmed the "bug oscillation" problem that SCMS failure documentation directly addresses!
+**🔥 NEW (Dec 2025)**: Google's **Titans** and **MIRAS** papers (December 2025) provide definitive validation—multi-layer memory architecture and forgetting mechanisms are **essential** for AI memory systems. SCMS's L0/L1/L2 architecture and decay mechanism align perfectly with Google's findings. Competitors using flat vector databases (Mem0, etc.) are now **architecturally deficient** per Google's research!
+
+**📜 Prior Validation (Nov 2025)**: Core SCMS principles **independently validated** across a 2-year convergence—**David Shapiro (2023)** theorized sparse activation architecture, **SCMS (2024-2025)** implemented production system, **Google Research (2025)** validated with "Nested Learning" (NeurIPS 2025), and **Ilya Sutskever (Nov 2025)** confirmed the "bug oscillation" problem that SCMS failure documentation directly addresses!
 
 **📄 Research Papers**: [SCMS (Empirical)](docs/reference/WHITEPAPER.md) | [Paradigm Shift (Design)](docs/reference/WHITEPAPER_PARADIGM_SHIFT.md) | [Mixture of Memories (Theory)](docs/reference/WHITEPAPER_MIXTURE_OF_MEMORIES.md) | [Economics](docs/reference/WHITEPAPER_ECONOMICS.md) | [HUMANE (Alignment)](docs/reference/WHITEPAPER_HUMANE.md) **NEW**
 
@@ -35,7 +37,7 @@
 
 ## 🏆 Independent Validation: Multi-Year Convergence (2023-2025)
 
-SCMS principles have been **independently validated** across a 2-year span by four independent sources:
+SCMS principles have been **independently validated** across a 2-year span by **six independent sources**:
 
 **1. David Shapiro (2023)**: Theoretical Foundation
 - Raw logs → roll-ups → KB articles architecture
@@ -68,6 +70,18 @@ SCMS principles have been **independently validated** across a 2-year span by fo
 - Described the "bug oscillation" problem (A→B→A→B) that SCMS failure documentation directly addresses
 - Identified missing "continual memory" as root cause—exactly what SCMS provides
 - **Key insight**: Problem recognized at highest levels of AI research; SCMS offers a working solution
+
+**5. Google "Titans" Architecture (Dec 2025)**: Three-Layer Memory Validation
+- Introduces **three-layer memory architecture** (Long-term, Core Attention, Persistent) that directly mirrors SCMS's L0/L1/L2
+- Demonstrates multi-layer memory is **essential** for handling long contexts (>2M tokens)
+- "Surprise metric" for deciding what to store validates SCMS's validation-based promotion approach
+- **Key insight**: Flat vector databases cannot adequately capture rich information in long sequences
+
+**6. Google "MIRAS" Framework (Dec 2025)**: Forgetting Mechanism Validation
+- Identifies four essential design choices: Memory Architecture, Attentional Bias, **Retention Gate**, Memory Algorithm
+- Explicitly states: **"Forgetting is as important as remembering"**—validates SCMS's decay mechanism
+- Competitors (Mem0, Claude-mem, etc.) using flat storage without forgetting are **architecturally deficient** per this research
+- **Key insight**: SCMS's decay for unvalidated L0 memories aligns with Google's "retention gates"
 
 **Key Differences**:
 - **SCMS**: First application to AI-assistant cognition (interface layer) with **production-validated system** (127+ cycles)

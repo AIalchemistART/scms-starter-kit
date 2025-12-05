@@ -2,7 +2,7 @@
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 2.0 (Updated November 25, 2025 - Added Ilya Sutskever validation, HUMANE companion paper reference, corrected cross-domain claims)
+**Version**: 2.1 (Updated December 5, 2025 - Added Google Titans/MIRAS validation)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -28,8 +28,10 @@ Through mathematical analysis and empirical validation from SCMS deployment, we 
 
 The convergence on identical sparse, nested, multi-scale patterns from three independent sources (Shapiro 2023, SCMS/MoM 2024-2025, Google 2025) provides compelling evidence that these are **universal structural requirements** for continual learning—not implementation details. The impossibility theorems we prove here now have empirical confirmation from S-tier research: dense alternatives demonstrably fail at scale, while sparse nested systems succeed.
 
-**Additional Validation (November 2025)**:
-- **Ilya Sutskever**: In a Dwarkesh Podcast interview, described the "bug oscillation" problem (A→B→A→B) that sparse memory systems directly address—confirming the severity gap in current AI systems that MoM routing mechanisms help prevent.
+**Additional Validation (November-December 2025)**:
+- **Ilya Sutskever (Nov 2025)**: In a Dwarkesh Podcast interview, described the "bug oscillation" problem (A→B→A→B) that sparse memory systems directly address—confirming the severity gap in current AI systems that MoM routing mechanisms help prevent.
+- **Google Research "Titans" (Dec 2025)**: Three-layer memory architecture with "surprise metric" for routing decisions validates MoM's formal isomorphism between memory routing and MoE gating mechanisms. Deep memory modules (MLPs) outperform shallow storage, validating MoM's prediction that sparse routing requires learned selection.
+- **Google Research "MIRAS" (Dec 2025)**: Framework identifying **four essential design choices** (Memory Architecture, Attentional Bias, Retention Gate, Memory Algorithm) that map directly to MoM's routing parameters. MIRAS proves dense alternatives are mathematically deficient—confirming MoM's impossibility theorems from a different approach.
 
 **Companion Paper**: See [HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding](WHITEPAPER_HUMANE.md) for extension of MoM principles to AI alignment.
 

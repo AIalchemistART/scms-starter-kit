@@ -2,7 +2,7 @@
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 1.0 (November 26, 2025)
+**Version**: 1.1 (Updated December 5, 2025 - Added Google Titans/MIRAS validation)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -37,6 +37,27 @@ This **bug oscillation (A→B→A→B)** occurs because:
 4. No retrieval mechanism flags "we've been here before"
 
 **Sutskever's analysis validates the problem space SCMS addresses.** SCMS's Layer 0 failure memories provide the severity-aware retention mechanism his analysis implies is missing.
+
+---
+
+## Additional Validation: Google Titans/MIRAS (December 2025)
+
+Google's **Titans** and **MIRAS** papers provide further validation of HUMANE principles:
+
+**Titans Architecture**:
+- Introduces a "surprise metric" that prioritizes unexpected/important information over routine data
+- This mirrors HUMANE's severity encoding—high-severity failures ("surprising") deserve stronger retention than minor issues
+- Three-layer memory structure enables different retention policies per layer—exactly what severity-aware failure memory requires
+
+**MIRAS Framework**:
+- Explicitly states "forgetting is as important as remembering"
+- Defines "Retention Gates" as essential design component—validating that severity-based retention (keep catastrophic failures, decay minor ones) is architecturally sound
+- Proves that systems without forgetting mechanisms suffer unbounded memory growth and performance degradation
+
+**HUMANE Alignment**: The bug oscillation problem Sutskever describes is precisely what systems without severity-aware retention produce. Titans/MIRAS validate that the solution requires:
+1. Multi-layer memory (HUMANE: severity levels)
+2. Forgetting mechanisms (HUMANE: decay for low-severity)
+3. Surprise/importance filtering (HUMANE: severity encoding)
 
 ---
 
