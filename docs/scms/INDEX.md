@@ -3,13 +3,60 @@
 **Purpose**: Central hub for cross-referencing SCMS layers.  
 **Maintenance**: Updated automatically during session closure.  
 **Project**: SCMS Starter Kit  
-**Last Updated**: 2025-12-04
+**Last Updated**: 2025-12-05  
+**SCMS Version**: 2.0 (Titans/MIRAS Enhanced)
 
 ---
 
 ## 🏷️ Topic Index (Cross-Reference by Theme)
 
 *Tags are added as patterns emerge during development*
+
+---
+
+### #titans-miras-validation
+- **Research**: Google Titans + MIRAS (December 2025)
+- **Key Insight**: Multi-layer memory + forgetting mechanisms are **essential**
+- See: [RETENTION_CONFIG.md](RETENTION_CONFIG.md) for retention gate configuration
+- See: [MEMORY_EPISODES.md](MEMORY_EPISODES.md) for episode grouping
+- Related: #retention-gates, #surprise-metric, #memory-episodes, #confidence-indicators
+
+### #retention-gates
+- **MIRAS Validation**: "Forgetting is as important as remembering"
+- Configuration: Decay rate, threshold, override rules
+- See: [RETENTION_CONFIG.md](RETENTION_CONFIG.md)
+- Formula: `retention_score = base × surprise × confidence × recency`
+- Related: #titans-miras-validation, #memory-decay
+
+### #surprise-metric
+- **Titans Validation**: High-surprise events deserve stronger retention
+- Scale: ⭐ (expected) to ⭐⭐⭐⭐⭐ (paradigm-shifting)
+- See Templates: FAILURE_LOG_TEMPLATE.md, MEMORY_TEMPLATE.md
+- Application: Failures with ⭐⭐⭐⭐⭐ = PERMANENT retention
+- Related: #titans-miras-validation, #retention-gates
+
+### #memory-episodes
+- **Titans Validation**: Deep memory modules outperform shallow storage
+- Definition: Coherent groupings of related patterns/failures
+- See: [MEMORY_EPISODES.md](MEMORY_EPISODES.md)
+- Active Episodes: EP-001 (Contamination), EP-002 (Resonance), EP-003 (Formatting)
+- Related: #titans-miras-validation, #contextual-retrieval
+
+### #confidence-indicators
+- **Titans Validation**: Validation strength matters for retrieval priority
+- Levels: 🟢 HIGH | 🟡 MEDIUM | 🔴 LOW
+- See Templates: MEMORY_TEMPLATE.md
+- Promotion Rule: 🟡 MEDIUM+ required for L1 promotion
+- Related: #titans-miras-validation, #pattern-promotion
+
+### #memory-decay
+- SCMS implements controlled forgetting (vs. flat storage competitors)
+- Modes: PERMANENT | SLOW | STANDARD | FAST
+- Default: STANDARD (0.95^days, ~14 day half-life)
+- Override: Critical failures, ⭐⭐⭐⭐⭐ surprise = PERMANENT
+- Related: #retention-gates, #titans-miras-validation
+
+---
 
 ### #project-isolation
 - See L1 Patterns: Template Repository Isolation

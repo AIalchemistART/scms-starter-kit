@@ -4,6 +4,10 @@
 **Use Count**: X  
 **First Used**: YYYY-MM-DD  
 **Last Used**: YYYY-MM-DD  
+**Confidence**: [🟢 HIGH | 🟡 MEDIUM | 🔴 LOW] (Validation strength)  
+**Surprise Value**: [⭐-⭐⭐⭐⭐⭐] (How novel is this pattern?)  
+**Retention Priority**: [PERMANENT | HIGH | MEDIUM | LOW]  
+**Episode**: [Link to MEMORY_EPISODES.md#episode-name, if grouped]  
 **Tags**: [category, technology, pattern-type]  
 **Promoted To**: [Link if promoted to L1/L2] | Not yet promoted
 
@@ -69,6 +73,28 @@ function examplePattern() {
 - [ ] No edge cases discovered
 - [ ] Performance acceptable
 - [ ] Team review complete (if applicable)
+
+---
+
+## 🎯 Confidence Assessment (Titans-Validated)
+*Confidence indicates validation strength - how certain are we this pattern is correct?*
+
+**Confidence Scoring:**
+| Level | Meaning | Action |
+|-------|---------|--------|
+| 🟢 HIGH | Validated 3+ times, no failures | Ready for L1 promotion |
+| 🟡 MEDIUM | Validated 1-2 times, minor issues | Continue testing, document edge cases |
+| 🔴 LOW | Untested or has known issues | Do not promote, needs more validation |
+
+**Confidence Factors:**
+- [ ] **Breadth of Testing**: Used in multiple contexts
+- [ ] **Edge Case Coverage**: Known edge cases documented and handled
+- [ ] **Failure History**: No failures attributed to this pattern
+- [ ] **Time Stability**: Pattern hasn't needed revision recently
+- [ ] **Independent Validation**: Confirmed by multiple sessions/users
+
+**Current Confidence Justification:**
+[Why is this pattern at its current confidence level?]
 
 ---
 
@@ -147,10 +173,30 @@ function examplePattern() {
 
 ## Changelog
 
-**YYYY-MM-DD**: Created (use_count: 1, status: CANDIDATE)  
-**YYYY-MM-DD**: Validated after testing (status: VALIDATED)  
-**YYYY-MM-DD**: Used 2nd time, promoted to L1 (status: PROMOTED)  
-**YYYY-MM-DD**: Updated based on new edge case discovered
+**YYYY-MM-DD**: Created (use_count: 1, status: CANDIDATE, confidence: LOW)  
+**YYYY-MM-DD**: Validated after testing (status: VALIDATED, confidence: MEDIUM)  
+**YYYY-MM-DD**: Used 2nd time, promoted to L1 (status: PROMOTED, confidence: HIGH)  
+**YYYY-MM-DD**: Updated based on new edge case discovered (confidence adjusted)
+
+---
+
+## ⏳ Retention Gate Configuration (MIRAS-Validated)
+*Configure how this memory should persist over time*
+
+**Retention Formula:** `retention_score = use_count × confidence_weight × surprise_value × recency`
+
+| Factor | Value | Weight |
+|--------|-------|--------|
+| Use Count | [X] | × 1.0 |
+| Confidence | [HIGH=3/MEDIUM=2/LOW=1] | × 1.5 |
+| Surprise | [⭐-⭐⭐⭐⭐⭐ = 1-5] | × 1.2 |
+| Recency | [Days since last use] | decay 0.98^days |
+
+**Decay Configuration:**
+- [ ] **PERMANENT** - Core pattern, never decay (L1 candidates)
+- [ ] **SLOW DECAY** - Valuable pattern, extended retention
+- [ ] **STANDARD DECAY** - Normal L0 lifecycle
+- [ ] **FAST DECAY** - Context-specific, allow natural fade
 
 ---
 

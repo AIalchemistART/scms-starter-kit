@@ -3,6 +3,9 @@
 **ID:** FAIL-[YYYYMMDD]-[SEQ]  
 **Date:** [YYYY-MM-DD]  
 **Severity:** [Critical/Major/Minor/Cosmetic]  
+**Surprise Factor:** [⭐⭐⭐⭐⭐] (1-5: How unexpected was this failure?)  
+**Retention Priority:** [HIGH/MEDIUM/LOW] (Based on severity × surprise)  
+**Episode:** [Link to related failure episode, if any]  
 **System Component:** [e.g., Dashboard, CheckpointMonitor, Parser]  
 **Impact:** [e.g., Data Loss, Feature Broken, UX Degradation]  
 **Tags:** #[topic] #[category] (e.g., #tooling #renderer #physics)
@@ -60,6 +63,25 @@
 
 ---
 
+## 🎯 Surprise Analysis (Titans-Validated)
+*High-surprise failures contain more learning value and deserve stronger retention*
+
+**Surprise Scoring Guide:**
+| Score | Meaning | Retention Action |
+|-------|---------|------------------|
+| ⭐ (1) | Expected failure mode | Standard decay, low priority |
+| ⭐⭐ (2) | Known risk that materialized | Normal retention |
+| ⭐⭐⭐ (3) | Unexpected but explainable | Elevated retention, document root cause |
+| ⭐⭐⭐⭐ (4) | Novel failure, new insight | High retention, create prevention pattern |
+| ⭐⭐⭐⭐⭐ (5) | Paradigm-shifting discovery | Permanent retention, promote to L1 immediately |
+
+**This Failure's Analysis:**
+- **Why was this surprising?** [What assumptions were violated?]
+- **What made it unexpected?** [Gap in mental model or documentation]
+- **Novel insight gained:** [New understanding that didn't exist before]
+
+---
+
 ## 🛡️ Prevention Strategy
 *How do we ensure this never happens again?*
 
@@ -78,3 +100,25 @@
 - Memory ID: [UUID]
 - Commit Hash: [Hash]
 - Related Docs: [Link]
+- Episode Link: [MEMORY_EPISODES.md#episode-name]
+
+---
+
+## ⏳ Retention Gate Configuration (MIRAS-Validated)
+*Configure how long this failure should persist in memory*
+
+**Retention Formula:** `retention_score = severity_weight × surprise_factor × recency_bonus`
+
+| Factor | Value | Weight |
+|--------|-------|--------|
+| Severity | [Critical=4/Major=3/Minor=2/Cosmetic=1] | × 1.0 |
+| Surprise | [⭐-⭐⭐⭐⭐⭐ = 1-5] | × 1.5 |
+| Recency | [Days since occurrence] | decay 0.95^days |
+
+**Calculated Retention Priority:** [AUTO-CALCULATE or MANUAL]
+
+**Decay Override:** 
+- [ ] **NEVER DECAY** - Catastrophic failure, must persist permanently
+- [ ] **SLOW DECAY** - Important lesson, extend retention 2x
+- [ ] **STANDARD DECAY** - Normal L2 lifecycle
+- [ ] **FAST DECAY** - Low-value, context-specific failure
