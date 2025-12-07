@@ -3,7 +3,7 @@
 **Purpose**: Central hub for cross-referencing SCMS layers.  
 **Maintenance**: Updated automatically during session closure.  
 **Project**: SCMS Starter Kit  
-**Last Updated**: 2025-12-05  
+**Last Updated**: 2025-12-07  
 **SCMS Version**: 2.0 (Titans/MIRAS Enhanced)
 
 ---
@@ -88,6 +88,24 @@
 - See L2 Failures: FAIL-20251129-001 (D3 stratify assumptions)
 - Prevention: Always handle disconnected/forest graphs with virtual roots
 - Related: #d3-visualization, #graph-layout
+
+### #storage-abstraction
+- See L1 Patterns: Storage Abstraction Enforcement
+- See L2 Failures: FAIL-20251207-001 (In-Memory DB in Production Routes)
+- Prevention: Audit all routes with grep after storage migrations
+- Audit: `grep -r "from '@/lib/memory/db'" app/api/`
+- Related: #serverless, #persistence, #api-routes
+
+### #serverless
+- Context: Netlify, Vercel, AWS Lambda - cold starts reset in-memory state
+- Risk: Silent data loss if routes use in-memory storage
+- See L1 Patterns: Storage Abstraction Enforcement
+- Related: #storage-abstraction, #persistence
+
+### #persistence
+- See L1 Patterns: Storage Abstraction Enforcement
+- Key Insight: "Routes written before an abstraction exists are most likely to be forgotten during migration"
+- Related: #storage-abstraction, #serverless, #api-routes
 
 ### #article-formatting
 - See L1 Patterns: X/LinkedIn Article Formatting

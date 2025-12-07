@@ -1,6 +1,6 @@
 # Workspace Rules (L1) - [Project Name]
 
-**Last Updated**: 2025-11-30  
+**Last Updated**: 2025-12-07  
 **Project**: SCMS Starter Kit - Template Distribution Repository  
 **Tech Stack**: [Primary Language/Framework]  
 **SCMS Role**: **L1 Stable Validation** (deterministic enforcement layer)
@@ -263,6 +263,57 @@ OUTCOME:
 - Both Integrity Cluster and Self-Healing promoted to L1
 
 **Related Failures**: FAIL-20251130-002 (SCMS Acronym Misstatement)
+
+---
+
+### Storage Abstraction Enforcement (Validated - Use Count: 2)
+
+**Context**: Ensuring all API routes use the storage abstraction layer instead of in-memory databases  
+**Tags**: #storage-abstraction #serverless #persistence #api-routes #migration
+
+**Pattern**:
+```
+STORAGE ABSTRACTION REQUIREMENTS:
+
+1. IMPORT RULE
+   - Production API routes must NEVER import from in-memory db modules
+   - Always use: import { getStorage } from '@/lib/storage'
+   - Never use: import { ... } from '@/lib/memory/db'
+
+2. AUDIT CHECK (Post-Migration)
+   # Find routes still using in-memory db
+   grep -r "from '@/lib/memory/db'" app/api/
+   grep -r "from './db'" lib/
+
+3. SERVERLESS CONTEXT
+   - In-memory storage resets on every cold start
+   - This causes silent data loss in production
+   - Storage abstraction persists to actual database
+
+4. MIGRATION CHECKLIST
+   [ ] Core CRUD routes updated
+   [ ] Specialized routes (L2, crossref, fivewhys) updated
+   [ ] All imports verified via grep audit
+   [ ] TypeScript compilation verified
+```
+
+**When to Apply**:
+- After any storage migration
+- Before deploying new API routes
+- During code review for persistence-related changes
+- When debugging "data not persisting" issues
+
+**Known Edge Cases**:
+- Routes written BEFORE abstraction exists are most likely to be forgotten
+- Specialized/nested routes often missed during migration sweeps
+- Silent failures make this hard to detect without explicit testing
+
+**What Doesn't Work (Failure Documentation)**:
+- Trusting that "all routes were updated" without grep verification
+- Assuming serverless will maintain in-memory state
+- Focusing only on main CRUD routes during migration
+
+**Related Failures**: FAIL-20251207-001 (Storage Abstraction Leakage)
 
 ---
 

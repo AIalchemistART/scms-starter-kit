@@ -2,7 +2,7 @@
 
 **Purpose**: Document failures with root cause analysis for pattern extraction.  
 **Project**: SCMS Starter Kit  
-**Last Updated**: 2025-11-30
+**Last Updated**: 2025-12-07
 
 ---
 
@@ -10,13 +10,81 @@
 
 | Total Failures | Resolved | Patterns Promoted |
 |----------------|----------|-------------------|
-| 5 | 5 | 4 |
+| 6 | 6 | 5 |
 
 ---
 
 ## 🚨 Active Failures
 
 *No active failures*
+
+---
+
+## 🚨 FAIL-20251207-001: Storage Abstraction Leakage (In-Memory DB in Production Routes)
+
+**ID**: FAIL-20251207-001  
+**Date**: 2025-12-07  
+**Severity**: Major  
+**Status**: ✅ Resolved  
+**Tags**: #storage-abstraction #serverless #persistence #api-routes
+
+---
+
+### What Happened
+API routes in an SCMS implementation were importing from an in-memory database module (`db.ts`) instead of using the storage abstraction layer (`getStorage()`). This caused data to be lost on every serverless function cold start.
+
+### Expected vs Actual
+- **Expected**: API routes use storage abstraction that persists to database (Supabase)
+- **Actual**: Routes used in-memory storage that reset on each serverless invocation
+
+### 5 Whys Analysis
+
+1. **Why was data not persisting?**
+   -> Routes were writing to ephemeral in-memory storage
+
+2. **Why were routes using in-memory storage?**
+   -> They imported from `@/lib/memory/db` instead of `@/lib/storage`
+
+3. **Why did the wrong import exist?**
+   -> Routes were written before storage abstraction was created, never updated
+
+4. **Why weren't they updated during the storage migration?**
+   -> Migration focused on core CRUD routes; specialized routes (L2, crossref, fivewhys) were missed
+
+5. **Why weren't the missed routes caught?**
+   -> **ROOT CAUSE**: No automated check for `db.ts` imports in production routes
+
+### Prevention Pattern
+
+**Pattern Name**: Storage Abstraction Enforcement
+
+**Rule**:
+> Production API routes must NEVER import directly from in-memory database modules. All persistence must go through the storage abstraction layer.
+
+**Audit Check**:
+```powershell
+# Find routes still using in-memory db
+grep -r "from '@/lib/memory/db'" app/api/
+grep -r "from './db'" lib/
+```
+
+**When to Apply**:
+- After any storage migration
+- Before deploying new API routes
+- During code review for persistence-related changes
+
+### Resolution
+
+- **Fix Applied**: 
+  1. Updated `/api/actions/memories/[memoryId]/l2/route.ts` to use `getStorage()`
+  2. Added CORS headers for ChatGPT connector
+  3. Verified TypeScript compilation
+- **Commit**: `ba13818` (mneme-ai repo)
+- **Pattern Promoted**: Yes - "Storage Abstraction Enforcement"
+
+### Key Insight
+
+> "Routes written before an abstraction exists are the most likely to be forgotten during migration. Audit ALL routes, not just the obvious ones."
 
 ---
 
