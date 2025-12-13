@@ -10,13 +10,82 @@
 
 | Total Failures | Resolved | Patterns Promoted |
 |----------------|----------|-------------------|
-| 6 | 6 | 5 |
+| 7 | 7 | 6 |
 
 ---
 
 ## 🚨 Active Failures
 
 *No active failures*
+
+---
+
+## 🚨 FAIL-20251213-001: Supabase FK Schema Mismatch (Custom users vs auth.users)
+
+**ID**: FAIL-20251213-001  
+**Date**: 2025-12-13  
+**Severity**: Major  
+**Status**: ✅ Resolved  
+**Tags**: #supabase #foreign-key #schema-mismatch #rls-policy #migration
+
+---
+
+### What Happened
+New Supabase migrations (007, 009) referenced `auth.users(id)` for foreign keys, but the existing application pattern uses a custom `users` table with `users.id`. The storage provider's `getUserId()` returns the custom `users.id`, causing FK constraint violations and RLS policy failures.
+
+### Expected vs Actual
+- **Expected**: Migrations create tables that work with existing storage provider
+- **Actual**: 500 errors on API calls due to FK type mismatch and RLS policy comparison failures
+
+### 5 Whys Analysis
+
+1. **Why did the API return 500 errors?**
+   → FK constraint violations when inserting rows
+
+2. **Why were there FK violations?**
+   → Migration used `REFERENCES auth.users(id)` but provider stored custom `users.id`
+
+3. **Why was the wrong FK reference used?**
+   → New migrations copied from Supabase examples that use `auth.users` directly
+
+4. **Why wasn't this caught before deployment?**
+   → No schema consistency check comparing new migrations to existing FK patterns
+
+5. **Why do two user tables exist?**
+   → **ROOT CAUSE**: App uses custom `users` table (with `auth_id` linking to `auth.users`) for flexibility, but this pattern wasn't documented for new migrations
+
+### Prevention Pattern
+
+**Pattern Name**: Supabase FK Schema Consistency
+
+**Rule**:
+> Before creating new Supabase migrations with user FKs:
+> 1. Check existing tables: Do they use `auth.users(id)` or a custom `users(id)`?
+> 2. Check `getUserId()` in storage provider: What does it return?
+> 3. Match the existing pattern - don't mix FK targets
+> 4. RLS policies must use same comparison pattern as existing tables
+
+**Audit Check**:
+```sql
+-- Find existing FK patterns
+SELECT tc.table_name, kcu.column_name, ccu.table_name AS foreign_table
+FROM information_schema.table_constraints tc
+JOIN information_schema.key_column_usage kcu ON tc.constraint_name = kcu.constraint_name
+JOIN information_schema.constraint_column_usage ccu ON ccu.constraint_name = tc.constraint_name
+WHERE tc.constraint_type = 'FOREIGN KEY' AND kcu.column_name = 'user_id';
+```
+
+### Resolution
+
+- **Fix Applied**: 
+  1. Changed `REFERENCES auth.users(id)` → `REFERENCES users(id)` in migrations
+  2. Updated RLS policies to use `user_id IN (SELECT id FROM users WHERE auth_id = auth.uid())`
+  3. Matched `user_id` column type to existing pattern (UUID)
+- **Pattern Promoted**: Yes - "Supabase FK Schema Consistency" to L1
+
+### Key Insight
+
+> "When a codebase has a custom users table wrapping auth.users, ALL new migrations must follow that pattern. The storage provider is the source of truth for which user ID to use."
 
 ---
 

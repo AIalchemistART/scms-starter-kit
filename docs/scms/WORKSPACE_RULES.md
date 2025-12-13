@@ -375,6 +375,60 @@ Before showing documentation/marketing to stakeholders:
 
 ---
 
+### Supabase FK Schema Consistency (Validated - Use Count: 2)
+
+**Context**: Creating new Supabase migrations that reference user tables  
+**Tags**: #supabase #foreign-key #schema-consistency #migration #rls-policy
+
+**Pattern**:
+```
+SUPABASE FK SCHEMA CONSISTENCY:
+
+Before creating new migrations with user FKs:
+
+1. CHECK EXISTING PATTERN
+   -- Find what existing tables reference
+   SELECT tc.table_name, ccu.table_name AS foreign_table
+   FROM information_schema.table_constraints tc
+   JOIN information_schema.constraint_column_usage ccu 
+     ON ccu.constraint_name = tc.constraint_name
+   WHERE tc.constraint_type = 'FOREIGN KEY' 
+     AND tc.table_name IN ('memories', 'l2_entries');
+
+2. IDENTIFY USER ID SOURCE
+   - Does app use auth.users(id) directly?
+   - Or custom users table with auth_id linking?
+   - Check storage provider's getUserId() method
+
+3. MATCH PATTERN IN NEW MIGRATIONS
+   - If custom users table: REFERENCES users(id)
+   - If auth.users direct: REFERENCES auth.users(id)
+   - NEVER mix patterns in same database
+
+4. RLS POLICY ALIGNMENT
+   - Custom users: user_id IN (SELECT id FROM users WHERE auth_id = auth.uid())
+   - auth.users direct: auth.uid() = user_id
+```
+
+**When to Apply**:
+- Creating new tables with user_id foreign keys
+- Adding user-scoped data to existing Supabase projects
+- Debugging FK constraint violations or RLS failures
+
+**Known Edge Cases**:
+- Type mismatch (UUID vs TEXT) can cause silent FK failures
+- RLS policy comparison type must match column type exactly
+- Existing migrations are the source of truth, not Supabase examples
+
+**What Doesn't Work (Failure Documentation)**:
+- Copying FK patterns from Supabase docs into existing custom-users projects
+- Assuming auth.users is always the correct target
+- Using different user ID sources in different tables
+
+**Related Failures**: FAIL-20251213-001 (Supabase FK Schema Mismatch)
+
+---
+
 ### Pattern Template (Copy when adding validated patterns)
 
 ```markdown
@@ -430,7 +484,7 @@ Both files are L1 (permanent), but serve different purposes:
 
 ## 🎯 Summary
 
-**Total L1 Patterns**: 6  
+**Total L1 Patterns**: 7  
 **Promotion Threshold**: See MEMORY_STATUS_DASHBOARD.md
 
 **Milestone Patterns**:

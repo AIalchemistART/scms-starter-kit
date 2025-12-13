@@ -3,7 +3,7 @@
 **Purpose**: Central hub for cross-referencing SCMS layers.  
 **Maintenance**: Updated automatically during session closure.  
 **Project**: SCMS Starter Kit  
-**Last Updated**: 2025-12-07  
+**Last Updated**: 2025-12-13  
 **SCMS Version**: 2.0 (Titans/MIRAS Enhanced)
 
 ---
@@ -239,6 +239,25 @@
 - SCMS Differentiators: Validation workflow, failure documentation, user-facing products
 - See: mneme-ai/demo/COMPETITIVE_ANALYSIS.md, EMAIL_TO_ANI_COMPETITIVE_UPDATE.md
 
+### #supabase
+- See L1 Patterns: Supabase FK Schema Consistency
+- See L2 Failures: FAIL-20251213-001 (FK Schema Mismatch)
+- Key: Check existing FK patterns before creating new migrations
+- Audit: Query pg_constraint for existing user_id references
+- Related: #foreign-key, #migration, #rls-policy
+
+### #foreign-key
+- See L1 Patterns: Supabase FK Schema Consistency
+- Risk: Mixing auth.users(id) and custom users(id) in same database
+- Prevention: Storage provider's getUserId() is source of truth
+- Related: #supabase, #schema-consistency
+
+### #migration
+- See L1 Patterns: Supabase FK Schema Consistency
+- See L2 Failures: FAIL-20251213-001, FAIL-20251207-001
+- Key: Existing migrations define the pattern, not Supabase docs
+- Related: #supabase, #schema-consistency
+
 ---
 
 ### Example Tag Structure
@@ -316,6 +335,12 @@
 **Pattern**: Clone to separate directory for project work
 **Category**: #project-isolation #contamination-prevention
 
+### **FAIL-20251213-001**: Supabase FK Schema Mismatch (Custom users vs auth.users)
+**Prevention**: Supabase FK Schema Consistency (L1)
+**Pattern**: Match existing FK patterns, check getUserId() source, align RLS policies
+**Category**: #supabase #foreign-key #schema-mismatch #migration
+**Significance**: 🔧 **2x VALIDATED** - Hit twice in same session (migrations 007, 009)
+
 ---
 
 ### Template:
@@ -333,6 +358,7 @@
 
 | Date | L0 Active | L1 Patterns | L2 Failures | L3 Cases | Milestone |
 |------|-----------|-------------|-------------|----------|----------|
+| 2025-12-13 | 0 | 7 | 7 | 0 | 🔧 Supabase FK Schema Consistency pattern promoted |
 | 2025-12-04 | 0 | 5 | 5 | 0 | ✅ Cross-project support (Mneme A++ parity) |
 | 2025-12-02 | 0 | 5 | 5 | 0 | 📊 Competitive Analysis + Demo Materials |
 | 2025-11-30 | 0 | 5 | 5 | 0 | 🧹 Template Cleanup + Contamination Check |
@@ -365,4 +391,4 @@
 - Failure documented (add to Semantic Connections)
 - Session closes (update Growth Trajectory)
 
-**Last Updated**: 2025-12-04
+**Last Updated**: 2025-12-13
