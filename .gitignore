@@ -11,11 +11,24 @@ scms-sessions/
 WORKSPACE_RULES.custom.md
 .env.local
 
+# Security - API keys and credentials
+.env*.local
+.env.*.local
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+secrets.json
+credentials.json
+config.local.json
+
 # IDE-specific files
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # Dependencies (CRITICAL - Never track)
 node_modules/
@@ -23,16 +36,40 @@ package-lock.json
 npm-debug.log*
 yarn-error.log*
 yarn.lock
+pnpm-debug.log*
 
 # OS files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Thumbs.db:encryptable
 desktop.ini
+*.lnk
 
 # Build outputs
 dist/
 build/
 *.log
+logs/
+*.log.*
+debug.log
+
+# Database files (defensive - not used but protected)
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.temp/
 
 # Validation research (private - not part of starter kit)
 docs/testing/

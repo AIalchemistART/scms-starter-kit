@@ -322,6 +322,79 @@ function cm(n) {
 
 ---
 
+## 🔒 Security Considerations
+
+### Never Commit Sensitive Data
+
+**⚠️ CRITICAL: Do not commit:**
+- API keys or tokens
+- Private keys or certificates
+- Database credentials
+- Personal information
+- Proprietary code or data
+
+### Pre-Commit Security Checklist
+
+**Before committing, verify:**
+- [ ] No `.env.local` or similar files added
+- [ ] No API keys in code or comments
+- [ ] No hardcoded passwords or tokens
+- [ ] No private keys (`.pem`, `.key`, `.cert`)
+- [ ] No personal information exposed
+- [ ] All new file types added to `.gitignore` if sensitive
+
+### Using Environment Variables
+
+**✅ Correct way:**
+```javascript
+// Store in .env.local (excluded from git)
+const apiKey = process.env.GEMINI_API_KEY;
+```
+
+**❌ Wrong way:**
+```javascript
+// NEVER hardcode API keys!
+const apiKey = "AIza1234567890abcdefghijklmnop";
+```
+
+### Security Best Practices
+
+1. **Use `.env.local` for local secrets**
+   - This file is excluded from git
+   - Never commit `.env` files with real credentials
+   - Use `.env.example` for placeholders only
+
+2. **Check .gitignore before adding new file types**
+   - Review `.gitignore` patterns
+   - Add defensive patterns for sensitive data
+   - Test with `git status --ignored`
+
+3. **Sanitize examples and documentation**
+   - Use placeholder values (`YOUR_API_KEY_HERE`)
+   - Redact sensitive information from screenshots
+   - Use generic project names in examples
+
+4. **Report security issues privately**
+   - **DO NOT** open public issues for vulnerabilities
+   - Email: manny@aialchemist.net
+   - See [SECURITY.md](SECURITY.md) for full process
+
+### Reporting Security Vulnerabilities
+
+**If you discover a security vulnerability:**
+
+1. **DO NOT** create a public GitHub issue
+2. Email manny@aialchemist.net with:
+   - Description of the vulnerability
+   - Steps to reproduce
+   - Potential impact
+   - Suggested fix (if any)
+3. Allow time for us to address the issue before public disclosure
+
+See [SECURITY.md](SECURITY.md) for full vulnerability disclosure policy.
+
+---
+
 ## Code of Conduct
 
 ### Our Standards
