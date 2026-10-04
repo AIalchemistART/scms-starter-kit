@@ -275,14 +275,14 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 
 ### Manual Markdown (Cursor/Generic)
 
-- Create markdown files in `docs/memories/`
+- Create markdown files in `docs/scms/memories/`
 - Manual tracking and promotion
 - Works with **any AI assistant**
 - Better for teams and compliance needs
 
 **Setup script detects your IDE and helps you choose.**
 
-**Full comparison**: See [L0_STRATEGY_COMPARISON.md](L0_STRATEGY_COMPARISON.md)
+**Full comparison**: See [L0_STRATEGY_COMPARISON.md](docs/reference/L0_STRATEGY_COMPARISON.md)
 
 ---
 
@@ -605,13 +605,24 @@ AI: [reflects on session, updates L0/L1 pipeline, refreshes dashboards, promotes
 
 ## Documentation Structure
 
+Operational files live under `docs/scms/`. `scripts/setup.sh` and `scripts/setup.ps1` create the layer directories and copy templates into the project you point them at.
+
 ```
 docs/
-├── 00_DOCUMENTATION_HIERARCHY.md    # How the system works
-├── WORKSPACE_RULES.md                # L1: Quick reference patterns
-├── memories/                         # L0: Active validation candidates
-├── sops/                             # L2: Detailed procedures
-└── case-studies/                     # L3: Complete examples
+├── 00_DOCUMENTATION_HIERARCHY.md    # How the layers fit together
+├── scms/                            # Operational files for this kit
+│   ├── INDEX.md                     # Cross-reference hub
+│   ├── WORKSPACE_RULES.md           # L1: validated patterns
+│   ├── FAILURES.md                  # Failure log
+│   ├── memories/                    # L0: created by setup for manual markdown
+│   ├── sops/                        # L2: created by setup
+│   ├── case-studies/                # L3: created by setup
+│   └── sessions/                    # Session records created by setup
+├── templates/                       # Blank files the setup scripts copy
+├── guides/                          # Operations, session closure, dashboard
+├── reference/                       # Whitepapers and L0 strategy comparison
+├── tools/                           # scms-dashboard.html and cost tracker
+└── examples/                        # Example rules, SOP, and case study
 ```
 
 ### Layer Responsibilities
@@ -920,26 +931,34 @@ cd new-folder && npm run dashboard:app
 
 ```
 scms-starter-kit/
-├── docs/
-│   ├── scms/               # 🎯 SCMS operational files (empty templates)
-│   │   ├── INDEX.md        # ✅ Use this for your project
-│   │   ├── FAILURES.md
-│   │   └── ...
-│   ├── templates/          # 📄 Copy these to create new files
-│   ├── guides/             # 📚 How-to documentation
-│   ├── reference/          # 🔬 Whitepapers & research
-│   └── tools/              # 🛠️ Dashboard & utilities
+├── config/                 # IDE setup: Windsurf, Cursor, and generic
+├── docs/                   # Hierarchy, guides, papers, templates, dashboard
+│   ├── scms/               # Operational files (INDEX, WORKSPACE_RULES, FAILURES)
+│   ├── templates/          # Blank files the setup scripts copy
+│   ├── guides/             # Operations, session closure, economics dashboard
+│   ├── reference/          # Whitepapers and L0 strategy comparison
+│   └── tools/              # scms-dashboard.html and cost tracker
+├── electron/               # Desktop wrapper (dashboard-main.js, preload)
 ├── examples/
-│   └── dogfood/            # 💡 Real SCMS files from building this kit
-│       ├── INDEX.md        # Example of mature SCMS project
-│       ├── FAILURES.md
-│       └── README.md       # Don't copy these - use templates!
+│   └── dogfood/            # Real SCMS files from building this kit
+├── rules/
+│   └── GLOBAL_CODING_RULES.md
 ├── scripts/
-│   └── setup.ps1           # 🚀 Initializes SCMS for your project
-└── README.md               # You are here
+│   ├── setup.sh            # Unix/macOS setup
+│   ├── setup.ps1           # Windows setup
+│   ├── launch-dashboard.js # Terminal cost view (npm run dashboard)
+│   ├── checkpoint-monitor.js
+│   ├── parse-checkpoints.js
+│   └── validate-setup.js
+├── workflows/              # Promotion, validation, recursive documentation
+├── package.json            # dashboard, dashboard:app, checkpoint scripts
+├── SETUP.md
+└── README.md
 ```
 
-**Important**: `examples/dogfood/` contains real files from developing the starter kit itself (dogfooding). They're examples to show what SCMS looks like in action—**don't copy them directly**. Use `docs/templates/` and run `scripts/setup.ps1` to initialize fresh files for your project.
+**Important**: `examples/dogfood/` contains real files from developing the starter kit itself (dogfooding). They're examples to show what SCMS looks like in action—**don't copy them directly**. Use `docs/templates/` and run `scripts/setup.sh` or `scripts/setup.ps1` to initialize fresh files for your project.
+
+`npm run dashboard` checks setup with `scripts/validate-setup.js`, then prints a terminal cost view. `npm run dashboard:app` opens the same dashboard in Electron (`electron/dashboard-main.js`) with checkpoint monitoring. Session data stays local in `economics-dashboard-data.json`, which `.gitignore` already excludes.
 
 ---
 
