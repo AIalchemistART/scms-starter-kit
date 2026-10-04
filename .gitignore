@@ -74,3 +74,6 @@ debug.log
 # Validation research (private - not part of starter kit)
 docs/testing/
 docs/outreach/
+
+# Personal correspondence (do not commit)
+email-to-*
