@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](docs/)
-[![Related research](https://img.shields.io/badge/Related%20research-Nested%20Learning%20%28NeurIPS%202025%29-blue.svg)](docs/reference/WHITEPAPER.md#independent-validation-by-google-research)
+[![Related research](https://img.shields.io/badge/Related%20research-Nested%20Learning%20%28NeurIPS%202025%29-blue.svg)](docs/reference/WHITEPAPER.md#related-research-multi-year-convergence)
 
 **Related research**: SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS; its published findings support the same approach in a different domain (model training rather than AI-assisted development workflows). Later Google work (Titans and MIRAS, Dec 2025) and public comments by Ilya Sutskever (Nov 2025) discuss related ideas. See [Related Research](#-related-research) below.
 
@@ -58,7 +58,7 @@ SCMS was developed independently. Several published works explore related ideas.
 
 **6. Google "MIRAS" (Dec 2025)**: frames retention and forgetting as core design choices ("Forgetting is as important as remembering"). This is conceptually similar to SCMS's decay for unvalidated L0 memories.
 
-→ **[Read the author's full comparison](docs/reference/WHITEPAPER.md#independent-validation-by-google-research)**
+→ **[Read the author's full comparison](docs/reference/WHITEPAPER.md#related-research-multi-year-convergence)**
 
 ---
 

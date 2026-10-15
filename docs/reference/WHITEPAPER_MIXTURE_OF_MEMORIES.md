@@ -1,8 +1,10 @@
 # Mixture of Memories: A Unified Framework for Sparse Activation Across Abstraction Levels
 
+> **Note (Oct 2026):** SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Mentions of Google (Nested Learning, Titans, MIRAS), MIT, David Shapiro or Ilya Sutskever in this document describe related published work, not endorsements, and comparisons with them are the author's own. Percentages and cost figures are self-measured by the author on one project unless stated otherwise.
+
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 2.1 (Updated December 5, 2025 - Added Google Titans/MIRAS validation)
+**Version**: 2.1 (Updated December 5, 2025 - Added discussion of Google's Titans/MIRAS research)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -21,17 +23,17 @@ Our key contributions include:
 
 Through mathematical analysis and empirical validation from SCMS deployment, we show that the same principles governing Mixture of Experts in neural networks apply universally to dual validation architectures requiring continual learning without catastrophic forgetting. This work establishes "Mixture of Memories" as a fundamental pattern in continual learning systems and provides theoretical foundation for interface-level validation pipelines that test and enforce patterns automatically.
 
-**Independent Validation (2023-2025)**: Core MoM principles have been independently validated across a 2-year convergence:
+**Related Research (2023-2025)**: SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS or MoM. Related ideas appear across a 2-year span (comparisons are the author's):
 
-- **David Shapiro (2023)**: Raw logs → roll-ups → KB articles architecture with sparse activation, gating thresholds, and asymptotic knowledge growth—validating sparse routing mechanisms 2 years before MoM formalization
-- **Google Research (2025)**: "Nested Learning" (Behrouz et al., NeurIPS 2025), published ~10 days after this work, independently discovered the same sparse hierarchical principles at the model architecture level with "Continuum Memory System" and multi-time-scale updates
+- **David Shapiro (2023)**: Raw logs → roll-ups → KB articles architecture with sparse activation, gating thresholds, and asymptotic knowledge growth—describing related sparse routing ideas 2 years before MoM was formalized
+- **Google Research (2025)**: "Nested Learning" (Behrouz et al., NeurIPS 2025), published ~10 days after this work, explores related sparse hierarchical principles at the model architecture level with "Continuum Memory System" and multi-time-scale updates
 
-The convergence on identical sparse, nested, multi-scale patterns from three independent sources (Shapiro 2023, SCMS/MoM 2024-2025, Google 2025) provides compelling evidence that these are **universal structural requirements** for continual learning—not implementation details. The impossibility theorems we prove here now have empirical confirmation from S-tier research: dense alternatives demonstrably fail at scale, while sparse nested systems succeed.
+The convergence on identical sparse, nested, multi-scale patterns from three independent sources (Shapiro 2023, SCMS/MoM 2024-2025, Google 2025) suggests to the author that these may be **general structural requirements** for continual learning, not implementation details. The impossibility arguments made here are consistent with published research: dense alternatives demonstrably fail at scale, while sparse nested systems succeed.
 
 **Additional Validation (November-December 2025)**:
-- **Ilya Sutskever (Nov 2025)**: In a Dwarkesh Podcast interview, described the "bug oscillation" problem (A→B→A→B) that sparse memory systems directly address—confirming the severity gap in current AI systems that MoM routing mechanisms help prevent.
-- **Google Research "Titans" (Dec 2025)**: Three-layer memory architecture with "surprise metric" for routing decisions validates MoM's formal isomorphism between memory routing and MoE gating mechanisms. Deep memory modules (MLPs) outperform shallow storage, validating MoM's prediction that sparse routing requires learned selection.
-- **Google Research "MIRAS" (Dec 2025)**: Framework identifying **four essential design choices** (Memory Architecture, Attentional Bias, Retention Gate, Memory Algorithm) that map directly to MoM's routing parameters. MIRAS proves dense alternatives are mathematically deficient—confirming MoM's impossibility theorems from a different approach.
+- **Ilya Sutskever (Nov 2025)**: In a Dwarkesh Podcast interview, described the "bug oscillation" problem (A→B→A→B) that sparse memory systems directly address—a problem MoM routing mechanisms are designed to help prevent.
+- **Google Research "Titans" (Dec 2025)**: Three-layer memory architecture with "surprise metric" for routing decisions is conceptually similar to MoM's proposed isomorphism between memory routing and MoE gating. Deep memory modules (MLPs) outperform shallow storage, consistent with MoM's prediction that sparse routing requires learned selection.
+- **Google Research "MIRAS" (Dec 2025)**: Framework identifying **four essential design choices** (Memory Architecture, Attentional Bias, Retention Gate, Memory Algorithm) that map directly to MoM's routing parameters. MIRAS analyzes limitations of dense alternatives, which the author sees as consistent with MoM's impossibility arguments.
 
 **Companion Paper**: See [HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding](WHITEPAPER_HUMANE.md) for extension of MoM principles to AI alignment.
 
@@ -410,13 +412,13 @@ Where:
 
 ---
 
-## Independent Validation: Google Research Nested Learning
+## Related Research: Google's Nested Learning
 
 **Update: November 10, 2025**
 
 ### Parallel Discovery at NeurIPS 2025
 
-On November 7, 2025—approximately **10 days after MoM/SCMS publication**—Google Research released "Nested Learning: The Illusion of Deep Learning Architectures" (Behrouz et al., NeurIPS 2025), independently discovering the **same sparse hierarchical principles** we formalized in the MoM framework.
+On November 7, 2025—approximately **10 days after MoM/SCMS publication**—Google Research released "Nested Learning: The Illusion of Deep Learning Architectures" (Behrouz et al., NeurIPS 2025), which explores **sparse hierarchical principles related** to those in the MoM framework. SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025); Google did not review SCMS or MoM.
 
 ### What Google Discovered (Model Architecture Level)
 
@@ -429,7 +431,7 @@ Google's Nested Learning implements:
 5. **Associative Memory Modules**: Both optimizers and attention treated as associative memory
 6. **Sparse Selective Activation**: Only relevant components activated per task
 
-### Direct Validation of MoM Framework
+### Where Nested Learning and MoM Overlap (author's comparison)
 
 | MoM Principle (Interface Level) | Google NL (Model Level) | Structural Pattern |
 |--------------------------------|-------------------------|-------------------|
@@ -440,27 +442,27 @@ Google's Nested Learning implements:
 | **Continuum of abstraction** (L0→L4 spectrum) | **Continuum Memory System** (frequency spectrum) | Memory as continuum |
 | **O(log² K) sparse costs** | **Bounded complexity** vs dense alternatives | Scalability proof |
 
-**Perfect structural isomorphism across abstraction levels.**
+**In the author's view, a close structural parallel across abstraction levels.**
 
 ### Implications for MoM Theory
 
-1. **Impossibility Theorems Validated**: Google's empirical results on neural architectures confirm our theoretical proofs—dense alternatives fail at scale (catastrophic forgetting), while sparse nested systems succeed (continual learning).
+1. **Consistent With the Impossibility Arguments**: Google's empirical results on neural architectures are consistent with our theoretical arguments—dense alternatives fail at scale (catastrophic forgetting), while sparse nested systems succeed (continual learning).
 
-2. **Universal Architectural Pattern**: Independent discovery of identical patterns at two abstraction levels (interface ↔ model) validates our claim that MoM represents **universal structural requirements** for continual learning, not domain-specific implementations.
+2. **Universal Architectural Pattern**: Independent discovery of identical patterns at two abstraction levels (interface ↔ model) supports (but does not prove) our view that MoM reflects **general structural requirements** for continual learning, not domain-specific implementations.
 
 3. **Fast Weight Programs Connection**: Both systems implement Fast Weight Programs (Schmidhuber, 1992) at different levels:
    - **Google NL**: Parameters as FWP (model-level)
    - **SCMS/MoM**: Memories as FWP (interface-level)
 
-4. **Cross-Level Invariants Confirmed**: The four invariants we identified (sparse selection, hierarchical nesting, temporal adaptation, usage-based routing) now have empirical validation from S-tier research across both interface and model levels.
+4. **Cross-Level Invariants**: The four invariants we identified (sparse selection, hierarchical nesting, temporal adaptation, usage-based routing) have related evidence at the model level (Google) and self-measured evidence at the interface level (SCMS).
 
-5. **Structural Necessity**: If Google needed nested sparse architectures to prevent catastrophic forgetting in neural networks, and SCMS needs them to prevent session forgetting in AI assistants, this validates our theoretical claim: **sparse hierarchical routing is structurally necessary for continual learning**, not optional optimization.
+5. **Structural Necessity**: If Google needed nested sparse architectures to prevent catastrophic forgetting in neural networks, and SCMS needs them to prevent session forgetting in AI assistants, this supports our theoretical claim: **sparse hierarchical routing is structurally necessary for continual learning**, not optional optimization.
 
 ### Key Quote from Google Research
 
 > "The uniform and reusable structure as well as multi time scale update in the brain are the key components to unlock the continual learning in humans. Nested Learning allows for multi time-scale update for each component."
 
-This perfectly captures what MoM formalizes: **multi-time-scale sparse hierarchies are fundamental to continual learning across all levels**.
+This closely matches what MoM formalizes: **multi-time-scale sparse hierarchies are fundamental to continual learning across all levels**.
 
 ### Prior Art & Novel Contributions
 
@@ -476,7 +478,7 @@ This perfectly captures what MoM formalizes: **multi-time-scale sparse hierarchi
 
 Both teams independently arrived at the same mathematical truth: **continual learning requires sparse nested hierarchies with multi-time-scale updates**.
 
-→ **[See full validation analysis in SCMS whitepaper](WHITEPAPER.md#independent-validation-by-google-research)**
+→ **[See the author's full comparison in the SCMS whitepaper](WHITEPAPER.md#related-research-multi-year-convergence)**
 
 ---
 
@@ -484,7 +486,7 @@ Both teams independently arrived at the same mathematical truth: **continual lea
 
 ### From Theory to Practice
 
-The MoM framework proves **sparse hierarchical routing is structurally necessary**. The Mind-Map Framework provides the **practical implementation** of these principles at the interface level.
+The MoM framework argues that **sparse hierarchical routing is structurally necessary**. The Mind-Map Framework provides the **practical implementation** of these principles at the interface level.
 
 ### Three-Level Sparse Architecture
 
@@ -515,7 +517,7 @@ Sparse routing      Deterministic gates   Working memory
 - L1: Updated when implementation stabilizes (medium)
 - Dashboard: Updated every session (frequent)
 
-**Result**: Natural isolation prevents interference (Google-validated)
+**Result**: Natural isolation prevents interference (consistent with Google's Nested Learning findings)
 
 **3. Hierarchical Nesting**:
 - L0 tests → L1 enforces → Dashboard executes
@@ -620,7 +622,7 @@ Prevented automatically
 
 **This implements MoM's core theorem**: Sparse selective activation is structurally necessary for continual learning.
 
-### Why This Validates MoM
+### Why This Supports MoM
 
 1. **Information Maximization**: Failures provide highest information density
 2. **Sparse Selection**: Only generalizable failures promoted
@@ -752,14 +754,14 @@ Annual savings: $2-3.5M (30-45% reduction, algorithmic validation)
 - Labyrinth Protocol: 127+ patterns → 68% cost reduction
 - Validates theoretical prediction of sparse superiority
 
-### Integration with Google's Validation
+### Relation to Google's Nested Learning
 
-**Google's Nested Learning** proves MoM economic principles at model level:
+**Google's Nested Learning** illustrates related economic principles at the model level:
 - Sparse parameter updates reduce training costs
 - Multi-time-scale optimization prevents catastrophic forgetting
 - Hierarchical architectures scale sublinearly
 
-**SCMS** proves MoM economic principles at interface level:
+**SCMS** illustrates MoM economic principles at the interface level (self-measured):
 - Sparse pattern retrieval reduces inference costs  
 - Multi-time-scale updates prevent session forgetting
 - Hierarchical routing scales sublinearly
@@ -926,4 +928,4 @@ Via Windsurf Cascade (AI-assisted development environment)
 
 **License**: CC-BY 4.0 (free to share and adapt with attribution)
 
-*Last Updated: November 10, 2025 - Added Google Research Nested Learning validation*
+*Last Updated: November 10, 2025 - Added discussion of Google's Nested Learning research*

@@ -22,28 +22,28 @@
 - Related: #retention-gates, #surprise-metric, #memory-episodes, #confidence-indicators
 
 ### #retention-gates
-- **MIRAS Validation**: "Forgetting is as important as remembering"
+- **MIRAS insight**: "Forgetting is as important as remembering"
 - Configuration: Decay rate, threshold, override rules
 - See: [RETENTION_CONFIG.md](RETENTION_CONFIG.md)
 - Formula: `retention_score = base × surprise × confidence × recency`
 - Related: #titans-miras-validation, #memory-decay
 
 ### #surprise-metric
-- **Titans Validation**: High-surprise events deserve stronger retention
+- **Titans insight**: High-surprise events deserve stronger retention
 - Scale: ⭐ (expected) to ⭐⭐⭐⭐⭐ (paradigm-shifting)
 - See Templates: FAILURE_LOG_TEMPLATE.md, MEMORY_TEMPLATE.md
 - Application: Failures with ⭐⭐⭐⭐⭐ = PERMANENT retention
 - Related: #titans-miras-validation, #retention-gates
 
 ### #memory-episodes
-- **Titans Validation**: Deep memory modules outperform shallow storage
+- **Titans insight**: Deep memory modules outperform shallow storage
 - Definition: Coherent groupings of related patterns/failures
 - See: [MEMORY_EPISODES.md](MEMORY_EPISODES.md)
 - Active Episodes: EP-001 (Contamination), EP-002 (Resonance), EP-003 (Formatting)
 - Related: #titans-miras-validation, #contextual-retrieval
 
 ### #confidence-indicators
-- **Titans Validation**: Validation strength matters for retrieval priority
+- **Titans insight**: Validation strength matters for retrieval priority
 - Levels: 🟢 HIGH | 🟡 MEDIUM | 🔴 LOW
 - See Templates: MEMORY_TEMPLATE.md
 - Promotion Rule: 🟡 MEDIUM+ required for L1 promotion

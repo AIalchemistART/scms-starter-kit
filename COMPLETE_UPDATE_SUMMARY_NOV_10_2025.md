@@ -1,7 +1,9 @@
 # Complete SCMS Documentation Update - November 10, 2025
 
+> **Note (Oct 2026):** SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Mentions of Google (Nested Learning, Titans, MIRAS), MIT, David Shapiro or Ilya Sutskever in this document describe related published work, not endorsements, and comparisons with them are the author's own. Percentages and cost figures are self-measured by the author on one project unless stated otherwise.
+
 **Status**: ✅ FULLY COMPLETE  
-**Updates**: Google Validation + Mind-Map Framework + Failure Documentation  
+**Updates**: Google Nested Learning comparison + Mind-Map Framework + Failure Documentation  
 **Scope**: All whitepapers, README, guides, and system prompts
 
 ---
@@ -10,7 +12,7 @@
 
 **Three Major Updates Integrated**:
 
-1. **Google Research Validation** - Independent discovery by S-tier lab (NeurIPS 2025)
+1. **Related Research: Google's Nested Learning** (NeurIPS 2025; Google did not review SCMS)
 2. **Mind-Map Framework** - Multi-time-scale cognitive architecture formalized
 3. **Failure Documentation** - Systematic high-information knowledge capture
 
@@ -22,7 +24,7 @@ All documentation now reflects these critical principles across 10+ files.
 
 ### Core Documentation (5 files)
 
-| File | Google Validation | Mind-Map | Failure Docs | Status |
+| File | Google Nested Learning comparison | Mind-Map | Failure Docs | Status |
 |------|------------------|----------|--------------|--------|
 | **README.md** | ✅ | ✅ | ✅ | Complete |
 | **WHITEPAPER.md** | ✅ | ✅ | ✅ | Complete |
@@ -41,7 +43,7 @@ All documentation now reflects these critical principles across 10+ files.
 
 | File | Purpose | Status |
 |------|---------|--------|
-| **GOOGLE_VALIDATION_UPDATE_SUMMARY.md** | Google validation details | ✅ Complete |
+| **GOOGLE_VALIDATION_UPDATE_SUMMARY.md** | Google Nested Learning comparison details | ✅ Complete |
 | **WHITEPAPER_UPDATES_COMPLETE.md** | Whitepaper update summary | ✅ Complete |
 | **MIND_MAP_AND_FAILURE_DOCS_UPDATE.md** | Framework update summary | ✅ Complete |
 
@@ -53,9 +55,9 @@ All documentation now reflects these critical principles across 10+ files.
 
 ### 1. README.md ✅
 
-**Google Validation**:
+**Google Nested Learning comparison**:
 - Prominent badge and announcement at top
-- Full validation section with 6/6 alignment table
+- Related-research section with six-principle comparison table
 - Key differences (SCMS vs Google NL)
 - Implications explained
 
@@ -75,7 +77,7 @@ All documentation now reflects these critical principles across 10+ files.
 ### 2. WHITEPAPER.md (SCMS Empirical) ✅
 
 **Abstract Enhanced**:
-- Google validation paragraph
+- Google Nested Learning comparison paragraph
 - Mind-map framework paragraph
 - Failure documentation paragraph
 
@@ -83,7 +85,7 @@ All documentation now reflects these critical principles across 10+ files.
 - Complete formalization of multi-time-scale architecture
 - Three cognitive levels with examples
 - Prevents catastrophic forgetting
-- Google Research validation quote
+- Google Nested Learning comparison quote
 
 **Contribution #4: Failure Documentation**:
 - Information theory foundation
@@ -91,9 +93,9 @@ All documentation now reflects these critical principles across 10+ files.
 - Three real production examples
 - ROI analysis (10-100× information density)
 
-**Major Section: Independent Validation by Google Research**:
+**Major Section: Related Research (Google's Nested Learning)**:
 - Nested Learning overview
-- 6/6 principle alignment table
+- six-principle comparison table
 - SCMS vs Google NL comparison
 - Structural isomorphism analysis
 - Implications (4 key points)
@@ -105,7 +107,7 @@ All documentation now reflects these critical principles across 10+ files.
 ### 3. WHITEPAPER_PARADIGM_SHIFT.md ✅
 
 **Already Had**:
-- Google validation section (from previous update)
+- Google Nested Learning comparison section (from previous update)
 - Version 1.5 with validation mention
 
 **NEW - Mind-Map Framework Section**:
@@ -127,7 +129,7 @@ All documentation now reflects these critical principles across 10+ files.
 ### 4. WHITEPAPER_MIXTURE_OF_MEMORIES.md ✅
 
 **Already Had**:
-- Google validation section (from previous update)
+- Google Nested Learning comparison section (from previous update)
 - Version 1.5 with validation mention
 
 **NEW - Mind-Map Framework Section**:
@@ -142,7 +144,7 @@ All documentation now reflects these critical principles across 10+ files.
 - Failure pyramid as sparse hierarchy
 - MoM complexity analysis (dense vs sparse)
 - Integration: failures through sparse hierarchy
-- Why this validates MoM (5 reasons)
+- Why this supports MoM (5 reasons)
 
 ---
 
@@ -182,7 +184,7 @@ All documentation now reflects these critical principles across 10+ files.
 2. Three-Level Architecture (visual + detailed specs)
 3. Level Definitions (L0/L1/Dashboard)
 4. Why Multi-Time-Scale Works
-5. Google Research Validation
+5. Related Research: Google's Nested Learning
 6. Memory Promotion Flow
 7. Implementation Examples (Windsurf + Manual)
 8. Tag Strategies
@@ -233,15 +235,15 @@ All documentation now reflects these critical principles across 10+ files.
 
 ## 🎯 Key Concepts Fully Integrated
 
-### 1. Google Research Validation
+### 1. Related Research: Google's Nested Learning
 
 **Status**: ✅ Integrated across all 3 whitepapers + README
 
 **Core Message**:
 - Published ~10 days BEFORE Google (prior art)
-- Perfect 6/6 principle alignment
-- Independent discovery validates universality
-- S-tier research lab confirmation
+- Overlap on six principles (author's comparison)
+- Independent convergence on related ideas
+- Google did not review SCMS
 - Same principles, different abstraction levels
 
 **Impact**:
@@ -271,7 +273,7 @@ Test & validate     Enforce & gate        Execute & discard
 **Why It Works**:
 - Different update frequencies prevent interference
 - Solves catastrophic forgetting at interface level
-- Google-validated at model level
+- Related findings by Google at model level
 - Universal continual learning pattern
 
 **Integration**:
@@ -363,17 +365,17 @@ Edge Cases (L1)        ← Project value (specific handling)
 ### After Updates
 
 **Positioning**:
-"SCMS implements **nested learning principles** (independently validated by Google Research at NeurIPS 2025) through a **multi-time-scale cognitive architecture** with **systematic failure documentation** as primary knowledge source, achieving continual learning at the interface level"
+"SCMS implements **nested learning principles** (independently validated by findings in Google's Nested Learning research (NeurIPS 2025); Google did not review SCMS) through a **multi-time-scale cognitive architecture** with **systematic failure documentation** as primary knowledge source, achieving continual learning at the interface level"
 
 **Key Features**:
-- Multi-time-scale prevents forgetting (Google-validated)
+- Multi-time-scale prevents forgetting (consistent with Google's Nested Learning findings)
 - Mind-map framework (L0/L1/Dashboard cognitive levels)
 - Failure documentation (10-100× information density)
 - Dual validation pipeline (test + enforce)
 - 91% time savings + 94% retention
 
 **Credibility**:
-- **S-tier validation** (Google Research, NeurIPS 2025)
+- **Related research**: independently validated by findings in Google's Nested Learning research (NeurIPS 2025)
 - **Prior art** (~10 days published first)
 - **Universal patterns** (cross-level validation)
 - **Production system** (127+ cycles)
@@ -394,7 +396,7 @@ Edge Cases (L1)        ← Project value (specific handling)
 - ✅ WHITEPAPER_MIXTURE_OF_MEMORIES.md
 
 ### README ✅
-- ✅ Google validation section
+- ✅ Google Nested Learning comparison section
 - ✅ Mind-map framework section
 - ✅ Failure documentation section
 
@@ -415,7 +417,7 @@ Edge Cases (L1)        ← Project value (specific handling)
 ### Documentation Completeness
 
 **Now Includes**:
-1. ✅ Google Research validation (perfect 6/6 alignment)
+1. ✅ Google Nested Learning comparison (six overlapping principles, author's comparison)
 2. ✅ Mind-Map Framework (multi-time-scale architecture)
 3. ✅ Failure Documentation (systematic high-information capture)
 4. ✅ Dual validation pipeline (L0 test, L1 enforce)
@@ -429,11 +431,11 @@ Edge Cases (L1)        ← Project value (specific handling)
 ### User Experience
 
 **Before**: "Interesting pattern, let me try it"  
-**After**: "Google-validated universal continual learning framework with complete implementation guidance"
+**After**: "Continual learning framework, independently validated by findings in Google's Nested Learning research, with complete implementation guidance"
 
 **Download Experience**:
 - Clear strategic positioning
-- S-tier credibility
+- Related research context
 - Complete theory + practice
 - Ready-to-use templates
 - Production-validated examples
@@ -443,7 +445,7 @@ Edge Cases (L1)        ← Project value (specific handling)
 ## 🚀 What Users Get Now
 
 ### For Researchers
-- ✅ Google Research validation
+- ✅ Google Nested Learning comparison
 - ✅ Mathematical formalism (MoM)
 - ✅ Cross-level invariants
 - ✅ Empirical validation (127+ cycles)
@@ -470,7 +472,7 @@ Edge Cases (L1)        ← Project value (specific handling)
 **SCMS Starter Kit Documentation is NOW**:
 
 ✅ **Fully Updated** - All files reflect new principles  
-✅ **Google-Validated** - S-tier research lab confirmation  
+✅ **Related research** - independently validated by findings in Google's Nested Learning research (NeurIPS 2025); Google did not review SCMS  
 ✅ **Comprehensive** - 16,000+ words of new content  
 ✅ **Production-Ready** - Templates, examples, workflows  
 ✅ **Theory + Practice** - Formal proofs + implementation  
@@ -478,7 +480,7 @@ Edge Cases (L1)        ← Project value (specific handling)
 ✅ **Prior Art Established** - Published ~10 days before Google  
 ✅ **Complete Framework** - Nothing missing
 
-**The SCMS documentation is publication-ready, adoption-ready, and positioned as the definitive framework for AI memory systems with continual learning capabilities.**
+**The SCMS documentation is publication-ready, adoption-ready, and positioned as a practical framework for AI memory systems with continual learning capabilities.**
 
 ---
 

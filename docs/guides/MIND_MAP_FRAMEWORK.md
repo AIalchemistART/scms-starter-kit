@@ -1,12 +1,14 @@
 # Mind-Map Framework Implementation Guide
 
+> **Note (Oct 2026):** SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Mentions of Google (Nested Learning, Titans, MIRAS), MIT, David Shapiro or Ilya Sutskever in this document describe related published work, not endorsements, and comparisons with them are the author's own. Percentages and cost figures are self-measured by the author on one project unless stated otherwise.
+
 **SCMS Core Principle**: Multi-Time-Scale Cognitive Architecture
 
 ---
 
 ## Overview
 
-The Mind-Map Framework is SCMS's implementation of **multi-time-scale updates** for AI memory—independently validated by Google Research's Nested Learning (NeurIPS 2025). Instead of flat storage, memories organize into three cognitive levels with distinct update frequencies, preventing catastrophic forgetting at the interface level.
+The Mind-Map Framework is SCMS's implementation of **multi-time-scale updates** for AI memory; its approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Instead of flat storage, memories organize into three cognitive levels with distinct update frequencies, preventing catastrophic forgetting at the interface level.
 
 ---
 
@@ -141,13 +143,13 @@ Patterns (rare) ─────────→ Stable foundation
 
 **Solution**: High-frequency changes isolated from low-frequency knowledge.
 
-### Google Research Validation
+### Related Research: Google's Nested Learning
 
 From "Nested Learning" (Behrouz et al., NeurIPS 2025):
 
 > "The uniform and reusable structure as well as multi time scale update in the brain are the key components to unlock the continual learning in humans."
 
-SCMS implements this at the interface level; Google implemented it at model weights level. **Same fundamental principle, different abstraction levels.**
+SCMS implements this at the interface level; Google implemented it at model weights level. **A related principle at a different abstraction level (author's comparison).**
 
 ---
 
@@ -548,7 +550,7 @@ The Mind-Map Framework transforms AI memory from flat storage into a **multi-tim
 - **L1**: Concrete implementations enforced as quality gates  
 - **Dashboard**: Ephemeral session context as working memory
 
-This prevents catastrophic forgetting at the interface level—validated by Google Research's independent discovery of the same principles at the model level.
+This prevents catastrophic forgetting at the interface level—consistent with Google's related findings at the model level.
 
 **Start using**: Tag your memories with `level: L0/L1/Dashboard` and watch natural selection optimize your knowledge base automatically.
 

@@ -1,8 +1,10 @@
 # Paradigm Shift in AI Memory: From Preference Storage to Continual Learning
 
+> **Note (Oct 2026):** SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Mentions of Google (Nested Learning, Titans, MIRAS), MIT, David Shapiro or Ilya Sutskever in this document describe related published work, not endorsements, and comparisons with them are the author's own. Percentages and cost figures are self-measured by the author on one project unless stated otherwise.
+
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 2.1 (Updated December 5, 2025 - Added Google Titans/MIRAS validation)
+**Version**: 2.1 (Updated December 5, 2025 - Added discussion of Google's Titans/MIRAS research)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -22,14 +24,14 @@ This dual architecture produces: 91% reduction in pattern re-discovery time, 94%
 
 **Critically, we address the discovery problem**: the <1% usage rate reveals that current AI memory systems (ChatGPT Memory, Windsurf Cascade) are designed and marketed for **user preference storage**, not validation infrastructure. This creates a fundamental discovery gap—users haven't independently found this novel use case because it contradicts the stated design purpose. This is a **discovery problem requiring education**, not an adoption problem requiring coercion. For users who do discover validation-oriented usage, we propose **enforcement mechanisms** (soft and hard) that prevent reverting to ingrained "filing cabinet" habits—from visual cues and checklists (user-implementable now) to blocking dialogs and automated workflows (requires IDE extensions or builder support).
 
-**Independent Validation (2023-2025)**: The dual validation paradigm has been independently validated across a 2-year convergence:
+**Related Research (2023-2025)**: SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Related ideas appear across a 2-year span (comparisons are the author's):
 
-- **David Shapiro (2023)**: Raw logs → roll-ups → KB articles architecture validating the paradigm shift from passive storage to active sparse validation 2 years before SCMS implementation
-- **Google Research "Nested Learning" (2025)**: NeurIPS 2025, published ~10 days after SCMS, independently discovered the same nested, multi-time-scale validation principles
-- **Google Research "Titans" (Dec 2025)**: Three-layer memory architecture (Long-term, Core Attention, Persistent) that directly mirrors the paradigm shift from flat storage to layered validation. Demonstrates multi-layer memory is **essential** for handling long contexts.
-- **Google Research "MIRAS" (Dec 2025)**: Framework explicitly stating "forgetting is as important as remembering"—validating that the paradigm shift from "save everything" to "validation-based retention" is architecturally necessary. Competitors using flat vector databases are now **architecturally deficient** per this research.
+- **David Shapiro (2023)**: Raw logs → roll-ups → KB articles architecture, describing ideas related to the shift from passive storage to active sparse validation 2 years before SCMS
+- **Google Research "Nested Learning" (2025)**: NeurIPS 2025, published ~10 days after SCMS, explores related nested, multi-time-scale principles
+- **Google Research "Titans" (Dec 2025)**: Three-layer memory architecture (Long-term, Core Attention, Persistent) that is conceptually similar to the shift from flat storage to layered validation. Demonstrates multi-layer memory is **essential** for handling long contexts.
+- **Google Research "MIRAS" (Dec 2025)**: Framework explicitly stating "forgetting is as important as remembering"—an idea consistent with the shift from "save everything" to "validation-based retention".
 
-This convergence confirms the paradigm shift represents **universal architectural patterns for continual learning**, not domain-specific heuristics.
+In the author's view, this convergence suggests the paradigm shift reflects **general architectural patterns for continual learning**, not domain-specific heuristics.
 
 **Companion Paper**: See [HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding](WHITEPAPER_HUMANE.md) for how the paradigm shift extends to AI alignment through severity-aware failure memory.
 
@@ -368,19 +370,19 @@ Blocks workflow until L1 gates acknowledged—enforces checking.
 
 ---
 
-## Independent Validation: Google Research Confirms the Paradigm Shift
+## Related Research: Google's Nested Learning
 
 **Update: November 10, 2025**
 
 ### Nested Learning at NeurIPS 2025
 
-On November 7, 2025—approximately **10 days after SCMS publication**—Google Research released "Nested Learning: The Illusion of Deep Learning Architectures" (Behrouz et al., NeurIPS 2025), independently discovering the **same paradigm shift** from flat storage to nested validation architecture.
+On November 7, 2025—approximately **10 days after SCMS publication**—Google Research released "Nested Learning: The Illusion of Deep Learning Architectures" (Behrouz et al., NeurIPS 2025), which explores a **related shift** from flat storage to nested architecture. SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025); Google did not review SCMS.
 
-### What This Validates
+### Where They Overlap (author's comparison)
 
-The Google team discovered identical principles at the **model architecture level** that SCMS discovered at the **interface level**:
+In the author's comparison, Google's work at the **model architecture level** parallels SCMS at the **interface level**:
 
-| SCMS Discovery (Interface) | Google NL Discovery (Model) | Principle Validated |
+| SCMS Discovery (Interface) | Google NL Discovery (Model) | Shared Principle |
 |---------------------------|----------------------------|---------------------|
 | L0 tests, L1 enforces | Fast/slow parameter updates | **Dual validation pipeline** |
 | Temporal decay (30 days) | Update frequency spectrum | **Multi-time-scale dynamics** |
@@ -389,29 +391,29 @@ The Google team discovered identical principles at the **model architecture leve
 | Prevents session forgetting | Prevents catastrophic forgetting | **Forgetting prevention via nesting** |
 | L0→L4 abstraction continuum | Continuum Memory System (CMS) | **Memory as spectrum** |
 
-**Perfect 6/6 alignment** across fundamental principles.
+**Overlap on six fundamental principles** (author's comparison).
 
 ### Why This Matters for the Paradigm Shift
 
-1. **Not an Accident**: Independent discovery by Google Research validates that the shift from passive storage to active validation is **fundamental to continual learning**, not an emergent quirk of AI assistant usage.
+1. **Not an Accident**: Related findings by Google Research suggest that the shift from passive storage to active validation is **fundamental to continual learning**, not an emergent quirk of AI assistant usage.
 
 2. **Universal Pattern**: The same architectural principles emerge across abstraction levels (neural weights → interface layer), suggesting these are **universal patterns for continual learning systems**.
 
 3. **Prior Art**: SCMS published ~10 days before Google, establishing prior art for these principles in AI memory systems while Google applied them to model architectures.
 
-4. **Validates <1% Discovery Gap**: If even Google Research needed dedicated research to discover these principles for model training, it's unsurprising that <1% of users discovered them for AI memory—both contradict the **intended design** of their respective systems.
+4. **Discovery Gap**: If even Google Research needed dedicated research to arrive at these principles for model training, it's unsurprising that few users have discovered them for AI memory—both contradict the **intended design** of their respective systems.
 
-### Paradigm Shift Confirmed
+### Paradigm Shift in Context
 
-Google's quote captures the paradigm perfectly:
+Google's quote captures the idea well:
 
 > "Without neuroplasticity, a person is limited to immediate context (like anterograde amnesia). We see a similar limitation in current LLMs: their knowledge is confined to either the immediate context of their input window or the static information that they learn during pre-training."
 
 This is **exactly** what SCMS solves at the interface level—transforming AI from systems limited to static training knowledge + immediate context to systems that **continually learn** through validated memory.
 
-The paradigm shift is real, fundamental, and now independently validated by S-tier research.
+In the author's view the paradigm shift is real and fundamental; SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025), and Google did not review SCMS.
 
-→ **[See full validation analysis in SCMS whitepaper](WHITEPAPER.md#independent-validation-by-google-research)**
+→ **[See the author's full comparison in the SCMS whitepaper](WHITEPAPER.md#related-research-multi-year-convergence)**
 
 ---
 
@@ -439,7 +441,7 @@ No validation              Enforce & gate
 
 ### The Multi-Time-Scale Revolution
 
-The paradigm shift is fundamentally enabled by **multi-time-scale cognitive architecture**—independently validated by Google Research's discovery that "multi time-scale update... [is] the key component to unlock continual learning."
+The paradigm shift is fundamentally enabled by **multi-time-scale cognitive architecture**—consistent with Google's Nested Learning finding that "multi time-scale update... [is] the key component to unlock continual learning."
 
 **Three Cognitive Levels**:
 
@@ -477,7 +479,7 @@ Session changes don't touch patterns → Patterns remain
 stable while context flows → No forgetting
 ```
 
-This is **exactly** how Google's Nested Learning solves catastrophic forgetting at the model level. SCMS applies the same principle at the interface level.
+This parallels how Google's Nested Learning addresses catastrophic forgetting at the model level. SCMS applies the same principle at the interface level.
 
 ### The Paradigm Shift Is Architectural
 
@@ -700,4 +702,4 @@ Via Windsurf Cascade (AI-assisted development environment)
 
 **License**: CC-BY 4.0 (free to share and adapt with attribution)
 
-*Last Updated: November 10, 2025 - Added Google Research Nested Learning validation*
+*Last Updated: November 10, 2025 - Added discussion of Google's Nested Learning research*

@@ -76,7 +76,7 @@ function examplePattern() {
 
 ---
 
-## 🎯 Confidence Assessment (Titans-Validated)
+## 🎯 Confidence Assessment (Titans-Inspired)
 *Confidence indicates validation strength - how certain are we this pattern is correct?*
 
 **Confidence Scoring:**
@@ -180,7 +180,7 @@ function examplePattern() {
 
 ---
 
-## ⏳ Retention Gate Configuration (MIRAS-Validated)
+## ⏳ Retention Gate Configuration (MIRAS-Inspired)
 *Configure how this memory should persist over time*
 
 **Retention Formula:** `retention_score = use_count × confidence_weight × surprise_value × recency`

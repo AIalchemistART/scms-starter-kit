@@ -1,5 +1,7 @@
 # Mind-Map Framework & Failure Documentation - Complete Update
 
+> **Note (Oct 2026):** SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Mentions of Google (Nested Learning, Titans, MIRAS), MIT, David Shapiro or Ilya Sutskever in this document describe related published work, not endorsements, and comparisons with them are the author's own. Percentages and cost figures are self-measured by the author on one project unless stated otherwise.
+
 **Date**: November 10, 2025  
 **Status**: ✅ COMPLETE  
 **Type**: Major Conceptual Enhancement
@@ -26,7 +28,7 @@ These principles are now integrated across whitepapers, README, and comprehensiv
 - Added section: "🧠 Mind-Map Framework: Multi-Time-Scale Architecture"
   - Visual frequency spectrum diagram
   - Three-level explanation with examples
-  - Google validation mention
+  - Google Nested Learning comparison mention
   - Why multi-time-scale prevents catastrophic forgetting
 
 - Added section: "💥 Failure Documentation as First Principles"
@@ -44,7 +46,7 @@ These principles are now integrated across whitepapers, README, and comprehensiv
 **Changes**:
 
 **Abstract Enhanced**:
-- Added paragraph on Mind-Map Framework with Google validation
+- Added paragraph on Mind-Map Framework with Google Nested Learning comparison
 - Added paragraph on Failure Documentation with information theory
 
 **New Contribution #3**: Mind-Map Framework: Multi-Time-Scale Architecture
@@ -52,7 +54,7 @@ These principles are now integrated across whitepapers, README, and comprehensiv
 - Update frequency spectrum visualization
 - Three cognitive levels with examples
 - Multi-time-scale prevention of catastrophic forgetting
-- Direct Google Research validation quote
+- Direct Google Nested Learning comparison quote
 
 **New Contribution #4**: Failure Documentation as First Principles
 - Information theory foundation
@@ -84,7 +86,7 @@ These principles are now integrated across whitepapers, README, and comprehensiv
    - L1: Implementation (medium, concrete solutions)
    - Dashboard: Session (frequent, ephemeral context)
 4. **Why Multi-Time-Scale Works**: Catastrophic forgetting prevention
-5. **Google Research Validation**: Nested Learning quotes
+5. **Google Nested Learning comparison**: Nested Learning quotes
 6. **Memory Promotion Flow**: Complete lifecycle
 7. **Implementation Examples**:
    - Windsurf (Auto-Memory)
@@ -179,12 +181,12 @@ Days-weeks scale    Hours-days scale      Real-time scale
 - Different update frequencies create natural isolation
 - High-frequency changes don't interfere with low-frequency knowledge
 - Prevents catastrophic forgetting at interface level
-- Validated by Google Research (Nested Learning, NeurIPS 2025)
+- Independently validated by findings in Google's Nested Learning research (NeurIPS 2025); Google did not review SCMS
 
 **Innovation**:
 - First formalization of AI memory as multi-time-scale architecture
 - Direct parallel to Google's model-level discovery
-- Empirically validated across 127+ production cycles
+- Self-measured across 127+ production cycles
 
 ---
 
@@ -268,10 +270,10 @@ All documentation now cross-references:
 
 ### After Updates
 **Positioning**:
-"SCMS implements nested learning principles (Google-validated) through multi-time-scale cognitive architecture with systematic failure documentation as primary knowledge source"
+"SCMS implements nested learning principles (independently validated by findings in Google's Nested Learning research) through multi-time-scale cognitive architecture with systematic failure documentation as primary knowledge source"
 
 **Focus**:
-- Multi-time-scale prevents forgetting (validated by Google)
+- Multi-time-scale prevents forgetting (consistent with Google's Nested Learning findings)
 - Mind-map framework (L0/L1/Dashboard)
 - Failure documentation (10-100× information density)
 - Information theory foundation
@@ -283,7 +285,7 @@ All documentation now cross-references:
 
 ### 1. Multi-Time-Scale Architecture
 - **Principle**: Different update frequencies prevent interference
-- **Evidence**: Google Research independent validation
+- **Evidence**: related findings in Google's Nested Learning research (not a review of SCMS)
 - **Impact**: Solves catastrophic forgetting at interface level
 
 ### 2. Failure Documentation Pyramid
@@ -318,7 +320,7 @@ All documentation now cross-references:
 ### Quality Assurance
 - ✅ Consistent terminology across documents
 - ✅ Real examples from production validation
-- ✅ Google Research validation mentioned
+- ✅ Google Nested Learning comparison mentioned
 - ✅ Clear implementation guidance
 - ✅ No conflicting information
 
@@ -376,7 +378,7 @@ SCMS Starter Kit Documentation
 
 ✅ **Mind-Map Framework** formalized and documented  
 ✅ **Failure Documentation** systematized with taxonomy  
-✅ **Google validation** integrated throughout  
+✅ **Google Nested Learning comparison** integrated throughout  
 ✅ **Implementation guides** created (14,000 words)  
 ✅ **Real examples** from production validation  
 ✅ **Templates and workflows** ready to use  
@@ -386,8 +388,8 @@ SCMS Starter Kit Documentation
 - Dual validation pipeline (L0 test, L1 enforce)
 - Multi-time-scale architecture (prevent forgetting)
 - Systematic failure capture (10-100× ROI)
-- Google Research validation (S-tier confirmation)
-- Production-validated patterns (127+ cycles)
+- Google Nested Learning comparison (Google did not review SCMS)
+- Patterns tested in production use (127+ self-measured cycles)
 
 **The starter kit is now comprehensive, validated, and ready for widespread adoption!** 🚀
 

@@ -1,8 +1,8 @@
-# Memory Episodes (Titans-Validated)
+# Memory Episodes (Titans-Inspired)
 
 **Purpose**: Group related memories into coherent episodes for contextual retrieval  
 **Last Updated**: 2025-12-05  
-**Research Validation**: Google Titans Architecture (Dec 2025) - "Deep memory modules outperform shallow storage"
+**Related Research**: Google Titans Architecture (Dec 2025) - "Deep memory modules outperform shallow storage"
 
 ---
 
@@ -235,4 +235,4 @@ async function retrieveWithEpisode(query: string): Promise<Memory[]> {
 
 ---
 
-*This framework is validated by Google's Titans research (December 2025) on deep memory modules.*
+*This framework is informed by Google's Titans research (December 2025) on deep memory modules. Google did not review SCMS.*

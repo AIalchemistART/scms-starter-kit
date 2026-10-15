@@ -1,10 +1,12 @@
 # SCMS Research Paper
 
+> **Note (Oct 2026):** SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Mentions of Google (Nested Learning, Titans, MIRAS), MIT, David Shapiro or Ilya Sutskever in this document describe related published work, not endorsements, and comparisons with them are the author's own. Percentages and cost figures are self-measured by the author on one project unless stated otherwise.
+
 **Title**: Sparse Contextual Memory Scaffolding: A User-Facing Architecture for Continual Learning in AI-Assisted Development Workflows
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 2.0 (Updated December 5, 2025 - Added Google Titans/MIRAS validation)
+**Version**: 2.0 (Updated December 5, 2025 - Added discussion of Google's Titans/MIRAS research)
 
 **Status**: Published Research
 
@@ -16,22 +18,22 @@ We present **Sparse Contextual Memory Scaffolding (SCMS)**, a novel architectura
 
 This paradigm shift—treating memory as validation infrastructure rather than reference storage—enables continual learning at the user-facing prompt-augmentation layer without requiring model retraining or weight updates. Patterns enter Layer 0 as candidates, undergo natural selection through repeated use, and either promote to Layer 1 documentation or decay naturally. Layers 2-4 provide traditional reference documentation, but **the core innovation lies in L0+L1 as complementary validation systems**.
 
-**Mind-Map Framework**: SCMS implements a **multi-time-scale cognitive architecture** where L0 (rare updates), L1 (medium updates), and Dashboard (frequent updates) create natural isolation preventing catastrophic forgetting—directly validating Google's discovery that "multi time-scale update [is] the key component to unlock continual learning."
+**Mind-Map Framework**: SCMS implements a **multi-time-scale cognitive architecture** where L0 (rare updates), L1 (medium updates), and Dashboard (frequent updates) create natural isolation preventing catastrophic forgetting—consistent with Google's Nested Learning finding that "multi time-scale update [is] the key component to unlock continual learning."
 
 **Failure Documentation**: We establish **failures as first-class knowledge sources** with 10-100× information density vs successes. The Failure Documentation Pyramid (Bug Patterns → Anti-Patterns → Failed Approaches → Edge Cases) systematically captures constraint discovery, preventing entire classes of errors.
 
-**Independent Validation**: Core SCMS principles have been **independently validated** by six sources:
-- **David Shapiro (2023)**: Raw logs → roll-ups → KB articles architecture with sparse activation, gating thresholds, and asymptotic growth—validating the architecture was theoretically sound 2 years before SCMS implementation
-- **Google Research "Nested Learning" (2025)**: NeurIPS 2025, published ~10 days after SCMS—perfect alignment on 6/6 fundamental principles (nested hierarchies, multi-time-scale updates, context flows, forgetting prevention, associative memory, continuum systems)
+**Related Research**: SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Five published sources explore related ideas (the comparisons are the author's):
+- **David Shapiro (2023)**: Raw logs → roll-ups → KB articles architecture with sparse activation, gating thresholds, and asymptotic growth—describing a related architecture 2 years before SCMS was implemented
+- **Google Research "Nested Learning" (2025)**: NeurIPS 2025, published ~10 days after SCMS; in the author's comparison the two overlap on six fundamental principles (nested hierarchies, multi-time-scale updates, context flows, forgetting prevention, associative memory, continuum systems)
 - **Ilya Sutskever (2025)**: In a Dwarkesh Podcast interview (November 2025), described the "bug oscillation" problem (A→B→A→B) that SCMS failure documentation directly addresses
-- **Google Research "Titans" (Dec 2025)**: Three-layer memory architecture (Long-term, Core Attention, Persistent) that directly mirrors SCMS's L0/L1/L2 structure. Demonstrates multi-layer memory is **essential** for handling long contexts (>2M tokens). "Surprise metric" validates SCMS's validation-based promotion approach.
-- **Google Research "MIRAS" (Dec 2025)**: Framework identifying four essential design choices including **Retention Gates** (forgetting mechanisms). Explicitly states "forgetting is as important as remembering"—validating SCMS's decay mechanism. Competitors using flat vector databases (Mem0, etc.) are now **architecturally deficient** per this research.
+- **Google Research "Titans" (Dec 2025)**: Three-layer memory architecture (Long-term, Core Attention, Persistent) that is conceptually similar to SCMS's L0/L1/L2 structure. Demonstrates multi-layer memory is **essential** for handling long contexts (>2M tokens). Its "surprise metric" is conceptually similar to SCMS's validation-based promotion.
+- **Google Research "MIRAS" (Dec 2025)**: Framework identifying four essential design choices including **Retention Gates** (forgetting mechanisms). Explicitly states "forgetting is as important as remembering"—an idea similar to SCMS's decay mechanism.
 
 **Companion Paper**: See [HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding](WHITEPAPER_HUMANE.md) for extension of SCMS principles to AI alignment through severity-aware failure memory.
 
-SCMS represents the **first production realization** of Shapiro's theoretical framework with Google's architectural validation, applied to AI-assistant cognition.
+SCMS is the author's working implementation of these ideas for AI-assistant workflows.
 
-**Key Results** (validated over 4-month game development project, 127 implementation cycles):
+**Key Results** (self-measured by the author over one 4-month game development project, 127 implementation cycles; not independently replicated):
 - **91% reduction** in pattern re-discovery time  
 - **94% knowledge retention** (vs. 37% baseline)
 - **Documentation lag**: 11.5 days → 4 hours
@@ -95,7 +97,7 @@ SCMS represents the **first production realization** of Shapiro's theoretical fr
 
 ### 3. Mind-Map Framework: Multi-Time-Scale Architecture
 
-**Cognitive Architecture**: SCMS implements a **mind-map-inspired framework** where memories organize into distinct levels with different update frequencies—validating Google Research's discovery that "multi time-scale update... [is] the key component to unlock continual learning."
+**Cognitive Architecture**: SCMS implements a **mind-map-inspired framework** where memories organize into distinct levels with different update frequencies—consistent with Google's Nested Learning finding that "multi time-scale update... [is] the key component to unlock continual learning."
 
 ```
 RARE ←―――――――――――――――――――――――――――→ FREQUENT
@@ -428,13 +430,13 @@ Enforced: Pattern guaranteed to be followed
 
 ---
 
-## Independent Validation: Multi-Year Convergence
+## Related Research: Multi-Year Convergence
 
 **Update: November 17, 2025**
 
-### Three Independent Validations (2023-2025)
+### Three Related Sources (2023-2025)
 
-SCMS principles have been independently validated across a 2-year span by multiple researchers, establishing a clear convergence on sparse activation architectures:
+SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Several researchers have published related ideas over a 2-year span; the comparisons below are the author's:
 
 **1. David Shapiro (2023)**: Raw logs → roll-ups → KB articles  
 **2. SCMS (2024-2025)**: Production implementation with 4-month validation  
@@ -451,11 +453,11 @@ In a 2023 video, David Shapiro independently described a remarkably similar arch
 
 **Key insight**: The architecture was theoretically sound in 2023 but lacked production tooling (modern IDE integration, AI assistants with persistent memory). SCMS represents the **production realization** of Shapiro's theoretical framework once the necessary tooling matured.
 
-### Google Research (2025): Architectural Validation
+### Google Research (2025): Nested Learning
 
-On November 7, 2025—approximately **10 days after SCMS publication**—Google Research released "Nested Learning: The Illusion of Deep Learning Architectures" (Behrouz et al., NeurIPS 2025), independently discovering remarkably parallel principles to SCMS. This represents significant validation of SCMS's core architecture **from an S-tier AI research lab**.
+On November 7, 2025—approximately **10 days after SCMS publication**—Google Research released "Nested Learning: The Illusion of Deep Learning Architectures" (Behrouz et al., NeurIPS 2025), independently discovering remarkably parallel principles to SCMS. SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS.
 
-### Perfect Alignment: 6/6 Core Principles
+### Overlap on Six Core Principles (author's comparison)
 
 | Principle | Google's Nested Learning | SCMS | Match |
 |-----------|-------------------------|------|-------|
@@ -506,13 +508,13 @@ Continuum Memory System (CMS)   ⟺  L0→L1→L2→L3→L4 continuum
 
 ### Implications
 
-1. **Independent Discovery Validates Fundamentals**: Two research teams independently discovered the same core principles for continual learning, suggesting these are **universal architectural patterns** for continual learning systems, not domain-specific heuristics.
+1. **Independent Convergence**: Two independent efforts arrived at related principles for continual learning, which suggests (but does not prove) these may be **general architectural patterns** for continual learning systems, not domain-specific heuristics.
 
 2. **Prior Art Established**: SCMS published ~10 days before Google's Nested Learning, establishing prior art for these principles in AI assistant memory systems.
 
-3. **Novel Domain Application**: SCMS represents the **first application** of nested learning principles to AI-assistant cognition at the interface layer, complementing Google's application to model architectures.
+3. **Novel Domain Application**: SCMS is, to the author's knowledge, an early application of nested learning principles to AI-assistant cognition at the interface layer, complementing Google's application to model architectures.
 
-4. **Practical Implementation**: While Google provides proof-of-concept (Hope architecture), SCMS provides a **production-validated system** tested across 127+ implementation cycles in real development workflows.
+4. **Practical Implementation**: While Google provides proof-of-concept (Hope architecture), SCMS provides a **working system** the author used across 127+ implementation cycles in real development workflows.
 
 ### Fast Weight Programs Connection
 
@@ -543,7 +545,7 @@ When citing SCMS in relation to Nested Learning:
 }
 ```
 
-**Revised positioning**: SCMS implements **nested learning principles**—independently validated by Google Research (NeurIPS 2025)—at the user-facing interface level, providing the first production-validated system for continual learning without model retraining.
+**Revised positioning**: SCMS implements **nested learning principles** at the user-facing interface level; its approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. It offers a working approach to continual learning without model retraining.
 
 ---
 
@@ -611,7 +613,7 @@ If you use SCMS in your research or project, please cite:
 - Documentation debt (Zhi et al., 2015)
 - Agile documentation practices (Stettina & Heijstek, 2011)
 
-**Key Differentiation**: SCMS operates at prompt layer (user-facing), not model weights, making it accessible without ML expertise. Google's Nested Learning validates the same fundamental principles at the model architecture level, demonstrating **structural isomorphism across abstraction levels**.
+**Key Differentiation**: SCMS operates at prompt layer (user-facing), not model weights, making it accessible without ML expertise. Google's Nested Learning explores related principles at the model architecture level; the author sees a **structural parallel across abstraction levels**.
 
 ---
 
@@ -645,7 +647,7 @@ Benefit Ratio:  100% / 2.4% = 41.7× efficiency gain
 - **Training architecture** (Google Nested Learning, 2025)
 - **User interface** (Shapiro 2023, SCMS 2024, Google 2025)
 
-This convergence across abstraction layers suggests **sparse activation is a universal efficiency principle**, not domain-specific optimization.
+This convergence across abstraction layers suggests **sparse activation may be a general efficiency principle**, not domain-specific optimization.
 
 ### Production Implementation Path
 
@@ -759,4 +761,4 @@ This research emerged from real development pain points in the Labyrinth Protoco
 
 ---
 
-*Last Updated: November 10, 2025 - Added Google Research Nested Learning validation*
+*Last Updated: November 10, 2025 - Added discussion of Google's Nested Learning research*

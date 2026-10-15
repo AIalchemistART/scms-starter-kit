@@ -1,15 +1,17 @@
-# MIT Just Validated the SCMS Architecture (While Solving a Different Problem)
+# MIT's Recursive Language Models and SCMS: Related Ideas, Different Problems
+
+> **Note (Oct 2026):** SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Mentions of Google (Nested Learning, Titans, MIRAS), MIT, David Shapiro or Ilya Sutskever in this document describe related published work, not endorsements, and comparisons with them are the author's own. Percentages and cost figures are self-measured by the author on one project unless stated otherwise.
 
 **January 17, 2026**  
 **10 min read**
 
-*How Recursive Language Models prove scaffolding works at scale - and why sparse activation still wins for learning*
+*How Recursive Language Models show scaffolding working at scale - and why I think sparse activation still matters for learning*
 
 By Matthew "Manny" Walker
 
 ---
 
-On December 31st, 2025, MIT published a paper that made me laugh, nod, and feel vindicated all at once.
+On December 31st, 2025, MIT published a paper that made me laugh, nod, and feel encouraged all at once.
 
 The paper is called "Recursive Language Models" (RLMs), and it demonstrates how to give AI systems effectively unlimited context windows - handling 10 million+ tokens - using scaffolding architecture instead of model retraining.
 
@@ -19,7 +21,7 @@ For the past year, I've been building SCMS (Sparse Contextual Memory Scaffolding
 
 **The difference?** RLM solves retrieval. SCMS solves learning.
 
-Let me explain why this matters and what it validates about the work I've been doing.
+Let me explain why this matters and how it relates to the work I've been doing.
 
 ---
 
@@ -86,7 +88,7 @@ RLM's complete context preservation is actually a **weakness** when it comes to 
 
 ---
 
-## The Validation: Independent Discovery of the Same Architecture
+## Independent Work on Related Architecture
 
 Here's what makes this significant:
 
@@ -106,13 +108,13 @@ This is the **first major research validation** of scaffolding architecture at t
 
 Before this, the argument against SCMS-style approaches was: "Why not just use RAG?" or "Why not wait for longer context windows?"
 
-RLM proves:
+RLM shows:
 1. **Scaffolding scales** beyond what native context windows can handle
 2. **External memory works** without degrading quality
 3. **Recursive decomposition is effective** for complex reasoning
 4. **Cost-effectiveness is real** (often cheaper than native approaches)
 
-All of these validate SCMS's core architectural thesis.
+In my view, all of these support SCMS's core architectural thesis.
 
 ---
 
@@ -279,9 +281,9 @@ You could use RLM for complex one-off queries and SCMS for persistent workflow i
 
 ---
 
-## What This Validates About SCMS
+## What This Suggests About SCMS
 
-MIT's rigorous evaluation of RLMs proves several things that directly validate SCMS:
+MIT's rigorous evaluation of RLMs shows several things that I think support the SCMS approach (MIT did not evaluate SCMS):
 
 ### 1. Scaffolding Scales
 
@@ -315,7 +317,7 @@ All of these principles apply directly to SCMS.
 
 Here's what I find most remarkable:
 
-MIT researchers and I independently arrived at nearly identical architectural solutions:
+MIT researchers and I independently arrived at related architectural solutions:
 
 - **External memory** (REPL variables vs. filesystem)
 - **Recursive decomposition** (sub-LM calls vs. L0→L1→L2)
@@ -335,7 +337,7 @@ The fact that we converged on the same scaffolding architecture - completely ind
 
 RLM's publication opens several doors:
 
-### 1. Academic Validation
+### 1. Academic Context
 
 SCMS can now cite peer-reviewed research proving scaffolding works at the same abstraction level. This strengthens any academic positioning.
 
@@ -374,7 +376,7 @@ SCMS is open source and works with Windsurf, Cursor, and any IDE using autogen m
 
 ## Final Thoughts
 
-MIT's Recursive Language Models paper is a landmark validation of scaffolding architecture. It proves that external memory, recursive decomposition, and iterative validation work at massive scale.
+MIT's Recursive Language Models paper is a landmark result for scaffolding architecture. It shows that external memory, recursive decomposition, and iterative validation work at massive scale.
 
 But RLM solves retrieval. **SCMS solves learning.**
 
@@ -382,7 +384,7 @@ For development workflows, you don't need to search 10 million tokens. You need 
 
 That's what SCMS does. Automatically. With zero documentation burden.
 
-And now we have MIT research proving the underlying architecture is sound.
+And now MIT's research shows this kind of architecture can work at scale.
 
 ---
 

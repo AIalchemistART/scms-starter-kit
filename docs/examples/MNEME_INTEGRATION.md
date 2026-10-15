@@ -8,7 +8,7 @@
 
 ## 🎯 Overview
 
-This guide maps the SCMS framework enhancements (validated by Google Titans/MIRAS research) to concrete implementation recommendations for the Mneme AI chatbot.
+This guide maps the SCMS framework enhancements (informed by Google's Titans/MIRAS research) to concrete implementation recommendations for the Mneme AI chatbot.
 
 | SCMS Concept | Mneme Implementation | Priority |
 |--------------|---------------------|----------|
@@ -393,7 +393,7 @@ interface Memory {
 
 ## 7. Competitive Differentiation
 
-These features directly address the **architectural deficiency** that Google MIRAS identifies in flat vector databases:
+These features address limitations that Google's MIRAS research discusses for flat memory without forgetting:
 
 | Competitor | Has Forgetting? | Has Confidence? | Has Episodes? |
 |------------|-----------------|-----------------|---------------|
@@ -402,8 +402,8 @@ These features directly address the **architectural deficiency** that Google MIR
 | **Mneme** | ✅ Yes | ✅ Yes | ✅ Yes |
 
 **Marketing Message**: 
-> "Unlike flat vector databases that save everything forever, Mneme implements Google-validated memory architecture with intelligent forgetting, confidence tracking, and episodic grouping."
+> "Unlike flat vector databases that save everything forever, Mneme implements a memory architecture informed by Google's Titans/MIRAS research, with intelligent forgetting, confidence tracking, and episodic grouping."
 
 ---
 
-*This integration guide is based on SCMS 2.0 enhancements validated by Google Titans and MIRAS research (December 2025).*
+*This integration guide is based on SCMS 2.0 enhancements informed by Google's Titans and MIRAS research (December 2025). Google did not review SCMS or Mneme.*

@@ -1,5 +1,7 @@
 # SCMS Economic Value Proposition - Refined Analysis
 
+> **Note (Oct 2026):** SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Mentions of Google (Nested Learning, Titans, MIRAS), MIT, David Shapiro or Ilya Sutskever in this document describe related published work, not endorsements, and comparisons with them are the author's own. Percentages and cost figures are self-measured by the author on one project unless stated otherwise.
+
 **Date**: November 11, 2025  
 **Status**: ✅ COMPLETE - Based on comprehensive Paper 4 analysis  
 **Source**: Real-world data from 300+ AI interactions (Labyrinth Protocol development)
@@ -126,7 +128,7 @@ Time: 10 seconds
 ### **Economic Inevitability**
 
 **Three converging forces make SCMS adoption inevitable**:
-1. **Technical validation**: Google Research confirms principles (NeurIPS 2025)
+1. **Related research**: independently validated by findings in Google's Nested Learning research (NeurIPS 2025); Google did not review SCMS
 2. **Empirical evidence**: 53% cost reduction in real-world usage
 3. **Economic pressure**: Current costs unsustainable for heavy usage
 
@@ -228,7 +230,7 @@ Time: 10 seconds
 
 **SCMS adoption is not a question of "if" but "when"**
 
-The convergence of technical validation (Google Research), empirical evidence (53% cost reduction), and economic pressure (unsustainable current costs) creates an inevitable adoption curve.
+The convergence of related research (Google's Nested Learning), self-measured evidence (53% cost reduction on one project), and economic pressure (unsustainable current costs) creates an inevitable adoption curve.
 
 **Early adopters gain**:
 - **Cost leadership**: 53% serving advantage

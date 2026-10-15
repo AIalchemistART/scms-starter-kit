@@ -1,8 +1,10 @@
 # The Economics of Continual Learning: How SCMS Transforms AI Development Costs
 
+> **Note (Oct 2026):** SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Mentions of Google (Nested Learning, Titans, MIRAS), MIT, David Shapiro or Ilya Sutskever in this document describe related published work, not endorsements, and comparisons with them are the author's own. Percentages and cost figures are self-measured by the author on one project unless stated otherwise.
+
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 1.4 (Updated December 5, 2025 - Added Google Titans/MIRAS validation)
+**Version**: 1.4 (Updated December 5, 2025 - Added discussion of Google's Titans/MIRAS research)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -43,13 +45,13 @@ Artificial Intelligence assistance has become integral to software development, 
 
 **Sparse Contextual Memory Scaffolding (SCMS)** represents a paradigm shift from generation-heavy to retrieval-heavy AI interactions. By systematically capturing, validating, and reusing patterns, SCMS transforms the economic equation.
 
-**Independent Validation**: This economic necessity was independently predicted by:
+**Related Research**: SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025); Google did not review SCMS. Related ideas appear in:
 - **David Shapiro (2023)**: Asymptotic knowledge growth with sparse memory economics
 - **SCMS (2024-2025)**: Empirical validation with algorithmic cost tracking
 - **Google Research "Nested Learning" (2025)**: Multi-time-scale architectural efficiency
 - **Ilya Sutskever (Nov 2025)**: Described the "bug oscillation" problem that causes repeated rework costs—exactly what SCMS failure documentation prevents
-- **Google Research "Titans" (Dec 2025)**: Demonstrates deep memory modules are more efficient at scale than shallow storage—validating SCMS's retrieval-over-generation economic model
-- **Google Research "MIRAS" (Dec 2025)**: Forgetting mechanisms as "regularization" that prevents memory overflow and improves efficiency—validating that decay-based systems (SCMS) are economically superior to "save everything" approaches (Mem0)
+- **Google Research "Titans" (Dec 2025)**: Demonstrates deep memory modules are more efficient at scale than shallow storage—consistent with SCMS's retrieval-over-generation economic model
+- **Google Research "MIRAS" (Dec 2025)**: Forgetting mechanisms as "regularization" that prevents memory overflow and improves efficiency—consistent with the author's view that decay-based systems (SCMS) can be more economical than "save everything" approaches
 
 **Companion Paper**: See [HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding](WHITEPAPER_HUMANE.md) for economic implications of alignment cost reduction through severity-aware failure memory.
 

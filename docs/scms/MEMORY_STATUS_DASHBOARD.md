@@ -23,7 +23,7 @@
 
 ---
 
-## ⏳ Retention Gate Configuration (MIRAS-Validated)
+## ⏳ Retention Gate Configuration (MIRAS-Inspired)
 
 **Decay Mode**: STANDARD (0.95^days)  
 **Decay Threshold**: retention_score < 1.0  
@@ -101,7 +101,7 @@ healthy_ratio = (L1 + L2) / L0 = (2 + 5) / 3 = 2.33
 
 **Latest Session (2025-12-05)**:
 - Enhancements Added: Surprise Metric, Confidence Indicators, Retention Gates
-- Research Validation: Google Titans + MIRAS (Dec 2025)
+- Related Research: Google Titans + MIRAS (Dec 2025)
 - Status: Phase 2 of 3 complete
 
 **Previous Session (2025-11-30)**:

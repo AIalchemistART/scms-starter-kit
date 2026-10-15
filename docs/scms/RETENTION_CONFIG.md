@@ -1,8 +1,8 @@
-# Retention Gate Configuration (MIRAS-Validated)
+# Retention Gate Configuration (MIRAS-Inspired)
 
 **Purpose**: Configure memory decay and retention policies based on Google's MIRAS research  
 **Last Updated**: 2025-12-05  
-**Research Validation**: Google MIRAS Framework (Dec 2025) - "Forgetting is as important as remembering"
+**Related Research**: Google MIRAS Framework (Dec 2025) - "Forgetting is as important as remembering"
 
 ---
 
@@ -31,7 +31,7 @@ retention_score = base_value × surprise_factor × confidence_weight × recency_
 | L3 (Case Studies) | 3.0 | Reference material, slow decay |
 | L4 (Global Rules) | ∞ (PERMANENT) | Universal constraints, no decay |
 
-### Surprise Factor (Titans-Validated)
+### Surprise Factor (Titans-Inspired)
 
 | Stars | Factor | Meaning |
 |-------|--------|---------|
@@ -225,4 +225,4 @@ See [MNEME_INTEGRATION.md](../examples/MNEME_INTEGRATION.md) for detailed mappin
 
 ---
 
-*This configuration is validated by Google's Titans and MIRAS research (December 2025).*
+*This configuration is informed by Google's Titans and MIRAS research (December 2025). Google did not review SCMS.*

@@ -1,8 +1,10 @@
 # HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding
 
+> **Note (Oct 2026):** SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS. Mentions of Google (Nested Learning, Titans, MIRAS), MIT, David Shapiro or Ilya Sutskever in this document describe related published work, not endorsements, and comparisons with them are the author's own. Percentages and cost figures are self-measured by the author on one project unless stated otherwise.
+
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
-**Version**: 1.1 (Updated December 5, 2025 - Added Google Titans/MIRAS validation)
+**Version**: 1.1 (Updated December 5, 2025 - Added discussion of Google's Titans/MIRAS research)
 
 **Status**: Companion paper to "Sparse Contextual Memory Scaffolding"
 
@@ -18,13 +20,13 @@ This paper presents three key contributions:
 2. **The objective/subjective verification distinction**: AI excels at tasks with external verification but fails at tasks requiring emotional intuition
 3. **HUMANE as universal principle**: Severity-aware failure memory can be implemented at pre-training, architecture, company interface, and user interface layers, with compounding alignment benefits
 
-We demonstrate **SCMS (Sparse Contextual Memory Scaffolding)** as proof-of-concept at the user interface layer, showing **2.8× completion rate improvement** and validating that failure documentation improves outcomes without causing contamination. We argue that HUMANE represents one critical missing piece in current alignment approaches and propose testable hypotheses for multi-layer implementation.
+We demonstrate **SCMS (Sparse Contextual Memory Scaffolding)** as proof-of-concept at the user interface layer, showing a **2.8× completion rate improvement** (self-measured on one project) and suggesting that failure documentation improves outcomes without causing contamination. We argue that HUMANE represents one critical missing piece in current alignment approaches and propose testable hypotheses for multi-layer implementation.
 
 **Keywords**: AI Alignment, Emotional Cognition, Failure Documentation, Severity Encoding, Contextual Memory, Reinforcement Learning, SCMS
 
 ---
 
-## Independent Validation: Ilya Sutskever's Analysis
+## Related Analysis: Ilya Sutskever
 
 In a November 2025 interview with Dwarkesh Patel, **Ilya Sutskever** (co-founder of SSI, former Chief Scientist at OpenAI) described a phenomenon that directly illustrates the gap HUMANE addresses:
 
@@ -36,13 +38,13 @@ This **bug oscillation (A→B→A→B)** occurs because:
 3. No contextual documentation explains WHY previous attempts failed
 4. No retrieval mechanism flags "we've been here before"
 
-**Sutskever's analysis validates the problem space SCMS addresses.** SCMS's Layer 0 failure memories provide the severity-aware retention mechanism his analysis implies is missing.
+**Sutskever's analysis describes the problem space SCMS addresses.** SCMS's Layer 0 failure memories provide the severity-aware retention mechanism his analysis implies is missing.
 
 ---
 
-## Additional Validation: Google Titans/MIRAS (December 2025)
+## Related Research: Google Titans/MIRAS (December 2025)
 
-Google's **Titans** and **MIRAS** papers provide further validation of HUMANE principles:
+Google's **Titans** and **MIRAS** papers explore ideas related to HUMANE principles (neither reviewed SCMS or HUMANE):
 
 **Titans Architecture**:
 - Introduces a "surprise metric" that prioritizes unexpected/important information over routine data
@@ -51,10 +53,10 @@ Google's **Titans** and **MIRAS** papers provide further validation of HUMANE pr
 
 **MIRAS Framework**:
 - Explicitly states "forgetting is as important as remembering"
-- Defines "Retention Gates" as essential design component—validating that severity-based retention (keep catastrophic failures, decay minor ones) is architecturally sound
-- Proves that systems without forgetting mechanisms suffer unbounded memory growth and performance degradation
+- Defines "Retention Gates" as essential design component—consistent with severity-based retention (keep catastrophic failures, decay minor ones)
+- Argues that systems without forgetting mechanisms suffer unbounded memory growth and performance degradation
 
-**HUMANE Alignment**: The bug oscillation problem Sutskever describes is precisely what systems without severity-aware retention produce. Titans/MIRAS validate that the solution requires:
+**HUMANE Alignment**: The bug oscillation problem Sutskever describes is precisely what systems without severity-aware retention produce. In the author's reading, Titans/MIRAS suggest the solution requires:
 1. Multi-layer memory (HUMANE: severity levels)
 2. Forgetting mechanisms (HUMANE: decay for low-severity)
 3. Surprise/importance filtering (HUMANE: severity encoding)

@@ -63,7 +63,7 @@
 
 ---
 
-## 🎯 Surprise Analysis (Titans-Validated)
+## 🎯 Surprise Analysis (Titans-Inspired)
 *High-surprise failures contain more learning value and deserve stronger retention*
 
 **Surprise Scoring Guide:**
@@ -104,7 +104,7 @@
 
 ---
 
-## ⏳ Retention Gate Configuration (MIRAS-Validated)
+## ⏳ Retention Gate Configuration (MIRAS-Inspired)
 *Configure how long this failure should persist in memory*
 
 **Retention Formula:** `retention_score = severity_weight × surprise_factor × recency_bonus`
