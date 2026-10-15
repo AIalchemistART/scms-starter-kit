@@ -1,14 +1,12 @@
 # SCMS Starter Kit
 
-**Sparse Contextual Memory Scaffolding** - A validated system for continual learning in AI-assisted development.
+**Sparse Contextual Memory Scaffolding** - A layered memory system for continual learning in AI-assisted development.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](docs/)
-[![Google Validated](https://img.shields.io/badge/Google%20Research-Validated-brightgreen.svg)](docs/reference/WHITEPAPER.md#independent-validation-by-google-research)
+[![Related research](https://img.shields.io/badge/Related%20research-Nested%20Learning%20%28NeurIPS%202025%29-blue.svg)](docs/reference/WHITEPAPER.md#independent-validation-by-google-research)
 
-**🔥 NEW (Dec 2025)**: Google's **Titans** and **MIRAS** papers (December 2025) provide definitive validation—multi-layer memory architecture and forgetting mechanisms are **essential** for AI memory systems. SCMS's L0/L1/L2 architecture and decay mechanism align perfectly with Google's findings. Competitors using flat vector databases (Mem0, etc.) are now **architecturally deficient** per Google's research!
-
-**📜 Prior Validation (Nov 2025)**: Core SCMS principles **independently validated** across a 2-year convergence—**David Shapiro (2023)** theorized sparse activation architecture, **SCMS (2024-2025)** implemented production system, **Google Research (2025)** validated with "Nested Learning" (NeurIPS 2025), and **Ilya Sutskever (Nov 2025)** confirmed the "bug oscillation" problem that SCMS failure documentation directly addresses!
+**Related research**: SCMS's approach was independently validated by findings in Google's Nested Learning research (NeurIPS 2025). Google did not review SCMS; its published findings support the same approach in a different domain (model training rather than AI-assisted development workflows). Later Google work (Titans and MIRAS, Dec 2025) and public comments by Ilya Sutskever (Nov 2025) discuss related ideas. See [Related Research](#-related-research) below.
 
 **📄 Research Papers**: [SCMS (Empirical)](docs/reference/WHITEPAPER.md) | [Paradigm Shift (Design)](docs/reference/WHITEPAPER_PARADIGM_SHIFT.md) | [Mixture of Memories (Theory)](docs/reference/WHITEPAPER_MIXTURE_OF_MEMORIES.md) | [Economics](docs/reference/WHITEPAPER_ECONOMICS.md) | [HUMANE (Alignment)](docs/reference/WHITEPAPER_HUMANE.md) **NEW**
 
@@ -26,7 +24,7 @@
 
 **Sparse Contextual Memory Scaffolding** transforms AI memory from passive storage into **active validation infrastructure**. Unlike traditional documentation that AI may or may not follow, SCMS implements a **dual validation pipeline** where patterns are automatically tested (L0) and enforced (L1) through repeated use.
 
-**Validated Results** (4-month game development project):
+**Author's self-measured results** (one 4-month game development project; not independently replicated):
 - ✅ **91% reduction** in pattern re-discovery time
 - ✅ **94% knowledge retention** rate  
 - ✅ **96% time reduction** in stale-context scenarios
@@ -35,67 +33,38 @@
 
 ---
 
-## 🏆 Independent Validation: Multi-Year Convergence (2023-2025)
+## 📚 Related Research
 
-SCMS principles have been **independently validated** across a 2-year span by **six independent sources**:
+SCMS was developed independently. Several published works explore related ideas. They are listed here for context, not as endorsements: none of these authors reviewed SCMS.
 
-**1. David Shapiro (2023)**: Theoretical Foundation
-- Raw logs → roll-ups → KB articles architecture
-- Sparse activation with gating thresholds
-- Asymptotic knowledge growth patterns
-- **Key insight**: Architecture was theoretically sound but lacked production tooling
+**1. David Shapiro (2023)**: earlier writing on raw logs → roll-ups → knowledge-base articles, with sparse activation and gating thresholds.
 
-**2. SCMS (2024-2025)**: Production Implementation
-- First production realization with modern IDE integration
-- 4-month validation: 91% time savings, 94% retention
-- Dual validation pipeline (L0 testing + L1 enforcement)
+**2. SCMS (2024–2025)**: a working implementation for AI-assisted development in modern IDEs (L0 testing + L1 enforcement), developed on one 4-month project.
 
-**3. Google Research (2025)**: Architectural Validation
-- "Nested Learning" (Behrouz et al., NeurIPS 2025) published ~10 days after SCMS
-- Perfect alignment on 6/6 fundamental principles:
+**3. Google Research, "Nested Learning" (Behrouz et al., NeurIPS 2025)**: SCMS's approach was independently validated by findings in this research. Google did not review SCMS. Nested Learning works on neural-network training (model weights); SCMS works at the AI-assistant workflow level. In the author's comparison, the two overlap on these principles:
 
-| Principle | Validated | Details |
-|-----------|-----------|---------|
-| **Nested Hierarchical Structure** | ✅ | Multi-level organization (Google: optimization, SCMS: validation) |
-| **Multi-Time-Scale Updates** | ✅ | Different update rates per level (Google: parameters, SCMS: promotion) |
-| **Distinct Context Flows** | ✅ | Each level has its own information flow |
-| **Catastrophic Forgetting Prevention** | ✅ | Both solve forgetting through nesting |
-| **Associative Memory Compression** | ✅ | Key-value storage and retrieval |
-| **Continuum Memory System** | ✅ | Memory as a spectrum (Google: frequency, SCMS: abstraction) |
+| Principle | Overlap | Details |
+|-----------|---------|---------|
+| **Nested Hierarchical Structure** | ✓ | Multi-level organization (Google: optimization, SCMS: validation) |
+| **Multi-Time-Scale Updates** | ✓ | Different update rates per level (Google: parameters, SCMS: promotion) |
+| **Distinct Context Flows** | ✓ | Each level has its own information flow |
+| **Catastrophic Forgetting Prevention** | ✓ | Both address forgetting through nesting |
+| **Associative Memory Compression** | ✓ | Key-value storage and retrieval |
+| **Continuum Memory System** | ✓ | Memory as a spectrum (Google: frequency, SCMS: abstraction) |
 
-**Perfect 6/6 alignment** validates SCMS architecture from an S-tier research lab!
+**4. Ilya Sutskever (Dwarkesh Podcast, Nov 25, 2025)**: described the "bug oscillation" problem (A→B→A→B) and missing continual memory. SCMS's failure documentation is one practical response to that problem.
 
-**4. Ilya Sutskever (2025)**: Problem Space Validation
-- Dwarkesh Podcast interview (November 25, 2025)
-- Described the "bug oscillation" problem (A→B→A→B) that SCMS failure documentation directly addresses
-- Identified missing "continual memory" as root cause—exactly what SCMS provides
-- **Key insight**: Problem recognized at highest levels of AI research; SCMS offers a working solution
+**5. Google "Titans" (Dec 2025)**: a multi-layer memory architecture for long contexts, with a "surprise" signal for deciding what to store. This is conceptually similar to SCMS's layered memory and validation-based promotion.
 
-**5. Google "Titans" Architecture (Dec 2025)**: Three-Layer Memory Validation
-- Introduces **three-layer memory architecture** (Long-term, Core Attention, Persistent) that directly mirrors SCMS's L0/L1/L2
-- Demonstrates multi-layer memory is **essential** for handling long contexts (>2M tokens)
-- "Surprise metric" for deciding what to store validates SCMS's validation-based promotion approach
-- **Key insight**: Flat vector databases cannot adequately capture rich information in long sequences
+**6. Google "MIRAS" (Dec 2025)**: frames retention and forgetting as core design choices ("Forgetting is as important as remembering"). This is conceptually similar to SCMS's decay for unvalidated L0 memories.
 
-**6. Google "MIRAS" Framework (Dec 2025)**: Forgetting Mechanism Validation
-- Identifies four essential design choices: Memory Architecture, Attentional Bias, **Retention Gate**, Memory Algorithm
-- Explicitly states: **"Forgetting is as important as remembering"**—validates SCMS's decay mechanism
-- Competitors (Mem0, Claude-mem, etc.) using flat storage without forgetting are **architecturally deficient** per this research
-- **Key insight**: SCMS's decay for unvalidated L0 memories aligns with Google's "retention gates"
-
-**Key Differences**:
-- **SCMS**: First application to AI-assistant cognition (interface layer) with **production-validated system** (127+ cycles)
-- **Google NL**: Applied to neural network training (model weights) with theoretical proof-of-concept
-
-**Implications**: Independent discovery of identical principles across abstraction levels suggests these are **universal architectural patterns** for continual learning systems—not domain-specific heuristics.
-
-→ **[Read full validation analysis](docs/reference/WHITEPAPER.md#independent-validation-by-google-research)**
+→ **[Read the author's full comparison](docs/reference/WHITEPAPER.md#independent-validation-by-google-research)**
 
 ---
 
 ## How It Works
 
-SCMS implements **dual validation infrastructure** optimized for **30-45% cost reduction** through retrieval-over-generation:
+SCMS implements **dual validation infrastructure** designed to reduce cost through retrieval-over-generation (the author estimates **30-45%** from one project):
 
 ### 💰 **Economic Optimization Core**
 - **Retrieval-first bias**: Search L0/L1 before generating new content
@@ -151,7 +120,7 @@ SCMS transforms AI memory from passive storage to **active cost optimization**:
 
 ## 🧠 Mind-Map Framework: Multi-Time-Scale Architecture
 
-SCMS implements a **cognitive architecture** with three levels operating at different update frequencies—directly validating Google's discovery that "multi time-scale update [is] the key component to unlock continual learning":
+SCMS implements a **cognitive architecture** with three levels operating at different update frequencies—consistent with Google's Nested Learning finding that "multi time-scale update [is] the key component to unlock continual learning":
 
 ```
 RARE ←―――――――――――――――――――――――――――→ FREQUENT
@@ -175,7 +144,7 @@ need timeout"       cancelQTE() @ 30s"    QTE cancellation"
 
 ## 💥 Failure Documentation as First Principles
 
-**Key Insight**: Failures contain **10-100× more information** than successes.
+**Key Insight** (author's heuristic): Failures often contain far more information than successes.
 
 - **Successes**: "This worked" (1 bit: true)
 - **Failures**: "This failed because X, Y, Z" (N bits: full causal model)
@@ -197,7 +166,7 @@ need timeout"       cancelQTE() @ 30s"    QTE cancellation"
    (Specific Handling)      (implementation details)
 ```
 
-**Real Impact**: Documenting one bug pattern prevents 3-10 similar bugs. Failed approaches eliminate entire solution spaces, saving hours of exploration.
+**In the author's experience**, documenting one bug pattern prevents several similar bugs. Failed approaches eliminate entire solution spaces, saving hours of exploration.
 
 ---
 
@@ -205,17 +174,17 @@ need timeout"       cancelQTE() @ 30s"    QTE cancellation"
 
 ### **Quantified Cost Savings**
 
-**Real-World Validation** (Labyrinth Protocol, 300+ interactions):
+**Author's measurements** (Labyrinth Protocol, 300+ interactions; self-measured, not independently replicated):
 - **30-45% session cost reduction**: Full accounting including thinking mode
 - **Response efficiency**: 300 vs 600 tokens average (including thinking)
 - **Cost per session**: $0.018 vs $0.033 (45% reduction conservative estimate)
 
-**User Economics** (Conservative Projections):
+**User Economics** (illustrative projections, not measured):
 - **Heavy users**: $200-400/year savings with algorithmic validation
 - **Medium users**: $100-200/year savings
 - **Performance**: 2-3× faster responses through retrieval optimization
 
-**Platform Economics** (100K users):
+**Platform Economics** (100K users; hypothetical projection):
 - **Annual savings**: $2-3.5M at full adoption (conservative estimate)
 - **ROI**: 200-400% over 3 years (realistic projections)
 - **Payback period**: 6-12 months
@@ -244,7 +213,7 @@ need timeout"       cancelQTE() @ 30s"    QTE cancellation"
 
 → **[Launch Dashboard Now](docs/tools/scms-dashboard.html)** | **[Theoretical Design Guide](docs/guides/SCMS_ECONOMIC_DASHBOARD.md)**
 
-**Key Advantage**: Transforms economic claims from estimates to empirically validated measurements.
+**Key Advantage**: Lets you measure your own savings instead of relying on the author's estimates.
 
 ### **Strategic Value**
 
@@ -255,7 +224,7 @@ need timeout"       cancelQTE() @ 30s"    QTE cancellation"
 
 **For Platform Providers**:
 - Transforms heavy users from loss-leaders to profit centers
-- 30-45% cost advantage over competitors (conservative estimate)
+- Potential 30-45% cost reduction (author's estimate from one project)
 - Sustainable scaling economics with measurable ROI
 
 → **[Read full economic analysis](docs/reference/WHITEPAPER_ECONOMICS.md)**
@@ -271,7 +240,7 @@ SCMS's L0 layer (active memories) works differently depending on your IDE:
 - AI creates memories **automatically** during development
 - **Zero overhead** - happens naturally
 - Temporal decay keeps knowledge base clean
-- **This is TRUE SCMS as researched** (91% time savings proven)
+- The setup used in the author's measured project (91% self-measured time savings)
 
 ### Manual Markdown (Cursor/Generic)
 
@@ -528,7 +497,7 @@ npm run dashboard
 # top patterns with ROI, savings toward 30-45% target
 ```
 
-**Key Advantage**: Algorithmic validation transforms economic claims from estimates to measurable facts! 📈
+**Key Advantage**: The tracker lets you measure your own results. 📈
 
 → **[Complete Checkpoint Tracking Guide](docs/CHECKPOINT_TRACKING_SETUP.md)**
 
@@ -653,15 +622,15 @@ docs/
 - Documentation updated within hours (recursive mode)
 - Edge cases preserved in memories, promoted to WORKSPACE_RULES
 
-**Result**: 127 implementation cycles completed with 91% time savings and zero documentation debt.
+**Author's result** (self-measured): 127 implementation cycles with 91% time savings and no documentation backlog.
 
 ---
 
 ## When to Use SCMS (Scope & Suitability)
 
-**v1.3 Research Finding**: SCMS delivers **differentiated benefits** based on project characteristics and context freshness.
+**Author's observation (v1.3)**: SCMS appears to deliver **differentiated benefits** based on project characteristics and context freshness.
 
-### ✅ Maximum Value Scenarios (85-96% benefit)
+### ✅ Maximum Value Scenarios (author's estimate: 85-96% benefit)
 
 **Best suited for:**
 - **Stale context recovery**: Picking up old projects after weeks/months of inactivity
@@ -670,9 +639,9 @@ docs/
 - **Knowledge-intensive work**: Research projects, complex software systems, technical content creation
 - **Collaborative environments**: Teams sharing context and patterns across members
 
-**Why it excels**: SCMS's dual validation pipeline (L0 test + L1 enforce) prevents catastrophic forgetting when context has decayed—the 96% time reduction in stale-context scenarios validates this.
+**Why it excels**: SCMS's dual validation pipeline (L0 test + L1 enforce) prevents catastrophic forgetting when context has decayed—the author's self-measured 96% time reduction in stale-context scenarios is consistent with this.
 
-### ✓ Moderate Value Scenarios (60-80% benefit)
+### ✓ Moderate Value Scenarios (author's estimate: 60-80% benefit)
 
 **Well suited for:**
 - **Established codebases**: Ongoing development with moderate pattern reuse
@@ -682,7 +651,7 @@ docs/
 
 **Why it helps**: Continuous validation prevents re-discovery of known patterns and maintains knowledge continuity.
 
-### △ Lower Value Scenarios (30-50% benefit)
+### △ Lower Value Scenarios (author's estimate: 30-50% benefit)
 
 **Still beneficial, but less critical:**
 - **Greenfield projects**: Starting from scratch with fresh context (though still helps establish patterns)
@@ -758,60 +727,60 @@ SCMS is based on published research from the **Labyrinth Protocol** project:
 
 Introduces the **dual validation pipeline architecture** where Layer 0 (destructive validation) tests patterns through natural selection and Layer 1 (stable validation) enforces proven patterns through deterministic loading. This transforms AI memory from passive storage into active quality control infrastructure.
 
-**v2.0 Additions**: Google Titans/MIRAS validation (Dec 2025) - Three-layer memory architecture and forgetting mechanisms validated as essential. Competitors using flat vector databases now architecturally deficient per Google's research.
+**v2.0 Additions**: discussion of related Google research (Titans and MIRAS, Dec 2025) on multi-layer memory and forgetting mechanisms.
 
-**Key Results**:
+**Key Results** (self-measured on one project):
 - 91% reduction in pattern re-discovery time
 - 94% knowledge retention vs 37% baseline  
 - 96% time reduction in stale-context scenarios
 - Documentation lag: 11.5 days → 4 hours
-- Validated over 4 months, 127 implementation cycles
+- Measured over 4 months, 127 implementation cycles
 
 **📄 [Paradigm Shift (Design)](docs/reference/WHITEPAPER_PARADIGM_SHIFT.md)** - v2.1  
 *Paradigm Shift in AI Memory: From Preference Storage to Continual Learning*
 
-Documents the emergent paradigm shift from AI memories as "digital filing cabinets" to **dual validation infrastructure** (L0 test + L1 enforce). Fewer than 1% of users have discovered this pattern. 
+Documents the emergent paradigm shift from AI memories as "digital filing cabinets" to **dual validation infrastructure** (L0 test + L1 enforce).
 
-**v2.1 Additions**: Google Titans/MIRAS validation (Dec 2025) - Validates paradigm shift from "save everything" to layered validation is architecturally necessary.
+**v2.1 Additions**: discussion of related Google research (Titans and MIRAS, Dec 2025).
 
 Includes comparative analysis across six dimensions, five design principles for validation-oriented systems, and multi-domain validation (research, content creation, data analysis, education).
 
 **📄 [Mixture of Memories (Theory)](docs/reference/WHITEPAPER_MIXTURE_OF_MEMORIES.md)** - v2.1  
 *Mixture of Memories: A Unified Framework for Sparse Activation Across Abstraction Levels*
 
-Proves that sparse selective activation is not merely an optimization but a **structural necessity** for continual learning at scale. 
+Argues that sparse selective activation is not merely an optimization but a **structural necessity** for continual learning at scale. 
 
-**v2.1 Additions**: Google Titans/MIRAS validation (Dec 2025) - Titans validates MoM's isomorphism between memory routing and MoE gating. MIRAS confirms impossibility theorems for dense alternatives.
+**v2.1 Additions**: discussion of related Google research (Titans and MIRAS, Dec 2025) on memory routing and dense alternatives.
 
-Establishes formal mathematical framework proving structural isomorphism between SCMS dual validation pipeline (L0+L1) and Mixture of Experts architectures. Demonstrates sparse selective activation as a universal pattern from biological neurons to organizational systems.
+Proposes a formal mathematical framework for a structural isomorphism between SCMS dual validation pipeline (L0+L1) and Mixture of Experts architectures. Explores sparse selective activation as a possible universal pattern from biological neurons to organizational systems.
 
 **📄 [Economics of Continual Learning](docs/reference/WHITEPAPER_ECONOMICS.md)** - v1.4  
 *The Economics of Continual Learning: How SCMS Transforms AI Development Costs*
 
-Demonstrates that SCMS creates **30-45% cost reduction** in AI interactions through retrieval-over-generation optimization. Using real-world development data (127 cycles), shows SCMS transforms heavy users from sustainable customers.
+Estimates that SCMS can deliver a **30-45% cost reduction** in AI interactions through retrieval-over-generation optimization. Using real-world development data (127 cycles), shows SCMS transforms heavy users from sustainable customers.
 
-**v1.4 Additions**: Google Titans/MIRAS validation (Dec 2025) - Deep memory more efficient at scale; forgetting mechanisms prevent memory overflow.
+**v1.4 Additions**: discussion of related Google research (Titans and MIRAS, Dec 2025) on deep memory and forgetting.
 
-**Key Economic Findings**:
+**Key Economic Estimates** (author's projections):
 - Individual developers: $200-400 annual savings (conservative)
 - Platform providers: $2-3.5M annual savings potential  
 - Response efficiency: 2-3× faster through retrieval vs generation
-- Quality improvement: Validated patterns eliminate hallucination
+- Quality improvement: validated patterns reduce hallucination
 
 **📄 [HUMANE (Alignment)](docs/reference/WHITEPAPER_HUMANE.md)** - v1.1  
 *HUMANE: Human-like Understanding through Memory, Alignment, and Negative Encoding*
 
 Extends SCMS principles to **AI alignment** through severity-aware failure memory. Introduces the dual function of emotional processing (reward signal AND retrieval trigger) and the objective/subjective verification distinction that explains AI's "jagged" performance.
 
-**v1.1 Additions**: Google Titans/MIRAS validation (Dec 2025) - "Surprise metric" mirrors severity encoding; retention gates validate severity-based retention.
+**v1.1 Additions**: discussion of related Google research (Titans and MIRAS, Dec 2025): the "surprise" signal and retention gates.
 
 **Key Contributions**:
 - Theoretical reframing: Emotions as retrieval triggers, not just value functions
 - The Puzzle vs Socks framework: Why AI excels at objective but fails at subjective tasks
 - Four-layer HUMANE implementation stack with compounding benefits
-- SCMS as proof-of-concept showing 2.8× completion rate improvement
+- SCMS as proof-of-concept (author reports a 2.8× completion-rate improvement on one project)
 
-Validated by Ilya Sutskever (Nov 2025) and Google Titans/MIRAS (Dec 2025).
+Discusses related comments by Ilya Sutskever (Nov 2025) and Google's Titans/MIRAS research (Dec 2025).
 
 **Authors**: Matthew S. Walker, Claude (Anthropic)
 
@@ -991,4 +960,4 @@ If you use SCMS in your research or project, please cite:
 
 **Get Started**: [SETUP.md](SETUP.md) | **Learn More**: [Whitepaper](docs/reference/WHITEPAPER.md) | **See Examples**: [docs/examples/](docs/examples/)
 
-Built with ❤️ by the Labyrinth Protocol team • Validated over 4 months of real development • Open source and free to use
+Built with ❤️ by the Labyrinth Protocol team • Developed over 4 months of real development • Open source and free to use
