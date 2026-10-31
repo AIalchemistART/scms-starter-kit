@@ -193,7 +193,7 @@ You might be closer to something important than you realize.
 
 ---
 
-*Mann Wynn Shramana is the creator of SCMS (Sparse Contextual Memory Scaffolding) and is currently building Mneme AI, a chat interface that demonstrates continual memory in practice. Find him on [X @aialchemistart](https://x.com/aialchemistart).*
+*Mann Wynn Shramana is the creator of SCMS (Sparse Contextual Memory Scaffolding) and is currently building Mneme AI, a chat interface that demonstrates continual memory in practice. Find him on [X @BuildingGrokBot](https://x.com/BuildingGrokBot).*
 
 ---
 
